@@ -1,18 +1,89 @@
+var/
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/public/bundles/
-/var/
-/vendor/
-###< symfony/framework-bundle ###
+# Parameters
+/app/config/parameters.yml
+/app/config/parameters.ini
 
-###> symfony/phpunit-bridge ###
-.phpunit
-/phpunit.xml
-###< symfony/phpunit-bridge ###
+# Managed by Composer
+bin/*
+!bin/console
+!bin/symfony_requirements
+vendor/
 
-###> symfony/web-server-bundle ###
-/.web-server-pid
-###< symfony/web-server-bundle ###
+# Assets and user uploads
+/web/bundles/
+/web/uploads/
+
+# Build data
+build/
+
+# Composer PHAR
+composer.phar
+
+# Backup entities generated with doctrine:generate:entities command
+**/Entity/*~
+
+# Embedded web-server pid file
+.web-server-pid
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# WebStorm
+.idea/
+
+# Node.js modules
+node_modules/
+
+# SASS cache
+scss/.sass-cache/
+
+# SublimeText
+*.sublime-workspace
+
+# KomodoEdit projectfiles
+*.kpf
+
+# VS Code
+.vscode
