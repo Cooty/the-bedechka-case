@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ locale }}">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% include './includes/header.html.twig' %}
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        {% include './includes/footer.html.twig' %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
