@@ -4,8 +4,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}The Bedechka Case{% endblock %}</title>
+        {% block stylesheets %}
+            {# TODO: Add async loading strategy with embeded font and JS loading #}
+            <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,500" rel="stylesheet">
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
     <body>
         {% include './includes/header.html.twig' %}
@@ -13,6 +17,8 @@
             {% block main %}{% endblock %}
         </main>
         {% include './includes/footer.html.twig' %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
