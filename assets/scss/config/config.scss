@@ -1,2 +1,4 @@
-$header-font: 'Playfair Display', Georgia, Times, serif;
-$copy-font: 'Roboto', Segoe UI, sans-serif;
+@import "typo";
+@import "colors";
+@import "sizes";
+@import "decorations";
