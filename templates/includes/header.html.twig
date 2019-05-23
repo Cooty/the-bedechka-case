@@ -1,13 +1,4 @@
 <header class="header">
-    <a class="logo" href="{{ path('home') }}">
-        <span class="logo__typo">
-            The Bedechka Case
-        </span>
-    </a>
-
-    <nav>
-        <a href="{{ path('the_crew') }}">The Crew</a>
-        <a href="{{ path('people') }}">People</a>
-        <a href="{{ path('partners') }}">Partners</a>
-    </nav>
+    {% include('./header/logo.html.twig') %}
+    {% include('./header/navigation.html.twig') %}
 </header>
