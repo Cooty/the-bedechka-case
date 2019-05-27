@@ -1,0 +1,8 @@
+a {
+  color: $purple;
+  text-decoration: none;
+
+  &:focus {
+    outline: 1px dotted;
+  }
+}

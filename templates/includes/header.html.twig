@@ -1,9 +1,6 @@
-<header>
-    <a href="{{ path('home') }}">Logo</a>
-
-    <nav>
-        <a href="{{ path('the_crew') }}">The Crew</a>
-        <a href="{{ path('people') }}">People</a>
-        <a href="{{ path('partners') }}">Partners</a>
-    </nav>
+<header class="header">
+    <div class="header__logo">
+        {% include('./includes/header/logo.html.twig') %}
+    </div>
+    {% include('./includes/header/navigation.html.twig') %}
 </header>

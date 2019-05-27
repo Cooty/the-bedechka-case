@@ -1,0 +1,9 @@
+.wrapper {
+  padding-left: $gutter;
+  padding-right: $gutter;
+
+  @media (min-width: $desktop) {
+    padding-left: $gutter-desktop;
+    padding-right: $gutter-desktop;
+  }
+}
