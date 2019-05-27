@@ -1,0 +1,70 @@
+.navigation {
+  height: $mobile-navigation-h;
+  display: flex;
+  flex-wrap: nowrap;
+
+  @media (min-width: $phablet) and (max-width: $desktop - 1) {
+    max-width: $phablet;
+    margin: 0 auto;
+  }
+
+  @media (min-width: $desktop) {
+    padding-right: $gutter-desktop;
+    height: auto;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  &__item {
+    @extend %text-colored-link;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+
+    @media (min-width: $desktop) {
+      flex: 0 0 auto;
+      padding: 0 ($gutter-desktop * 2);
+      font-size: $subheader-size;
+    }
+
+    > span {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &:after {
+      content: '';
+      height: 3px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      transition: all .3s ease-in-out;
+      opacity: 0;
+    }
+
+    &:focus,
+    &:hover {
+      outline: 0;
+
+      &:not(.active) {
+        &:after {
+          opacity: 1;
+          background-color: $orange;
+        }
+      }
+    }
+
+    &.active {
+      &:after {
+        opacity: 1;
+        background-color: $dark-green;
+      }
+    }
+
+  }
+}

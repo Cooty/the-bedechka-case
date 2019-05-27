@@ -1,4 +1,21 @@
 .header {
   background-color: $beige;
   box-shadow: $box-shadow-header;
+
+  @media (min-width: $desktop) {
+    display: flex;
+  }
+
+  &__logo {
+    height: $mobile-header-top-h;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    text-align: center;
+
+    @media (min-width: $desktop) {
+      border-bottom: 0;
+    }
+  }
 }

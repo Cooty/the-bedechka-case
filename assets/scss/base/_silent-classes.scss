@@ -1,0 +1,10 @@
+%text-colored-link {
+  color: $base-text-color;
+  text-decoration: none;
+}
+
+%header-font {
+  font-family: $header-font;
+  text-transform: uppercase;
+  font-weight: 900;
+}

@@ -1,5 +1,14 @@
 <nav class="navigation">
-    <a href="{{ path('the_crew') }}">The Crew</a>
-    <a href="{{ path('people') }}">People</a>
-    <a href="{{ path('partners') }}">Partners</a>
+    <a href="{{ path('people') }}"
+       class="navigation__item{{ app.request.get('_route') == 'people' ? ' active' }}">
+        <span>People</span>
+    </a>
+    <a href="{{ path('the_crew') }}"
+       class="navigation__item{{ app.request.get('_route') == 'the_crew' ? ' active' }}">
+        <span>Crew</span>
+    </a>
+    <a href="{{ path('partners') }}"
+       class="navigation__item{{ app.request.get('_route') == 'partners' ? ' active' }}">
+        <span>Partners</span>
+    </a>
 </nav>

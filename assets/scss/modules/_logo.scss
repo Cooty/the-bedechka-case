@@ -1,0 +1,30 @@
+.logo {
+  @extend %text-colored-link;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  @media (min-width: $desktop) {
+    padding-left: $gutter-desktop;
+    flex: 0 0 auto;
+  }
+
+  &__image {
+    flex: 0;
+    width: 53px;
+    height: 47px;
+    margin-right: 10px;
+
+    @media (min-width: $desktop) {
+      width: 60px;
+      height: 53px;
+    }
+
+  }
+
+  &__typo {
+    @extend %header-font;
+    font-size: 20px;
+    user-select: none;
+  }
+}
