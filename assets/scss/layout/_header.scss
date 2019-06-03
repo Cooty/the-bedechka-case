@@ -4,6 +4,11 @@
 
   @media (min-width: $desktop) {
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-top;
   }
 
   &__logo {
@@ -17,5 +22,11 @@
     @media (min-width: $desktop) {
       border-bottom: 0;
     }
+  }
+}
+
+body {
+  @media (min-width: $desktop) {
+    padding-top: $desktop-header-h;
   }
 }

@@ -2,6 +2,10 @@
 
 {% block title %}People{% endblock %}
 
+{% set heroSettings = {
+    'background': 'people',
+} %}
+
 {% block main %}
-    {% include('./includes/hero.html.twig') %}
+    {% include('./includes/hero.html.twig') with heroSettings %}
 {% endblock %}

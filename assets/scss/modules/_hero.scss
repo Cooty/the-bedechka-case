@@ -1,0 +1,18 @@
+.hero {
+  background-color: $backdrop-grey;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 280px;
+
+  &:before {
+    @extend %backdrop;
+  }
+
+  &:after {
+    @extend %grounge-mask;
+    bottom: -1px;
+    background-image: url(../../images/grounge-mask-hero@2x.png);
+  }
+}

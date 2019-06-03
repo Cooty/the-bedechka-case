@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% set heroSettings = {
+    'background': 'partners',
+} %}
+
 {% block title %} Partners {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') %}
+    {% include('./includes/hero.html.twig') with heroSettings %}
 {% endblock %}

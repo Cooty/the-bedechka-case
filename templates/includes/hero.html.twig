@@ -1,1 +1,29 @@
-<header class="hero">Generic hero</header>
+{% if background is defined %}
+    {% set folder = 'build/header-footer-backgrounds/' %}
+
+    <style>
+        .hero {
+            background-image: url({{ asset("#{folder}#{background}-mobile.webp") }});
+        }
+
+        .no-webp .hero {
+            background-image: url({{ asset("#{folder}#{background}-mobile.jpg") }});
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                background-image: url({{ asset("#{folder}#{background}-desktop.webp") }});
+            }
+
+            .no-webp .hero {
+                background-image: url({{ asset("#{folder}#{background}-desktop.jpg") }});
+            }
+        }
+    </style>
+{% endif %}
+
+<header class="hero">
+    <div class="wrapper">
+        Hero
+    </div>
+</header>

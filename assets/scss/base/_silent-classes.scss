@@ -8,3 +8,25 @@
   text-transform: uppercase;
   font-weight: 900;
 }
+
+%backdrop {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $backdrop-grey;
+  z-index: $z-lowest;
+}
+
+%grounge-mask {
+  content: '';
+  position: absolute;
+  z-index: $z-low;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-size: 443px 10px;
+  background-repeat: repeat-x;
+}

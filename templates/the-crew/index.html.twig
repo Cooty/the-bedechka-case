@@ -2,6 +2,10 @@
 
 {% block title %}The Crew{% endblock %}
 
+{% set heroSettings = {
+    'background': 'crew',
+} %}
+
 {% block main %}
-    {% include('./includes/hero.html.twig') %}
+    {% include('./includes/hero.html.twig') with heroSettings %}
 {% endblock %}

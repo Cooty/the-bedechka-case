@@ -4,6 +4,10 @@
     The Bedechka Case Documentary Project - It's more then just parks we're losing
 {% endblock %}
 
+{% set heroSettings = {
+    'background': 'home'
+} %}
+
 {% block main %}
-    {% include('./includes/hero.html.twig') %}
+    {% include('./includes/hero.html.twig') with heroSettings %}
 {% endblock %}
