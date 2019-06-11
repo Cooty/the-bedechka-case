@@ -1,6 +1,13 @@
 .wrapper {
+  max-width: $page-max-w;
+  margin-right: auto;
+  margin-left: auto;
   padding-left: $gutter;
   padding-right: $gutter;
+
+  &--narrow {
+    max-width: $narrow-content-w;
+  }
 
   @media (min-width: $desktop) {
     padding-left: $gutter-desktop;

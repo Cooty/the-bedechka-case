@@ -3,11 +3,21 @@
 
     <style>
         .hero {
-            background-image: url({{ asset("#{folder}#{background}-mobile.webp") }});
+            background-image: url({{ asset("#{folder}#{background}.webp") }});
         }
 
         .no-webp .hero {
-            background-image: url({{ asset("#{folder}#{background}-mobile.jpg") }});
+            background-image: url({{ asset("#{folder}#{background}.jpg") }});
+        }
+
+        @media (min-width: 401px) {
+            .hero {
+                background-image: url({{ asset("#{folder}#{background}-mobile.webp") }});
+            }
+
+            .no-webp .hero {
+                background-image: url({{ asset("#{folder}#{background}-mobile.jpg") }});
+            }
         }
 
         @media (min-width: 1024px) {
@@ -22,8 +32,14 @@
     </style>
 {% endif %}
 
-<header class="hero">
-    <div class="wrapper">
-        Hero
-    </div>
+{% if modifierCSSClassName is defined %}
+    {% set modifierCSSClassNameOutput = " #{modifierCSSClassName}" %}
+{% else %}
+    {% set modifierCSSClassNameOutput = '' %}
+{% endif %}
+
+<header class="hero{{ modifierCSSClassNameOutput }}">
+    {% if content is defined %}
+        {{ content|raw }}
+    {% endif %}
 </header>

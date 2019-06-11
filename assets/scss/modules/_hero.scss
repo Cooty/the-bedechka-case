@@ -1,10 +1,23 @@
 .hero {
+  // TODO: Implement parallax effect https://stackoverflow.com/questions/21786272/css-background-size-cover-background-attachment-fixed-clipping-background-im
   background-color: $backdrop-grey;
+  overflow: hidden;
+  height: 261px;
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-attachment: fixed;
   background-size: cover;
-  min-height: 280px;
+
+  @media (min-width: $tablet + 1) {
+    height: 421px;
+  }
+
+  &--tall {
+    height: 451px;
+
+    @media (min-width: $tablet + 1) {
+      height: 568px;
+    }
+  }
 
   &:before {
     @extend %backdrop;
