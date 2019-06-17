@@ -1,6 +1,7 @@
 {% if background is defined %}
-    {% set folder = 'build/header-footer-backgrounds/' %}
 
+    {% set folder = 'build/header-footer-backgrounds/' %}
+        {% spaceless %}
     <style>
         .hero {
             background-image: url({{ asset("#{folder}#{background}.webp") }});
@@ -29,7 +30,8 @@
                 background-image: url({{ asset("#{folder}#{background}-desktop.jpg") }});
             }
         }
-    </style>
+    </style>{% endspaceless %}
+
 {% endif %}
 
 {% if modifierCSSClassName is defined %}

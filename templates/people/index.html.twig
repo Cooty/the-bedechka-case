@@ -2,8 +2,12 @@
 
 {% block title %}People{% endblock %}
 
+{% set heroTitle = {'mainTitle': 'List of protagonists', 'subTitle': 'Meet all the people featured in the movie'} %}
+{% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
+
 {% set heroSettings = {
     'background': 'people',
+    'content': heroContent
 } %}
 
 {% block main %}

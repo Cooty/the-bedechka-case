@@ -1,0 +1,40 @@
+{
+  "categories": [
+    {"name":  "Stara Zagora",
+      "organizations": [
+        {
+          "name": "Architeks House",
+          "url": "wwww.example.com"
+        },
+        {
+          "name": "Regional Library",
+          "url": "wwww.regional-library.com"
+        }
+      ]
+    },
+    {"name":  "Bulgaria",
+      "organizations": [
+        {
+          "name": "Hamalogika Burgas",
+          "url": "wwww.hamalogika.com"
+        },
+        {
+          "name": "Tam Veliko Tarnovo",
+          "url": "wwww.tam-veliko.com"
+        }
+      ]
+    },
+    {"name":  "International",
+      "organizations": [
+        {
+          "name": "THF",
+          "url": "wwww.thf.com"
+        },
+        {
+          "name": "Kalu Yala",
+          "url": "wwww.kalu-yala.com"
+        }
+      ]
+    }
+  ]
+}

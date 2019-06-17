@@ -1,0 +1,16 @@
+.box {
+  background: #fff;
+  padding: $grid-v-gutter $gutter;
+  border-radius: 10px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, .1), 0 0 6px rgba(0, 0, 0, .08);
+
+  @media (min-width: $desktop) {
+    padding-left: $gutter-desktop;
+    padding-right: $gutter-desktop;
+  }
+
+  &--pull-up {
+    z-index: $z-middle;
+    margin-top: -40px;
+  }
+}

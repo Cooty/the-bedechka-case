@@ -1,6 +1,7 @@
 .header {
   background-color: $beige;
   box-shadow: $box-shadow-header;
+  z-index: $z-top;
 
   @media (min-width: $desktop) {
     display: flex;
@@ -8,7 +9,6 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: $z-top;
   }
 
   &__logo {

@@ -30,3 +30,11 @@
   background-size: 443px 10px;
   background-repeat: repeat-x;
 }
+
+%hero-text-shadow {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+}
+
+%hero-box-shadow {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2), 0 0 26px rgba(0, 0, 0, .1);
+}

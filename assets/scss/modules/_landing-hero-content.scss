@@ -1,0 +1,30 @@
+.landing-hero-content {
+  color: $almost-white;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &__intro {
+    @extend %hero-text-shadow;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    font-size: 1.1rem;
+    order: 1;
+  }
+
+  &__video {
+    @extend %hero-box-shadow;
+    order: 2;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+
+  &__button {
+    order: 3;
+    text-align: center;
+  }
+
+}

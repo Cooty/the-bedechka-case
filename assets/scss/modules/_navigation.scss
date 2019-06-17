@@ -38,11 +38,11 @@
 
     &:after {
       content: '';
-      height: 3px;
+      height: 4px;
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -1px;
+      bottom: -2px;
       transition: all .3s ease-in-out;
       opacity: 0;
     }

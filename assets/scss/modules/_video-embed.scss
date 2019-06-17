@@ -1,0 +1,38 @@
+.video-embed {
+  $play-button-size: 91px;
+  $play-button-offset: ($play-button-size / 2) * -1;
+
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-top: ((9 / 16) * 100)#{'%'};
+
+  > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $z-lowest;
+  }
+
+  img, picture, video, iframe {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    background: transparent url('../../images/play-button.png') no-repeat 0 0;
+    background-size: $play-button-size;
+    width: $play-button-size;
+    height: $play-button-size;
+    top: 50%;
+    left: 50%;
+    margin: $play-button-offset 0 0 $play-button-offset;
+    z-index: $z-low;
+  }
+
+}

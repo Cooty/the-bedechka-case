@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% set heroTitle = {'mainTitle': 'Organizations who...', 'subTitle': 'Support our cause'} %}
+{% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
+
 {% set heroSettings = {
     'background': 'partners',
+    'content': heroContent
 } %}
 
 {% block title %} Partners {% endblock %}
 
 {% block main %}
     {% include('./includes/hero.html.twig') with heroSettings %}
+
+    <div class="wrapper">
+        <article class="box box--pull-up">
+
+        </article>
+    </div>
 {% endblock %}

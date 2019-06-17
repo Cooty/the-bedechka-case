@@ -1,0 +1,44 @@
+.page-title-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+
+  @media (min-width: $tablet) {
+    justify-content: flex-end;
+    padding-top: 0;
+    padding-bottom: 100px;
+  }
+}
+
+.page-title {
+  @extend %hero-text-shadow;
+  color: $almost-white;
+
+  @media (min-width: 500px) {
+    text-align: center;
+  }
+
+  &--main {
+    font-family: $header-font;
+    text-transform: capitalize;
+    font-size: 1.8em;
+    margin-bottom: .5em;
+    letter-spacing: 1px;
+    line-height: 1.2;
+
+    @media (min-width: $tablet) {
+      font-size: 2.5em;
+    }
+  }
+
+  &--sub {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.2;
+
+    @media (min-width: $tablet) {
+      font-size: 1.6em;
+      line-height: 1.3;
+    }
+  }
+}

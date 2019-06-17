@@ -2,8 +2,12 @@
 
 {% block title %}The Crew{% endblock %}
 
+{% set heroTitle = {'mainTitle': 'Meet the crew', 'subTitle': 'The people who helped the project become a reality'} %}
+{% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
+
 {% set heroSettings = {
     'background': 'crew',
+    'content': heroContent
 } %}
 
 {% block main %}
