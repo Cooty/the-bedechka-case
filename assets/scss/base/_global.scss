@@ -5,6 +5,12 @@ a {
   &:focus {
     outline: 1px dotted;
   }
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
 }
 
 * {

@@ -1,0 +1,40 @@
+.partners {
+  text-align: center;
+
+  @media (min-width: $tablet) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: $gutter;
+  }
+
+  @media (min-width: $desktop) {
+    grid-column-gap: $gutter-desktop;
+  }
+
+  &__list {
+    padding-bottom: 3vh;
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+
+    @media (min-width: $tablet) {
+      padding-bottom: 0;
+    }
+
+  }
+
+  &__list-item {
+    margin-bottom: 1.8vh;
+
+    &:first-of-type {
+      margin-bottom: 2.2vh;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+  }
+
+}

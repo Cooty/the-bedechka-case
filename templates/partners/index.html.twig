@@ -10,26 +10,56 @@
 
 {% block title %} Partners {% endblock %}
 
+{% block stylesheets %}
+    {{  parent() }}
+    <style>
+        body {background: red;}
+    </style>
+{% endblock %}
+
 {% block main %}
     {% include('./includes/hero.html.twig') with heroSettings %}
 
-    <div class="wrapper">
-        <article class="box box--pull-up">
-            <div class="grid">
-                <ul class="grid__column grid__column--third">
-                    <li>
-                        <h2 class="box__header">
-                            Stara Zagora
-                        </h2>
-                    </li>
-                </ul>
-                <ul class="grid__column grid__column--third">
+    <article class="box box--pull-up box--center partners">
+        <ul class="partners__list">
+            <li class="partners__list-item">
+                <h2 class="box__header">
+                    Stara Zagora
+                </h2>
+            </li>
+            <li class="partners__list-item">
+                <a href="#">Architeks House</a>
+            </li>
+            <li class="partners__list-item">
+                <a href="#">Architeks House</a>
+            </li>
+        </ul>
+        <ul class="partners__list">
+            <li class="partners__list-item">
+                <h2 class="box__header">
+                    Bulgaria
+                </h2>
+            </li>
+            <li class="partners__list-item">
+                <a href="#">Architeks House</a>
+            </li>
+            <li class="partners__list-item">
+                <a href="#">Architeks House</a>
+            </li>
+        </ul>
+        <ul class="partners__list">
+            <li class="partners__list-item">
+                <h2 class="box__header">
+                    International
+                </h2>
+            </li>
+            <li class="partners__list-item">
+                <a href="#">Architeks House</a>
+            </li>
+            <li class="partners__list-item">
+                <a href="#">Architeks House</a>
+            </li>
+        </ul>
+    </article>
 
-                </ul>
-                <ul class="grid__column grid__column--third">
-
-                </ul>
-            </div>
-        </article>
-    </div>
 {% endblock %}
