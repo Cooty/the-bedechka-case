@@ -6,12 +6,11 @@
 
 {% set heroContent = include('./home/partials/hero-content.html.twig') %}
 
-{% set heroSettings = {
-    'background': 'home',
-    'modifierCSSClassName': 'hero--tall',
-    'content': heroContent
-} %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% include('./includes/hero-style.html.twig') with {'background': 'home'} only %}
+{% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with heroSettings %}
+    {% include('./includes/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
 {% endblock %}

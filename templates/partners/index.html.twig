@@ -3,22 +3,15 @@
 {% set heroTitle = {'mainTitle': 'Organizations who...', 'subTitle': 'Support our cause'} %}
 {% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
 
-{% set heroSettings = {
-    'background': 'partners',
-    'content': heroContent
-} %}
-
 {% block title %} Partners {% endblock %}
 
 {% block stylesheets %}
-    {{  parent() }}
-    <style>
-        body {background: red;}
-    </style>
+    {{ parent() }}
+    {% include('./includes/hero-style.html.twig') with {'background': 'partners'} only %}
 {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with heroSettings %}
+    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
 
     <article class="box box--pull-up box--center partners">
         <ul class="partners__list">
