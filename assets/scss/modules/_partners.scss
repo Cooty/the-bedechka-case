@@ -2,13 +2,43 @@
   text-align: center;
 
   @media (min-width: $tablet) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: $gutter;
+    display: table;
+
+    > * {
+      display: table-cell;
+      width: 33.3333%;
+      padding-left: $gutter;
+      padding-right: $gutter;
+    }
+
   }
 
   @media (min-width: $desktop) {
-    grid-column-gap: $gutter-desktop;
+    > * {
+      padding-left: $gutter-desktop;
+      padding-right: $gutter-desktop;
+    }
+  }
+
+  @supports (grid-template-areas: unset) {
+
+    @media (min-width: $tablet) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: $gutter;
+
+      > * {
+        width: auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+    }
+
+    @media (min-width: $desktop) {
+      grid-column-gap: $gutter-desktop;
+    }
+
   }
 
   &__list {
