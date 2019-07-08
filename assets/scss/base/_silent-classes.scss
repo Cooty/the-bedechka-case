@@ -38,3 +38,23 @@
 %hero-box-shadow {
   box-shadow: 0 0 20px rgba(0, 0, 0, .2), 0 0 26px rgba(0, 0, 0, .1);
 }
+
+%pillar-box {
+  max-width: $page-max-w;
+  margin-left: $gutter;
+  margin-right: $gutter;
+
+  @media (min-width: $desktop) {
+    margin-left: $gutter-desktop;
+    margin-right: $gutter-desktop;
+  }
+
+  @media (min-width: $page-max-w + $gutter-desktop * 2) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+%section-v-divider {
+  margin-bottom: 6vh;
+}

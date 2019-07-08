@@ -1,0 +1,10 @@
+.sub-header {
+  font-family: $header-font;
+  font-size: $subheader-size;
+  letter-spacing: 1px;
+  line-height: 1.2;
+
+  @media (min-width: $tablet) {
+    font-size: $subheader-size-desktop;
+  }
+}

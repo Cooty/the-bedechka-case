@@ -1,5 +1,5 @@
 .box {
-  background: #fff;
+  background: white;
   padding: $grid-v-gutter $gutter;
   border-radius: 10px;
   box-shadow: 0 0 16px rgba(0, 0, 0, .1), 0 0 6px rgba(0, 0, 0, .08);
@@ -10,35 +10,11 @@
   }
 
   &--center {
-    max-width: $page-max-w;
-    margin-left: $gutter;
-    margin-right: $gutter;
-
-    @media (min-width: $desktop) {
-      margin-left: $gutter-desktop;
-      margin-right: $gutter-desktop;
-    }
-
-    @media (min-width: $page-max-w + $gutter-desktop * 2) {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    @extend %pillar-box;
   }
 
   &--pull-up {
     z-index: $z-middle;
     margin-top: -40px;
-  }
-
-  &__header {
-    font-family: $header-font;
-    font-size: $subheader-size;
-    letter-spacing: 1px;
-    line-height: 1.2;
-
-    @media (min-width: $tablet) {
-      font-size: $subheader-size-desktop;
-    }
   }
 }

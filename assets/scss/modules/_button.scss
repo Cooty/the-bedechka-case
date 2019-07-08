@@ -1,12 +1,18 @@
 .button {
+  $side-padding: 30px;
+
+  @mixin bottom-border($color) {
+    box-shadow: 0 4px 0 $color;
+  }
+
+  font-family: $copy-font;
   background: $green;
   border: 0;
   border-radius: 4px;
-  box-shadow: 0 4px 0 $dark-green;
   display: inline-block;
   color: $almost-white;
   text-decoration: none;
-  padding: 12px 30px;
+  padding: 12px $side-padding;
   -webkit-appearance: none;
   transition: all .3s;
   font-weight: 500;
@@ -16,13 +22,16 @@
   text-overflow: ellipsis;
   text-shadow: 1px 1px rgba(0, 0, 0, .1);
   cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+  @include bottom-border($dark-green);
 
   &:hover,
   &:focus {
     outline: 0;
-    box-shadow: 0 4px 0 $green;
     background: $dark-green;
     text-decoration: none;
+    @include bottom-border($green);
   }
 
   &--cta {
@@ -32,6 +41,33 @@
 
     @media (min-width: $desktop) {
       font-size: $cta-font-size-desktop;
+    }
+
+  }
+
+  &--fb {
+    $icon-w: 30px;
+    $icon-h: 29px;
+    padding-right: $side-padding + $icon-w + $side-padding / 2;
+    background-color: $facebook-blue;
+    @include bottom-border(darken($facebook-blue, 10%));
+
+    &:hover,
+    &:focus {
+      background-color: darken($facebook-blue, 10%);
+      @include bottom-border($facebook-blue);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: $icon-w;
+      height: $icon-h;
+      background: url(../../images/icons/fb-like@2x.png) no-repeat 0 0;
+      background-size: $icon-w $icon-h;
+      top: 50%;
+      margin-top: -($icon-h / 2);
+      right: $side-padding;
     }
 
   }

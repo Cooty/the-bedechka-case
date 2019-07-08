@@ -1,0 +1,29 @@
+.section-header {
+  @extend %pillar-box;
+  font-family: $header-font;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: $header-font-size;
+  padding-bottom: 10px;
+
+
+  &:after {
+    $w: 84px;
+    $h: 3px;
+
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -($w / 2);
+    width: $w;
+    height: $h;
+    background: url('../../images/section-header-hr@2x.png') no-repeat 0 0;
+    background-size: $w $h;
+  }
+
+  @media (min-width: $tablet) {
+    font-size: $header-font-size-desktop;
+  }
+
+}

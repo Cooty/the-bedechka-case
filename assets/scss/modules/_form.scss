@@ -1,0 +1,31 @@
+.form {
+
+  &__label {
+    display: block;
+    margin-bottom: 3px;
+    line-height: 1.1;
+    font-size: .9rem;
+    cursor: pointer;
+  }
+
+  input {
+    display: block;
+    padding: 12px $gutter;
+    border: 2px solid rgba(0, 0, 0, .2);
+    border-radius: 4px;
+    background: white;
+    color: $base-text-color;
+    transition: all .3s ease-in-out;
+    font-family: $copy-font;
+    font-size: 1rem;
+    -webkit-appearance: none;
+
+    &:focus {
+      border-color: rgba(0, 0, 0, .4);
+      box-shadow: 0 0 6px rgba($purple, .4);
+      outline: none;
+    }
+
+  }
+
+}
