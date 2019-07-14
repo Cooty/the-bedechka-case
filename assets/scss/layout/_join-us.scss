@@ -35,6 +35,15 @@
 
   > .newsletter-form {
     @extend %pillar-box;
+
+    @media (min-width: $tablet) {
+      max-width: 80%;
+    }
+
+    @media (min-width: $desktop + $gutter-desktop * 2) {
+      max-width: $desktop;
+    }
+
   }
 
   > .sub-header {

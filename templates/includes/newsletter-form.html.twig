@@ -1,5 +1,8 @@
 <form action="/" class="newsletter-form form" method="post">
-    <fieldset class="form__row">
+    <p class="form__legend">
+        Fields marked with <strong class="form__asterisk form__asterisk--no-super">&nbsp;*</strong> are mandatory!
+    </p>
+    <div class="form__row">
         <label>
             <span class="form__label">First Name</span>
             <input type="text" name="first_name">
@@ -8,12 +11,14 @@
             <span class="form__label">Last Name</span>
             <input type="text" name="last_name">
         </label>
-    </fieldset>
-    <fieldset class="form__row form__row--single-line">
+    </div>
+    <div class="form__row form__row--single-line">
         <label>
-            <span class="form__label">Your Email</span>
-            <input type="email" name="email">
+            <span class="form__label">
+                Your Email<strong class="form__asterisk">&nbsp;*</strong>
+            </span>
+            <input type="email" name="email" required>
         </label>
         <button class="button" type="submit">Sign Up!</button>
-    </fieldset>
+    </div>
 </form>

@@ -1,5 +1,11 @@
 .form {
 
+  label,
+  label > input {
+    display: block;
+    width: 100%;
+  }
+
   &__label {
     display: block;
     margin-bottom: 3px;
@@ -8,8 +14,27 @@
     cursor: pointer;
   }
 
+  &__row {
+    margin-bottom: $gutter;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: $tablet) {
+      display: flex;
+      margin-bottom: $gutter-desktop;
+    }
+
+  }
+
+  &__row--single-line {
+    @media (min-width: $tablet) {
+      flex-wrap: nowrap;
+    }
+  }
+
   input {
-    display: block;
     padding: 12px $gutter;
     border: 2px solid rgba(0, 0, 0, .2);
     border-radius: 4px;
@@ -24,6 +49,30 @@
       border-color: rgba(0, 0, 0, .4);
       box-shadow: 0 0 6px rgba($purple, .4);
       outline: none;
+    }
+
+  }
+
+  &__asterisk {
+    vertical-align: super;
+    font-weight: 500;
+    font-size: 16px;
+    font-style: normal;
+    color: rgb(255, 0, 0);
+    line-height: 0;
+  }
+
+  &__asterisk--no-super {
+    vertical-align: baseline;
+  }
+
+  &__legend {
+    text-align: right;
+    font-style: italic;
+    margin-bottom: $gutter;
+
+    @media (min-width: $tablet) {
+      margin-bottom: $gutter-desktop;
     }
 
   }
