@@ -24,6 +24,11 @@
 
   .form__row:last-of-type {
 
+    .button {
+      display: block;
+      margin: $gutter-desktop auto 0 auto;
+    }
+
     @media (min-width: $tablet) {
       $h: 47px;
       align-items: flex-end;
@@ -41,10 +46,30 @@
       .button {
         flex: 0 0 auto;
         height: $h - 4px;
-        margin-bottom: 4px;
+        margin: 0 0 4px 0;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+    }
+
+  }
+
+  @media (min-width: $desktop) {
+    display: flex;
+    flex-wrap: wrap;
+
+    .form__legend {
+      flex: 0 0 100%;
+    }
+
+    .form__row:first-of-type {
+      flex: 3;
+      margin-bottom: 0;
+      margin-right: $gutter-desktop;
+    }
+
+    .form__row:last-of-type {
+      flex: 2;
     }
 
   }

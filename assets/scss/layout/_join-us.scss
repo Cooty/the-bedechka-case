@@ -1,7 +1,7 @@
 .join-us {
   $mw: 500px;
-  $v-gutter-near: 1.8vh;
-  $v-gutter-far: 2.6vh;
+  $v-gutter-near: 3vh;
+  $v-gutter-far: 4vh;
 
   %pillar-box {
     max-width: $mw;
@@ -35,6 +35,7 @@
 
   > .newsletter-form {
     @extend %pillar-box;
+    margin-bottom: 0;
 
     @media (min-width: $tablet) {
       max-width: 80%;
@@ -49,7 +50,7 @@
   > .sub-header {
     @extend %pillar-box;
     text-align: center;
-    margin-top: 3vh;
+    margin-top: $v-gutter-far;
     margin-bottom: $v-gutter-near;
   }
 

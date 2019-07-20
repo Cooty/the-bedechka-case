@@ -1,3 +1,4 @@
+// Flex-box sticky footer solution
 /**
  * 1. Avoid the IE 10-11 `min-height` bug.
  * 2. Set `flex-shrink` to `0` to prevent some browsers from
@@ -19,4 +20,24 @@ body > .footer {
 
 body > .main {
   flex: 1 0 auto; /* 2 */
+}
+
+// Footer styles and custom layout
+.footer__bottom {
+  @extend %picture-background;
+  @extend %side-gutters;
+  min-height: 240px;
+
+  @media (min-width: $tablet) {
+    min-height: 320px;
+  }
+
+  &:before {
+    @extend %backdrop;
+  }
+
+  > * {
+    z-index: $z-middle;
+  }
+
 }
