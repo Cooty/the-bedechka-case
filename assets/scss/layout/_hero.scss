@@ -9,9 +9,9 @@
   align-items: center;
   justify-content: flex-start;
 
-  @media (min-width: $desktop) {
-    padding-left: $gutter-desktop;
-    padding-right: $gutter-desktop;
+  @media (min-width: $tablet) {
+    height: 421px;
+    justify-content: flex-end;
   }
 
   &--tall {

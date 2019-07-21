@@ -23,21 +23,128 @@ body > .main {
 }
 
 // Footer styles and custom layout
-.footer__bottom {
-  @extend %picture-background;
-  @extend %side-gutters;
-  min-height: 240px;
+.footer {
+  %list-item-v-gutter {
+    margin-bottom: 2vh;
+    &:last-of-type { margin-bottom: 0; }
 
-  @media (min-width: $tablet) {
-    min-height: 320px;
+    @media (min-width: $desktop) {
+      margin-bottom: 0;
+      padding: 0 $gutter;
+    }
+
   }
 
-  &:before {
-    @extend %backdrop;
+  %label-font-size {
+    font-size: .9rem;
+
+    @media (min-width: $tablet) {
+      font-size: 1rem;
+    }
   }
 
-  > * {
-    z-index: $z-middle;
-  }
+  &__bottom {
+    @extend %picture-background;
+    @extend %side-gutters;
+    min-height: 240px;
+    color: $almost-white;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 30px;
 
+    @media (min-width: $tablet) {
+      min-height: 320px;
+      padding-top: 80px;
+    }
+
+    @media (min-width: $desktop) {
+      text-align: left;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    &:before {
+      @extend %backdrop;
+    }
+
+    > * {
+      z-index: $z-middle;
+    }
+
+    &-title {
+      margin-bottom: 4vh;
+      font-size: 1.2rem;
+
+      > strong { font-weight: 500; }
+
+    }
+
+    &-social-media {
+      margin-bottom: 5vh;
+
+      @media (min-width: $desktop) {
+        display: flex;
+      }
+
+      &-item {
+        @extend %list-item-v-gutter;
+
+        > a {
+          color: $almost-white;
+          text-decoration: none;
+        }
+
+      }
+
+      &-social-media-label,
+      &-icon {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      &-icon {
+        $size: 16px;
+
+        width: $size;
+        height: $size;
+        margin-right: $gutter;
+
+        @media (min-width: $desktop) {
+          $size: 24px;
+          width: $size;
+          height: $size;
+        }
+
+      }
+
+      &-label {
+        @extend %label-font-size;
+      }
+
+    }
+
+    &-menu {
+
+      @media (min-width: $desktop) {
+        display: flex;
+      }
+
+      &-item {
+        @extend %list-item-v-gutter;
+      }
+
+      &-label {
+        @extend %label-font-size;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        color: $almost-white;
+        font-family: $copy-font;
+      }
+
+    }
+
+  }
 }
