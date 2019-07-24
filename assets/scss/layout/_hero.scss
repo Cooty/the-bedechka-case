@@ -16,6 +16,7 @@
 
   &--tall {
     height: 451px;
+    justify-content: center;
 
     @media (min-width: $tablet) {
       height: 568px;

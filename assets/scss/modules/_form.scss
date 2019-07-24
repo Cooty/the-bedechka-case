@@ -69,10 +69,10 @@
   &__legend {
     text-align: right;
     font-style: italic;
-    margin-bottom: $gutter;
+    margin-top: $gutter;
 
     @media (min-width: $tablet) {
-      margin-bottom: $gutter-desktop;
+      margin-top: $gutter-desktop;
     }
 
   }
