@@ -69,6 +69,7 @@
   &__legend {
     font-style: italic;
     margin-top: $gutter-desktop;
+    font-size: .8rem;
 
     @media (min-width: $tablet) {
       text-align: right;
