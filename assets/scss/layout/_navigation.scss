@@ -22,11 +22,12 @@
     align-items: center;
     justify-content: center;
     padding: 0 10px;
+    font-size: 1rem;
 
     @media (min-width: $desktop) {
       flex: 0 0 auto;
       padding: 0 ($gutter-desktop * 2);
-      font-size: $subheader-size;
+      font-size: 1.2rem;
     }
 
     > span {
