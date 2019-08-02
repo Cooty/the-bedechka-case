@@ -16,9 +16,7 @@
     <article class="box box--pull-up box--center partners">
         <ul class="partners__list">
             <li class="partners__list-item">
-                <h2 class="sub-header">
-                    Stara Zagora
-                </h2>
+                {% include('./components/sub-header.html.twig') with {'text': 'Stara Zagora', 'priority': 2} only %}
             </li>
             <li class="partners__list-item">
                 <a href="#" class="anim-underline">Architeks House</a>
@@ -29,9 +27,7 @@
         </ul>
         <ul class="partners__list">
             <li class="partners__list-item">
-                <h2 class="sub-header">
-                    Bulgaria
-                </h2>
+                {% include('./components/sub-header.html.twig') with {'text': 'Bulgaria', 'priority': 2} only %}
             </li>
             <li class="partners__list-item">
                 <a href="#" class="anim-underline">Architeks House</a>
@@ -42,9 +38,7 @@
         </ul>
         <ul class="partners__list">
             <li class="partners__list-item">
-                <h2 class="sub-header">
-                    International
-                </h2>
+                {% include('./components/sub-header.html.twig') with {'text': 'International', 'priority': 2} only %}
             </li>
             <li class="partners__list-item">
                 <a href="#" class="anim-underline">Architeks House</a>

@@ -17,4 +17,23 @@
     z-index: $z-middle;
     margin-top: -40px;
   }
+
+  &__header {
+    margin-bottom: 3vh;
+    text-align: center;
+  }
+
+  &__lead {
+    $mw: 600px;
+
+    margin-bottom: 2.5vh;
+    max-width: $mw;
+
+    @media (min-width: $mw + 2 * $gutter-desktop) {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+  }
+
 }

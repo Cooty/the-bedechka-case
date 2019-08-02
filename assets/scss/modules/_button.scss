@@ -12,7 +12,7 @@
   display: inline-block;
   color: $almost-white;
   text-decoration: none;
-  padding: 12px $side-padding;
+  padding: 1em $side-padding;
   -webkit-appearance: none;
   transition: all .3s;
   font-weight: 500;
@@ -36,13 +36,8 @@
 
   &--cta {
     font-size: $cta-font-size;
-    padding-top: 16px;
-    padding-bottom: 16px;
-
-    @media (min-width: $desktop) {
-      font-size: $cta-font-size-desktop;
-    }
-
+    padding-right: 40px;
+    padding-left: 40px;
   }
 
   &--fb {

@@ -67,12 +67,11 @@
   }
 
   &__legend {
-    text-align: right;
     font-style: italic;
-    margin-top: $gutter;
+    margin-top: $gutter-desktop;
 
     @media (min-width: $tablet) {
-      margin-top: $gutter-desktop;
+      text-align: right;
     }
 
   }

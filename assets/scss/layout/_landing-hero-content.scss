@@ -1,25 +1,31 @@
 .landing-hero-content {
-  max-width: 1180px;
+  max-width: $page-max-w;
   color: $almost-white;
-  margin-top: -40px;
   display: block;
   align-items: center;
+
+  @media (min-width: $page-max-w + $gutter-desktop * 2) {
+    width: $page-max-w;
+  }
 
   @media (min-width: $tablet) {
     display: grid;
     grid-template-columns: 4fr 6fr;
+    grid-template-rows: auto;
     grid-column-gap: $gutter-desktop;
   }
 
   &__intro {
     @extend %hero-text-shadow;
-    margin: 0 auto 30px auto;
-    line-height: 1.2;
+    margin: 4vh auto 2vh auto;
     font-size: 1.1rem;
     max-width: 500px;
 
     @media (min-width: $tablet) {
       margin: 0;
+      grid-column-start: 1;
+      grid-row-start: 1;
+      align-self: center;
     }
 
     @media (min-width: $desktop) {
@@ -39,21 +45,17 @@
       max-width: none;
     }
 
-    @media (min-width: $desktop) {
-
-    }
-
   }
 
   &__button {
     text-align: center;
 
     @media (min-width: $tablet) {
+      grid-column-start: 1;
+      grid-row-start: 1;
+      align-self: end;
+      margin-bottom: 4px;
       text-align: left;
-    }
-
-    @media (min-width: $desktop) {
-
     }
   }
 

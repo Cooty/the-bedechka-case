@@ -1,0 +1,11 @@
+<section class="story">
+    {% include('./components/section-header.html.twig') with {'text': 'The Problem', 'classes': 'story__header'} only %}
+
+    <article class="box box--center">
+        {% include('./components/sub-header.html.twig') with {'text': 'Similar Cases', 'classes': 'box__header'} only %}
+        <p class="box__lead">
+            The case is widespread in Bulgaria and is a symptom of a national problem.
+        </p>
+    </article>
+
+</section>

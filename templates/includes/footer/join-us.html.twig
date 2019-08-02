@@ -1,7 +1,5 @@
 <section class="join-us">
-    <h4 class="section-header">
-        Be part of the community!
-    </h4>
+    {% include('./components/section-header.html.twig') with {'text': 'Be part of the community!', 'priority': 3} only %}
 
     <p class="join-us__text">
         Follow the project's Facebook Page and get all the latest updates!
@@ -14,9 +12,7 @@
         Like us on Facebook
     </a>
 
-    <h5 class="sub-header">
-        Sign up for updates!
-    </h5>
+    {% include('./components/sub-header.html.twig') with {'text': 'Sign up for updates!', 'priority': 4} only %}
     <p class="join-us__text">
         Get email from screening, and events related to our initiative. No, spam we promise!
     </p>

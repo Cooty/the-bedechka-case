@@ -26,6 +26,7 @@ body > .main {
 .footer {
   $icon-size: 16px;
   $icon-size-desktop: 24px;
+  @extend %section-v-divider;
 
   %list-item-v-gutter {
     margin-bottom: 2vh;

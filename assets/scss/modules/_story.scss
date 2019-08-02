@@ -1,0 +1,8 @@
+.story {
+  @extend %section-v-divider;
+
+  &__header {
+    margin-bottom: 5vh;
+  }
+
+}
