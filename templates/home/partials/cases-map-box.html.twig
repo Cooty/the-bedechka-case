@@ -1,0 +1,23 @@
+<article class="box box--center cases-map">
+    {% include('./components/sub-header.html.twig') with {'text': 'Similar Cases', 'classes': 'box__header cases-map__header'} only %}
+    <p class="box__lead cases-map__lead">
+        The case is widespread in Bulgaria and is a symptom of a national problem.
+    </p>
+
+    <ul class="cases-map__navigation">
+        <li class="cases-map__navigation-item">
+            <button type="button" class="cases-map__navigation-button active">
+                Park Bedechka
+            </button>
+        </li>
+        <li class="cases-map__navigation-item">
+            <button type="button" class="cases-map__navigation-button">
+                Park "Defenders of Stara Zagora"
+            </button>
+        </li>
+    </ul>
+
+    <div class="cases-map__map">
+        map goes here
+    </div>
+</article>
