@@ -5,7 +5,8 @@
     box-shadow: 0 4px 0 $color;
   }
 
-  font-family: $copy-font;
+  @extend %button-base;
+  @extend %single-line-ellipsis;
   background: $green;
   border: 0;
   border-radius: 4px;
@@ -13,17 +14,9 @@
   color: $almost-white;
   text-decoration: none;
   padding: 1em $side-padding;
-  -webkit-appearance: none;
-  transition: all .3s;
   font-weight: 500;
   letter-spacing: 1px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   text-shadow: 1px 1px rgba(0, 0, 0, .1);
-  cursor: pointer;
-  text-align: center;
-  font-size: 1rem;
   @include bottom-border($dark-green);
 
   &:hover,

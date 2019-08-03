@@ -1,7 +1,7 @@
 .box {
   background: white;
   padding: $grid-v-gutter $gutter;
-  border-radius: 10px;
+  border-radius: $box-radius;
   box-shadow: 0 0 16px rgba(0, 0, 0, .1), 0 0 6px rgba(0, 0, 0, .08);
 
   @media (min-width: $desktop) {

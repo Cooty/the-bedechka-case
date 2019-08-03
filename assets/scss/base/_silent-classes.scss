@@ -102,3 +102,28 @@
   }
 
 }
+
+%button-base {
+  cursor: pointer;
+  font-family: $copy-font;
+  -webkit-appearance: none;
+  transition: all .3s;
+  text-align: center;
+  font-size: 1rem;
+}
+
+%single-line-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-scroll-snap-type: mandatory;
+  -webkit-scroll-snap-type: x mandatory;
+  -ms-scroll-snap-type: mandatory;
+  -ms-scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}

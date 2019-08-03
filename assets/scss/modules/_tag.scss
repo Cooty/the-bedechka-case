@@ -1,0 +1,15 @@
+.tag {
+  @extend %button-base;
+  @extend %single-line-ellipsis;
+  border: 1px solid $dark-green;
+  background: white;
+  border-radius: 30px;
+  padding: 6px 12px;
+  font-size: .85em;
+  display: inline-block;
+
+  &--active {
+    background: $dark-green;
+    color: $almost-white;
+  }
+}

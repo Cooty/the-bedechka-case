@@ -1,3 +1,124 @@
 .cases-map {
+  $map-height: 60vh;
+
+  @media (min-width: $tablet) {
+    display: grid;
+    grid-template-columns: [first] 4fr [second] 6fr;
+    grid-template-rows: [title] 10% [intro] 20% [tags] 70%;
+    height: $map-height;
+    grid-column-gap: 20px;
+    padding-right: 0 !important;
+  }
+
+  &__header.box__header {
+    @media (min-width: $tablet) {
+      grid-column-start: first;
+      grid-row-start: title;
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
+
+  &__lead {
+    @media (min-width: $tablet) {
+      grid-column-start: first;
+      grid-row-start: intro;
+    }
+  }
+
+  &__navigation {
+    width: calc(100% + #{$gutter});
+    height: 30px;
+    overflow: hidden;
+    margin-bottom: 2vh;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 30px;
+      pointer-events: none;
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0+0,1+100 */
+      background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+      @media (min-width: $tablet) {
+        display: none;
+      }
+
+    }
+
+    @media (min-width: $tablet) {
+      height: auto;
+      width: 100%;
+      overflow: visible;
+      margin-bottom: 0;
+      grid-column-start: first;
+      grid-row-start: tags;
+    }
+
+  }
+
+  &__navigation-list {
+    @extend %smooth-scroll;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    box-sizing: content-box;
+    padding-bottom: 17px;
+
+    @media (min-width: $tablet) {
+      display: block;
+      overflow-y: auto;
+      padding-bottom: 0;
+      box-sizing: border-box;
+    }
+
+  }
+
+  &__navigation-item {
+    margin-right: 4vw;
+
+    &:last-of-type {
+      margin-right: 0;
+      padding-right: $gutter;
+
+      @media (min-width: $tablet) {
+        padding-right: 0;
+      }
+    }
+
+    @media (min-width: $tablet) {
+      display: inline-block;
+      margin: 0 $gutter-desktop ($gutter-desktop - 5px) 0;
+    }
+
+    > * {
+      min-width: 44vw;
+
+      @media (min-width: $tablet) {
+        min-width: 0;
+      }
+    }
+
+  }
+
+  &__map {
+    width: calc(100% + #{$gutter * 2});
+    height: $map-height;
+    margin-left: -$gutter;
+    margin-bottom: -$grid-v-gutter;
+    background: rgba($base-text-color, .3);
+    border-radius: $box-radius;
+
+    @media (min-width: $tablet) {
+      width: 100%;
+      margin-left: 0;
+      margin-top: -$grid-v-gutter;
+    }
+  }
 
 }
