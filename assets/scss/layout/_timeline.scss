@@ -1,0 +1,27 @@
+.timeline {
+  overflow: hidden;
+  margin-top: -$box-shadow;
+
+  @media (min-width: $desktop) {
+    margin-bottom: calc(#{$section-items-v-gutter} + #{$box-v-gutter}) !important;
+  }
+
+  &__steps {
+    @extend %smooth-scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: $box-shadow 0;
+  }
+
+  &__illustration {
+    width: 90px;
+    height: 190px;
+    background: rgba(105, 90, 80, .4);
+
+    @media (min-width: $desktop) {
+      width: 101px;
+      height: 206px;
+    }
+
+  }
+}

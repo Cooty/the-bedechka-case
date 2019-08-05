@@ -134,14 +134,16 @@
     height: $map-height;
     margin-left: -$gutter;
     margin-bottom: -$grid-v-gutter;
-    background: rgba($base-text-color, .3);
+    background: $base-text-color;
     border-radius: $box-radius;
 
     @supports (grid-template-areas: unset) {
       @media (min-width: $tablet) {
         width: 100%;
+        height: calc(#{$map-height} + #{$box-v-gutter * 2});
         margin-left: 0;
-        margin-top: -$grid-v-gutter;
+        margin-top: -$box-v-gutter * 2;
+        margin-bottom: 0;
       }
     }
   }

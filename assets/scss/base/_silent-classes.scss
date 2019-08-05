@@ -72,7 +72,11 @@
 }
 
 %section-v-divider {
-  margin-top: 10vh;
+  margin-top: 14vh;
+}
+
+%v-gutter-inside-section {
+  margin-bottom: $section-items-v-gutter;
 }
 
 %picture-background {
