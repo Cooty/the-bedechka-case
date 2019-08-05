@@ -6,7 +6,11 @@
     grid-template-columns: [first] 4fr [second] 6fr;
     // TODO: Figure out a more flexible layout - If text grows significantly then rows, don't adjust
     grid-template-rows: [title] 10% [intro] 20% [tags] 70%;
-    grid-column-gap: 20px;
+    grid-column-gap: $gutter-desktop;
+  }
+
+  @media (min-width: $page-max-w) {
+    grid-column-gap: $gutter-desktop * 2;
   }
 
   @supports (grid-template-areas: unset) {
