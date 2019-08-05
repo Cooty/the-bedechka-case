@@ -55,6 +55,22 @@
   }
 }
 
+%pillar-box-xxl {
+  max-width: $xxl-w;
+  margin-left: $gutter;
+  margin-right: $gutter;
+
+  @media (min-width: $desktop) {
+    margin-left: $gutter-desktop;
+    margin-right: $gutter-desktop;
+  }
+
+  @media (min-width: $xxl-w + $gutter-desktop * 2) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 %section-v-divider {
   margin-top: 10vh;
 }

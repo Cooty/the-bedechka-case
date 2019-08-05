@@ -13,6 +13,10 @@
     @extend %pillar-box;
   }
 
+  &--center-xxl {
+    @extend %pillar-box-xxl;
+  }
+
   &--pull-up {
     z-index: $z-middle;
     margin-top: -40px;

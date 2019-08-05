@@ -4,25 +4,38 @@
   @media (min-width: $tablet) {
     display: grid;
     grid-template-columns: [first] 4fr [second] 6fr;
+    // TODO: Figure out a more flexible layout - If text grows significantly then rows, don't adjust
     grid-template-rows: [title] 10% [intro] 20% [tags] 70%;
-    height: $map-height;
     grid-column-gap: 20px;
-    padding-right: 0 !important;
+  }
+
+  @supports (grid-template-areas: unset) {
+    @media (min-width: $tablet) {
+      padding-right: 0 !important;
+      height: $map-height;
+    }
   }
 
   &__header.box__header {
     @media (min-width: $tablet) {
       grid-column-start: first;
       grid-row-start: title;
-      text-align: left;
-      margin-bottom: 0;
     }
+
+    @supports (grid-template-areas: unset) {
+      @media (min-width: $tablet) {
+        text-align: left;
+        margin-bottom: 0;
+      }
+    }
+
   }
 
   &__lead {
     @media (min-width: $tablet) {
       grid-column-start: first;
       grid-row-start: intro;
+      max-width: none !important;
     }
   }
 
@@ -72,7 +85,9 @@
 
     @media (min-width: $tablet) {
       display: block;
+      height: 100%;
       overflow-y: auto;
+      overflow-x: hidden;
       padding-bottom: 0;
       box-sizing: border-box;
     }
@@ -86,6 +101,8 @@
       margin-right: 0;
       padding-right: $gutter;
 
+      // this is to keep tha last item away from the edge
+      // when scrolled all the way
       @media (min-width: $tablet) {
         padding-right: 0;
       }
@@ -97,6 +114,8 @@
     }
 
     > * {
+      // try to push the second item out of the scroll plane
+      // not fool-proof but works on most phone sizes
       min-width: 44vw;
 
       @media (min-width: $tablet) {
@@ -114,10 +133,12 @@
     background: rgba($base-text-color, .3);
     border-radius: $box-radius;
 
-    @media (min-width: $tablet) {
-      width: 100%;
-      margin-left: 0;
-      margin-top: -$grid-v-gutter;
+    @supports (grid-template-areas: unset) {
+      @media (min-width: $tablet) {
+        width: 100%;
+        margin-left: 0;
+        margin-top: -$grid-v-gutter;
+      }
     }
   }
 
