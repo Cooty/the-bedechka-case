@@ -1,7 +1,7 @@
 .cases-map {
   $map-height: 60vh;
 
-  @media (min-width: $tablet) {
+  @media (min-width: $desktop) {
     display: grid;
     grid-template-columns: [first] 4fr [second] 6fr;
     // TODO: Figure out a more flexible layout - If text grows significantly then rows, don't adjust
@@ -14,20 +14,20 @@
   }
 
   @supports (grid-template-areas: unset) {
-    @media (min-width: $tablet) {
+    @media (min-width: $desktop) {
       padding-right: 0 !important;
       height: $map-height;
     }
   }
 
   &__header.box__header {
-    @media (min-width: $tablet) {
+    @media (min-width: $desktop) {
       grid-column-start: first;
       grid-row-start: title;
     }
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $tablet) {
+      @media (min-width: $desktop) {
         text-align: left;
         margin-bottom: 0;
       }
@@ -36,7 +36,7 @@
   }
 
   &__lead {
-    @media (min-width: $tablet) {
+    @media (min-width: $desktop) {
       grid-column-start: first;
       grid-row-start: intro;
       max-width: none !important;
@@ -50,16 +50,7 @@
     margin-bottom: 2vh;
 
     &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      width: 30px;
-      pointer-events: none;
-      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0+0,1+100 */
-      background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      @include scroll-fader();
 
       @media (min-width: $tablet) {
         display: none;
@@ -71,6 +62,9 @@
       height: auto;
       width: 100%;
       overflow: visible;
+    }
+
+    @media (min-width: $desktop) {
       margin-bottom: 0;
       grid-column-start: first;
       grid-row-start: tags;
@@ -138,7 +132,7 @@
     border-radius: $box-radius;
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $tablet) {
+      @media (min-width: $desktop) {
         width: 100%;
         height: calc(#{$map-height} + #{$box-v-gutter * 2});
         margin-left: 0;
