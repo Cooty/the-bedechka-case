@@ -1,9 +1,11 @@
 .timeline {
+  $box-bottom-border-h: 3px;
+
   overflow: hidden;
   margin-top: -$box-shadow;
 
   &:after {
-    @include scroll-fader($beige);
+    @include scroll-fader($beige, 20px);
   }
 
   @media (min-width: $desktop) {
@@ -49,12 +51,29 @@
       margin-right: $gutter-desktop;
     }
 
+    &:nth-child(odd) {
+
+      .timeline__box {
+        @include box-with-curved-shadow($green, $box-bottom-border-h);
+      }
+
+    }
+
+    &:nth-child(even) {
+
+      .timeline__box {
+        @include box-with-curved-shadow($orange, $box-bottom-border-h);
+      }
+
+    }
+
   }
 
   &__box {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
+    padding-bottom: $box-v-gutter - $box-bottom-border-h;
   }
 
   &__header {
@@ -65,15 +84,19 @@
   }
 
   &__illustration {
-    width: 90px;
+    $w: 90px;
+
+    width: $w;
     height: 190px;
-    flex: 0 0 90px;
+    flex: 0 0 $w;
     background: rgba(105, 90, 80, .4);
 
     @media (min-width: $desktop) {
-      width: 101px;
+      $w-desktop: 101px;
+
+      width: $w-desktop;
       height: 206px;
-      flex-basis: 101px;
+      flex-basis: $w-desktop;
     }
 
   }

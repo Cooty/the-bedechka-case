@@ -1,15 +1,11 @@
 .button {
   $side-padding: 30px;
 
-  @mixin bottom-border($color) {
-    box-shadow: 0 4px 0 $color;
-  }
-
   @extend %button-base;
   @extend %single-line-ellipsis;
   background: $green;
   border: 0;
-  border-radius: 4px;
+  border-radius: $form-border-radius;
   display: inline-block;
   color: $almost-white;
   text-decoration: none;
@@ -17,14 +13,14 @@
   font-weight: 500;
   letter-spacing: 1px;
   text-shadow: 1px 1px rgba(0, 0, 0, .1);
-  @include bottom-border($dark-green);
+  @include curved-bottom-border($dark-green, $button-bottom-border-h);
 
   &:hover,
   &:focus {
     outline: 0;
     background: $dark-green;
     text-decoration: none;
-    @include bottom-border($green);
+    @include curved-bottom-border($green, $button-bottom-border-h);
   }
 
   &--cta {
@@ -38,12 +34,12 @@
     $icon-h: 29px;
     padding-right: $side-padding + $icon-w + $side-padding / 2;
     background-color: $facebook-blue;
-    @include bottom-border(darken($facebook-blue, 10%));
+    @include curved-bottom-border(darken($facebook-blue, 10%), $button-bottom-border-h);
 
     &:hover,
     &:focus {
       background-color: darken($facebook-blue, 10%);
-      @include bottom-border($facebook-blue);
+      @include curved-bottom-border($facebook-blue, $button-bottom-border-h);
     }
 
     &:after {

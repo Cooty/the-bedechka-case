@@ -45,8 +45,8 @@
 
       .button {
         flex: 0 0 auto;
-        height: $h - 4px;
-        margin: 0 0 4px 0;
+        height: $h - $button-bottom-border-h;
+        margin: 0 0 $button-bottom-border-h 0;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }

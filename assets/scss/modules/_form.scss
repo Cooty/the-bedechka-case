@@ -37,7 +37,7 @@
   input {
     padding: 12px $gutter;
     border: 2px solid rgba(0, 0, 0, .2);
-    border-radius: 4px;
+    border-radius: $form-border-radius;
     background: white;
     color: $base-text-color;
     transition: all .3s ease-in-out;
