@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% set heroTitle = {'mainTitle': 'Organizations who...', 'subTitle': 'Support our cause'} %}
-{% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block title %} Partners {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {% include('./includes/hero-style.html.twig') with {'background': 'partners'} only %}
+    {% include('./includes/hero/background-style.html.twig') with {'background': 'partners'} only %}
 {% endblock %}
 
 {% block main %}

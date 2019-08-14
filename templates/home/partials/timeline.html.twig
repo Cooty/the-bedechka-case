@@ -1,62 +1,70 @@
 <article class="timeline">
+    <button type="button" class="timeline__mover timeline__mover--back" aria-hidden="true">
+        Move backwards on the timeline
+    </button>
     <ol class="timeline__steps">
         <li class="timeline__step">
             <div class="box timeline__box">
+                {% include('./components/timeline/marker.html.twig') with { labelText: 'Up to the 60s' } %}
                 {% include('./components/sub-header.html.twig') with {'text': 'Pre-Park', 'classes': 'timeline__header', 'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     The land belongs to citizens, who have urban gardens for production of vegetables, fruits and flowers.
+                </p>
             </div>
         </li>
         <li class="timeline__step">
             <div class="box timeline__box">
-                {% include('./components/sub-header.html.twig') with {'text': 'Park Establishment: In the 60s', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('./components/timeline/marker.html.twig') with { labelText: 'In the 60s' } %}
+                {% include('./components/sub-header.html.twig') with {'text': 'Park Establishment', 'classes': 'timeline__header', 'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     During the Socialist regime the gardens are nationalized for the construction of the Bedechka Park. It remains unclear, if the owners get compensated.
                 </p>
-                {#Up to the 60s#}
             </div>
         </li>
         <li class="timeline__step">
             <div class="box timeline__box">
+                {% include('./components/timeline/marker.html.twig') with { labelText: '1989 and the beginning of the 90s' } %}
                 {% include('./components/sub-header.html.twig') with {'text': 'Change of ideologies', 'classes': 'timeline__header', 'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     The former owners seek their rights over the sites, but got rejected with the motivations that the area is already a park.     According to the law in a place with a realized public project (park, school, street, etc.) lands cannot be given back.
                 </p>
-                {#1989 and the beginning of the 90s#}
             </div>
         </li>
         <li class="timeline__step">
             <div class="box timeline__box">
+                {% include('./components/timeline/marker.html.twig') with { labelText: 'Mid of the 90s' } %}
                 {% include('./components/sub-header.html.twig') with {'text': 'The Restitution', 'classes': 'timeline__header', 'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     In the process of restitution, the city administration returned the sites to their former owners due to forensic expertise claiming that in the green area ""no park enterprise happened"".
                 </p>
-                {#Mid of the 90s#}
             </div>
         </li>
         <li class="timeline__step">
             <div class="box timeline__box">
+                {% include('./components/timeline/marker.html.twig') with { labelText: 'The New Millenia' } %}
                 {% include('./components/sub-header.html.twig') with {'text': 'Dubious acts', 'classes': 'timeline__header', 'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     Part of the owners sells their lands to investors, under whose pressure the municipal administration changes the urban plan. The territory of the park changes from "green" to "development area".
                 </p>
-                {#The New Millenia#}
             </div>
         </li>
         <li class="timeline__step">
             <div class="box timeline__box">
+                {% include('./components/timeline/marker.html.twig') with { labelText: 'March 2016' } %}
                 {% include('./components/sub-header.html.twig') with {'text': 'The practical destruction of the park', 'classes': 'timeline__header', 'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     Construction in the park Starts. The citizens understand about it no earlier than the entering of bulldozers and construction equipment into the green urban area.
                 </p>
-                {#March 2016#}
             </div>
         </li>
     </ol>
+    <button type="button" class="timeline__mover timeline__mover--forward">
+        Move forward on the timeline
+    </button>
 </article>

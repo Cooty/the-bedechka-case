@@ -1,0 +1,7 @@
+{% if labelText is defined %}
+    <div class="timeline__label tag tag--active">{{ labelText }}</div>
+    <span class="timeline__marker">
+        <span class="timeline__marker-dot"></span>
+        {% include('./components/timeline/spike.svg.twig') %}
+    </span>
+{% endif %}

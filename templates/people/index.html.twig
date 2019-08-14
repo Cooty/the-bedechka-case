@@ -3,11 +3,11 @@
 {% block title %}People{% endblock %}
 
 {% set heroTitle = {'mainTitle': 'List of protagonists', 'subTitle': 'Meet all the people featured in the movie'} %}
-{% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {% include('./includes/hero-style.html.twig') with {'background': 'people'} only %}
+    {% include('./includes/hero/background-style.html.twig') with {'background': 'people'} only %}
 {% endblock %}
 
 {% block main %}

@@ -18,5 +18,5 @@
 @mixin box-with-curved-shadow($color, $size) {
   box-shadow: 0 0 $box-shadow rgba(0, 0, 0, .1),
               0 0 6px rgba(0, 0, 0, .08),
-              0 $size 0 $color;
+              0 $size * -1 0 $color;
 }

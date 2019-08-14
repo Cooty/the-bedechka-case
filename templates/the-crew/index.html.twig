@@ -3,11 +3,11 @@
 {% block title %}The Crew{% endblock %}
 
 {% set heroTitle = {'mainTitle': 'Meet the crew', 'subTitle': 'The people who helped the project become a reality'} %}
-{% set heroContent = include('./includes/hero/hero-title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {% include('./includes/hero-style.html.twig') with {'background': 'crew'} only %}
+    {% include('./includes/hero/background-style.html.twig') with {'background': 'crew'} only %}
 {% endblock %}
 
 {% block main %}
