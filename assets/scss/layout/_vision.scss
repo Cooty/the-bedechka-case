@@ -1,0 +1,27 @@
+.vision {
+
+  &__header {
+    text-align: center;
+    margin-bottom: $v-gutter-near;
+  }
+
+  &__graphic {
+    text-align: center;
+    margin-bottom: $v-gutter-far;
+    // TODO: Just placeholder, adopt to final design
+    > img {
+      max-width: 100%;
+    }
+
+  }
+
+  &__case {
+    margin-bottom: 4vh;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+  }
+
+}

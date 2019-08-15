@@ -17,34 +17,36 @@
         <figure class="vision__graphic">
             {# TODO: Just dummy markup - some more responsive, more flexible stuff here after we have final design #}
             <picture>
-                <source srcset="build/the-vision-info-graphic-placeholder-desktop.png" media="(min-width: 1024px)">
-                <img src="build/the-vision-info-graphic-placeholder-mobile.png" alt="">
+                <source srcset="{{ asset('build/the-vision-info-graphic-placeholder-desktop.png') }}" media="(min-width: 1024px)">
+                <img src="{{ asset('build/the-vision-info-graphic-placeholder-mobile.png') }}" alt="">
             </picture>
         </figure>
         <h3 class="sub-header vision__header">
             Protection Mechanisms
         </h3>
         <div class="box box--tablet-only vision__case">
-            {% include('./components/video-embed.html.twig') with {
-                'url': 'https://www.youtube.com/watch?v=PegMHCQWls4',
-                'thumbnail': 'http://placeholder.pics/svg/400x225',
-                'classes': 'video-embed--rounded',
-                'alt': 'Sunset over the field / Залез над полето'}
-            %}
-            <a href="https://www.youtube.com/watch?v=MdmidVPid2" class="vision__case-title">
+            <div class="video">
+                {% include('./components/video-embed.html.twig') with {
+                    'url': 'https://www.youtube.com/watch?v=PegMHCQWls4',
+                    'thumbnail': 'https://picsum.photos/400/225',
+                    'alt': 'Sunset over the field / Залез над полето'}
+                %}
+            </div>
+            <h4 class="box__subtitle">
                 Social Engagement as a Powerful Tool for the Preseravation of Urban Green Areas
-            </a>
+            </h4>
         </div>
         <div class="box box--tablet-only vision__case">
-            {% include('./components/video-embed.html.twig') with {
-                'url': 'https://www.youtube.com/watch?v=MdmidVPid2',
-                'thumbnail': 'http://placeholder.pics/svg/400x225',
-                'classes': 'video-embed--rounded',
-                'alt': 'Life in the Jungle / Живот в джунглата'}
-            %}
-            <a href="https://www.youtube.com/watch?v=MdmidVPid2" class="vision__case-title">
+            <div class="video">
+                {% include('./components/video-embed.html.twig') with {
+                    'url': 'https://www.youtube.com/watch?v=MdmidVPid2',
+                    'thumbnail': 'https://picsum.photos/400/225',
+                    'alt': 'Life in the Jungle / Живот в джунглата'}
+                %}
+            </div>
+            <h4 class="box__subtitle">
                 Humans as Stewards of Nature and not a Disaster to it
-            </a>
+            </h4>
         </div>
     </article>
 </section>

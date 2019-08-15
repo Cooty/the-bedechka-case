@@ -19,7 +19,7 @@
   }
 
   overflow: hidden;
-  margin-top: -$box-shadow;
+  margin-top: -$box-shadow-size;
 
   &:after {
     @include scroll-fader($beige, 20px);
@@ -46,7 +46,7 @@
     @extend %smooth-scroll;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: ($box-shadow + $marker-h + $marker-label-h) 0 $box-shadow $gutter;
+    padding: ($box-shadow-size + $marker-h + $marker-label-h) 0 $box-shadow-size $gutter;
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;

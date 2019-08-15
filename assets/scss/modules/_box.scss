@@ -2,8 +2,7 @@
   background: white;
   padding: $grid-v-gutter $gutter;
   border-radius: $box-radius;
-  box-shadow: 0 0 $box-shadow rgba(0, 0, 0, .1),
-              0 0 6px rgba(0, 0, 0, .08);
+  @include box-shadow();
 
   @media (min-width: $desktop) {
     padding-left: $gutter-desktop;
@@ -39,6 +38,51 @@
       margin-left: auto;
     }
 
+  }
+
+  &--tablet-only {
+    padding: 0;
+    box-shadow: none;
+
+    @media (min-width: $tablet) {
+      padding: $grid-v-gutter $gutter;
+      @include box-shadow();
+    }
+
+    @media (min-width: $desktop) {
+      padding-left: $gutter-desktop;
+      padding-right: $gutter-desktop;
+    }
+
+    > .video {
+      width: calc(100% + #{$gutter * 2});
+      margin-left: -$gutter;
+      margin-bottom: 2vh;
+
+      @media (min-width: $tablet) {
+        margin-top: -$box-v-gutter;
+        overflow: hidden;
+        border-radius: $box-radius;
+
+        &:before{
+          content: '';
+          position: absolute;
+        }
+
+      }
+
+      @media (min-width: $desktop) {
+        width: calc(100% + #{$gutter-desktop * 2});
+        margin-left: -$gutter-desktop;
+      }
+
+    }
+
+  }
+
+  &__subtitle {
+    font-weight: 500;
+    font-size: 1.2rem;
   }
 
 }
