@@ -344,7 +344,6 @@
   }
 
   &__mover--forward {
-    display: block;
     right: 0;
     box-shadow: -6px 0 10px rgba(0, 0, 0, .2), -8px 0 12px rgba(0, 0, 0, .1);
     border-radius: $mover-radius 0 0 $mover-radius;
@@ -353,6 +352,10 @@
     &:before {
       border-bottom-width: 0;
       border-left-width: 0;
+    }
+
+    @media (min-width: $desktop) {
+      display: block;
     }
 
   }

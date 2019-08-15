@@ -1,0 +1,8 @@
+{% if url is defined %}
+    {% set classes = classes is defined ? classes : '' %}
+    <a href="{{ url }}" class="video-embed {{ classes }}">
+        <picture>
+            <img src="{{ thumbnail }}" alt="{{ alt }}">
+        </picture>
+    </a>
+{% endif %}
