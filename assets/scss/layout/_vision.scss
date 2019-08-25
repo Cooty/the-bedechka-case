@@ -1,8 +1,38 @@
 .vision {
+  @mixin column-desktop($width) {
+    @media (min-width: $desktop) {
+      flex: 0 0 calc(#{$width} - #{$gutter-desktop / 2});
+      max-width: calc(#{$width} - #{$gutter-desktop / 2});
+    }
+  }
+
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
   &__header {
     text-align: center;
     margin-bottom: $v-gutter-near;
+
+    @media (min-width: $tablet) {
+      @include flex-column;
+    }
+
+  }
+
+  &__intro {
+    @include column-desktop(40%);
+
+    @media (min-width: $desktop) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+    }
+
   }
 
   &__graphic {
@@ -13,6 +43,13 @@
       max-width: 100%;
     }
 
+    @media (min-width: $tablet) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @include column-desktop(60%);
+
   }
 
   &__case {
@@ -20,6 +57,17 @@
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+
+    @media (min-width: $tablet) {
+      flex: 0 0 calc(50% - #{$gutter / 2});
+      max-width: calc(50% - #{$gutter / 2});
+      margin-bottom: -#{$box-v-gutter * 3} !important;
+    }
+
+    @media (min-width: $desktop) {
+      flex: 0 0 calc(50% - #{$gutter-desktop / 2});
+      max-width: calc(50% - #{$gutter-desktop / 2});
     }
 
   }

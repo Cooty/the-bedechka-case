@@ -59,7 +59,7 @@
     flex-wrap: wrap;
 
     .form__legend {
-      flex: 0 0 100%;
+      @include flex-column;
     }
 
     .form__row:first-of-type {

@@ -25,3 +25,8 @@
   box-shadow: 0 0 $box-shadow-size rgba(0, 0, 0, .1),
               0 0 6px rgba(0, 0, 0, .08);
 }
+
+@mixin flex-column($width: 100%) {
+  flex: 0 0 $width;
+  max-width: $width;
+}
