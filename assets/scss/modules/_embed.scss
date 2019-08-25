@@ -1,0 +1,21 @@
+.embed-16-9 {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 0;
+  padding-top: ((9 / 16) * 100)#{'%'};
+
+  > * {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $z-lowest;
+  }
+
+  img, picture, video, iframe {
+    object-fit: cover;
+    width: 100%;
+  }
+}

@@ -1,6 +1,6 @@
 {% if url is defined %}
     {% set classes = classes is defined ? classes : '' %}
-    <a href="{{ url }}" class="video-embed {{ classes }}">
+    <a href="{{ url }}" class="video-embed embed-16-9 {{ classes }}">
         <picture>
             <img src="{{ thumbnail }}" alt="{{ alt }}">
         </picture>
