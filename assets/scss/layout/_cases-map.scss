@@ -143,3 +143,11 @@
   }
 
 }
+
+.cases-map-offset-desktop {
+  @supports (grid-template-areas: unset) {
+    @media (min-width: $desktop) {
+      padding-bottom: $box-v-gutter;
+    }
+  }
+}

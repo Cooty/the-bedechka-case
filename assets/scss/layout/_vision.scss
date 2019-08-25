@@ -73,3 +73,9 @@
   }
 
 }
+
+.vision-offset-desktop {
+  @media (min-width: $tablet) {
+    padding-bottom: $box-v-gutter * 2;
+  }
+}
