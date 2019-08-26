@@ -1,6 +1,5 @@
 .box {
   background: white;
-  display: block;
   padding: $grid-v-gutter $gutter;
   border-radius: $box-radius;
   @include box-shadow();
@@ -101,6 +100,10 @@
     margin-top: 15px;
     font-size: .8rem;
     color: lighten($base-text-color, 20%);
+  }
+
+  &--news {
+    display: block;
   }
 
 }
