@@ -30,3 +30,8 @@
   flex: 0 0 $width;
   max-width: $width;
 }
+
+@mixin item-width($w, $offset) {
+  flex: 0 0 calc(#{$w} - #{$offset});
+  max-width: calc(#{$w} - #{$offset});
+}

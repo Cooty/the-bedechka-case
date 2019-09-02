@@ -13,11 +13,6 @@
 
   $mover-radius: 4px;
 
-  @mixin item-width($w, $offset) {
-    flex: 0 0 calc(#{$w} - #{$offset});
-    max-width: calc(#{$w} - #{$offset});
-  }
-
   overflow: hidden;
   margin-top: -$box-shadow-size;
 
@@ -44,30 +39,11 @@
 
   &__steps {
     @extend %smooth-scroll;
-    overflow-x: auto;
-    overflow-y: hidden;
+    @extend %slider;
     padding: ($box-shadow-size + $marker-h + $marker-label-h) 0 $box-shadow-size $gutter;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-
-    &::-webkit-scrollbar {
-      visibility: hidden;
-    }
 
     @media (min-width: $desktop) {
       padding-left: $gutter-desktop;
-    }
-
-    // add an dummy element that pushes the last card away
-    // from the window's edge when scrolled to the fullest
-    // padding doesn't work on a scroll-plane, and with margin
-    // we lose the effect of the container sticking
-    // to the window's edge
-    &:after {
-      content: '';
-      height: $gutter; // has to have height to display it
-      flex: 0 0 1px; // just to give it layout, the last elements margin can now work
     }
 
   }

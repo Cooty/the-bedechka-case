@@ -147,3 +147,27 @@
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
 }
+
+%slider {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    visibility: hidden;
+  }
+
+  // add an dummy element that pushes the last card away
+  // from the window's edge when scrolled to the fullest
+  // padding doesn't work on a scroll-plane, and with margin
+  // we lose the effect of the container sticking
+  // to the window's edge
+  &:after {
+    content: '';
+    height: $gutter; // has to have height to display it
+    flex: 0 0 1px; // just to give it layout, the last elements margin can now work
+  }
+
+}

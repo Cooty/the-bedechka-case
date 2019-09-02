@@ -1,0 +1,34 @@
+.news {
+  overflow: hidden;
+
+  &:after {
+    z-index: 1;
+    @include scroll-fader($beige, 20px);
+  }
+
+  &__list {
+    @extend %smooth-scroll;
+    @extend %slider;
+    padding: $box-shadow-size 0 $box-shadow-size $gutter;
+
+    @media (min-width: $desktop) {
+      padding: 0 $gutter-desktop;
+    }
+
+  }
+
+  &__item {
+    margin-right: $gutter;
+    @include item-width(92%, 8px);
+
+    @media (min-width: $tablet) {
+      @include item-width(45%, 8px);
+    }
+
+    > * {
+      height: 100%;
+    }
+
+  }
+
+}
