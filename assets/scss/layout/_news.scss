@@ -1,6 +1,10 @@
 .news {
   overflow: hidden;
 
+  @media (min-width: $desktop) {
+    overflow: visible;
+  }
+
   &:after {
     z-index: 1;
     @include scroll-fader($beige, 20px);
@@ -13,6 +17,16 @@
 
     @media (min-width: $desktop) {
       padding: 0 $gutter-desktop;
+      display: block;
+      overflow-y: visible;
+      overflow-x: visible;
+      columns: 5 240px;
+      column-gap: $gutter-desktop;
+
+      &:after {
+        display: none;
+      }
+
     }
 
   }
@@ -25,9 +39,25 @@
       @include item-width(45%, 8px);
     }
 
+    @media (min-width: $desktop) {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: $gutter-desktop;
+      max-width: none;
+      flex: none;
+      break-inside: avoid;
+      margin-right: 0;
+
+      .box {
+        box-shadow: none;
+      }
+
+    }
+
     > * {
       height: 100%;
     }
+
 
   }
 

@@ -93,6 +93,12 @@
     border-radius: $box-radius;
     margin-bottom: 20px;
     background-color: rgba(0, 0, 0, .1);
+
+    @media (min-width: $desktop) {
+      width: calc(100% + #{$gutter-desktop * 2});
+      margin-left: -#{$gutter-desktop};
+    }
+
   }
 
   .box__info {
