@@ -120,16 +120,32 @@ body > .main {
       }
 
       &-icon {
-        width: $icon-size;
-        height: $icon-size;
+        width: $icon-size + 10px;
+        height: $icon-size + 10px;
         margin-right: $gutter;
         flex: 1;
-        flex-basis: $icon-size;
+        flex-basis: $icon-size + 10px;
+        background: white;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > img {
+          width: $icon-size;
+          height: $icon-size;
+        }
 
         @media (min-width: $desktop) {
-          width: $icon-size-desktop;
-          height: $icon-size-desktop;
-          flex-basis: $icon-size-desktop;
+          width: $icon-size-desktop + 10px;
+          height: $icon-size-desktop + 10px;
+          flex-basis: $icon-size-desktop + 10px;
+
+          > img {
+            width: $icon-size-desktop;
+            height: $icon-size-desktop;
+          }
+
         }
 
       }

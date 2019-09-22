@@ -40,8 +40,10 @@
 
     &:hover,
     &:focus {
-      background-color: darken($facebook-blue, 10%);
-      @include curved-bottom-border($facebook-blue, $button-bottom-border-h);
+      &:not([disabled]) {
+        background-color: darken($facebook-blue, 10%);
+        @include curved-bottom-border($facebook-blue, $button-bottom-border-h);
+      }
     }
 
     &:after {
