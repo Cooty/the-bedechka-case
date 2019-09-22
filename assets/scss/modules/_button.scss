@@ -17,10 +17,12 @@
 
   &:hover,
   &:focus {
-    outline: 0;
-    background: $dark-green;
-    text-decoration: none;
-    @include curved-bottom-border($green, $button-bottom-border-h);
+    &:not([disabled]) {
+      outline: 0;
+      background: $dark-green;
+      text-decoration: none;
+      @include curved-bottom-border($green, $button-bottom-border-h);
+    }
   }
 
   &--cta {
@@ -52,6 +54,31 @@
       top: 50%;
       margin-top: -($icon-h / 2);
       right: $side-padding;
+    }
+
+  }
+
+  &[disabled] {
+    opacity: .75;
+    cursor: not-allowed;
+  }
+
+  &--loader {
+
+    .button__spinner {
+      display: none;
+    }
+
+    &[disabled] {
+
+      .button__spinner {
+        display: block;
+      }
+
+      .button__text {
+        visibility: hidden;
+      }
+
     }
 
   }

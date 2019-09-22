@@ -31,6 +31,17 @@
                 'title': 'Erdélyi Zsolt: A bunkóságot nem lehet betiltani',
                 'source': '24.hu'
             } %}
+            {% include('./components/news-item.html.twig') with {
+                'link': 'https://vilagoszold.blog.hu/2019/08/25/politikai_eszkoz-e_az_erdotuz',
+                'title': '25 éve ültek le a Jóbarátok a Central Perk kanapéjára, és mennyire jól tették',
+                'source': '24.hu'
+            } %}
+            <li class="news__item news__item--more">
+                <button type="button" class="button button--loader">
+                    <span class="button__text">Load more&#8230;</span>
+                    <span class="button__spinner spinner">Loading&#8230;</span>
+                </button>
+            </li>
         </ul>
     </article>
 </section>

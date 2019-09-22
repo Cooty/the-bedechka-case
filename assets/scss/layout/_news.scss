@@ -1,13 +1,20 @@
 .news {
   overflow: hidden;
 
-  @media (min-width: $desktop) {
+  @media (min-width: $tablet) {
     overflow: visible;
+    max-width: 1024px;
+    margin: 0 auto;
   }
 
   &:after {
     z-index: 1;
     @include scroll-fader($beige, 20px);
+
+    @media (min-width: $tablet) {
+      display: none;
+    }
+
   }
 
   &__list {
@@ -15,18 +22,19 @@
     @extend %slider;
     padding: $box-shadow-size 0 $box-shadow-size $gutter;
 
-    @media (min-width: $desktop) {
-      padding: 0 $gutter-desktop;
-      display: block;
-      overflow-y: visible;
-      overflow-x: visible;
-      columns: 5 240px;
-      column-gap: $gutter-desktop;
+    @media (min-width: $tablet) {
+      padding: 0 ($gutter / 2);
+      flex-wrap: wrap;
+      overflow: visible;
 
       &:after {
         display: none;
       }
 
+    }
+
+    @media (min-width: $desktop) {
+      padding: 0 ($gutter-desktop / 2);
     }
 
   }
@@ -36,28 +44,44 @@
     @include item-width(92%, 8px);
 
     @media (min-width: $tablet) {
-      @include item-width(45%, 8px);
+      margin: 0 0 $box-v-gutter 0;
+    }
+
+    > .box {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    padding: 0 ($gutter / 2);
+
+    @media (min-width: $tablet) {
+      @include flex-column(50%);
     }
 
     @media (min-width: $desktop) {
-      display: inline-block;
-      width: 100%;
-      margin-bottom: $gutter-desktop;
-      max-width: none;
-      flex: none;
-      break-inside: avoid;
-      margin-right: 0;
-
-      .box {
-        box-shadow: none;
-      }
-
+      padding: 0 ($gutter-desktop / 2);
+      @include flex-column(33.3333%);
     }
 
-    > * {
-      height: 100%;
-    }
+  }
 
+  &__item--more {
+    background: rgba(0, 0, 0, .1);
+    border-radius: $box-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+            0 0 16px rgba(0, 0, 0, .1) inset,
+            0 0 6px rgba(0, 0, 0, .08) inset;
+
+    @media (min-width: $tablet) {
+      background: none;
+      box-shadow: none;
+      @include flex-column(100%);
+    }
 
   }
 

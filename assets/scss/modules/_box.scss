@@ -85,33 +85,11 @@
     font-size: 1.2rem;
   }
 
-  &__illustration {
-    margin-top: -$box-v-gutter;
-    width: calc(100% + #{$gutter * 2});
-    margin-left: -#{$gutter};
-    overflow: hidden;
-    border-radius: $box-radius;
-    margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, .1);
-
-    @media (min-width: $desktop) {
-      width: calc(100% + #{$gutter-desktop * 2});
-      margin-left: -#{$gutter-desktop};
-    }
-
-  }
-
   .box__info {
     display: block;
     margin-top: 15px;
     font-size: .8rem;
     color: lighten($base-text-color, 20%);
-  }
-
-  &--news {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
 }

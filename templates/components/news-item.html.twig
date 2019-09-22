@@ -1,23 +1,14 @@
 {% if link is defined %}
-<li class="news__item">
-    <a href="{{ link }}" class="box box--news">
-        {% if imageSource is defined %}
-        <div class="box__illustration">
-            <div class="embed-16-9">
-                <picture>
-                    <img src="{{ imageSource }}" alt="{{ title }}">
-                </picture>
-            </div>
-        </div>
-        {% endif %}
-        {% if title is defined %}
-        <h3 class="box__subtitle">
-            {{ title }}
-        </h3>
-        {% endif %}
-        {% if source is defined %}
-        <small class="box__info">{{ source }}</small>
-        {% endif %}
-    </a>
-</li>
+    <li class="news__item">
+        <a href="{{ link }}" class="box">
+            {% if title is defined %}
+                <h3 class="box__subtitle">
+                    {{ title }}
+                </h3>
+            {% endif %}
+            {% if source is defined %}
+                <small class="box__info">{{ source }}</small>
+            {% endif %}
+        </a>
+    </li>
 {% endif %}

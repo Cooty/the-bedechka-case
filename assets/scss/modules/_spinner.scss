@@ -1,0 +1,60 @@
+/*
+Credits: https://codepen.io/MattIn4D/pen/LiKFC
+*/
+
+/* Absolute Center Spinner */
+.spinner {
+  $color: #fff;
+  $speed: 1500ms;
+
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  overflow: visible;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  /* :not(:required) hides these rules from IE9 and below */
+  &:not(:required) {
+    /* hide "loading..." text */
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+  }
+
+  &:not(:required):after {
+    content: '';
+    display: block;
+    font-size: 10px;
+    width: 1em;
+    height: 1em;
+    margin-top: -0.5em;
+    animation: spinner #{$speed} infinite linear;
+    border-radius: 0.5em;
+    box-shadow:
+            #{$color} 1.5em 0 0 0,
+            #{$color} 1.1em 1.1em 0 0,
+            #{$color} 0 1.5em 0 0,
+            #{$color} -1.1em 1.1em 0 0,
+            #{$color} -1.5em 0 0 0,
+            #{$color} -1.1em -1.1em 0 0,
+            #{$color} 0 -1.5em 0 0,
+            #{$color} 1.1em -1.1em 0 0;
+  }
+
+}
+
+/* Animation */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
