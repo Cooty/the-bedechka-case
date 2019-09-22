@@ -13,7 +13,7 @@
 {% block main %}
     {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
 
-    <article class="box box--pull-up box--center partners">
+    <article class="box box--center partners pull-over-hero">
         <ul class="partners__list">
             <li class="partners__list-item">
                 {% include('./components/sub-header.html.twig') with {'text': 'Stara Zagora', 'priority': 2} only %}

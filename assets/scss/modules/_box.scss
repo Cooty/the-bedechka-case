@@ -17,11 +17,6 @@
     @extend %pillar-box-xxl;
   }
 
-  &--pull-up {
-    z-index: $z-middle;
-    margin-top: -40px;
-  }
-
   &__header {
     margin-bottom: 3vh;
     text-align: center;
@@ -85,11 +80,37 @@
     font-size: 1.2rem;
   }
 
-  .box__info {
+  &__info {
     display: block;
     margin-top: 15px;
     font-size: .8rem;
     color: lighten($base-text-color, 20%);
+  }
+
+  &__info--regular-size {
+    font-size: 1rem;
+  }
+
+  &--video {
+
+    > .video {
+      width: calc(100% + #{$gutter * 2});
+      margin: -$box-v-gutter 0 2vh $gutter * -1;
+      overflow: hidden;
+      border-radius: $box-radius;
+
+      &:before{
+        content: '';
+        position: absolute;
+      }
+
+      @media (min-width: $desktop) {
+        width: calc(100% + #{$gutter-desktop * 2});
+        margin-left: -$gutter-desktop;
+      }
+
+    }
+
   }
 
 }

@@ -15,4 +15,22 @@
     z-index: $z-low;
   }
 
+  &--bottom-right {
+
+    &:after {
+      top: auto;
+      left: auto;
+      margin: auto;
+      right: 10px;
+      bottom: 10px;
+
+      @media (min-width: $desktop) {
+        right: 20px;
+        bottom: 20px;
+      }
+
+    }
+
+  }
+
 }
