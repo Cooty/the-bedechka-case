@@ -1,0 +1,18 @@
+.crew {
+  @extend %pillar-box-xxl;
+
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+
+    > .box {
+      height: 100%;
+    }
+
+
+  }
+}

@@ -1,0 +1,16 @@
+<li class="people__item">
+    <article class="box box--video">
+        <div class="video">
+            {% include('./components/video-embed.html.twig') with {
+                'url': videoUrl,
+                'thumbnail': videoThumbnail,
+                'classes': 'video-embed--bottom-right',
+                'alt': title}
+            %}
+        </div>
+        <h4 class="box__subtitle">
+            {{ title }}
+        </h4>
+        <span class="box__info box__info--regular-size">{{ subTitle }}</span>
+    </article>
+</li>

@@ -1,0 +1,16 @@
+<article class="box box--person">
+    <img src="https://i.pravatar.cc/120" alt="a photo of {{ name }}">
+    <div class="box__person-info">
+        <h2 class="box__person-header">{{ name }}</h2>
+        <span class="person__title">{{ title }}</span>
+        {% if url is defined %}
+            <a href="{{ url }}" class="person__link">
+                {% if urlLabel is defined %}
+                    {{ urlLabel }}
+                {% else %}
+                    {{ url }}
+                {% endif %}
+            </a>
+        {% endif %}
+    </div>
+</article>

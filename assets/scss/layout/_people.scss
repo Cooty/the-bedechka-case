@@ -41,6 +41,10 @@
       grid-column-gap: $gutter-desktop;
     }
 
+    @media (min-width: $xxl-w) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
   }
 
   &__item {
@@ -51,6 +55,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      max-width: 500px;
+      margin: 0 auto;
     }
 
   }
