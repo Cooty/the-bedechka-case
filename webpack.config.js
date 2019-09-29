@@ -27,13 +27,14 @@ Encore
             ]
         }
     })
+    .enablePostCssLoader()
     .enableSassLoader((options) => {
-        //TODO: find out why it's not compressing
         options.outputStyle = 'compressed';
     })
     .disableSingleRuntimeChunk();
 
 const config = Encore.getWebpackConfig();
+
 config.watchOptions = {
     poll: true
 };
