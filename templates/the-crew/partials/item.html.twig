@@ -1,16 +1,22 @@
-<article class="box box--person">
-    <img src="https://i.pravatar.cc/120" alt="a photo of {{ name }}">
-    <div class="box__person-info">
-        <h2 class="box__person-header">{{ name }}</h2>
-        <span class="person__title">{{ title }}</span>
-        {% if url is defined %}
-            <a href="{{ url }}" class="person__link">
-                {% if urlLabel is defined %}
-                    {{ urlLabel }}
-                {% else %}
-                    {{ url }}
+<li class="crew__item">
+    <article class="box">
+        <div class="person">
+            <div class="person__photo">
+                <img src="{{ avatar }}" alt="a photo of {{ name }}">
+            </div>
+            <div class="person__info">
+                <h2 class="person__header">{{ name }}</h2>
+                <span class="person__title">{{ title }}</span>
+                {% if url is defined %}
+                    <a href="{{ url }}" class="person__link">
+                        {% if urlLabel is defined %}
+                            {{ urlLabel }}
+                        {% else %}
+                            {{ url }}
+                        {% endif %}
+                    </a>
                 {% endif %}
-            </a>
-        {% endif %}
-    </div>
-</article>
+            </div>
+        </div>
+    </article>
+</li>

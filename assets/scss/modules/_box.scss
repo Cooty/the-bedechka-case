@@ -84,7 +84,7 @@
     display: block;
     margin-top: 15px;
     font-size: .8rem;
-    color: lighten($base-text-color, 20%);
+    color: $secondary-text-color;
   }
 
   &__info--regular-size {
@@ -98,6 +98,7 @@
       margin: -$box-v-gutter 0 2vh $gutter * -1;
       overflow: hidden;
       border-radius: $box-radius;
+      background: $image-placeholder-color;
 
       &:before{
         content: '';

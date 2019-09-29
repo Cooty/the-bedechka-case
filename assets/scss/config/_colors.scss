@@ -1,4 +1,5 @@
 $base-text-color: #515154;
+$secondary-text-color: lighten($base-text-color, 20%);
 $almost-white: #fefefe;
 $green: #22943d;
 $dark-green: #186f2d;
@@ -7,3 +8,4 @@ $beige: #efe9dc;
 $backdrop-grey: rgba(58, 58, 58, .8);
 $purple: #575ae3;
 $facebook-blue: #3C5A99;
+$image-placeholder-color: rgba(0, 0, 0, .1);

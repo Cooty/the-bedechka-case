@@ -14,14 +14,28 @@
     {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
 
     <ul class="crew pull-over-hero">
-        <li class="crew__item">
-            <article class="box box--person">
-                <img src="https://i.pravatar.cc/120" alt="a photo of Dimana Shishkova">
-                <div class="box__person-info">
-                    <h2 class="box__person-header">Dimana Shishkova</h2>
-                    <span class="person__title">writer, camera, editing</span>
-                </div>
-            </article>
-        </li>
+        {% include('./the-crew/partials/item.html.twig') with {
+            avatar: 'https://i.pravatar.cc/120',
+            name: 'Dimana Shishkova',
+            title: 'writer, camera, editing'
+        } %}
+        {% include('./the-crew/partials/item.html.twig') with {
+            avatar: 'https://i.pravatar.cc/120',
+            name: 'Tamás Kuti',
+            title: 'web development',
+            url: 'http://beardesign.hu',
+            urlLabel: 'beardesign.hu'
+        } %}
+        {% include('./the-crew/partials/item.html.twig') with {
+            avatar: 'https://i.pravatar.cc/120',
+            name: 'Stefka',
+            title: 'animations',
+            url: 'http://vimeo.com/something'
+        } %}
+        {% include('./the-crew/partials/item.html.twig') with {
+            avatar: 'https://i.pravatar.cc/120',
+            name: 'Florian',
+            title: 'original score'
+        } %}
     </ul>
 {% endblock %}
