@@ -21,8 +21,9 @@ Encore
                 [
                     "@babel/preset-env",
                     {
-                        "useBuiltIns": "entry"
-                    }
+                        "useBuiltIns": "entry",
+                        "corejs": { version: 3, proposals: true }
+                    },
                 ]
             ]
         }
