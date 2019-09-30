@@ -10,7 +10,7 @@
 
   @media (min-width: $tablet) {
     display: table;
-    vert-align: middle;
+    vertical-align: middle;
   }
 
   @supports (grid-template-areas: unset) {
