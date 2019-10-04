@@ -1,33 +1,31 @@
 const Encore = require('@symfony/webpack-encore');
+const babelLoader = {
+    test: /\.js$/,
+    loader: 'babel-loader',
+    query: {
+        presets: [
+            [
+                "@babel/preset-env",
+                {
+                    "useBuiltIns": "entry",
+                    "corejs": { version: 3, proposals: true }
+                },
+            ]
+        ]
+    }
+};
 
 Encore
-// directory where compiled assets will be stored
     .setOutputPath('public/build/')
     .copyFiles({
         from: './assets/images',
     })
-    // public path used by the web server to access the output path
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
     .enableVersioning()
     .enableSourceMaps(!Encore.isProduction())
-    //TODO: Add minification to JS output
     .addEntry('app', './assets/js/app.js')
-    .addLoader({
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-            presets: [
-                [
-                    "@babel/preset-env",
-                    {
-                        "useBuiltIns": "entry",
-                        "corejs": { version: 3, proposals: true }
-                    },
-                ]
-            ]
-        }
-    })
+    .addLoader(babelLoader)
     .enablePostCssLoader()
     .enableSassLoader((options) => {
         options.outputStyle = 'compressed';
