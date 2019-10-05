@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig_Error_Loader;
+use Twig_Error_Runtime;
+use Twig_Error_Syntax;
 
 class HomeController extends AbstractController
 {
@@ -19,11 +22,11 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/", name="home")
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @Route("/{_locale}", name="home", locale="en", requirements={"_locale": "en|bg"})
      * @return Response
+     * @throws Twig_Error_Runtime
+     * @throws Twig_Error_Syntax
+     * @throws Twig_Error_Loader
      */
     public function home(): Response
     {
