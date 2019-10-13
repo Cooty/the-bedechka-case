@@ -6,6 +6,93 @@
                 <source>site.name</source>
                 <target>Случаят Бедечка</target>
             </trans-unit>
+            <trans-unit id="home.hero.intro">
+                <source>home.hero.intro</source>
+                <target>Документален филм за застрояването на природата и последствията, които оказва върху обществото и културата.</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.time">
+                <source>timeline.1.time</source>
+                <target>До 60-те години на 20ти век</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.title">
+                <source>timeline.1.title</source>
+                <target>Преди да стане парк</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.text">
+                <source>timeline.1.text</source>
+                <target>Земята принадлежи на граждани, които имат градини за производство на зеленчуци, плодове и цветя.</target>
+            </trans-unit>
+
+            <trans-unit id="timeline.2.time">
+                <source>timeline.2.time</source>
+                <target>60те години на 20ти век</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.title">
+                <source>timeline.2.title</source>
+                <target>Определяне за парк</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.text">
+                <source>timeline.2.text</source>
+                <target>Територията е национализирана за изграждане на парк (Бедечка). Неизяснено остава, дали собствениците биват обезщетени.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.3.time">
+                <source>timeline.3.time</source>
+                <target>1989 и началото на 90те</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.title">
+                <source>timeline.3.title</source>
+                <target>Промяна на идеологията</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.text">
+                <source>timeline.3.text</source>
+                <target>Бившите собствениците търсят правата си върху земите си, но получават откази от съда с мотива, че територията е парк.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.4.time">
+                <source>timeline.4.time</source>
+                <target>Началото на 90те</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.title">
+                <source>timeline.4.title</source>
+                <target>Реституцията</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.text">
+                <source>timeline.4.text</source>
+                <target>В процеса на реституция, градската администрация възстановява земите на територията на парка, поради съдебна експертиза, твърдящ че на зелената площ “не е извършено парково мероприятие”.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.5.time">
+                <source>timeline.5.time</source>
+                <target>Новото хилядолетие</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.title">
+                <source>timeline.5.title</source>
+                <target>Съмнителни практики</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.text">
+                <source>timeline.5.text</source>
+                <target>Част от собсвениците продават земите си на инвеститори, под чийто натиск общинската администрация променя устройствения план на града. Територията на парка се променя от “зелена” в “територия за застрояване”.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.6.time">
+                <source>timeline.6.time</source>
+                <target>Март 2016та</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.title">
+                <source>timeline.6.title</source>
+                <target>Практическото разрушаване на парка</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.text">
+                <source>timeline.6.text</source>
+                <target>
+                    Започва строителство в парка, за което гражданите разбират с влизанете на багери и строителна техника в зелената градска площ.
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

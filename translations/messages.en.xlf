@@ -6,6 +6,92 @@
                 <source>site.name</source>
                 <target>The Bedechka Case</target>
             </trans-unit>
+            <trans-unit id="home.hero.intro">
+                <source>home.hero.intro</source>
+                <target>A documentary which analyzes the problem with the destruction of nature and its implications on society and culture</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.time">
+                <source>timeline.1.time</source>
+                <target>Up to the 60s</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.title">
+                <source>timeline.1.title</source>
+                <target>Pre-Park</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.text">
+                <source>timeline.1.text</source>
+                <target>The land belongs to citizens, who have urban gardens for production of vegetables, fruits and flowers.</target>
+            </trans-unit>
+
+            <trans-unit id="timeline.2.time">
+                <source>timeline.2.time</source>
+                <target>In the 60s</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.title">
+                <source>timeline.2.title</source>
+                <target>Park Establishment</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.text">
+                <source>timeline.2.text</source>
+                <target>During the Socialist regime the gardens are nationalized for the construction of the Bedechka Park. It remains unclear, if the owners get compensated.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.3.time">
+                <source>timeline.3.time</source>
+                <target>1989 and the beginning of the 90s</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.title">
+                <source>timeline.3.title</source>
+                <target>Change of ideologies</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.text">
+                <source>timeline.3.text</source>
+                <target>The former owners seek their rights over the sites, but got rejected with the motivations that the area is already a park. According to the law in a place with a realized public project (park, school, street, etc.) lands cannot be given back.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.4.time">
+                <source>timeline.4.time</source>
+                <target>Mid of the 90s</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.title">
+                <source>timeline.4.title</source>
+                <target>The Restitution</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.text">
+                <source>timeline.4.text</source>
+                <target>In the process of restitution, the city administration returned the sites to their former owners due to forensic expertise claiming that in the green area "no park enterprise happened".
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.5.time">
+                <source>timeline.5.time</source>
+                <target>The New Millenia</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.title">
+                <source>timeline.5.title</source>
+                <target>Dubious acts</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.text">
+                <source>timeline.5.text</source>
+                <target>Part of the owners sells their lands to investors, under whose pressure the municipal administration changes the urban plan. The territory of the park changes from "green" to "development area".
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.6.time">
+                <source>timeline.6.time</source>
+                <target>March 2016</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.title">
+                <source>timeline.6.title</source>
+                <target>The practical destruction of the park</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.text">
+                <source>timeline.6.text</source>
+                <target>Construction in the park Starts. The citizens understand about it no earlier than the entering of bulldozers and construction equipment into the green urban area.
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
