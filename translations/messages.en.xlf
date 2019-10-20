@@ -92,6 +92,252 @@
                 <target>Construction in the park Starts. The citizens understand about it no earlier than the entering of bulldozers and construction equipment into the green urban area.
                 </target>
             </trans-unit>
+
+            <trans-unit id="load.more">
+                <source>load.more</source>
+                <target>
+                    Learn More
+                </target>
+            </trans-unit>
+
+            <trans-unit id="story.news.title">
+                <source>story.news.title</source>
+                <target>
+                    In the Press
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map.subtitle">
+                <source>map.subtitle</source>
+                <target>
+                    Similar Cases
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map.intro">
+                <source>map.intro</source>
+                <target>
+                    The case is widespread in Bulgaria and is a symptom of a national problem.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="story.problem.title">
+                <source>story.problem.title</source>
+                <target>
+                    The Problem
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.forward">
+                <source>timeline.forward</source>
+                <target>
+                    Forward in time
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.back">
+                <source>timeline.back</source>
+                <target>
+                    Back in time
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.social.title">
+                <source>footer.social.title</source>
+                <target>
+                    Follow The Bedechka Case on:
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cookie.settings">
+                <source>cookie.settings</source>
+                <target>
+                    Cookie Settings
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.contact">
+                <source>footer.contact</source>
+                <target>
+                    Contact
+                </target>
+            </trans-unit>
+
+            <trans-unit id="facebook.intro">
+                <source>facebook.intro</source>
+                <target>
+                    Follow the project's Facebook Page and get all the latest updates!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.title">
+                <source>newsletter.title</source>
+                <target>
+                    Be part of the community!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="facebook.cta">
+                <source>facebook.cta</source>
+                <target>
+                    Like us on Facebook
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.info">
+                <source>newsletter.info</source>
+                <target>
+                    Get email from screening, and events related to our initiative. No, spam we promise!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="signup.newsletter">
+                <source>signup.newsletter</source>
+                <target>
+                    Sign up for updates!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.first.name">
+                <source>newsletter.first.name</source>
+                <target>
+                    First Name
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.last.name">
+                <source>newsletter.last.name</source>
+                <target>
+                    Last Name
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.email">
+                <source>newsletter.email</source>
+                <target>
+                    Your Email
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.submit">
+                <source>newsletter.submit</source>
+                <target>
+                    Sign Up!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.field.legend">
+                <source>newsletter.field.legend</source>
+                <target>
+                    Fields marked with * are mandatory!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.people">
+                <source>navigation.people</source>
+                <target>
+                    People
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.crew">
+                <source>navigation.crew</source>
+                <target>
+                    Crew
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.partners">
+                <source>navigation.partners</source>
+                <target>
+                    Partners
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.title">
+                <source>vision.title</source>
+                <target>
+                    The Vision
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.subheader">
+                <source>vision.subheader</source>
+                <target>
+                    Strategic Urban Planing for Conflict Resolution
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.intro.bold">
+                <source>vision.intro.bold</source>
+                <target>
+                    A virtuous circle:
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.intro">
+                <source>vision.intro</source>
+                <target>
+                    Activists that use scientific data to ignite the citizens. They pressure the administration restrict the actions of investors.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="protection.mechanisms">
+                <source>protection.mechanisms</source>
+                <target>
+                    Protection Mechanisms
+                </target>
+            </trans-unit>
+
+            <trans-unit id="thf.case.title">
+                <source>thf.case.title</source>
+                <target>
+                    Social Engagement as a Powerful Tool for the Preseravation of Urban Green Areas
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.title">
+                <source>partners.title</source>
+                <target>
+                    Organizations who...
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.subtitle">
+                <source>partners.subtitle</source>
+                <target>
+                    Support our cause
+                </target>
+            </trans-unit>
+
+            <trans-unit id="people.title">
+                <source>people.title</source>
+                <target>
+                    List of protagonists
+                </target>
+            </trans-unit>
+
+            <trans-unit id="people.subtitle">
+                <source>people.subtitle</source>
+                <target>
+                    meet the people featured in the movie
+                </target>
+            </trans-unit>
+
+            <trans-unit id="crew.title">
+                <source>crew.title</source>
+                <target>
+                    Meet the crew
+                </target>
+            </trans-unit>
+
+            <trans-unit id="crew.subtitle">
+                <source>crew.subtitle</source>
+                <target>
+                    that helped to realize thе project
+                </target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

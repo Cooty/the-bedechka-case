@@ -1,20 +1,20 @@
 <section class="join-us">
-    {% include('./components/section-header.html.twig') with {'text': 'Be part of the community!', 'priority': 3} only %}
+    {% include('./components/section-header.html.twig') with {'text': 'newsletter.title', 'priority': 3} only %}
 
     <p class="join-us__text">
-        Follow the project's Facebook Page and get all the latest updates!
+        {{ 'facebook.intro'|trans }}
     </p>
 
     <a href="https://www.facebook.com/casebedechka/"
        target="_blank"
        rel="noopener noreferer"
        class="button button--fb">
-        Like us on Facebook
+        {{ 'facebook.cta'|trans }}
     </a>
 
-    {% include('./components/sub-header.html.twig') with {'text': 'Sign up for updates!', 'priority': 4} only %}
+    {% include('./components/sub-header.html.twig') with {'text': 'signup.newsletter', 'priority': 4} only %}
     <p class="join-us__text">
-        Get email from screening, and events related to our initiative. No, spam we promise!
+        {{ 'newsletter.info'|trans }}
     </p>
     {{ include('./includes/newsletter-form.html.twig') }}
 </section>

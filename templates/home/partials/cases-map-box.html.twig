@@ -1,7 +1,7 @@
 <article class="box box--center-xxl cases-map">
-    {% include('./components/sub-header.html.twig') with {'text': 'Similar Cases', 'classes': 'box__header cases-map__header'} only %}
+    {% include('./components/sub-header.html.twig') with {'text': 'map.subtitle', 'classes': 'box__header cases-map__header'} only %}
     <p class="box__lead cases-map__lead">
-        The case is widespread in Bulgaria and is a symptom of a national problem.
+        {{ 'map.intro'|trans }}
     </p>
 
     <div class="cases-map__navigation">

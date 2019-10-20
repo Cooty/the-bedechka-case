@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}The Crew{% endblock %}
+{% block title %}{{ 'navigation.crew'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
-{% set heroTitle = {'mainTitle': 'Meet the crew', 'subTitle': 'The people who helped the project become a reality'} %}
+{% set heroTitle = {'mainTitle': 'crew.subtitle', 'subTitle': 'crew.subtitle'} %}
 {% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}

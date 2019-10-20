@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% set heroTitle = {'mainTitle': 'Organizations who...', 'subTitle': 'Support our cause'} %}
+{% set heroTitle = {'mainTitle': 'partners.title', 'subTitle': 'partners.subtitle'} %}
 {% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
-{% block title %} Partners {% endblock %}
+{% block title %}{{ 'navigation.crew'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
