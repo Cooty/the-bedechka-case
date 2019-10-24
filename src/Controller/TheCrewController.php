@@ -23,13 +23,13 @@ class TheCrewController extends AbstractController
     }
 
     /**
-     * @Route("/the-crew/{_locale}", name="the_crew", locale="en", requirements={"_locale": "en|bg"})
+     * @Route({"en": "/the-crew", "bg": "/създатели"}, name="the_crew")
      * @throws Twig_Error_Loader
      * @throws Twig_Error_Runtime
      * @throws Twig_Error_Syntax
      * @return Response
      */
-    public function theCrew(): Response
+    public function index(): Response
     {
         $html = $this->twig->render('the-crew/index.html.twig');
 

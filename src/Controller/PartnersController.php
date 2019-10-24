@@ -23,13 +23,13 @@ class PartnersController extends AbstractController
     }
 
     /**
-     * @Route("/partners/{_locale}", name="partners", locale="en", requirements={"_locale": "en|bg"})
+     * @Route({"en": "/partners", "bg": "/партньори"}, name="partners")
      * @throws Twig_Error_Loader
      * @throws Twig_Error_Runtime
      * @throws Twig_Error_Syntax
      * @return Response
      */
-    public function people(): Response
+    public function index(): Response
     {
         $html = $this->twig->render('partners/index.html.twig');
 

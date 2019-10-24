@@ -23,13 +23,13 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route("/people/{_locale}", name="people", locale="en", requirements={"_locale": "en|bg"})
+     * @Route({"en": "/people", "bg": "/участници"}, name="people")
      * @throws Twig_Error_Loader
      * @throws Twig_Error_Runtime
      * @throws Twig_Error_Syntax
      * @return Response
      */
-    public function people(): Response
+    public function index(): Response
     {
         $html = $this->twig->render('people/index.html.twig');
 

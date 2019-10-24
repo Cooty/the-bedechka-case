@@ -1,0 +1,7 @@
+{% set path = app.request.pathinfo %}
+
+{% if app.request.get('_locale') is same as('bg') %}
+    <a href="{{ path }}?preferred_locale=en">en</a>
+{% else %}
+    <a href="{{ path }}?preferred_locale=bg">bg</a>
+{% endif %}
