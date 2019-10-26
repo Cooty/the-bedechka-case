@@ -11,8 +11,6 @@ use Twig_Error_Loader;
 use Twig_Error_Runtime;
 use Twig_Error_Syntax;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
@@ -26,39 +24,47 @@ class HomeController extends AbstractController
      * @var string
      */
     private $secondaryLocale;
-    /**
-     * @var SessionInterface
-     */
-    private $session;
 
-    public function __construct(Twig_Environment $twig, string $secondaryLocale, SessionInterface $session)
-    {
+    /**
+     * @var string
+     */
+    private $languageSettingParamName;
+    /**
+     * @var string
+     */
+    private $languageSettingSessionKey;
+
+    public function __construct(
+        Twig_Environment $twig,
+        string $secondaryLocale,
+        string $languageSettingParamName,
+        string $languageSettingSessionKey
+    ) {
         $this->twig = $twig;
         $this->secondaryLocale = $secondaryLocale;
-        $this->session = $session;
+        $this->languageSettingParamName = $languageSettingParamName;
+        $this->languageSettingSessionKey = $languageSettingSessionKey;
     }
 
     /**
      * @Route({"en": "/", "bg": "/начало"}, name="home")
      * @param Request $request
-     * @param UrlGeneratorInterface $router
      * @return Response
      * @throws Twig_Error_Loader
      * @throws Twig_Error_Runtime
      * @throws Twig_Error_Syntax
      */
-    public function index(Request $request, UrlGeneratorInterface $router): Response
+    public function index(Request $request): Response
     {
-
-//        if($request->getLocale() !== $this->secondaryLocale && $this->detectSupportForSecondaryLocale($request)) {
-//            return $this->redirectToRoute('home', ['_locale'=>$this->secondaryLocale]);
-//        }
-        if($this->detectSupportForLocale($request, $this->secondaryLocale)) {
-
+        if($this->checkRedirectConditions($request)) {
+            return $this->redirectToSecondaryLanguageRoute($request);
         }
 
         $html = $this->twig->render('home/index.html.twig');
 
-        return new Response($html);
+        $response = new Response($html);
+        $response->headers->set('Content-Language', $request->attributes->get('_locale'));
+
+        return $response;
     }
 }

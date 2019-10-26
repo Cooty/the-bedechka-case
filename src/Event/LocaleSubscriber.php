@@ -15,16 +15,36 @@ class LocaleSubscriber implements EventSubscriberInterface
      */
     private $defaultLocale;
 
-    private $secondaryLocale = 'bg';
+    /**
+     * @var string
+     */
+    private $secondaryLocale;
+
     /**
      * @var array
      */
     private $supportedLocales;
+    /**
+     * @var string
+     */
+    private $languageSettingParamName;
+    /**
+     * @var string
+     */
+    private $languageSettingSessionKey;
 
-    public function __construct(array $supportedLocales, string $defaultLocale = 'en')
-    {
+    public function __construct(
+        array $supportedLocales,
+        string $defaultLocale,
+        string $secondaryLocale,
+        string $languageSettingParamName,
+        string $languageSettingSessionKey
+    ) {
         $this->defaultLocale = $defaultLocale;
         $this->supportedLocales = $supportedLocales;
+        $this->secondaryLocale = $secondaryLocale;
+        $this->languageSettingParamName = $languageSettingParamName;
+        $this->languageSettingSessionKey = $languageSettingSessionKey;
     }
 
     public static function getSubscribedEvents()
@@ -39,7 +59,7 @@ class LocaleSubscriber implements EventSubscriberInterface
 
     private function getPreferredLocale(Request $request): string
     {
-        $preferredLocale = strtolower((string)$request->get('preferred_locale'));
+        $preferredLocale = strtolower((string)$request->get($this->languageSettingParamName));
 
         if(in_array($preferredLocale, $this->supportedLocales)) {
             return $preferredLocale;
@@ -56,21 +76,10 @@ class LocaleSubscriber implements EventSubscriberInterface
          */
         $request = $event->getRequest();
 
-        dump($request->hasPreviousSession());
-
-        if ($request->hasPreviousSession()) {
-            return;
-        }
-
-        dump($this->getPreferredLocale($request));
-
         if($preferredLocale = $this->getPreferredLocale($request)) {
             $session = new Session();
-            $session->set('_preferred_locale', $this->secondaryLocale);
-            dump($session);
+            $session->set($this->languageSettingSessionKey, $this->secondaryLocale);
             $request->setSession($session);
-//            $request->getSession()
-//                ->set('_preferred_locale', $this->secondaryLocale);
         }
     }
 

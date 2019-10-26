@@ -1,0 +1,7 @@
+{% set route = app.request.get('_route') %}
+
+{% if app.request.get('_locale') is same as('bg') %}
+    <link rel="alternate" hreflang="{{ default_locale }}" href="{{ url(route, {"_locale": default_locale}) }}" />
+{% else %}
+    <link rel="alternate" hreflang="{{ secondary_locale }}" href="{{ url(route, {"_locale": secondary_locale}) }}" />
+{% endif %}

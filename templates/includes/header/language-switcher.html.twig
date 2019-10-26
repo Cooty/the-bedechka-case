@@ -1,7 +1,11 @@
-{% set path = app.request.pathinfo %}
+{% set route = app.request.get('_route') %}
 
 {% if app.request.get('_locale') is same as('bg') %}
-    <a href="{{ path }}?preferred_locale=en">en</a>
+    <a href="{{ path(route, {"_locale": default_locale}) }}?{{ language_setting_param }}={{ default_locale }}">
+        EN
+    </a>
 {% else %}
-    <a href="{{ path }}?preferred_locale=bg">bg</a>
+    <a href="{{ path(route, {"_locale": secondary_locale}) }}?{{ language_setting_param }}={{ secondary_locale }}">
+        БГ
+    </a>
 {% endif %}
