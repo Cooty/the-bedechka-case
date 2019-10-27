@@ -21,7 +21,7 @@ class StaticDataService
         $this->logger = $logger;
     }
 
-    public function getData(string $fileName)
+    public function getDataFromFile(string $fileName)
     {
         try {
             $content = file_get_contents($this->staticDataDirectory.$fileName);

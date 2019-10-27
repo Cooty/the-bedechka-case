@@ -67,7 +67,7 @@ class PartnersController extends AbstractController
         }
 
 
-        $data = $this->staticData->getData('partners.json');
+        $data = $this->staticData->getDataFromFile('partners.json');
         $html = $this->twig->render('partners/index.html.twig', [
             'partners'=> $data
         ]);
