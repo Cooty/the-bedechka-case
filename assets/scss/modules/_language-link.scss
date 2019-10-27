@@ -1,0 +1,59 @@
+.language-link {
+  $flag-size: 16px;
+
+  position: absolute;
+  right: $gutter;
+  top: -39px;
+  color: $base-text-color;
+
+  @media (min-width: $phablet) and (max-width: $desktop - 1) {
+    right: 0;
+  }
+
+  @media (min-width: $tablet) {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: $desktop) {
+    position: relative;
+    margin-left: $gutter-desktop * 2;
+    top: auto;
+    right: auto;
+  }
+
+  &__label {
+    overflow: hidden;
+    text-indent: -100em;
+    display: block;
+    width: 1px;
+    height: 1px;
+
+    @media (min-width: $tablet) {
+      height: auto;
+      width: auto;
+      overflow: visible;
+      text-indent: 0;
+      font-size: 13px;
+      margin-right: 5px;
+    }
+
+  }
+
+  &__flag {
+    display: block;
+    width: $flag-size;
+    height: $flag-size;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, .2);
+
+    > svg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+  }
+}

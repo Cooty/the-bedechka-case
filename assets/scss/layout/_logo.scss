@@ -28,3 +28,12 @@
     user-select: none;
   }
 }
+
+// leave space for lanaguage flag, as the Bulgarian name is way longer
+html[lang="bg"] .logo .logo__typo {
+
+  @media (max-width: 410px) {
+    font-size: 16px;
+  }
+
+}
