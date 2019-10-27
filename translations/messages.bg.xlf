@@ -338,6 +338,28 @@
                     Визия
                 </target>
             </trans-unit>
+
+            <trans-unit id="partners.stara.zagora">
+                <source>partners.stara.zagora</source>
+                <target>
+                    Стара Загора
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.bulgaria">
+                <source>partners.bulgaria</source>
+                <target>
+                    България
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.worldwide">
+                <source>partners.worldwide</source>
+                <target>
+                    В световен мащаб
+                </target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

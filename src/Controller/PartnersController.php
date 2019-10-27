@@ -11,6 +11,7 @@ use Twig_Environment;
 use Twig_Error_Loader;
 use Twig_Error_Runtime;
 use Twig_Error_Syntax;
+use App\Service\StaticDataService;
 
 class PartnersController extends AbstractController
 {
@@ -32,17 +33,23 @@ class PartnersController extends AbstractController
      * @var string
      */
     private $languageSettingSessionKey;
+    /**
+     * @var StaticDataService
+     */
+    private $staticData;
 
     public function __construct(
         Twig_Environment $twig,
         string $secondaryLocale,
         string $languageSettingParamName,
-        string $languageSettingSessionKey
+        string $languageSettingSessionKey,
+        StaticDataService $staticData
     ) {
         $this->twig = $twig;
         $this->secondaryLocale = $secondaryLocale;
         $this->languageSettingParamName = $languageSettingParamName;
         $this->languageSettingSessionKey = $languageSettingSessionKey;
+        $this->staticData = $staticData;
     }
 
     /**
@@ -59,7 +66,11 @@ class PartnersController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        $html = $this->twig->render('partners/index.html.twig');
+
+        $data = $this->staticData->getData('partners.json');
+        $html = $this->twig->render('partners/index.html.twig', [
+            'partners'=> $data
+        ]);
 
         $response = new Response($html);
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));

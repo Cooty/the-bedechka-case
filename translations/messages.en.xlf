@@ -338,6 +338,27 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="partners.stara.zagora">
+                <source>partners.stara.zagora</source>
+                <target>
+                    Stara Zagora
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.bulgaria">
+                <source>partners.bulgaria</source>
+                <target>
+                    Bulgaria
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.worldwide">
+                <source>partners.worldwide</source>
+                <target>
+                    Worldwide
+                </target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
