@@ -22,18 +22,6 @@
   overflow: hidden;
   margin-top: -$box-shadow-size;
 
-  @keyframes illustration-animation {
-    to {
-      background-position: 0 -#{$illustration-h};
-    }
-  }
-
-  //@keyframes illustration-animation-desktop {
-  //  to {
-  //    background-position-y: -#{$illustration-h-desktop};
-  //  }
-  //}
-
   &:after {
     @include scroll-fader($beige, 20px);
   }
@@ -147,23 +135,30 @@
 
     }
 
+    @keyframes illustration-animation {
+      100% {
+        background-position-y: -#{$illustration-h * 2};
+      }
+    }
+
+    @keyframes illustration-animation-desktop {
+      100% {
+        background-position-y: -#{$illustration-h-desktop * 2};
+      }
+    }
+
     @for $i from 0 through ($steps - 1) {
       &:nth-child(#{$i + 1}) .timeline__illustration {
         background-position: #{$illustration-w * $i * -1} 0;
-        //animation: illustration-animation 1s steps(2, end) infinite;
+        animation: illustration-animation 1s steps(2, end) infinite;
 
         @media (min-width: $desktop) {
           background-position: #{$illustration-w-desktop * $i * -1} 0;
-          //animation: illustration-animation-desktop 1s steps(2, end) infinite;
+          animation: illustration-animation-desktop 1s steps(2, end) infinite;
         }
 
       }
     }
-
-    //&:nth-child(1) .timeline__illustration {
-    //  //background-position: 0 -184px;
-    //  animation: illustration-animation 1s steps(2, end) infinite;
-    //}
 
   }
 
