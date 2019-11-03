@@ -2,7 +2,7 @@
     <ul class="footer__bottom-social-media">
         <li>
             <h6 class="footer__bottom-title">
-                Follow <strong>The Bedechka Case</strong> on:
+                {{ 'footer.social.title'|trans }}
             </h6>
         </li>
         <li class="footer__bottom-social-media-item">
@@ -48,16 +48,14 @@
 
     <ul class="footer__bottom-menu">
         <li class="footer__bottom-menu-item">
-            <a href="#" class="footer__bottom-menu-label anim-underline">Imprint</a>
+            <button type="button" class="footer__bottom-menu-label anim-underline">
+                {{ 'cookie.settings'|trans }}
+            </button>
         </li>
         <li class="footer__bottom-menu-item">
-            <button type="button" class="footer__bottom-menu-label anim-underline">Cookie Settings</button>
-        </li>
-        <li class="footer__bottom-menu-item">
-            <a href="#" class="footer__bottom-menu-label anim-underline">Contact</a>
-        </li>
-        <li class="footer__bottom-menu-item">
-            <a href="#" class="footer__bottom-menu-label anim-underline">Privacy Policy</a>
+            <a href="#" class="footer__bottom-menu-label anim-underline">
+                {{ 'footer.contact'|trans }}
+            </a>
         </li>
     </ul>
 </div>

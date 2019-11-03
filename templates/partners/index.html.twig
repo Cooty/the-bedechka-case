@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% set heroTitle = {'mainTitle': 'Organizations who...', 'subTitle': 'Support our cause'} %}
+{% set heroTitle = {'mainTitle': 'partners.title', 'subTitle': 'partners.subtitle'} %}
 {% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
-{% block title %} Partners {% endblock %}
+{% block title %}{{ 'navigation.partners'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -12,41 +12,17 @@
 
 {% block main %}
     {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
-
     <article class="box box--center partners pull-over-hero">
+        {% for category in partners.categories %}
         <ul class="partners__list">
             <li class="partners__list-item">
-                {% include('./components/sub-header.html.twig') with {'text': 'Stara Zagora', 'priority': 2} only %}
+                {% include('./components/sub-header.html.twig') with {'text': category.name, 'priority': 2} only %}
             </li>
-            <li class="partners__list-item">
-                <a href="#" class="anim-underline">Architeks House</a>
-            </li>
-            <li class="partners__list-item">
-                <a href="#" class="anim-underline">Architeks House</a>
-            </li>
+            {% for organization in category.organizations %}
+                {% include('./partners/partials/partner-item.html.twig') with {'organization': organization} only %}
+            {% endfor %}
         </ul>
-        <ul class="partners__list">
-            <li class="partners__list-item">
-                {% include('./components/sub-header.html.twig') with {'text': 'Bulgaria', 'priority': 2} only %}
-            </li>
-            <li class="partners__list-item">
-                <a href="#" class="anim-underline">Architeks House</a>
-            </li>
-            <li class="partners__list-item">
-                <a href="#" class="anim-underline">Architeks House</a>
-            </li>
-        </ul>
-        <ul class="partners__list">
-            <li class="partners__list-item">
-                {% include('./components/sub-header.html.twig') with {'text': 'International', 'priority': 2} only %}
-            </li>
-            <li class="partners__list-item">
-                <a href="#" class="anim-underline">Architeks House</a>
-            </li>
-            <li class="partners__list-item">
-                <a href="#" class="anim-underline">Architeks House</a>
-            </li>
-        </ul>
+        {% endfor %}
     </article>
 
 {% endblock %}

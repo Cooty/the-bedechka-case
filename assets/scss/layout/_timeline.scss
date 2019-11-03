@@ -13,8 +13,26 @@
 
   $mover-radius: 4px;
 
+  $illustration-w: 90px;
+  $illustration-h: 184px;
+  $illustration-w-desktop: 101px;
+  $illustration-h-desktop: 206px;
+  $steps: 6;
+
   overflow: hidden;
   margin-top: -$box-shadow-size;
+
+  @keyframes illustration-animation {
+    to {
+      background-position: 0 -#{$illustration-h};
+    }
+  }
+
+  //@keyframes illustration-animation-desktop {
+  //  to {
+  //    background-position-y: -#{$illustration-h-desktop};
+  //  }
+  //}
 
   &:after {
     @include scroll-fader($beige, 20px);
@@ -129,6 +147,24 @@
 
     }
 
+    @for $i from 0 through ($steps - 1) {
+      &:nth-child(#{$i + 1}) .timeline__illustration {
+        background-position: #{$illustration-w * $i * -1} 0;
+        //animation: illustration-animation 1s steps(2, end) infinite;
+
+        @media (min-width: $desktop) {
+          background-position: #{$illustration-w-desktop * $i * -1} 0;
+          //animation: illustration-animation-desktop 1s steps(2, end) infinite;
+        }
+
+      }
+    }
+
+    //&:nth-child(1) .timeline__illustration {
+    //  //background-position: 0 -184px;
+    //  animation: illustration-animation 1s steps(2, end) infinite;
+    //}
+
   }
 
   &__box {
@@ -167,19 +203,17 @@
   }
 
   &__illustration {
-    $w: 90px;
-
-    width: $w;
-    height: 190px;
-    flex: 0 0 $w;
-    background: rgba(105, 90, 80, .4);
+    width: $illustration-w;
+    height: $illustration-h;
+    flex: 0 0 $illustration-w;
+    background-image: url(../../images/timeline-animation-sprite-optimized.png);
+    background-size: ($illustration-w * $steps) ($illustration-h * 2);
 
     @media (min-width: $desktop) {
-      $w-desktop: 101px;
-
-      width: $w-desktop;
+      width: $illustration-w-desktop;
       height: 206px;
-      flex-basis: $w-desktop;
+      flex-basis: $illustration-w-desktop;
+      background-size: ($illustration-w-desktop * $steps) ($illustration-h-desktop * 2);
     }
 
   }

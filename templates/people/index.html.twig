@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}People{% endblock %}
+{% block title %}{{ 'navigation.people'|trans }} - {{ 'site.name'|trans }} {% endblock %}
 
-{% set heroTitle = {'mainTitle': 'List of protagonists', 'subTitle': 'Meet all the people featured in the movie'} %}
+{% set heroTitle = {'mainTitle': 'people.title', 'subTitle': 'people.subtitle'} %}
 {% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}

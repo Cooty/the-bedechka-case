@@ -6,6 +6,359 @@
                 <source>site.name</source>
                 <target>The Bedechka Case</target>
             </trans-unit>
+            <trans-unit id="home.hero.intro">
+                <source>home.hero.intro</source>
+                <target>A documentary which analyzes the problem with the destruction of nature and its implications on society and culture</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.time">
+                <source>timeline.1.time</source>
+                <target>Up to the 60s</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.title">
+                <source>timeline.1.title</source>
+                <target>Pre-Park</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.text">
+                <source>timeline.1.text</source>
+                <target>The land belongs to citizens, who have urban gardens for production of vegetables, fruits and flowers.</target>
+            </trans-unit>
+
+            <trans-unit id="timeline.2.time">
+                <source>timeline.2.time</source>
+                <target>In the 60s</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.title">
+                <source>timeline.2.title</source>
+                <target>Park Establishment</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.text">
+                <source>timeline.2.text</source>
+                <target>During the Socialist regime the gardens are nationalized for the construction of the Bedechka Park. It remains unclear, if the owners get compensated.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.3.time">
+                <source>timeline.3.time</source>
+                <target>1989 and the beginning of the 90s</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.title">
+                <source>timeline.3.title</source>
+                <target>Change of ideologies</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.text">
+                <source>timeline.3.text</source>
+                <target>The former owners seek their rights over the sites, but got rejected with the motivations that the area is already a park. According to the law in a place with a realized public project (park, school, street, etc.) lands cannot be given back.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.4.time">
+                <source>timeline.4.time</source>
+                <target>Mid of the 90s</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.title">
+                <source>timeline.4.title</source>
+                <target>The Restitution</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.text">
+                <source>timeline.4.text</source>
+                <target>In the process of restitution, the city administration returned the sites to their former owners due to forensic expertise claiming that in the green area "no park enterprise happened".
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.5.time">
+                <source>timeline.5.time</source>
+                <target>The New Millenia</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.title">
+                <source>timeline.5.title</source>
+                <target>Dubious acts</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.text">
+                <source>timeline.5.text</source>
+                <target>Part of the owners sells their lands to investors, under whose pressure the municipal administration changes the urban plan. The territory of the park changes from "green" to "development area".
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.6.time">
+                <source>timeline.6.time</source>
+                <target>March 2016</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.title">
+                <source>timeline.6.title</source>
+                <target>The practical destruction of the park</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.text">
+                <source>timeline.6.text</source>
+                <target>Construction in the park Starts. The citizens understand about it no earlier than the entering of bulldozers and construction equipment into the green urban area.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="load.more">
+                <source>load.more</source>
+                <target>
+                    Learn More
+                </target>
+            </trans-unit>
+
+            <trans-unit id="story.news.title">
+                <source>story.news.title</source>
+                <target>
+                    In the Press
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map.subtitle">
+                <source>map.subtitle</source>
+                <target>
+                    Similar Cases
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map.intro">
+                <source>map.intro</source>
+                <target>
+                    The case is widespread in Bulgaria and is a symptom of a national problem.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="story.problem.title">
+                <source>story.problem.title</source>
+                <target>
+                    The Problem
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.forward">
+                <source>timeline.forward</source>
+                <target>
+                    Forward in time
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.back">
+                <source>timeline.back</source>
+                <target>
+                    Back in time
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.social.title">
+                <source>footer.social.title</source>
+                <target>
+                    Follow The Bedechka Case on:
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cookie.settings">
+                <source>cookie.settings</source>
+                <target>
+                    Cookie Settings
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.contact">
+                <source>footer.contact</source>
+                <target>
+                    Contact
+                </target>
+            </trans-unit>
+
+            <trans-unit id="facebook.intro">
+                <source>facebook.intro</source>
+                <target>
+                    Follow the project's Facebook Page and get all the latest updates!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.title">
+                <source>newsletter.title</source>
+                <target>
+                    Be part of the community!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="facebook.cta">
+                <source>facebook.cta</source>
+                <target>
+                    Like us on Facebook
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.info">
+                <source>newsletter.info</source>
+                <target>
+                    Get email from screening, and events related to our initiative. No, spam we promise!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="signup.newsletter">
+                <source>signup.newsletter</source>
+                <target>
+                    Sign up for updates!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.first.name">
+                <source>newsletter.first.name</source>
+                <target>
+                    First Name
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.last.name">
+                <source>newsletter.last.name</source>
+                <target>
+                    Last Name
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.email">
+                <source>newsletter.email</source>
+                <target>
+                    Your Email
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.submit">
+                <source>newsletter.submit</source>
+                <target>
+                    Sign Up!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.field.legend">
+                <source>newsletter.field.legend</source>
+                <target>
+                    Fields marked with * are mandatory!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.people">
+                <source>navigation.people</source>
+                <target>
+                    People
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.crew">
+                <source>navigation.crew</source>
+                <target>
+                    Crew
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.partners">
+                <source>navigation.partners</source>
+                <target>
+                    Partners
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.title">
+                <source>vision.title</source>
+                <target>
+                    The Vision
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.subheader">
+                <source>vision.subheader</source>
+                <target>
+                    Strategic Urban Planing for Conflict Resolution
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.intro.bold">
+                <source>vision.intro.bold</source>
+                <target>
+                    A virtuous circle:
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.intro">
+                <source>vision.intro</source>
+                <target>
+                    Activists that use scientific data to ignite the citizens. They pressure the administration restrict the actions of investors.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="protection.mechanisms">
+                <source>protection.mechanisms</source>
+                <target>
+                    Protection Mechanisms
+                </target>
+            </trans-unit>
+
+            <trans-unit id="thf.case.title">
+                <source>thf.case.title</source>
+                <target>
+                    Social Engagement as a Powerful Tool for the Preseravation of Urban Green Areas
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.title">
+                <source>partners.title</source>
+                <target>
+                    Organizations who...
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.subtitle">
+                <source>partners.subtitle</source>
+                <target>
+                    Support our cause
+                </target>
+            </trans-unit>
+
+            <trans-unit id="people.title">
+                <source>people.title</source>
+                <target>
+                    List of protagonists
+                </target>
+            </trans-unit>
+
+            <trans-unit id="people.subtitle">
+                <source>people.subtitle</source>
+                <target>
+                    meet the people featured in the movie
+                </target>
+            </trans-unit>
+
+            <trans-unit id="crew.title">
+                <source>crew.title</source>
+                <target>
+                    Meet the crew
+                </target>
+            </trans-unit>
+
+            <trans-unit id="crew.subtitle">
+                <source>crew.subtitle</source>
+                <target>
+                    that helped to realize thе project
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.stara.zagora">
+                <source>partners.stara.zagora</source>
+                <target>
+                    Stara Zagora
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.bulgaria">
+                <source>partners.bulgaria</source>
+                <target>
+                    Bulgaria
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.worldwide">
+                <source>partners.worldwide</source>
+                <target>
+                    Worldwide
+                </target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

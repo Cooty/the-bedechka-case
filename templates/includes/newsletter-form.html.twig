@@ -1,24 +1,24 @@
 <form action="/" class="newsletter-form form" method="post">
     <div class="form__row">
         <label>
-            <span class="form__label">First Name</span>
+            <span class="form__label">{{ 'newsletter.first.name'|trans }}</span>
             <input type="text" name="first_name">
         </label>
         <label>
-            <span class="form__label">Last Name</span>
+            <span class="form__label">{{ 'newsletter.last.name'|trans }}</span>
             <input type="text" name="last_name">
         </label>
     </div>
     <div class="form__row form__row--single-line">
         <label>
             <span class="form__label">
-                Your Email<strong class="form__asterisk">&nbsp;*</strong>
+                {{ 'newsletter.email'|trans }}<strong class="form__asterisk">&nbsp;*</strong>
             </span>
             <input type="email" name="email" required>
         </label>
-        <button class="button" type="submit">Sign Up!</button>
+        <button class="button" type="submit">{{ 'newsletter.submit'|trans }}</button>
     </div>
     <p class="form__legend">
-        Fields marked with <strong class="form__asterisk form__asterisk--no-super">&nbsp;*</strong> are mandatory!
+        {{ 'newsletter.field.legend'|trans }}
     </p>
 </form>

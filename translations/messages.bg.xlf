@@ -6,6 +6,360 @@
                 <source>site.name</source>
                 <target>Случаят Бедечка</target>
             </trans-unit>
+            <trans-unit id="home.hero.intro">
+                <source>home.hero.intro</source>
+                <target>Документален филм за застрояването на природата и последствията, които оказва върху обществото и културата.</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.time">
+                <source>timeline.1.time</source>
+                <target>До 60-те години на 20ти век</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.title">
+                <source>timeline.1.title</source>
+                <target>Преди да стане парк</target>
+            </trans-unit>
+            <trans-unit id="timeline.1.text">
+                <source>timeline.1.text</source>
+                <target>Земята принадлежи на граждани, които имат градини за производство на зеленчуци, плодове и цветя.</target>
+            </trans-unit>
+
+            <trans-unit id="timeline.2.time">
+                <source>timeline.2.time</source>
+                <target>60те години на 20ти век</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.title">
+                <source>timeline.2.title</source>
+                <target>Определяне за парк</target>
+            </trans-unit>
+            <trans-unit id="timeline.2.text">
+                <source>timeline.2.text</source>
+                <target>Територията е национализирана за изграждане на парк (Бедечка). Неизяснено остава, дали собствениците биват обезщетени.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.3.time">
+                <source>timeline.3.time</source>
+                <target>1989 и началото на 90те</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.title">
+                <source>timeline.3.title</source>
+                <target>Промяна на идеологията</target>
+            </trans-unit>
+            <trans-unit id="timeline.3.text">
+                <source>timeline.3.text</source>
+                <target>Бившите собствениците търсят правата си върху земите си, но получават откази от съда с мотива, че територията е парк.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.4.time">
+                <source>timeline.4.time</source>
+                <target>Началото на 90те</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.title">
+                <source>timeline.4.title</source>
+                <target>Реституцията</target>
+            </trans-unit>
+            <trans-unit id="timeline.4.text">
+                <source>timeline.4.text</source>
+                <target>В процеса на реституция, градската администрация възстановява земите на територията на парка, поради съдебна експертиза, твърдящ че на зелената площ “не е извършено парково мероприятие”.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.5.time">
+                <source>timeline.5.time</source>
+                <target>Новото хилядолетие</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.title">
+                <source>timeline.5.title</source>
+                <target>Съмнителни практики</target>
+            </trans-unit>
+            <trans-unit id="timeline.5.text">
+                <source>timeline.5.text</source>
+                <target>Част от собсвениците продават земите си на инвеститори, под чийто натиск общинската администрация променя устройствения план на града. Територията на парка се променя от “зелена” в “територия за застрояване”.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.6.time">
+                <source>timeline.6.time</source>
+                <target>Март 2016та</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.title">
+                <source>timeline.6.title</source>
+                <target>Практическото разрушаване на парка</target>
+            </trans-unit>
+            <trans-unit id="timeline.6.text">
+                <source>timeline.6.text</source>
+                <target>
+                    Започва строителство в парка, за което гражданите разбират с влизанете на багери и строителна техника в зелената градска площ.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="load.more">
+                <source>load.more</source>
+                <target>
+                    Научи още
+                </target>
+            </trans-unit>
+
+            <trans-unit id="story.news.title">
+                <source>story.news.title</source>
+                <target>
+                    От медиите
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map.subtitle">
+                <source>map.subtitle</source>
+                <target>
+                    Подобни случаи
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map.intro">
+                <source>map.intro</source>
+                <target>
+                    Случаят е широко разпространен в България и е симптом на национален проблем
+                </target>
+            </trans-unit>
+
+            <trans-unit id="story.problem.title">
+                <source>story.problem.title</source>
+                <target>
+                    Проблемът
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.forward">
+                <source>timeline.forward</source>
+                <target>
+                    Напред във времето
+                </target>
+            </trans-unit>
+
+            <trans-unit id="timeline.back">
+                <source>timeline.back</source>
+                <target>
+                    Назад във времето
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.social.title">
+                <source>footer.social.title</source>
+                <target>
+                    Последвай "Слуачаят Бедечка"
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cookie.settings">
+                <source>cookie.settings</source>
+                <target>
+                    Настройки за бисквитките
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.contact">
+                <source>footer.contact</source>
+                <target>
+                    Контакт
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.title">
+                <source>newsletter.title</source>
+                <target>
+                    Стани част от общността!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="facebook.intro">
+                <source>facebook.intro</source>
+                <target>
+                    Последвай ни във Фейсбук, за да не пропускаш актуална информация за проекта!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="facebook.cta">
+                <source>facebook.cta</source>
+                <target>
+                    Харесай страницата!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="signup.newsletter">
+                <source>signup.newsletter</source>
+                <target>
+                    Запиши се за актуална информация!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.info">
+                <source>newsletter.info</source>
+                <target>
+                    За да научаваш бързо за прожекциите и новини за проекта. Без СПАМ, обещаваме!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.first.name">
+                <source>newsletter.first.name</source>
+                <target>
+                    Име
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.last.name">
+                <source>newsletter.last.name</source>
+                <target>
+                    Фамилия
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.email">
+                <source>newsletter.email</source>
+                <target>
+                    E-Мейл
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.submit">
+                <source>newsletter.submit</source>
+                <target>
+                    Регистрирай се!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="newsletter.field.legend">
+                <source>newsletter.field.legend</source>
+                <target>
+                    Полета маркирани с * са задължителни!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.people">
+                <source>navigation.people</source>
+                <target>
+                    Участници
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.crew">
+                <source>navigation.crew</source>
+                <target>
+                    Създатели
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.partners">
+                <source>navigation.partners</source>
+                <target>
+                    Партньори
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.subheader">
+                <source>vision.subheader</source>
+                <target>
+                    Стратегическо градско планиране с цел разрешаване на конфликти
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.intro.bold">
+                <source>vision.intro.bold</source>
+                <target>
+                    Добродетелен кръг:
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.intro">
+                <source>vision.intro</source>
+                <target>
+                    Активистите, подкрепени с научни факти информират гражданите. Те на свой ред оказват натиск над адмиснитрацията за ограничаване дейностите на инвеститорите.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="protection.mechanisms">
+                <source>protection.mechanisms</source>
+                <target>
+                    Защитни механизми
+                </target>
+            </trans-unit>
+
+            <trans-unit id="thf.case.title">
+                <source>thf.case.title</source>
+                <target>
+                    Гражданското участие може да е мощен инструмент за запазването на зелени градски площи.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.title">
+                <source>partners.title</source>
+                <target>
+                    Организации, които...
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.subtitle">
+                <source>partners.subtitle</source>
+                <target>
+                    Подкрепи каузата
+                </target>
+            </trans-unit>
+
+            <trans-unit id="people.title">
+                <source>people.title</source>
+                <target>
+                    Списък с участниците
+                </target>
+            </trans-unit>
+
+            <trans-unit id="people.subtitle">
+                <source>people.subtitle</source>
+                <target>
+                    които ще видите във филма
+                </target>
+            </trans-unit>
+
+            <trans-unit id="crew.title">
+                <source>crew.title</source>
+                <target>
+                    Запознай се с екипа
+                </target>
+            </trans-unit>
+
+            <trans-unit id="crew.subtitle">
+                <source>crew.subtitle</source>
+                <target>
+                    който направи проекта реалност
+                </target>
+            </trans-unit>
+
+            <trans-unit id="vision.title">
+                <source>vision.title</source>
+                <target>
+                    Визия
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.stara.zagora">
+                <source>partners.stara.zagora</source>
+                <target>
+                    Стара Загора
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.bulgaria">
+                <source>partners.bulgaria</source>
+                <target>
+                    България
+                </target>
+            </trans-unit>
+
+            <trans-unit id="partners.worldwide">
+                <source>partners.worldwide</source>
+                <target>
+                    В световен мащаб
+                </target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

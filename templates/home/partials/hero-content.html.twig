@@ -1,6 +1,6 @@
 <div class="landing-hero-content">
     <p class="landing-hero-content__intro">
-        A documentary which analyzes the problem with the destruction of nature and its implications on society and culture
+        {{ 'home.hero.intro'|trans }}
     </p>
     <div class="landing-hero-content__video">
         {% include('./components/video-embed.html.twig') with {
@@ -10,6 +10,6 @@
         %}
     </div>
     <div class="landing-hero-content__button">
-        <a href="#" class="button button--cta">Learn More</a>
+        <a href="#" class="button button--cta">{{ 'load.more'|trans }}</a>
     </div>
 </div>

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Traits\Locale;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig_Environment;
@@ -12,27 +14,56 @@ use Twig_Error_Syntax;
 
 class TheCrewController extends AbstractController
 {
+    use Locale;
+
     /**
      * @var Twig_Environment
      */
     private $twig;
+    /**
+     * @var string
+     */
+    private $secondaryLocale;
+    /**
+     * @var string
+     */
+    private $languageSettingParamName;
+    /**
+     * @var string
+     */
+    private $languageSettingSessionKey;
 
-    public function __construct(Twig_Environment $twig)
-    {
+    public function __construct(
+        Twig_Environment $twig,
+        string $secondaryLocale,
+        string $languageSettingParamName,
+        string $languageSettingSessionKey
+    ) {
         $this->twig = $twig;
+        $this->secondaryLocale = $secondaryLocale;
+        $this->languageSettingParamName = $languageSettingParamName;
+        $this->languageSettingSessionKey = $languageSettingSessionKey;
     }
 
     /**
-     * @Route("/the-crew/{_locale}", name="the_crew", locale="en", requirements={"_locale": "en|bg"})
+     * @Route({"en": "/the-crew", "bg": "/създатели"}, name="the_crew")
+     * @param Request $request
+     * @return Response
      * @throws Twig_Error_Loader
      * @throws Twig_Error_Runtime
      * @throws Twig_Error_Syntax
-     * @return Response
      */
-    public function theCrew(): Response
+    public function index(Request $request): Response
     {
+        if($this->checkRedirectConditions($request)) {
+            return $this->redirectToSecondaryLanguageRoute($request);
+        }
+
         $html = $this->twig->render('the-crew/index.html.twig');
 
-        return new Response($html);
+        $response = new Response($html);
+        $response->headers->set('Content-Language', $request->attributes->get('_locale'));
+
+        return $response;
     }
 }

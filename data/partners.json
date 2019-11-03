@@ -1,38 +1,143 @@
 {
   "categories": [
-    {"name":  "Stara Zagora",
+    {"name":  "partners.stara.zagora",
       "organizations": [
         {
-          "name": "Architeks House",
-          "url": "wwww.example.com"
+          "name": {
+            "en": "Architect's House",
+            "bg": "Къщата на Архитекта"
+          },
+          "url": "https://www.facebook.com/pages/category/Non-Governmental-Organization--NGO-/%D0%9A%D1%8A%D1%89%D0%B0%D1%82%D0%B0-%D0%BD%D0%B0-%D0%90%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D0%B0-950600638308121/"
         },
         {
-          "name": "Regional Library",
-          "url": "wwww.regional-library.com"
+          "name": {
+            "en": "Regional Library",
+            "bg": "Регионална библиотека \"Захари Княжески\""
+          },
+          "url": "https://www.libsz.org/"
+        },
+        {
+          "name": {
+            "en": "Zara Lab",
+            "bg": "Зара Лаб"
+          },
+          "url": "https://www.zaralab.org/"
+        },
+        {
+          "name": {
+            "en": "Save Bedechka",
+            "bg": "Запазете Бедечка"
+          },
+          "url": "http://www.bedechka.org/"
+        },
+        {
+          "name": {
+            "en": "Green Balkans",
+            "bg": "Зелени Балкани"
+          },
+          "url": {
+            "bg": "https://greenbalkans.org/bg/",
+            "en": "https://greenbalkans.org/en/"
+          }
+        },
+        {
+          "name": {
+            "en": "Earth Forever",
+            "bg": "Земя Завинаги"
+          },
+          "url": {
+            "bg": "http://www.earthforever.org/indexbg.html",
+            "en": "http://www.earthforever.org/index.html"
+          }
+        }
+
+      ]
+    },
+    {"name":  "partners.bulgaria",
+      "organizations": [
+        {
+          "name": {
+            "en": "Hamalogika Burgas",
+            "bg": "Хамаогика, Бургас"
+          },
+          "url": {
+            "bg": "https://hamalogika.com/",
+            "en": "https://hamalogika.com/en/home"
+          }
+        },
+        {
+          "name": {
+            "en": "TAM Veliko Tarnovo",
+            "bg": "ТАМ, Велико Търново"
+          },
+          "url": "https://www.facebook.com/TAMVELIKOTARNOVO/"
+        },
+        {
+          "name": {
+            "en": "For the Earth",
+            "bg": "За Земята"
+          },
+          "url": "https://www.zazemiata.org/"
         }
       ]
     },
-    {"name":  "Bulgaria",
+    {"name":  "partners.worldwide",
       "organizations": [
         {
-          "name": "Hamalogika Burgas",
-          "url": "wwww.hamalogika.com"
+          "name": {
+            "en": "100% THF",
+            "bg": "100% Темпелхофско поле"
+          },
+          "url": "https://www.thf100.de/start.html"
         },
         {
-          "name": "Tam Veliko Tarnovo",
-          "url": "wwww.tam-veliko.com"
-        }
-      ]
-    },
-    {"name":  "International",
-      "organizations": [
-        {
-          "name": "THF",
-          "url": "wwww.thf.com"
+          "name": {
+            "en": "Kalu Yala",
+            "bg": "Калу Яла"
+          },
+          "url": "https://kaluyala.com/"
         },
         {
-          "name": "Kalu Yala",
-          "url": "wwww.kalu-yala.com"
+          "name": {
+            "en": "AVKM",
+            "bg": "Академично дружество \"Кирил и Методи\""
+          },
+          "url": "https://www.avkm-test.lima-city.de/"
+        },
+        {
+          "name": {
+            "en": "BKI",
+            "bg": "Български Културен Институт, Берлин"
+          },
+          "url": "http://www.bulgarisches-kulturinstitut.de/"
+        },
+        {
+          "name": {
+            "en": "BulDoc",
+            "bg": "Дни на българското дукментално кино"
+          },
+          "url": "https://www.facebook.com/bulgariandocucinema.berlin/"
+        },
+        {
+          "name": {
+            "en": "Plan A",
+            "bg": "План А"
+          },
+          "url": "https://plana.earth/"
+        },
+        {
+          "name": {
+            "en": "SiABioS",
+            "bg": "СиАБиоС, Учени в акция"
+          },
+          "url": "https://siabios.wordpress.com/"
+        },
+        {
+          "name": {
+            "en": "Perangua",
+            "bg": "Перангуа"
+          },
+          "url": "https://perangua.org/"
         }
       ]
     }

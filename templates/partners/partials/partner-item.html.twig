@@ -1,0 +1,18 @@
+<li class="partners__list-item">
+    {% if organization.url.bg is defined and organization.url.en is defined  %}
+        {% if app.request.get('_locale') is same as('bg') %}
+            {% set url = organization.url.bg %}
+        {% else %}
+            {% set url = organization.url.en %}
+        {% endif %}
+    {% else %}
+        {% set url = organization.url %}
+    {% endif %}
+    <a href="{{ url }}" class="anim-underline" target="_blank" rel="noopener noreferrer">
+        {% if app.request.get('_locale') is same as('bg') %}
+            {{ organization.name.bg }}
+        {% else %}
+            {{ organization.name.en }}
+        {% endif %}
+    </a>
+</li>

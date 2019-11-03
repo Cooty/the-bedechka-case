@@ -1,0 +1,33 @@
+{% set route = app.request.get('_route') %}
+
+{% if app.request.get('_locale') is same as('bg') %}
+    <a href="{{ path(route, {"_locale": default_locale}) }}?{{ language_setting_param }}={{ default_locale }}"
+       class="language-link"
+       hreflang="{{ default_locale }}">
+        <span class="language-link__label">EN</span>
+        <i class="language-link__flag">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="#012169" d="M0 0h512v512H0z"/>
+                <path fill="#FFF" d="M512 0v64L322 256l190 187v69h-67L254 324 68 512H0v-68l186-187L0 74V0h62l192 188L440 0z"/>
+                <path d="M184 324l11 34L42 512H0v-3l184-185zm124-12l54 8 150 147v45L308 312zM512 0L320 196l-4-44L466 0h46zM0 1l193 189-59-8L0 49V1z" fill="#C8102E"/>
+                <path d="M176 0v512h160V0H176zM0 176v160h512V176H0z" fill="#FFF"/>
+                <path d="M0 208v96h512v-96H0zM208 0v512h96V0h-96z" fill="#C8102E"/>
+            </svg>
+        </i>
+    </a>
+{% else %}
+    <a href="{{ path(route, {"_locale": secondary_locale}) }}?{{ language_setting_param }}={{ secondary_locale }}"
+       class="language-link"
+       hreflang="{{ secondary_locale }}">
+        <span class="language-link__label">БГ</span>
+        <i class="language-link__flag">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <g fill-rule="evenodd" stroke-width="1pt">
+                    <path fill="#d62612" d="M0 341.3h512V512H0z"/>
+                    <path fill="#fff" d="M0 0h512v170.7H0z"/>
+                    <path fill="#00966e" d="M0 170.7h512v170.6H0z"/>
+                </g>
+            </svg>
+        </i>
+    </a>
+{% endif %}
