@@ -24,7 +24,9 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableVersioning()
     .enableSourceMaps(!Encore.isProduction())
-    .addEntry('app', './assets/js/app.js')
+    .addEntry('app', './assets/ts/app.ts')
+    .enableTypeScriptLoader()
+    .enableForkedTypeScriptTypesChecking()
     .addLoader(babelLoader)
     .enablePostCssLoader()
     .enableSassLoader((options) => {
