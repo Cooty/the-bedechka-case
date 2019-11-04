@@ -1,7 +1,7 @@
 type BreakPointMap = Record<string, number>;
 
 export class Responsive {
-
+    // Copied from ~/assets/scss/config/_breakpoints.scss
     public static breakpoints: BreakPointMap = {
         desktop: 1024,
         phablet: 600,

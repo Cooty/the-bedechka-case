@@ -1,7 +1,6 @@
 import '../scss/app.scss';
 
 import {Header} from './modules/header';
-import {addGlobalOnHelper} from './utils/bling';
 
 class App {
     private static instance: App;
@@ -17,7 +16,6 @@ class App {
     }
 
     public init() {
-        addGlobalOnHelper();
         const header = new Header;
         header.init();
     }

@@ -1,32 +1,37 @@
 import {Responsive} from '../utils/responsive';
-import {$} from '../utils/bling';
 
 export class Header {
-    public init() {
-        console.log('Header module reporting for duty');
-        if(Responsive.getViewportWidth() < Responsive.breakpoints.desktop) {
-            this.addScrollEvent();
+
+    private header = document.querySelector('.js-header');
+
+    private toggleHeader(scrollTop: number, lastScrollTop: number): boolean {
+        const modifierClass = 'header--pulled-up';
+
+        if(scrollTop > lastScrollTop) {
+            this.header.classList.add(modifierClass);
+            return true;
+        } else {
+            this.header.classList.remove(modifierClass);
+            return false;
         }
     }
 
-    private header = $('.header');
-
     private addScrollEvent() {
         let lastScrollTop = 0;
-        const modifierClass = 'header--pulled-up';
 
-        window.on('scroll', ()=> {
+        window.addEventListener('scroll', ()=> {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            if(scrollTop > lastScrollTop) {
-                this.header.classList.add(modifierClass);
-            } else {
-                this.header.classList.remove(modifierClass);
-            }
+            this.toggleHeader(scrollTop, lastScrollTop);
 
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
         });
     }
 
+    public init() {
+        if(Responsive.getViewportWidth() < Responsive.breakpoints.desktop) {
+            this.addScrollEvent();
+        }
+    }
 
 }
