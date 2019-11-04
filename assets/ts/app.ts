@@ -1,6 +1,7 @@
 import '../scss/app.scss';
 
 import {Header} from './modules/header';
+import {Timeline} from './modules/timeline';
 
 class App {
     private static instance: App;
@@ -16,8 +17,8 @@ class App {
     }
 
     public init() {
-        const header = new Header;
-        header.init();
+        new Header(document.querySelector('.js-header'));
+        new Timeline(document.querySelector('.js-timeline'));
     }
 }
 

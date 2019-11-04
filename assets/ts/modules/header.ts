@@ -1,8 +1,15 @@
 import {Responsive} from '../utils/responsive';
 
 export class Header {
+    private readonly header: Element;
 
-    private header = document.querySelector('.js-header');
+    constructor(header: Element) {
+        this.header = header;
+
+        if(this.header) {
+            this.init();
+        }
+    }
 
     private toggleHeader(scrollTop: number, lastScrollTop: number): boolean {
         const modifierClass = 'header--pulled-up';
