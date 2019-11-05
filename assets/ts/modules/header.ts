@@ -14,7 +14,7 @@ export class Header {
     private toggleHeader(scrollTop: number, lastScrollTop: number): boolean {
         const modifierClass = 'header--pulled-up';
 
-        if(scrollTop > lastScrollTop) {
+        if(scrollTop > lastScrollTop && scrollTop >= this.header.clientHeight) {
             this.header.classList.add(modifierClass);
             return true;
         } else {
