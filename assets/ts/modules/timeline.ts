@@ -1,9 +1,13 @@
+import {Responsive} from "../utils/responsive";
+
 export class Timeline {
 
     private readonly timeline: Element;
+    private readonly moverModifierClassName: string;
     private backButton: Element;
     private forwardButton: Element;
     private scrollPlane: Element;
+    private firstStep: Element;
 
     constructor(timeline: Element) {
         this.timeline = timeline;
@@ -11,6 +15,8 @@ export class Timeline {
         if(!this.timeline) {
             return;
         }
+
+        this.moverModifierClassName = 'hide-mover';
 
         this.getElements();
 
@@ -24,22 +30,48 @@ export class Timeline {
         this.backButton = this.timeline.querySelector('.js-timeline-back');
         this.forwardButton = this.timeline.querySelector('.js-timeline-forward');
         this.scrollPlane = this.timeline.querySelector('.js-timeline-steps');
+        this.firstStep = this.scrollPlane.querySelector('.timeline__step:first-of-type');
     }
 
-    private getStepWidth() {
-        // get the number of pixels which to move the timeline
+    private getStepWidth(): number
+    {
+        if(window.getComputedStyle) {
+            const width = this.firstStep.clientWidth;
+            const marginRight = window.getComputedStyle(this.firstStep)
+                .getPropertyValue('margin-right');
+
+            return width + parseInt(marginRight, 10);
+        } else {
+            return this.firstStep.clientWidth;
+        }
     }
 
     private moveForward() {
-        // move the scroll plane by one slide forward
+        const moveIncrement = this.getStepWidth();
     }
 
     private moveBackward() {
-        // move the scroll plane by one slide backward
+        const moveIncrement = this.getStepWidth();
+    }
+
+    private isEnd(): boolean {
+        return this.scrollPlane.scrollLeft === this.scrollPlane.scrollWidth;
+    }
+
+    private isStart(): boolean {
+        return this.scrollPlane.scrollLeft > this.getStepWidth();
+    }
+
+    private showBackButton() {
+        // hide the back button when reaching the start of the timeline
     }
 
     private hideBackButton() {
         // hide the back button when reaching the start of the timeline
+    }
+
+    private showForwardButton() {
+        // hide the forward button when reaching the end of the timeline
     }
 
     private hideForwardButton() {
@@ -47,7 +79,7 @@ export class Timeline {
     }
 
     private addEventHandlers() {
-        // hook up all functions to events
+
     }
 
     public init() {

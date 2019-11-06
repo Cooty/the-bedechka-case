@@ -298,6 +298,7 @@
 
     @media (min-width: $desktop) {
       position: absolute;
+      display: block;
       z-index: $z-low;
       width: 50px;
       height: 140px;
@@ -309,6 +310,7 @@
       border: 1px solid rgba(0, 0, 0, .15);
       cursor: pointer;
       color: white;
+      transition: all .2s ease-in-out;
       -webkit-appearance: none;
 
       &:hover,
@@ -345,6 +347,10 @@
       border-right-width: 0;
     }
 
+    &.hide-mover {
+      transform: translate3d(-60px, 0, 0);
+    }
+
   }
 
   &__mover--forward {
@@ -358,8 +364,8 @@
       border-left-width: 0;
     }
 
-    @media (min-width: $desktop) {
-      display: block;
+    &.hide-mover {
+      transform: translate3d(60px, 0, 0);
     }
 
   }
