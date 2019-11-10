@@ -12,4 +12,12 @@ export class Responsive {
     public static getViewportWidth(): number {
         return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     }
+
+    public static ltDesktop(): boolean {
+        return this.getViewportWidth() < this.breakpoints.desktop;
+    }
+
+    public static gteDesktop(): boolean {
+        return this.getViewportWidth() >= this.breakpoints.desktop;
+    }
 }

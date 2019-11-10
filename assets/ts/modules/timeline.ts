@@ -1,15 +1,17 @@
 import {Responsive} from "../utils/responsive";
+import {debounce} from "../utils/debounce";
 
 export class Timeline {
 
-    private readonly timeline: Element;
+    private readonly timeline: HTMLElement;
     private readonly moverModifierClassName: string;
-    private backButton: Element;
-    private forwardButton: Element;
-    private scrollPlane: Element;
-    private firstStep: Element;
+    private backButton: HTMLElement;
+    private forwardButton: HTMLElement;
+    private scrollPlane: HTMLElement;
+    private firstStep: HTMLElement;
+    private isInitialized: boolean = false;
 
-    constructor(timeline: Element) {
+    constructor(timeline: HTMLElement) {
         this.timeline = timeline;
 
         if(!this.timeline) {
@@ -20,10 +22,15 @@ export class Timeline {
 
         this.getElements();
 
-        if(this.backButton && this.forwardButton && this.scrollPlane) {
+        if(this.hasAllElements()) {
             this.init();
+            window.addEventListener("resize", debounce(this.init.bind(this), 100));
         }
 
+    }
+
+    private hasAllElements(): boolean {
+        return !!(this.backButton && this.forwardButton && this.scrollPlane);
     }
 
     private getElements() {
@@ -46,43 +53,84 @@ export class Timeline {
         }
     }
 
+    private scrollTo(element:HTMLElement, to:number, duration:number) {
+        if (duration <= 0)
+            return;
+
+        const difference = to - element.scrollLeft;
+        const perTick = difference / duration * 5;
+
+        setTimeout(() => {
+            element.scrollLeft = element.scrollLeft + perTick;
+            if (element.scrollLeft === to)
+                return;
+
+            this.scrollTo(element, to, duration - 5);
+        }, 5);
+    }
+
     private moveForward() {
         const moveIncrement = this.getStepWidth();
+        const scrollTo = moveIncrement + this.scrollPlane.scrollLeft;
+
+        this.scrollTo(this.scrollPlane, scrollTo, 200);
     }
 
     private moveBackward() {
         const moveIncrement = this.getStepWidth();
+        const scrollTo = this.scrollPlane.scrollLeft - moveIncrement;
+
+        this.scrollTo(this.scrollPlane, scrollTo, 200);
     }
 
     private isEnd(): boolean {
-        return this.scrollPlane.scrollLeft === this.scrollPlane.scrollWidth;
+        return this.scrollPlane.scrollLeft === (this.scrollPlane.scrollWidth - this.scrollPlane.offsetWidth);
     }
 
     private isStart(): boolean {
-        return this.scrollPlane.scrollLeft > this.getStepWidth();
+        return this.scrollPlane.scrollLeft === 0;
     }
 
     private showBackButton() {
-        // hide the back button when reaching the start of the timeline
+        this.backButton.classList.remove(this.moverModifierClassName);
     }
 
     private hideBackButton() {
-        // hide the back button when reaching the start of the timeline
+        this.backButton.classList.add(this.moverModifierClassName);
     }
 
     private showForwardButton() {
-        // hide the forward button when reaching the end of the timeline
+        this.forwardButton.classList.remove(this.moverModifierClassName);
     }
 
     private hideForwardButton() {
-        // hide the forward button when reaching the end of the timeline
+        this.forwardButton.classList.add(this.moverModifierClassName);
+    }
+
+    private scrollHandler() {
+        if(this.isEnd()) {
+            this.hideForwardButton();
+            this.showBackButton();
+        } else if(this.isStart()) {
+            this.hideBackButton();
+            this.showForwardButton();
+        } else {
+            this.showBackButton();
+            this.showForwardButton();
+        }
     }
 
     private addEventHandlers() {
+        this.scrollPlane.addEventListener("scroll", debounce(this.scrollHandler.bind(this), 50));
 
+        this.forwardButton.addEventListener("click", this.moveForward.bind(this));
+        this.backButton.addEventListener("click", this.moveBackward.bind(this));
     }
 
     public init() {
-        console.log('Timeline module reporting for duty');
+        if(!this.isInitialized && Responsive.gteDesktop()) {
+            this.addEventHandlers();
+            this.isInitialized = true;
+        }
     }
 }

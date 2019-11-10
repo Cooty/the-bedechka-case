@@ -13,7 +13,7 @@
   }
 
   &--pulled-up {
-    transform: translate3d(0, -#{$mobile-header-top-h + $mobile-navigation-h}, 0);
+    transform: translate3d(0, -#{$mobile-header-top-h + $mobile-navigation-h + 2px}, 0);
 
     @media (min-width: $desktop) {
       transform: none;

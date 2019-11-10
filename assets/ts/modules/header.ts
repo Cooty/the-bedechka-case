@@ -26,17 +26,19 @@ export class Header {
     private addScrollEvent() {
         let lastScrollTop = 0;
 
-        window.addEventListener('scroll', ()=> {
+        const scrollListener = ()=> {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
             this.toggleHeader(scrollTop, lastScrollTop);
 
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-        });
+        };
+
+        window.addEventListener('scroll', scrollListener);
     }
 
     public init() {
-        if(Responsive.getViewportWidth() < Responsive.breakpoints.desktop) {
+        if(Responsive.ltDesktop()) {
             this.addScrollEvent();
         }
     }
