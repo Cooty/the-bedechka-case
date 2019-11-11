@@ -1,9 +1,9 @@
 import {Responsive} from '../utils/responsive';
 
 export class Header {
-    private readonly header: Element;
+    private readonly header: HTMLElement;
 
-    constructor(header: Element) {
+    constructor(header: HTMLElement) {
         this.header = header;
 
         if(this.header) {
