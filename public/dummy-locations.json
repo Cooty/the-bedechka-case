@@ -1,0 +1,34 @@
+{
+  "locations": [
+    {
+      "id": "1",
+      "name": "Park Bedechka",
+      "coords": {
+        "lng": 42.43897,
+        "lat": 25.6289515
+      },
+      "image": "https://via.placeholder.com/350x150.png?text=350x150",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in lorem ut orci ultricies cursus non lobortis risus. Vivamus lacinia mauris ac accumsan varius. Nunc a congue quam. Donec dapibus lectus mi, sit amet vestibulum orci aliquam in. Etiam a venenatis lectus. Maecenas rhoncus iaculis purus. <a href=\"https://www.facebook.com/FreieUngarischeBotschaft/\">https://www.facebook.com/FreieUngarischeBotschaft/</a>"
+    },
+    {
+      "id": "2",
+      "name": "Park \"Defenders of Stara Zagora\"",
+      "coords": {
+        "lng": 42.4369285,
+        "lat": 25.6176226
+      },
+      "image": "https://via.placeholder.com/350x150.png?text=350x150",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in lorem ut orci ultricies cursus non lobortis risus. Vivamus lacinia mauris ac accumsan varius. Nunc a congue quam. Donec dapibus lectus mi, sit amet vestibulum orci aliquam in. Etiam a venenatis lectus. Maecenas rhoncus iaculis purus. <a href=\"https://www.facebook.com/FreieUngarischeBotschaft/\">https://www.facebook.com/FreieUngarischeBotschaft/</a>"
+    },
+    {
+      "id": "3",
+      "name": "Neighbourhoud \"Mladost\"",
+      "coords": {
+        "lng": 42.6579286,
+        "lat": 23.3661283
+      },
+      "image": "https://via.placeholder.com/350x150.png?text=350x150",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in lorem ut orci ultricies cursus non lobortis risus. Vivamus lacinia mauris ac accumsan varius. Nunc a congue quam. Donec dapibus lectus mi, sit amet vestibulum orci aliquam in. Etiam a venenatis lectus. Maecenas rhoncus iaculis purus. <a href=\"https://www.facebook.com/FreieUngarischeBotschaft/\">https://www.facebook.com/FreieUngarischeBotschaft/</a>"
+    }
+  ]
+}
