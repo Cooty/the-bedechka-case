@@ -1,3 +1,5 @@
+import {ILocations} from "../interfaces/ILocations";
+
 export class CasesMap {
     private readonly mapSelector: string;
     private readonly locationList: string;
@@ -9,7 +11,7 @@ export class CasesMap {
         this.init();
     }
 
-    private static async getLocations() {
+    private static async getLocations(): Promise<ILocations> {
         const response = await fetch('/dummy-locations.json');
         return await response.json();
     }
