@@ -1,7 +1,7 @@
-import '../scss/app.scss';
+import "../scss/app.scss";
 
-import {Header} from './modules/header';
-import {Timeline} from './modules/timeline';
+import {Header} from "./modules/header";
+import {Timeline} from "./modules/timeline";
 import {CasesMap} from "./modules/cases-map";
 
 class App {
@@ -18,9 +18,9 @@ class App {
     }
 
     public init() {
-        new Header(document.querySelector('.js-header'));
-        new Timeline(document.querySelector('.js-timeline'));
-        new CasesMap();
+        new Header(document.querySelector(".js-header"));
+        new Timeline(document.querySelector(".js-timeline"));
+        new CasesMap(document.querySelector(".js-cases-map"));
     }
 }
 

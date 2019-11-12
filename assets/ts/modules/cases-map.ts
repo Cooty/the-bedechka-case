@@ -1,12 +1,17 @@
 import {ILocations} from "../interfaces/ILocations";
 
 export class CasesMap {
-    private readonly mapSelector: string;
-    private readonly locationList: string;
+    private readonly rootElement: HTMLElement;
+    private readonly map: HTMLElement;
+    private readonly locationList: HTMLElement;
 
-    constructor() {
-        this.mapSelector = "js-cases-map";
-        this.locationList = "js-cases-map-location-list";
+    constructor(rootElement: HTMLElement) {
+        if(!rootElement) {
+            return;
+        }
+        this.rootElement = rootElement;
+        this.locationList = this.rootElement.querySelector(".js-cases-map");
+        this.map = this.rootElement.querySelector(".js-cases-map-location-list");
 
         this.init();
     }

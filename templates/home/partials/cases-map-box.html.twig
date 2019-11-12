@@ -1,4 +1,4 @@
-<article class="box box--center-xxl cases-map">
+<article class="box box--center-xxl cases-map js-cases-map">
     {% include('./components/sub-header.html.twig') with {'text': 'map.subtitle', 'classes': 'box__header cases-map__header'} only %}
     <p class="box__lead cases-map__lead">
         {{ 'map.intro'|trans }}
@@ -39,5 +39,5 @@
         </ul>
     </div>
 
-    <div class="cases-map__map js-cases-map"></div>
+    <div class="cases-map__map js-cases-map-container"></div>
 </article>
