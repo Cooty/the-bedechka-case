@@ -1,5 +1,6 @@
 import {ILocations} from "../interfaces/ILocations";
 import {ILocation} from "../interfaces/ILocation";
+const {loadCSS} = require("fg-loadcss/dist/loadCSS");
 
 export class CasesMap {
     private readonly rootElement: HTMLElement;
@@ -82,7 +83,6 @@ export class CasesMap {
     }
 
     private addLocationsToMap() {
-        console.log(this.casesMap);
         this.locationsData.locations.map((location: ILocation) => {
             // @ts-ignore
             const marker = L.marker([location.coords.lng, location.coords.lat])
@@ -94,8 +94,8 @@ export class CasesMap {
     public init() {
         try {
             const leafletCSSURL = "https://unpkg.com/leaflet@1.5.1/dist/leaflet.css";
-            // @ts-ignore
-            const leafletCSS = window.loadCSS(leafletCSSURL);
+            const leafletCSS = loadCSS(leafletCSSURL);
+
             // @ts-ignore
             window.onloadCSS(leafletCSS, ()=> {
                 try {
