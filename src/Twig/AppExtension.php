@@ -23,17 +23,23 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
      * @var string
      */
     private $secondaryLocale;
+    /**
+     * @var string
+     */
+    private $mapBoxToken;
 
     public function __construct(
         string $locale,
         string $languageSettingParamName,
         string $defaultLocale,
-        string $secondaryLocale
+        string $secondaryLocale,
+        string $mapBoxToken
     ) {
         $this->locale = $locale;
         $this->languageSettingParamName = $languageSettingParamName;
         $this->defaultLocale = $defaultLocale;
         $this->secondaryLocale = $secondaryLocale;
+        $this->mapBoxToken = $mapBoxToken;
     }
 
     public function getGlobals()
@@ -42,7 +48,8 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
             'locale' => $this->locale,
             'language_setting_param' => $this->languageSettingParamName,
             'default_locale' => $this->defaultLocale,
-            'secondary_locale' => $this->secondaryLocale
+            'secondary_locale' => $this->secondaryLocale,
+            'map_box_token' => $this->mapBoxToken
         ];
     }
 

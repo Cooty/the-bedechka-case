@@ -12,6 +12,7 @@ parameters:
     language_setting_param_name: 'prefl'
     language_setting_session_key: '_preferred_language'
     static_data_directory: '%kernel.project_dir%/data/'
+    mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
 
 services:
     # default configuration for services in *this* file
@@ -43,6 +44,7 @@ services:
     App\Twig\AppExtension:
         arguments:
             $locale: '%kernel.default_locale%'
+            $mapBoxToken: '%mapbox_access_token%'
 
     App\Event\LocaleSubscriber:
         arguments:

@@ -130,6 +130,7 @@
     margin-bottom: -$grid-v-gutter;
     background: $base-text-color;
     border-radius: $box-radius;
+    z-index: 1; // need to normalize this because the embeded Leaflet Map has a high z-index which makes it overlap the main header
 
     @supports (grid-template-areas: unset) {
       @media (min-width: $desktop) {
@@ -140,6 +141,11 @@
         margin-bottom: 0;
       }
     }
+  }
+
+  // fix for Open Streetmap attribution DIV and copyright notice not showing in the bottom right corner
+  .leaflet-control-container {
+    height: 100%;
   }
 
 }

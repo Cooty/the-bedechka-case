@@ -21,5 +21,8 @@
   },
   "browserslist": [
     "last 4 versions"
-  ]
+  ],
+  "dependencies": {
+    "fg-loadcss": "^2.1.0"
+  }
 }

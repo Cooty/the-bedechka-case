@@ -17,3 +17,15 @@
     {% include('./home/partials/the-vision.html.twig') %}
     {% include('./home/partials/in-the-press.html.twig') %}
 {% endblock %}
+
+{% block javascript_config %}
+    <script>
+        var _config = window._config || {};
+
+        _config.mapboxAccessToken = "{{ map_box_token }}";
+
+        if(Object.freeze) {
+            Object.freeze(_config);
+        }
+    </script>
+{% endblock %}

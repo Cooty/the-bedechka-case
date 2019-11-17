@@ -5,5 +5,6 @@ export interface ILocation {
     description: string,
     image: string,
     id: string,
-    coords: ICoords
+    coords: ICoords,
+    link?: string
 }
