@@ -73,11 +73,15 @@ export class CasesMap {
     }
 
     private static makePopupContent(location: ILocation): string {
+        const cssNS = "leaflet-popup-content";
+
         return `
-            <img src="${location.image}" alt="${location.name}" />
-            <h1>${location.name}</h1>
-            <p>${location.description}</p>
-            ${location.link ? `<a href="${location.link}" target="_blank" rel="noopener noreferer">${location.link}</a>`: ""}
+            <div class="${cssNS}__image-container embed-16-9">
+                <img src="${location.image}" alt="${location.name}" class="${cssNS}__image" />
+            </div>
+            <h1 class="${cssNS}__title">${location.name}</h1>
+            <div class="${cssNS}__text">${location.description}</div>
+            ${location.link ? `<a href="${location.link}" class="${cssNS}__link" target="_blank" rel="noopener noreferer">${location.link}</a>`: ""}
         `;
     }
 

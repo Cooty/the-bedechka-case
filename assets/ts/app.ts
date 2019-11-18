@@ -5,7 +5,6 @@ import {Timeline} from "./modules/timeline";
 import {CasesMap} from "./modules/cases-map";
 
 import {IConfig} from "./interfaces/IConfig";
-import {Layer} from "leaflet";
 
 declare global {
     interface Window {
