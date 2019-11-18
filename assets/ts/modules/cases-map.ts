@@ -1,5 +1,6 @@
 import {ILocations} from "../interfaces/ILocations";
 import {ILocation} from "../interfaces/ILocation";
+import {Map, LatLngExpression, Marker} from "leaflet";
 const {loadCSS} = require("fg-loadcss/dist/loadCSS");
 
 export class CasesMap {
@@ -7,7 +8,7 @@ export class CasesMap {
     private readonly map: HTMLElement;
     private readonly locationList: HTMLElement;
     private locationsData: ILocations;
-    private casesMap: object;
+    private casesMap: Map;
 
     constructor(rootElement: HTMLElement) {
         if(!rootElement) {
@@ -56,17 +57,15 @@ export class CasesMap {
 
     private makeMap() {
         const mapContainerId: string = "js-cases-map-container";
-        const mapCenter = [42.43897, 25.6289515]; // coords of Park Bedechka
+        const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
         const defaultZoom = 7;
-        // @ts-ignore
+
         const casesMap = window.L.map(mapContainerId).setView(mapCenter, defaultZoom);
-        // @ts-ignore
         window.L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
             attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
             maxZoom: 19,
             minZoom: 5,
             id: "mapbox.streets",
-            // @ts-ignore
             accessToken: window._config.mapboxAccessToken
         }).addTo(casesMap);
 
@@ -84,8 +83,7 @@ export class CasesMap {
 
     private addLocationsToMap() {
         this.locationsData.locations.map((location: ILocation) => {
-            // @ts-ignore
-            const marker = L.marker([location.coords.lng, location.coords.lat])
+            const marker: Marker = window.L.marker([location.coords.lng, location.coords.lat])
                 .addTo(this.casesMap);
             marker.bindPopup(CasesMap.makePopupContent(location));
         });
@@ -96,7 +94,6 @@ export class CasesMap {
             const leafletCSSURL = "https://unpkg.com/leaflet@1.5.1/dist/leaflet.css";
             const leafletCSS = loadCSS(leafletCSSURL);
 
-            // @ts-ignore
             window.onloadCSS(leafletCSS, ()=> {
                 try {
                     CasesMap.getLocations().then(locationsData=> {

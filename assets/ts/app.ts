@@ -4,6 +4,17 @@ import {Header} from "./modules/header";
 import {Timeline} from "./modules/timeline";
 import {CasesMap} from "./modules/cases-map";
 
+import {IConfig} from "./interfaces/IConfig";
+import {Layer} from "leaflet";
+
+declare global {
+    interface Window {
+        _config?: IConfig,
+        L?: any,
+        onloadCSS?: Function
+    }
+}
+
 class App {
     private static instance: App;
 
