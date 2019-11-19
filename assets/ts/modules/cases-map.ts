@@ -1,22 +1,24 @@
 import {ILocations} from "../interfaces/ILocations";
 import {ILocation} from "../interfaces/ILocation";
 import {Map, LatLngExpression, Marker} from "leaflet";
+import {popupContent} from "../templates/popup-content";
+import {openStreetMapsAttribution} from "../templates/open-street-maps-attribution";
+import {mapListNavigationItem} from "../templates/map-list-navigation-item";
+
 const {loadCSS} = require("fg-loadcss/dist/loadCSS");
 
 export class CasesMap {
     private readonly rootElement: HTMLElement;
-    private readonly map: HTMLElement;
-    private readonly locationList: HTMLElement;
-    private locationsData: ILocations;
-    private casesMap: Map;
+    private readonly leafletCDNURL: string;
+    private readonly navigationButtonActiveClass: string;
 
     constructor(rootElement: HTMLElement) {
         if(!rootElement) {
             return;
         }
+
         this.rootElement = rootElement;
-        this.locationList = this.rootElement.querySelector(".js-cases-map");
-        this.map = this.rootElement.querySelector(".js-cases-map-location-list");
+        this.leafletCDNURL = "https://unpkg.com/leaflet@1.5.1";
         this.init();
     }
 
@@ -31,8 +33,8 @@ export class CasesMap {
         }
     }
 
-    private static async loadLeafletJS() {
-        const leafletJSURL: RequestInfo = "https://unpkg.com/leaflet@1.5.1/dist/leaflet.js";
+    private async loadLeafletJS() {
+        const leafletJSURL: RequestInfo = `${this.leafletCDNURL}/dist/leaflet.js`;
 
         const response = await fetch(leafletJSURL);
         if(response.status !== 200) {
@@ -55,58 +57,97 @@ export class CasesMap {
         this.rootElement.style.display = "none";
     }
 
-    private makeMap() {
+    private static makeMap():Map {
         const mapContainerId: string = "js-cases-map-container";
         const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
         const defaultZoom = 7;
+        const mapProviderURL = "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}";
 
         const casesMap = window.L.map(mapContainerId).setView(mapCenter, defaultZoom);
-        window.L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-            attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+        window.L.tileLayer(mapProviderURL, {
+            attribution: openStreetMapsAttribution(),
             maxZoom: 19,
             minZoom: 5,
             id: "mapbox.streets",
             accessToken: window._config.mapboxAccessToken
         }).addTo(casesMap);
 
-        this.casesMap = casesMap;
+        return casesMap;
     }
 
-    private static makePopupContent(location: ILocation): string {
-        const cssNS = "leaflet-popup-content";
-
-        return `
-            <div class="${cssNS}__image-container embed-16-9">
-                <img src="${location.image}" alt="${location.name}" class="${cssNS}__image" />
-            </div>
-            <h1 class="${cssNS}__title">${location.name}</h1>
-            <div class="${cssNS}__text">${location.description}</div>
-            ${location.link ? `<a href="${location.link}" class="${cssNS}__link" target="_blank" rel="noopener noreferer">${location.link}</a>`: ""}
-        `;
+    private makeNavigationListItems(locations: ILocations, jsSelectorClass: string): string {
+        return locations.locations.map(location=> {
+            return mapListNavigationItem(location.name, jsSelectorClass);
+        }).join("");
     }
 
-    private addLocationsToMap() {
-        this.locationsData.locations.map((location: ILocation) => {
+    private appendAndReturnNavigationListItems(navigationListItems: string, jsSelectorClass: string): NodeList
+    {
+        const locationList = this.rootElement.querySelector(".js-cases-map-location-list");
+
+        locationList.innerHTML = navigationListItems;
+
+        return locationList.querySelectorAll(`.${jsSelectorClass}`);
+    }
+
+    private addLocationsToMap(locations: ILocations, map: Map): Marker[] {
+        const markers: Marker[] = [];
+
+        locations.locations.map((location: ILocation) => {
             const marker: Marker = window.L.marker([location.coords.lng, location.coords.lat])
-                .addTo(this.casesMap);
-            marker.bindPopup(CasesMap.makePopupContent(location));
+                .addTo(map);
+            marker.bindPopup(popupContent(location));
+
+            markers.push(marker);
         });
+
+        return markers;
+    }
+
+    private controlPopupsFromNavigationList(navigationItems: NodeList, markers: Marker[]) {
+        const navigationButtonActiveClass = "tag--active";
+        const navigationItemsList = Array.from(navigationItems);
+
+        navigationItemsList.map((navigationItem: HTMLElement, index: number)=> {
+            navigationItem.addEventListener("click", ()=> {
+                if(navigationItem.classList.contains(navigationButtonActiveClass)) {
+                    return;
+                }
+
+                navigationItemsList.map((navigationItem: HTMLElement)=> {
+                    navigationItem.classList.remove(navigationButtonActiveClass);
+                });
+
+                navigationItem.classList.add(navigationButtonActiveClass);
+                markers[index].openPopup();
+            });
+        });
+    }
+
+    public initCasesMap(scriptText: string, locationsData: ILocations) {
+        CasesMap.appendScript(scriptText);
+        const map = CasesMap.makeMap();
+        const markers = this.addLocationsToMap(locationsData, map);
+        const jsSelectorClass = "js-cases-map-navigation-btn";
+        const navigationList =
+            this.makeNavigationListItems(locationsData, jsSelectorClass);
+        const navigationListItems =
+            this.appendAndReturnNavigationListItems(navigationList, jsSelectorClass);
+        this.controlPopupsFromNavigationList(navigationListItems, markers);
     }
 
     public init() {
         try {
-            const leafletCSSURL = "https://unpkg.com/leaflet@1.5.1/dist/leaflet.css";
+            const leafletCSSURL = `${this.leafletCDNURL}/dist/leaflet.css`;
             const leafletCSS = loadCSS(leafletCSSURL);
 
             window.onloadCSS(leafletCSS, ()=> {
                 try {
                     CasesMap.getLocations().then(locationsData=> {
-                        this.locationsData = locationsData;
-                    }).then(()=> {
-                        CasesMap.loadLeafletJS().then((scriptText)=> {
-                            CasesMap.appendScript(scriptText);
-                            this.makeMap();
-                            this.addLocationsToMap();
+                        return locationsData;
+                    }).then((locationsData)=> {
+                        this.loadLeafletJS().then((scriptText)=> {
+                            this.initCasesMap(scriptText, locationsData);
                         }).catch((e) => {
                             this.handleError(e);
                         });
