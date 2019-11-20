@@ -10,7 +10,6 @@ const {loadCSS} = require("fg-loadcss/dist/loadCSS");
 export class CasesMap {
     private readonly rootElement: HTMLElement;
     private readonly leafletCDNURL: string;
-    private readonly navigationButtonActiveClass: string;
 
     constructor(rootElement: HTMLElement) {
         if(!rootElement) {
@@ -106,6 +105,7 @@ export class CasesMap {
 
     private controlPopupsFromNavigationList(navigationItems: NodeList, markers: Marker[]) {
         const navigationButtonActiveClass = "tag--active";
+        // need this for IE and Edge to loop through a NodeList
         const navigationItemsList = Array.from(navigationItems);
 
         navigationItemsList.map((navigationItem: HTMLElement, index: number)=> {

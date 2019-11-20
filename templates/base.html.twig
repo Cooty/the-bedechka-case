@@ -8,6 +8,11 @@
         {% include './includes/canonical.html.twig' %}
         <title>{% block title %}{{ 'site.name'|trans }}{% endblock %}</title>
 
+        {% block preconectLinks %}
+            {% include('./includes/preconnect-prefetch-links.html.twig')
+                with {'domain': 'https://fonts.googleapis.com/'} only %}
+        {% endblock %}
+
         {% include './includes/site-icons.html.twig' %}
 
 {#        TODO: Add dynamic meta description and open graph meta tags#}

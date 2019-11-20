@@ -1,0 +1,9 @@
+{% if domain is defined %}
+<link rel="preconnect" href="{{ domain }}" />
+{#
+    The second tag is redundant, but we need it as fallback for older browsers
+    where "preconnect" is not implemented (IE, Edge, Safari)
+    see: https://3perf.com/blog/link-rels/
+#}
+<link rel="dns-prefetch" href="{{ domain }}" />
+{% endif %}
