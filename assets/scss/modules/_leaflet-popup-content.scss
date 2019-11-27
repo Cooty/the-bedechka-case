@@ -6,6 +6,8 @@
 // https://unpkg.com/leaflet@1.5.1/dist/leaflet.css
 
 // Overwrite leaflet elements
+
+// closing "X" in the top-right corner of the pop-up of a marker
 .leaflet-popup-close-button {
   z-index: 2;
   background: white !important;
@@ -53,12 +55,14 @@
     color: $base-text-color;
     line-height: 1.2;
     margin-bottom: .4em;
+    word-break: break-all;
   }
 
   & &__link {
+    @extend %single-line-ellipsis;
+    display: inline-block;
     color: $purple;
     text-decoration: underline;
-    word-break: break-all;
 
     &:visited {
       color: $visited-link;
