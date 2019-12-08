@@ -1,4 +1,5 @@
 .cases-map {
+  $map-height-mobile: 80vh;
   $map-height: 60vh;
 
   @media (min-width: $desktop) {
@@ -125,7 +126,7 @@
 
   &__map {
     width: calc(100% + #{$gutter * 2});
-    height: $map-height;
+    height: $map-height-mobile;
     margin-left: -$gutter;
     margin-bottom: -$grid-v-gutter;
     background: $base-text-color;

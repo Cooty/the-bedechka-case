@@ -27,7 +27,13 @@
   $leaflet-popup-v-gutter: 13px;
   $leaflet-popup-h-gutter: 19px;
 
-  font-size: 1rem;
+  font-size: .85rem;
+  width: 290px !important;
+
+  @media (min-width: $tablet) {
+    font-size: 1rem;
+    width: 310px !important;
+  }
 
   & &__image-container {
     background: rgba(0, 0, 0, .1);
