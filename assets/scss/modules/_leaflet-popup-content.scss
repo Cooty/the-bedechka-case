@@ -60,7 +60,7 @@
 
   & &__link {
     @extend %single-line-ellipsis;
-    display: inline-block;
+    display: block;
     color: $purple;
     text-decoration: underline;
 
