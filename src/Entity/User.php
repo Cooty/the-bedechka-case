@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const ROLE_USER = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+
     /**
      * @var UuidInterface
      *
@@ -27,16 +30,36 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @var array
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $enabled;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true, length=30)
+     */
+    private $confirmationToken;
+
+    public function __construct()
+    {
+        $this->roles = [self::ROLE_USER];
+        $this->enabled = false;
+    }
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
-    public function getId(): ?int
+
+    public function getId(): UuidInterface
     {
         return $this->id;
     }
@@ -70,7 +93,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = self::ROLE_USER;
 
         return array_unique($roles);
     }
@@ -95,6 +118,38 @@ class User implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmationToken(): string
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param string $confirmationToken
+     */
+    public function setConfirmationToken(string $confirmationToken): void
+    {
+        $this->confirmationToken = $confirmationToken;
     }
 
     /**
