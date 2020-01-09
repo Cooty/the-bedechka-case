@@ -29,10 +29,12 @@ class CreateAdminCommand extends Command
      * @var TokenGenerator
      */
     private $tokenGenerator;
+
     /**
      * @var ObjectManager
      */
     private $manager;
+
     /**
      * @var UserPasswordEncoderInterface
      */

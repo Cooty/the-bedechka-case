@@ -51,6 +51,7 @@ class User implements UserInterface
     {
         $this->roles = [self::ROLE_USER];
         $this->enabled = false;
+        $this->lastLogin = null;
     }
 
     /**
@@ -58,6 +59,12 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var string timestamp of the last login of the user
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastLogin;
 
     public function getId(): UuidInterface
     {
@@ -150,6 +157,22 @@ class User implements UserInterface
     public function setConfirmationToken(string $confirmationToken): void
     {
         $this->confirmationToken = $confirmationToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastLogin(): string
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * @param string $lastLogin
+     */
+    public function setLastLogin(string $lastLogin): void
+    {
+        $this->lastLogin = $lastLogin;
     }
 
     /**
