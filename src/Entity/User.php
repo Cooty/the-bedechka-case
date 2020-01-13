@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -53,6 +54,13 @@ class User implements UserInterface
         $this->enabled = false;
         $this->lastLogin = null;
     }
+
+    // We don't store this, it's for validating before hashing
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min=8, max=4096)
+     */
+    private $plainPassword;
 
     /**
      * @var string The hashed password
@@ -128,6 +136,22 @@ class User implements UserInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
      * @return bool
      */
     public function getEnabled(): bool
@@ -144,9 +168,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getConfirmationToken(): string
+    public function getConfirmationToken(): ?string
     {
         return $this->confirmationToken;
     }
@@ -160,9 +184,9 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastLogin(): string
+    public function getLastLogin(): ?string
     {
         return $this->lastLogin;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\Command\Admin;
 
 use App\Entity\User;
 use App\Security\TokenGenerator;
@@ -13,10 +13,10 @@ use Symfony\Component\Validator\Constraints;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class CreateAdminCommand extends Command
+class CreateUserCommand extends Command
 {
     protected static $defaultName = 'app:create-admin';
 
@@ -31,7 +31,7 @@ class CreateAdminCommand extends Command
     private $tokenGenerator;
 
     /**
-     * @var ObjectManager
+     * @var EntityManagerInterface
      */
     private $manager;
 
@@ -43,7 +43,7 @@ class CreateAdminCommand extends Command
     public function __construct(
         ValidatorInterface $validator,
         TokenGenerator $tokenGenerator,
-        ObjectManager $manager,
+        EntityManagerInterface $manager,
         UserPasswordEncoderInterface $passwordEncoder
     ) {
         parent::__construct();

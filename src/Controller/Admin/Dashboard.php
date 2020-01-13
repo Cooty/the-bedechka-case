@@ -11,8 +11,6 @@ use Twig_Error_Runtime;
 use Twig_Error_Syntax;
 
 /**
- * Class NotificationController
- * @package App\Controller\MicroPost
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */

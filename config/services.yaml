@@ -46,6 +46,6 @@ services:
             $locale: '%kernel.default_locale%'
             $mapBoxToken: '%mapbox_access_token%'
 
-    App\Event\LocaleSubscriber:
+    App\EventSubscriber\LocaleSubscriber:
         arguments:
             $defaultLocale: '%kernel.default_locale%'
