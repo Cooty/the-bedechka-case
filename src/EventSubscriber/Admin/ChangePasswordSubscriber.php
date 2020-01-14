@@ -2,39 +2,36 @@
 
 namespace App\EventSubscriber\Admin;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Util\UserUtil;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Event\Admin\Security\ChangePassword;
 
 class ChangePasswordSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var EntityManagerInterface
+     * @var UserUtil
      */
-    private $manager;
+    private $userUtil;
 
-    public function __construct(EntityManagerInterface $manager)
+    public function __construct(UserUtil $userUtil)
     {
-        $this->manager = $manager;
+        $this->userUtil = $userUtil;
     }
 
     /**
      * @return array The event names to listen to
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
-            ChangePassword::NAME => 'onChangePassword'
+            ChangePassword::class => 'onChangePassword'
         ];
     }
 
     public function onChangePassword(ChangePassword $event)
     {
         $user = $event->getAdminUser();
-        $now = new \DateTime();
-        $user->setLastLogin($now->getTimestamp());
 
-        $this->manager->persist($user);
-        $this->manager->flush();
+        $this->userUtil->updateLastLogin($user);
     }
 }

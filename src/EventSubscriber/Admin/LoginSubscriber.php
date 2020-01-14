@@ -3,7 +3,7 @@
 namespace App\EventSubscriber\Admin;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Util\UserUtil;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -22,11 +22,6 @@ class LoginSubscriber implements EventSubscriberInterface
     private $security;
 
     /**
-     * @var EntityManagerInterface
-     */
-    private $manager;
-
-    /**
      * @var RouterInterface
      */
     private $router;
@@ -35,25 +30,29 @@ class LoginSubscriber implements EventSubscriberInterface
      * @var EventDispatcherInterface
      */
     private $dispatcher;
+    /**
+     * @var UserUtil
+     */
+    private $userUtil;
 
     /**
      * AdminLoginListener constructor.
      * @param Security $security
-     * @param EntityManagerInterface $manager
      * @param RouterInterface $router
      * @param EventDispatcherInterface $dispatcher
+     * @param UserUtil $userUtil
      */
     public function __construct(
         Security $security,
-        EntityManagerInterface $manager,
         RouterInterface $router,
-        EventDispatcherInterface $dispatcher
+        EventDispatcherInterface $dispatcher,
+        UserUtil $userUtil
     )
     {
         $this->security = $security;
-        $this->manager = $manager;
         $this->router = $router;
         $this->dispatcher = $dispatcher;
+        $this->userUtil = $userUtil;
     }
 
     /**
@@ -77,17 +76,12 @@ class LoginSubscriber implements EventSubscriberInterface
             $user = $event->getAuthenticationToken()->getUser();
 
             if($user->getLastLogin() === null) {
-                dump('last login is null');
                 $this->dispatcher->addListener(KernelEvents::RESPONSE, [
                     $this,
                     'onKernelResponse'
                 ]);
             } else {
-                $now = new \DateTime();
-                $user->setLastLogin($now->getTimestamp());
-
-                $this->manager->persist($user);
-                $this->manager->flush();
+                $this->userUtil->updateLastLogin($user);
             }
         }
     }

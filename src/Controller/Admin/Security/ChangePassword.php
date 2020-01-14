@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin\Security;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +48,11 @@ class ChangePassword extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            /**
+             * @var $userEntity User|null
+             */
             $userEntity = $security->getToken()->getUser();
+            $userEntity->setPlainPassword(null);
 
             $passwordChangeEvent = new ChangePasswordEvent($userEntity);
 
