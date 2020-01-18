@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Event;
+namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -24,10 +24,12 @@ class LocaleSubscriber implements EventSubscriberInterface
      * @var array
      */
     private $supportedLocales;
+
     /**
      * @var string
      */
     private $languageSettingParamName;
+
     /**
      * @var string
      */
