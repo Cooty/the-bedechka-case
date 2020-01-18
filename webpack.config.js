@@ -25,6 +25,7 @@ Encore
     .enableVersioning()
     .enableSourceMaps(!Encore.isProduction())
     .addEntry('app', './assets/ts/app.ts')
+    .addEntry('admin', './assets/ts/admin/app.ts')
     .enableTypeScriptLoader()
     .enableForkedTypeScriptTypesChecking()
     .addLoader(babelLoader)
