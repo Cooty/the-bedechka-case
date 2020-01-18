@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 trait Locale
@@ -33,13 +34,14 @@ trait Locale
         return $request->getLocale() === $this->secondaryLocale;
     }
 
-    public function redirectToSecondaryLanguageRoute($request)
+    public function redirectToSecondaryLanguageRoute($request): RedirectResponse
     {
         $routeName = $request->attributes->get('_route');
         return $this->redirectToRoute($routeName, ['_locale'=>$this->secondaryLocale]);
     }
 
-    public function checkRedirectConditions(Request $request) {
+    public function checkRedirectConditions(Request $request): bool
+    {
         if($this->detectSupportForLocale($request, $this->secondaryLocale) &&
             !$this->hasPreferredLanguageSet($request) &&
             !$this->isSecondaryLocale($request)

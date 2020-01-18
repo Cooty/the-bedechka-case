@@ -56,8 +56,8 @@ class User implements UserInterface
         $this->lastLogin = null;
     }
 
-    // We don't store this, it's for validating before hashing
     /**
+     * We don't store this, it's for validating before hashing
      * @Assert\NotBlank()
      * @Assert\Length(min=8, max=4096)
      */

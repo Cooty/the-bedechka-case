@@ -30,29 +30,37 @@ class LoginSubscriber implements EventSubscriberInterface
      * @var EventDispatcherInterface
      */
     private $dispatcher;
+
     /**
      * @var UserUtil
      */
     private $userUtil;
 
     /**
-     * AdminLoginListener constructor.
+     * @var string
+     */
+    private $pswChangeSessionKey;
+
+    /**
      * @param Security $security
      * @param RouterInterface $router
      * @param EventDispatcherInterface $dispatcher
      * @param UserUtil $userUtil
+     * @param string $pswChangeSessionKey
      */
     public function __construct(
         Security $security,
         RouterInterface $router,
         EventDispatcherInterface $dispatcher,
-        UserUtil $userUtil
+        UserUtil $userUtil,
+        string $pswChangeSessionKey
     )
     {
         $this->security = $security;
         $this->router = $router;
         $this->dispatcher = $dispatcher;
         $this->userUtil = $userUtil;
+        $this->pswChangeSessionKey = $pswChangeSessionKey;
     }
 
     /**
@@ -87,8 +95,11 @@ class LoginSubscriber implements EventSubscriberInterface
     }
 
     public function onKernelResponse(ResponseEvent $event) {
-        $response = new RedirectResponse(
-            $this->router->generate('admin_security_change_password'));
+        $session = $event->getRequest()->getSession();
+        $session->set($this->pswChangeSessionKey, true);
+
+        $route = $this->router->generate('admin_security_change_password');
+        $response = new RedirectResponse($route);
 
         $event->setResponse($response);
     }

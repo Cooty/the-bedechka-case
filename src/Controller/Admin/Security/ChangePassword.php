@@ -5,7 +5,9 @@ namespace App\Controller\Admin\Security;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\Admin\Security\ChangePassword as ChangePasswordForm;
@@ -13,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security as CoreSecurity;
 use App\Event\Admin\Security\ChangePassword as ChangePasswordEvent;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -20,6 +23,46 @@ use App\Event\Admin\Security\ChangePassword as ChangePasswordEvent;
  */
 class ChangePassword extends AbstractController
 {
+    /**
+     * @var string
+     */
+    private $pswChangeSessionKey;
+
+    public function __construct(string $pswChangeSessionKey)
+    {
+        $this->pswChangeSessionKey = $pswChangeSessionKey;
+    }
+
+    private function handleForm(
+        UserPasswordEncoderInterface $passwordEncoder,
+        UserInterface $user,
+        CoreSecurity $security,
+        EventDispatcherInterface $dispatcher,
+        SessionInterface $session
+    ): RedirectResponse
+    {
+        $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+        $user->setPassword($password);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        /**
+         * @var $userEntity User|null
+         */
+        $userEntity = $security->getToken()->getUser();
+        $userEntity->setPlainPassword(null);
+
+        $passwordChangeEvent = new ChangePasswordEvent($userEntity);
+        $session->set($this->pswChangeSessionKey, false);
+
+        $dispatcher->dispatch($passwordChangeEvent);
+
+        return $this->redirectToRoute('admin_dashboard');
+    }
+
     /**
      * @Route("/change-password", name="admin_security_change_password")
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -38,27 +81,10 @@ class ChangePassword extends AbstractController
         $user = $security->getUser();
         $form = $this->createForm(ChangePasswordForm::class, $user);
         $form->handleRequest($request);
+        $session = $request->getSession();
 
         if($form->isSubmitted() && $form->isValid()) {
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            /**
-             * @var $userEntity User|null
-             */
-            $userEntity = $security->getToken()->getUser();
-            $userEntity->setPlainPassword(null);
-
-            $passwordChangeEvent = new ChangePasswordEvent($userEntity);
-
-            $dispatcher->dispatch($passwordChangeEvent);
-
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->handleForm($passwordEncoder, $user, $security, $dispatcher, $session);
         }
 
         return $this->render('admin/security/change-password.html.twig', [

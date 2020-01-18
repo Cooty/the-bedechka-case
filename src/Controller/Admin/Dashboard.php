@@ -2,41 +2,42 @@
 
 namespace App\Controller\Admin;
 
+use App\Traits\Admin\Security\PasswordChange;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Twig\Environment;
-use Twig_Error_Loader;
-use Twig_Error_Runtime;
-use Twig_Error_Syntax;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
-class Dashboard
+class Dashboard extends AbstractController
 {
-    /**
-     * @var Environment
-     */
-    private $twig;
+    use PasswordChange;
 
-    public function __construct(Environment $twig)
+    /**
+     * @var string
+     */
+    private $pswChangeSessionKey;
+
+    public function __construct(string $pswChangeSessionKey)
     {
-        $this->twig = $twig;
+        $this->pswChangeSessionKey = $pswChangeSessionKey;
     }
 
     /**
      * @Route("/", name="admin_dashboard")
+     * @param Request $request
      * @return Response
-     * @throws Twig_Error_Loader
-     * @throws Twig_Error_Runtime
-     * @throws Twig_Error_Syntax
      */
-    public function login(): Response
+    public function login(Request $request): Response
     {
-        return new Response($this->twig->render(
-            'admin/dashboard/index.html.twig'
-        ));
+        if($this->checkForPasswordChangeSession($request)) {
+            return $this->redirectToPasswordChange();
+        }
+
+        return $this->render('admin/dashboard/index.html.twig');
     }
 }

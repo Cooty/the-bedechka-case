@@ -24,10 +24,12 @@ class LocaleSubscriber implements EventSubscriberInterface
      * @var array
      */
     private $supportedLocales;
+
     /**
      * @var string
      */
     private $languageSettingParamName;
+
     /**
      * @var string
      */

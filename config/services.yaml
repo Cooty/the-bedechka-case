@@ -10,6 +10,7 @@ parameters:
         - '%locale%'
         - '%secondary_locale%'
     language_setting_param_name: 'prefl'
+    psw_change_session_key: 'password_change_needed'
     language_setting_session_key: '_preferred_language'
     static_data_directory: '%kernel.project_dir%/data/'
     mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
@@ -25,6 +26,7 @@ services:
           $defaultLocale: '%locale%'
           $languageSettingParamName: '%language_setting_param_name%'
           $languageSettingSessionKey: '%language_setting_session_key%'
+          $pswChangeSessionKey: '%psw_change_session_key%'
           $staticDataDirectory: '%static_data_directory%'
 
     # makes classes in src/ available to be used as services
