@@ -25,15 +25,6 @@
 
         {% block javascript_config %}
         {% endblock %}
-
-        {% block javascripts %}
-            <script id="onloadCSS">
-                function onloadCSS(n,a){var t;function d(){!t&&a&&(t=!0,a.call(n))}n.addEventListener&&n.addEventListener("load",d),n.attachEvent&&n.attachEvent("onload",d),"isApplicationInstalled"in navigator&&"onloadcssdefined"in n&&n.onloadcssdefined(d)}
-            </script>
-            {% for js in encore_entry_js_files('app') %}
-                <script src="{{ asset(js) }}" async></script>
-            {% endfor %}
-        {% endblock %}
     </head>
     <body>
         {% include './includes/header.html.twig' %}
@@ -41,6 +32,13 @@
             {% block main %}{% endblock %}
         </main>
         {% include './includes/footer.html.twig' %}
+
+        {% block javascripts %}
+            <script id="onloadCSS">
+                function onloadCSS(n,a){var t;function d(){!t&&a&&(t=!0,a.call(n))}n.addEventListener&&n.addEventListener("load",d),n.attachEvent&&n.attachEvent("onload",d),"isApplicationInstalled"in navigator&&"onloadcssdefined"in n&&n.onloadcssdefined(d)}
+            </script>
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
 {% endspaceless %}
