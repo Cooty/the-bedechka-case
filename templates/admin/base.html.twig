@@ -10,8 +10,12 @@
         {{ encore_entry_link_tags('admin') }}
     {% endblock %}
 </head>
-<body>
-    <main class="main">
+<body class="bg-light">
+    {% if(is_granted('ROLE_ADMIN')) %}
+        {% include('admin/includes/header.html.twig') %}
+    {% endif %}
+
+    <main class="main container-fluid h-100">
         {% block main %}{% endblock %}
     </main>
 
