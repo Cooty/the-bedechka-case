@@ -1,5 +1,5 @@
 <!doctype html>
-{% spaceless %}
+{% apply spaceless %}
 <html lang="{{ app.request.get('_locale') }}" dir="ltr">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,4 +41,4 @@
         {% endblock %}
     </body>
 </html>
-{% endspaceless %}
+{% endapply %}
