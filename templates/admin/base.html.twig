@@ -3,20 +3,28 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}The Case Bedechka Website Admin{% endblock %}</title>
 
-    {# TODO: Add this properly from NPM and bundled with Encore #}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
 </head>
-<body>
-    <main class="main">
+<body class="bg-light">
+    {% if(is_granted('ROLE_ADMIN')) %}
+        {% include('admin/includes/header.html.twig') %}
+    {% endif %}
+
+    {% if(is_granted('ROLE_ADMIN') and app.request.get('_route') != 'admin_dashboard') %}
+        {% include('admin/includes/sidebar.html.twig') %}
+    {% endif %}
+
+    <main class="main container-fluid h-100 {{ is_granted('ROLE_ADMIN') and app.request.get('_route') != 'admin_dashboard' ? 'container--with-sidebar' : '' }}">
         {% block main %}{% endblock %}
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('admin') }}
+    {% endblock %}
 </body>
 </html>

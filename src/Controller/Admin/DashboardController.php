@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
-class Dashboard extends AbstractController
+class DashboardController extends AbstractController
 {
     use PasswordChange;
 
