@@ -15,7 +15,11 @@
         {% include('admin/includes/header.html.twig') %}
     {% endif %}
 
-    <main class="main container-fluid h-100">
+    {% if(is_granted('ROLE_ADMIN') and app.request.get('_route') != 'admin_dashboard') %}
+        {% include('admin/includes/sidebar.html.twig') %}
+    {% endif %}
+
+    <main class="main container-fluid h-100 {{ is_granted('ROLE_ADMIN') and app.request.get('_route') != 'admin_dashboard' ? 'container--with-sidebar' : '' }}">
         {% block main %}{% endblock %}
     </main>
 

@@ -1,0 +1,43 @@
+.sidebar {
+  $navbar-h: 56px;
+
+  z-index: 2;
+  width: $sidebar-w;
+  position: fixed;
+  top: $navbar-h;
+  height: calc(100vh - #{$navbar-h});
+  left: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  transition: all .3s ease-in-out;
+  transform: translate3d(#{$sidebar-w * -1}, 0, 0);
+
+  .sidebar-opened & {
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (min-width: map_get($grid-breakpoints, 'lg')) {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &__menu-row {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+
+  &__menu-link {
+    padding: 10px #{$grid-gutter-width / 2};
+    color: white;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($primary, 10%);
+      color: white;
+      text-decoration: none;
+    }
+
+    &.active {
+      background-color: $primary;
+      font-weight: bold;
+    }
+  }
+
+}

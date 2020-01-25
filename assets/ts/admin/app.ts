@@ -1,4 +1,5 @@
 import "../../scss/admin/app.scss";
+import {toggleSidebarMenu} from "./sidebar-menu";
 
 class App {
     private static instance: App;
@@ -18,6 +19,11 @@ class App {
         require('bootstrap');
 
         $('[data-toggle="dropdown"]').dropdown();
+
+        const toggler = document.querySelector('.js-sidebar-opener');
+        if(toggler) {
+            toggler.addEventListener('click', toggleSidebarMenu);
+        }
     }
 }
 
