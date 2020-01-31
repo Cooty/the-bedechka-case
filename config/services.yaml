@@ -14,6 +14,7 @@ parameters:
     language_setting_session_key: '_preferred_language'
     static_data_directory: '%kernel.project_dir%/data/'
     mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
+    map_images_directory: '%kernel.project_dir%/public/map-images/'
 
 services:
     # default configuration for services in *this* file
