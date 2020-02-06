@@ -2,20 +2,22 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\LatLongCords;
+use App\Entity\MapCase;
+use App\Form\Admin\MapCaseForm;
+use App\Handler\Admin\AbstractEntityHandler;
+use App\Handler\Admin\MapCaseHandler;
 use App\Traits\Admin\Security\PasswordChange;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use \Exception;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\MapCase;
-use App\Form\Admin\MapCaseForm;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -58,12 +60,26 @@ class AddController extends AbstractController
         $this->logger = $logger;
     }
 
-    private function makeLatLongFromGoogleMapsURL(string $googleMapsURL): LatLongCords
+    /**
+     * @param AbstractEntityHandler $handler
+     * @param array $params
+     * @param string $entityName
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    private function submit(AbstractEntityHandler $handler, array $params, string $entityName)
     {
-        preg_match('/@(.*),(.*),/', $googleMapsURL, $matches);
-        $latLong = new LatLongCords($matches[1], $matches[2]);
+        try {
+            $entity = $handler->getEntity($params);
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
+            $this->addFlash('success', 'The new '.$entity::DISPLAY_NAME .' has been created!');
 
-        return $latLong;
+            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entityName]);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
     }
 
     /**
@@ -71,63 +87,39 @@ class AddController extends AbstractController
      * @param Request $request
      * @param string $entityName
      * @return Response
+     * @throws NotFoundHttpException
+     * @throws Exception
      */
-    public function edit(Request $request, string $entityName): Response
+    public function edit(Request $request, string $entityName)
     {
         // TODO: Figure out a way where we don't have to copy-paste this logic to all admin controllers! Events?
-        if($this->checkForPasswordChangeSession($request)) {
+        if ($this->checkForPasswordChangeSession($request)) {
             return $this->redirectToPasswordChange();
         }
 
-        // TODO: Clean this up
-        if($entityName === 'cases') {
+        if ($entityName === MapCase::URL_PARAM_NAME) {
             $entity = new MapCase();
             $form = $this->formFactory->create(MapCaseForm::class, $entity);
-            $displayName = 'map cases';
-            $form->handleRequest($request);
-
-            if($form->isSubmitted() && $form->isValid()) {
-                /** @var UploadedFile $imageFile */
-                $imageFile = $form->get('image')->getData();
-
-                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = transliterator_transliterate(
-                    'Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()',
-                    $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-
-                try {
-                    $imageFile->move(
-                        $this->getParameter('map_images_directory'),
-                        $newFilename
-                    );
-                    $entity->setPictureURL($newFilename);
-                } catch (FileException $e) {
-                    $this->addFlash(
-                        'warning',
-                        "The file ".$imageFile->getClientOriginalName()." could not be uploaded!");
-                }
-
-                $latLong = $this->makeLatLongFromGoogleMapsURL(
-                    $form->get('google_maps_url')->getData());
-
-                $entity->setLatitude($latLong->getLatitude());
-                $entity->setLongitude($latLong->getLongitude());
-            }
+            $params = ['upload_path' => $this->getParameter('map_images_directory')];
+            $handler = new MapCaseHandler($entity, $form);
+        } else {
+            throw $this->createNotFoundException();
         }
-        
-        if($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($entity);
-            $this->entityManager->flush();
-            $this->addFlash('success', "The new $displayName has been created!");
 
-            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entityName]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                return $this->submit($handler, $params, $entityName);
+            } catch (Exception $exception) {
+                $this->addFlash('danger', $exception->getMessage());
+            }
+
         }
 
         return $this->render('admin/entity/add.html.twig', [
             'form' => $form->createView(),
-            'entityDisplayName' => $displayName
+            'entityDisplayName' => $entity::DISPLAY_NAME
         ]);
     }
 }

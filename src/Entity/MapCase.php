@@ -11,6 +11,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class MapCase
 {
+    const URL_PARAM_NAME = 'cases';
+    const DISPLAY_NAME = 'map cases';
+
     /**
      * @var UuidInterface
      *
