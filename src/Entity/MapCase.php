@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
+use App\Traits\Archivable;
+use App\Traits\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MapCaseRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class MapCase
 {
+    use Timestampable;
+    use Archivable;
+
     const URL_PARAM_NAME = 'cases';
     const DISPLAY_NAME = 'map cases';
 
@@ -70,11 +76,6 @@ class MapCase
      * @ORM\Column(type="string", length=200, nullable=true)
      */
     private $pictureURL;
-
-    /**
-     * @var bool
-     */
-    private $archived = false;
 
     public function getId(): UuidInterface
     {
@@ -175,21 +176,5 @@ class MapCase
         $this->pictureURL = $pictureURL;
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isArchived(): bool
-    {
-        return $this->archived;
-    }
-
-    /**
-     * @param bool $archived
-     */
-    public function setArchived(bool $archived): void
-    {
-        $this->archived = $archived;
     }
 }

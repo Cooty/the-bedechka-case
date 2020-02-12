@@ -6,11 +6,9 @@ use App\Entity\MapCase;
 use App\Form\Admin\MapCaseForm;
 use App\Handler\Admin\AbstractEntityHandler;
 use App\Handler\Admin\MapCaseHandler;
-use App\Traits\Admin\Security\PasswordChange;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use \Exception;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,20 +16,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Enum\Admin\FlashTypes;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
-class AddController extends AbstractController
+class AddController extends AbstractAdminController
 {
-    use PasswordChange;
-
-    /**
-     * @var string
-     */
-    private $pswChangeSessionKey;
-
     /**
      * @var FormFactoryInterface
      */
@@ -54,10 +46,11 @@ class AddController extends AbstractController
         LoggerInterface $logger
     )
     {
-        $this->pswChangeSessionKey = $pswChangeSessionKey;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->logger = $logger;
+
+        parent::__construct($pswChangeSessionKey);
     }
 
     /**
@@ -73,7 +66,7 @@ class AddController extends AbstractController
             $entity = $handler->getEntity($params);
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
-            $this->addFlash('success', 'The new '.$entity::DISPLAY_NAME .' has been created!');
+            $this->addFlash(FlashTypes::OK, 'The new '.$entity::DISPLAY_NAME .' has been created!');
 
             return $this->redirectToRoute('admin_entity_list', ['entityName' => $entityName]);
         } catch (Exception $exception) {
@@ -112,7 +105,7 @@ class AddController extends AbstractController
             try {
                 return $this->submit($handler, $params, $entityName);
             } catch (Exception $exception) {
-                $this->addFlash('danger', $exception->getMessage());
+                $this->addFlash(FlashTypes::ERROR, $exception->getMessage());
             }
 
         }

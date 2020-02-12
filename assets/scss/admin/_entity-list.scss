@@ -1,0 +1,10 @@
+.entity-list {
+
+  &__item {
+    background-color: $card-bg;
+    background-clip: border-box;
+    border: $card-border-width solid $card-border-color;
+    @include border-radius($card-border-radius);
+  }
+
+}

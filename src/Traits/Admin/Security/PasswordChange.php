@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 trait PasswordChange
 {
-    private function checkForPasswordChangeSession(Request $request): bool
+    protected function checkForPasswordChangeSession(Request $request): bool
     {
         $session = $request->getSession();
 

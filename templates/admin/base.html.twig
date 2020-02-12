@@ -2,9 +2,7 @@
 {% apply spaceless %}
 <html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include('admin/includes/meta.html.twig') %}
     <title>{% block title %}The Case Bedechka Website Admin{% endblock %}</title>
 
     {% block stylesheets %}
@@ -12,15 +10,13 @@
     {% endblock %}
 </head>
 <body class="bg-light">
-    {% if(is_granted('ROLE_ADMIN')) %}
-        {% include('admin/includes/header.html.twig') %}
-    {% endif %}
+    {% include('admin/includes/header.html.twig') %}
 
-    {% if(is_granted('ROLE_ADMIN') and app.request.get('_route') != 'admin_dashboard') %}
+    {% if(app.request.get('_route') != 'admin_dashboard') %}
         {% include('admin/includes/sidebar.html.twig') %}
     {% endif %}
 
-    <main class="main container-fluid h-100 {{ is_granted('ROLE_ADMIN') and app.request.get('_route') != 'admin_dashboard' ? 'container--with-sidebar' : '' }}">
+    <main class="main container-fluid h-100 {{ app.request.get('_route') != 'admin_dashboard' ? 'container--with-sidebar' : '' }}">
         {% block main %}{% endblock %}
     </main>
 

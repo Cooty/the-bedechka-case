@@ -1,5 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
+{% set entityName = app.request.get('entityName') %}
+
 {% block title %}
     {{ entityDisplayName|capitalize }}
 {% endblock %}
@@ -12,16 +14,31 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }} mb-1">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
+            {% include('admin/includes/alert.html.twig') %}
 
-            {# TODO: Implement list UI #}
-            list goes here
+            {% if(items|length == 0) %}
+                <div class="alert alert-primary">
+                    No {{ entityDisplayName }} has been added yet. <br>
+                    <a href="{{ path('admin_entity_add', {'entityName': app.request.get('entityName')}) }}">Create one!</a>
+                </div>
+            {% else %}
+                <ol class="entity-list list-unstyled">
+                    {% for item in items %}
+                    <li class="entity-list__item">
+                        {% if(item.pictureURL) %}
+                            <div class="col-auto">
+                                <img src="{{ item.pictureURL }}" alt="{{ item.nameEN }}">
+                            </div>
+                        {% endif %}
+                        {% if(item.nameEN) %}
+                            <div class="col-auto">
+                                <h5>{{ item.nameEN }}</h5>
+                            </div>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ol>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

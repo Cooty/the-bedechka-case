@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\MapCase;
+use App\Repository\MapCaseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,15 +17,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
-class ListController extends AbstractController
+class ListController extends AbstractAdminController
 {
-    use PasswordChange;
-
-    /**
-     * @var string
-     */
-    private $pswChangeSessionKey;
-
     /**
      * @var EntityManagerInterface
      */
@@ -34,16 +28,23 @@ class ListController extends AbstractController
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var MapCaseRepository
+     */
+    private $casesRepository;
 
     public function __construct(
         string $pswChangeSessionKey,
         EntityManagerInterface $entityManager,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        MapCaseRepository $casesRepository
     )
     {
-        $this->pswChangeSessionKey = $pswChangeSessionKey;
         $this->entityManager = $entityManager;
         $this->logger = $logger;
+
+        parent::__construct($pswChangeSessionKey);
+        $this->casesRepository = $casesRepository;
     }
 
     /**
@@ -59,11 +60,13 @@ class ListController extends AbstractController
         }
 
         if($entityName === 'cases') {
-            $displayName = 'map cases';
+            $items = $this->casesRepository->findActive();
+            $entityDisplayName = MapCase::DISPLAY_NAME;
         }
 
         return $this->render('admin/entity/list.html.twig', [
-            'entityDisplayName' => $displayName
+            'items' => $items,
+            'entityDisplayName' => $entityDisplayName
         ]);
     }
 }

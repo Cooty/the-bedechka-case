@@ -19,22 +19,19 @@ class MapCaseRepository extends ServiceEntityRepository
         parent::__construct($registry, MapCase::class);
     }
 
-    // /**
-    //  * @return MapCase[] Returns an array of MapCase objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+      * @return MapCase[] Returns an array of MapCase objects
+    */
+    public function findActive()
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('cases')
+            ->select('cases')
+            ->where('cases.archived = false')
+            ->orderBy('cases.createdAt', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?MapCase

@@ -13,6 +13,8 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Component\Security\Core\Security;
+use App\Enum\Admin\FlashMessages;
+use App\Enum\Admin\FlashTypes;
 
 class LoginSubscriber implements EventSubscriberInterface
 {
@@ -100,6 +102,7 @@ class LoginSubscriber implements EventSubscriberInterface
 
         $route = $this->router->generate('admin_security_change_password');
         $response = new RedirectResponse($route);
+        $session->getFlashBag()->add(FlashTypes::INFO, FlashMessages::PASSWORD_CHANGE_REQUIRED);
 
         $event->setResponse($response);
     }

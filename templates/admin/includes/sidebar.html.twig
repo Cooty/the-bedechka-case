@@ -1,24 +1,22 @@
-{% set isEdit = app.request.get('_route') == 'admin_entity_add' %}
-
 <aside class="sidebar bg-secondary js-sidebar">
     <ul class="sidebar__menu list-unstyled pt-3">
         <li class="sidebar__menu-row">
             <a href="{{ path('admin_entity_add', {'entityName': 'cases'}) }}"
-               class="sidebar__menu-link d-block {{ isEdit and app.request.get('entityName') == 'cases' ? 'active' : '' }}">
+               class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'cases' ? 'active' : '' }}">
                 Edit Cases
             </a>
         </li>
 
         <li class="sidebar__menu-row">
             <a href="{{ path('admin_entity_add', {'entityName': 'in-the-press'}) }}"
-               class="sidebar__menu-link d-block {{ isEdit and app.request.get('entityName') == 'in-the-press' ? 'active' : '' }}">
+               class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'in-the-press' ? 'active' : '' }}">
                 Edit "In the Press"
             </a>
         </li>
 
         <li class="sidebar__menu-row">
             <a href="{{ path('admin_entity_add', {'entityName': 'screenings'}) }}"
-               class="sidebar__menu-link d-block {{ isEdit and app.request.get('entityName') == 'screenings' ? 'active' : '' }}">
+               class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'screenings' ? 'active' : '' }}">
                 Edit Screenings
             </a>
         </li>
