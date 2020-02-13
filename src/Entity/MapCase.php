@@ -18,7 +18,7 @@ class MapCase
     use Archivable;
 
     const URL_PARAM_NAME = 'cases';
-    const DISPLAY_NAME = 'map cases';
+    const DISPLAY_NAME = 'map case';
 
     /**
      * @var UuidInterface

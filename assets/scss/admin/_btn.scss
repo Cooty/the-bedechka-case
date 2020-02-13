@@ -1,0 +1,24 @@
+.btn {
+  $icon-text-gutter: 5px;
+
+  > .icon {
+    vertical-align: middle;
+  }
+
+  &-icon-left {
+
+    > .icon {
+      margin-right: $icon-text-gutter;
+    }
+
+  }
+
+  &-icon-right {
+
+    > .icon {
+      margin-left: $icon-text-gutter;
+    }
+
+  }
+
+}
