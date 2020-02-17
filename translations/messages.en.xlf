@@ -359,6 +359,40 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="error.not-found">
+                <source>error.not-found</source>
+                <target>
+                    Page not found
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.not-found.text">
+                <source>error.not-found.text</source>
+                <target>
+                    Try going back to the homepage!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.homepage.link">
+                <source>error.homepage.link</source>
+                <target>
+                    To Homepage
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.generic">
+                <source>error.generic</source>
+                <target>
+                    An error happened
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.generic.text">
+                <source>error.generic.text</source>
+                <target>
+                    Something bad happened, try reloading the page or go back to the homepage.
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

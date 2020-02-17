@@ -57,3 +57,7 @@ services:
     App\EventSubscriber\LocaleSubscriber:
         arguments:
             $defaultLocale: '%kernel.default_locale%'
+
+    App\EventListener\Admin\ExceptionListener:
+      tags:
+        - { name: kernel.event_listener, event: kernel.exception }

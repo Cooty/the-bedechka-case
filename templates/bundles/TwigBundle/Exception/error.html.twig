@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ status_code }}
+{% endblock %}
+
+{% block main %}
+    <article class="box box--center-xxl" style="margin-top: 14vh;">
+        <h1 class="section-header box__header">
+            {{ 'error.generic'|trans }}
+        </h1>
+        <p class="box__lead" style="text-align: center;">{{ 'error.genric.text'|trans }}</p>
+
+        <p class="box__lead" style="text-align: center;">
+            <a href="{{ path('home') }}" class="button">{{ 'error.homepage.link'|trans }}</a>
+        </p>
+    </article>
+{% endblock %}
