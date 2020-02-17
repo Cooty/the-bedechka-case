@@ -49,8 +49,9 @@ class MapCaseForm extends AbstractType
                 'constraints' => new Url()
             ])
             ->add('image', FileType::class, [
-                'label' => 'Image',
+                'label' => 'Image (optional)',
                 'mapped' => false,
+                'required' => false,
                 'help' => 'The image has to be '.self::IMAGE_WIDTH.'×'.self::IMAGE_HEIGHT.' pixels',
                 'constraints' => new Image([
                     'maxSize' => '1024k',

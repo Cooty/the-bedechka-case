@@ -24,10 +24,10 @@ class MapCaseRepository extends ServiceEntityRepository
     */
     public function findActive()
     {
-        return $this->createQueryBuilder('cases')
-            ->select('cases')
-            ->where('cases.archived = false')
-            ->orderBy('cases.createdAt', 'ASC')
+        return $this->createQueryBuilder('mc')
+            ->select('mc')
+            ->where('mc.archived = false')
+            ->orderBy('mc.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;

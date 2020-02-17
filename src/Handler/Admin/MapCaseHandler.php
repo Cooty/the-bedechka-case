@@ -47,14 +47,16 @@ class MapCaseHandler extends AbstractEntityHandler
             /** @var UploadedFile $imageFile */
             $imageFile = $this->form->get('image')->getData();
 
-            $newFileName = $this->makeFilename($imageFile);
+            if($imageFile) {
+                $newFileName = $this->makeFilename($imageFile);
 
-            $imageFile->move(
-                $params['upload_path'],
-                $newFileName
-            );
+                $imageFile->move(
+                    $params['upload_path'],
+                    $newFileName
+                );
 
-            $this->entity->setPictureURL('/map-images/'.$newFileName);
+                $this->entity->setPictureURL('/map-images/'.$newFileName);
+            }
 
             $latLong = $this->makeLatLongFromGoogleMapsURL(
                 $this->form->get('google_maps_url')->getData());
