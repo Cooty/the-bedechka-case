@@ -83,7 +83,7 @@ class AddController extends AbstractAdminController
      * @throws NotFoundHttpException
      * @throws Exception
      */
-    public function edit(Request $request, string $entityName)
+    public function add(Request $request, string $entityName)
     {
         // TODO: Figure out a way where we don't have to copy-paste this logic to all admin controllers! Events?
         if ($this->checkForPasswordChangeSession($request)) {

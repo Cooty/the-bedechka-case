@@ -1,0 +1,30 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Edit: {{ id }}
+{% endblock %}
+
+{% block main %}
+    <div class="row justify-content-center pt-3 mb-2">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h1>Edit: {{ id }}</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} mb-3">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            {{ dump(entityDisplayName) }}
+
+{#            {{ form_start(form) }}#}
+{#            {{ form_widget(form) }}#}
+{#            {{ form_end(form) }}#}
+        </div>
+    </div>
+{% endblock %}
