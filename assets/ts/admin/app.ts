@@ -1,5 +1,6 @@
 import "../../scss/admin/app.scss";
 import {toggleSidebarMenu} from "./sidebar-menu";
+import {init as initCustomFile} from "./show-file-names-in-uploads";
 
 class App {
     private static instance: App;
@@ -24,6 +25,8 @@ class App {
         if(toggler) {
             toggler.addEventListener('click', toggleSidebarMenu);
         }
+
+        initCustomFile();
     }
 }
 

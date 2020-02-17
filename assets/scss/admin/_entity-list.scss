@@ -1,0 +1,17 @@
+.entity-list {
+
+  &__item {
+    background-color: $card-bg;
+    background-clip: border-box;
+    border: $card-border-width solid $card-border-color;
+    padding: 10px;
+    margin-bottom: 10px;
+    @include border-radius($card-border-radius);
+
+    @media (min-width: map_get($grid-breakpoints, 'md')) {
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+}

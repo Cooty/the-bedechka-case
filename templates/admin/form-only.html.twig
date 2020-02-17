@@ -1,0 +1,18 @@
+<!doctype html>
+{% apply spaceless %}
+<html lang="en">
+<head>
+    {% include('admin/includes/meta.html.twig') %}
+    <title>{% block title %}The Case Bedechka Website Admin{% endblock %}</title>
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('admin') }}
+    {% endblock %}
+</head>
+<body class="bg-light">
+    <main class="main container-fluid h-100">
+        {% block main %}{% endblock %}
+    </main>
+</body>
+</html>
+{% endapply %}

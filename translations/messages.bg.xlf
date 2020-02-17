@@ -360,6 +360,40 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="error.not-found">
+                <source>error.not-found</source>
+                <target>
+                    Страницата не е намерена
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.not-found.text">
+                <source>error.not-found.text</source>
+                <target>
+                    Опитайте да се върнете към началната страница!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.homepage.link">
+                <source>error.homepage.link</source>
+                <target>
+                    Към началната страница
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.generic">
+                <source>error.generic</source>
+                <target>
+                    Възникна грешка
+                </target>
+            </trans-unit>
+
+            <trans-unit id="error.generic.text">
+                <source>error.generic.text</source>
+                <target>
+                    Случи се нещо лошо, опитайте да презаредите страницата или да се върнете към началната страница.
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

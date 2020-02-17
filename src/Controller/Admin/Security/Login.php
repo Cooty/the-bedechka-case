@@ -2,8 +2,7 @@
 
 namespace App\Controller\Admin\Security;
 
-use App\Traits\Admin\Security\PasswordChange;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\Admin\AbstractAdminController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -12,20 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * @Route("/admin")
  */
-class Login extends AbstractController
+class Login extends AbstractAdminController
 {
-    use PasswordChange;
-
-    /**
-     * @var string
-     */
-    private $pswChangeSessionKey;
-
-    public function __construct(string $pswChangeSessionKey)
-    {
-        $this->pswChangeSessionKey = $pswChangeSessionKey;
-    }
-
     /**
      * @Route("/login", name="admin_security_login")
      * @param AuthenticationUtils $authenticationUtils

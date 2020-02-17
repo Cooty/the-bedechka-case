@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Add new: {{ entityDisplayName|capitalize }}
+{% endblock %}
+
+{% block main %}
+    <div class="row justify-content-center pt-3 mb-2">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h1>Add new {{ entityDisplayName }}</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 mb-2 d-flex justify-content-end">
+            <a href="{{ path('admin_entity_list', {'entityName': app.request.get('entityName')})  }}" class="btn btn-outline-primary btn-sm btn-icon-left">
+                <i class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                </i>
+                See all
+            </a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} mb-3">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

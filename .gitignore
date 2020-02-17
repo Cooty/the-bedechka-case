@@ -12,7 +12,7 @@ vendor/
 
 # Assets and user uploads
 /web/bundles/
-/web/uploads/
+/public/map-images/
 
 # Build data
 build/

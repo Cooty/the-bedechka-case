@@ -2,8 +2,8 @@
 
 namespace App\Controller\Admin\Security;
 
+use App\Controller\Admin\AbstractAdminController;
 use App\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,18 +21,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
-class ChangePassword extends AbstractController
+class ChangePassword extends AbstractAdminController
 {
-    /**
-     * @var string
-     */
-    private $pswChangeSessionKey;
-
-    public function __construct(string $pswChangeSessionKey)
-    {
-        $this->pswChangeSessionKey = $pswChangeSessionKey;
-    }
-
     private function handleForm(
         UserPasswordEncoderInterface $passwordEncoder,
         UserInterface $user,
