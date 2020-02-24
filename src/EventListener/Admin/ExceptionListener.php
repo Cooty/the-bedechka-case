@@ -17,25 +17,39 @@ class ExceptionListener
      * @var Security
      */
     private $security;
+
     /**
      * @var Environment
      */
     private $twig;
+
     /**
      * @var LoggerInterface
      */
     private $logger;
 
     /**
+     * @var string
+     */
+    private $isDebug;
+
+    /**
      * @param Security $security
      * @param Environment $twig
      * @param LoggerInterface $logger
+     * @param bool $isDebug
      */
-    public function __construct(Security $security, Environment $twig, LoggerInterface $logger)
+    public function __construct(
+        Security $security,
+        Environment $twig,
+        LoggerInterface $logger,
+        bool $isDebug
+    )
     {
         $this->security = $security;
         $this->twig = $twig;
         $this->logger = $logger;
+        $this->isDebug = $isDebug;
     }
 
     private function isAdmin(?UserInterface $user): bool
@@ -49,50 +63,38 @@ class ExceptionListener
 
     public function onKernelException(ExceptionEvent $event)
     {
-        $user = $this->security->getUser();
-        if($this->isAdmin($user)) {
-            $exception = $event->getException();
-            dump($user);
-            $message = sprintf(
-                'My Error says: %s with code: %s',
-                $exception->getMessage(),
-                $exception->getCode()
-            );
+        if(!$this->isDebug) {
+            $user = $this->security->getUser();
 
-            // Customize your response object to display the exception details
-            $response = new Response();
-            $response->setContent($message);
+            if($this->isAdmin($user)) {
+                $exception = $event->getException();
+                $response = new Response();
 
-            // HttpExceptionInterface is a special type of exception that
-            // holds status code and header details
-            $html = 'foo';
+                if ($exception instanceof HttpExceptionInterface) {
+                    try {
+                        $html = $this->twig->render('admin/error/404.html.twig');
+                    } catch (\Exception $e) {
+                        $html = 'Error 500';
+                        $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+                        $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+                    }
+                    $response->setContent($html);
+                    $response->setStatusCode($exception->getStatusCode());
+                    $response->headers->replace($exception->getHeaders());
+                } else {
+                    try {
+                        $html = $this->twig->render('admin/error/500.html.twig');
+                    } catch (\Exception $e) {
+                        $html = 'Error 500';
+                        $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+                    }
 
-            if ($exception instanceof HttpExceptionInterface) {
-                dump($exception->getMessage());
-
-                try {
-                    $html = $this->twig->render('admin/error/404.html.twig');
-                } catch (\Exception $e) {
-                    $html = 'Error 500';
+                    $response->setContent($html);
                     $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
-                    $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
-                }
-                $response->setContent($html);
-                $response->setStatusCode($exception->getStatusCode());
-                $response->headers->replace($exception->getHeaders());
-            } else {
-                try {
-                    $html = $this->twig->render('admin/error/500.html.twig');
-                } catch (\Exception $e) {
-                    $html = 'Error 500';
-                    $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
                 }
 
-                $response->setContent($html);
-                $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+                $event->setResponse($response);
             }
-
-            $event->setResponse($response);
         }
     }
 }

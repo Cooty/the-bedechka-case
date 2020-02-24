@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controller\Admin;
-
 
 use App\Traits\Admin\Security\PasswordChange;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

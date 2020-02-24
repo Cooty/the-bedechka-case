@@ -107,7 +107,6 @@ class AddController extends AbstractAdminController
             } catch (Exception $exception) {
                 $this->addFlash(FlashTypes::ERROR, $exception->getMessage());
             }
-
         }
 
         return $this->render('admin/entity/add.html.twig', [

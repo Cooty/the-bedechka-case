@@ -59,5 +59,7 @@ services:
             $defaultLocale: '%kernel.default_locale%'
 
     App\EventListener\Admin\ExceptionListener:
+      arguments:
+        $isDebug: '%kernel.debug%'
       tags:
         - { name: kernel.event_listener, event: kernel.exception }
