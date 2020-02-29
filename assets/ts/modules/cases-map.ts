@@ -57,7 +57,7 @@ export class CasesMap {
     }
 
     private static makeMap():Map {
-        const mapContainerId: string = "js-cases-map-container";
+        const mapContainerId: any = "js-cases-map-container";
         const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
         const defaultZoom = 7;
         const mapProviderURL = "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}";
