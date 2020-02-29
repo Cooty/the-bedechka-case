@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Validator\Constraints\Image;
 use App\Enum\Admin\ImageSizes;
 
-class MapCaseForm extends AbstractType
+class MapCaseEditForm extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -50,27 +51,21 @@ class MapCaseForm extends AbstractType
                 'required' => false,
                 'constraints' => new Url()
             ])
-            ->add('google_maps_url', TextType::class, [
-                'label' => 'URL from Google Maps',
-                'mapped' => false,
-                'constraints' => new Url()
+            ->add('longitude', NumberType::class, [
+                'label' => false,
+                'constraints' => new NotBlank(),
+                'attr' => ['hidden' => true]
             ])
-            ->add('image', FileType::class, [
-                'label' => 'Image (optional)',
-                'mapped' => false,
+            ->add('latitude', NumberType::class, [
+                'label' => false,
+                'constraints' => new NotBlank(),
+                'attr' => ['hidden' => true]
+            ])
+            ->add('picture_url', TextType::class, [
+                'label' => false,
                 'required' => false,
-                'help' => 'The image has to be '.ImageSizes::MAP_CASE_POPUP_WIDTH.'×'.ImageSizes::MAP_CASE_POPUP_HEIGHT.' pixels',
-                'constraints' => new Image([
-                    'maxSize' => '1024k',
-                    'allowPortrait' => false,
-                    'allowSquare' => false,
-                    'detectCorrupted' => true,
-                    'maxWidth' => ImageSizes::MAP_CASE_POPUP_WIDTH,
-                    'maxHeight' => ImageSizes::MAP_CASE_POPUP_HEIGHT,
-                    'minWidth' => ImageSizes::MAP_CASE_POPUP_WIDTH,
-                    'minHeight' => ImageSizes::MAP_CASE_POPUP_HEIGHT
-                ])
+                'attr' => ['hidden' => true]
             ])
-            ->add('save', SubmitType::class, ['label'=> 'Save new Case']);
+            ->add('save', SubmitType::class, ['label'=> 'Update Case']);
     }
 }

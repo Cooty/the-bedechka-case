@@ -33,18 +33,23 @@
             {% if(items|length == 0) %}
                 <div class="alert alert-primary">
                     No {{ entityDisplayName }} has been added yet. <br>
-                    <a href="{{ path('admin_entity_add', {'entityName': app.request.get('entityName')}) }}">Create one!</a>
+                    <a href="{{ path('admin_entity_add', {'entityName': entityName}) }}">
+                        Create one!
+                    </a>
                 </div>
             {% else %}
                 <ol class="entity-list list-unstyled">
                     {% for item in items %}
-                    <li class="entity-list__item d-md-flex">
+                    <li id="js-row-{{ item.id }}" class="entity-list__item d-md-flex">
                         <h5 class="entity-list__item-header mb-md-0 text-center text-md-left">
-                            {{ item.nameEN }}
+                            <a href="{{ path('admin_entity_edit', {'entityName': entityName, 'id': item.id}) }}">
+                                {{ item.nameEN }}
+                            </a>
                         </h5>
                         <div class="entity-list__item-controls d-flex justify-content-center">
                             <div class="col-auto">
-                                <a href="{{ item.id }}" class="btn btn-outline-primary btn-sm btn-icon-left">
+                                <a href="{{ path('admin_entity_edit', {'entityName': entityName, 'id': item.id}) }}"
+                                   class="btn btn-outline-primary btn-sm btn-icon-left">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
                                     </i>
@@ -52,12 +57,15 @@
                                 </a>
                             </div>
                             <div class="col-auto pr-md-0">
-                                <a href="{{ item.id }}" class="btn btn-outline-danger btn-sm  btn-icon-left">
+                                <button type="button"
+                                        data-id="{{ item.id }}"
+                                        data-url="{{ path('admin_entity_delete', {'entityName': entityName}) }}"
+                                        class="btn btn-outline-danger btn-sm btn-icon-left js-delete-entity-button">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
                                     </i>
                                     Delete
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </li>

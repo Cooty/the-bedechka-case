@@ -1,6 +1,7 @@
 import "../../scss/admin/app.scss";
 import {toggleSidebarMenu} from "./sidebar-menu";
 import {init as initCustomFile} from "./show-file-names-in-uploads";
+import {init as initDeleteEntity} from "./delete-entity";
 
 class App {
     private static instance: App;
@@ -27,6 +28,7 @@ class App {
         }
 
         initCustomFile();
+        initDeleteEntity();
     }
 }
 

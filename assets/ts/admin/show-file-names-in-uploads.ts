@@ -1,11 +1,13 @@
-const $ = require("jquery");
+import * as $ from "jquery";
 
 export const init = ()=> {
-    $(".custom-file input[type='file']").on("change",(e: Event)=> {
-        //get the file name
-        const $fileInput = $(e.currentTarget);
-        const fileName = $fileInput.val();
-        //replace the "Choose a file" label
-        $fileInput.next(".custom-file-label").html(fileName);
-    });
+    const fileInput:JQuery = $(".custom-file input[type='file']");
+
+    if(fileInput.length) {
+        fileInput.on("change.bsFileUpload",()=> {
+            const fileName = fileInput.val().toString();
+
+            fileInput.next(".custom-file-label").html(fileName);
+        });
+    }
 };

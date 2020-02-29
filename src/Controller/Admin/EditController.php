@@ -3,72 +3,70 @@
 namespace App\Controller\Admin;
 
 use App\Entity\MapCase;
-use App\Form\Admin\MapCaseForm;
-use App\Handler\Admin\AbstractEntityHandler;
-use App\Handler\Admin\MapCaseHandler;
+use App\Enum\Admin\FlashTypes;
 use Doctrine\ORM\EntityManagerInterface;
-use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use \Exception;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Enum\Admin\FlashTypes;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use \Exception;
+use App\Repository\MapCaseRepository;
+use App\Form\Admin\MapCaseEditForm;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
  * @Route("/admin")
  */
-class AddController extends AbstractAdminController
+class EditController extends AbstractAdminController
 {
+    /**
+     * @var MapCaseRepository
+     */
+    private $mapCaseRepository;
+
+    /**
+     * @var string
+     */
+    protected $pswChangeSessionKey;
+
     /**
      * @var FormFactoryInterface
      */
     private $formFactory;
-
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
     public function __construct(
+        MapCaseRepository $mapCaseRepository,
         string $pswChangeSessionKey,
         FormFactoryInterface $formFactory,
-        EntityManagerInterface $entityManager,
-        LoggerInterface $logger
+        EntityManagerInterface $entityManager
     )
     {
+        $this->mapCaseRepository = $mapCaseRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
-        $this->logger = $logger;
 
         parent::__construct($pswChangeSessionKey);
     }
 
     /**
-     * @param AbstractEntityHandler $handler
-     * @param array $params
-     * @param string $entityName
+     * @param $entity
      * @return RedirectResponse
      * @throws Exception
      */
-    private function submit(AbstractEntityHandler $handler, array $params, string $entityName)
+    private function submit($entity)
     {
         try {
-            $entity = $handler->getEntity($params);
-            $this->entityManager->persist($entity);
             $this->entityManager->flush();
-            $this->addFlash(FlashTypes::OK, 'The new '.$entity::DISPLAY_NAME .' has been created!');
+            $this->addFlash(FlashTypes::OK, $entity->getNameEN().' has been updated!');
 
-            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entityName]);
+            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
         } catch (Exception $exception) {
             throw $exception;
         }
@@ -76,25 +74,23 @@ class AddController extends AbstractAdminController
     }
 
     /**
-     * @Route("/add/{entityName}/", name="admin_entity_add")
+     * @Route("/edit/{entityName}/{id}", name="admin_entity_edit")
      * @param Request $request
      * @param string $entityName
+     * @param string $id
      * @return Response
      * @throws NotFoundHttpException
      * @throws Exception
      */
-    public function add(Request $request, string $entityName)
+    public function edit(Request $request, string $entityName, string $id)
     {
-        // TODO: Figure out a way where we don't have to copy-paste this logic to all admin controllers! Events?
         if ($this->checkForPasswordChangeSession($request)) {
             return $this->redirectToPasswordChange();
         }
 
         if ($entityName === MapCase::URL_PARAM_NAME) {
-            $entity = new MapCase();
-            $form = $this->formFactory->create(MapCaseForm::class, $entity);
-            $params = ['upload_path' => $this->getParameter('map_images_directory')];
-            $handler = new MapCaseHandler($entity, $form);
+            $entity = $this->mapCaseRepository->find($id);
+            $form = $this->formFactory->create(MapCaseEditForm::class, $entity);
         } else {
             throw $this->createNotFoundException();
         }
@@ -103,14 +99,15 @@ class AddController extends AbstractAdminController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->submit($handler, $params, $entityName);
+                return $this->submit($entity);
             } catch (Exception $exception) {
                 $this->addFlash(FlashTypes::ERROR, $exception->getMessage());
             }
         }
 
-        return $this->render('admin/entity/add.html.twig', [
+        return $this->render('admin/entity/edit.html.twig', [
             'form' => $form->createView(),
+            'entity' => $entity,
             'entityDisplayName' => $entity::DISPLAY_NAME
         ]);
     }
