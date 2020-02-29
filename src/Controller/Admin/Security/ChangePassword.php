@@ -43,7 +43,7 @@ class ChangePassword extends AbstractAdminController
          * @var $userEntity User|null
          */
         $userEntity = $security->getToken()->getUser();
-        $userEntity->setPlainPassword(null);
+        $userEntity->eraseCredentials();
 
         $passwordChangeEvent = new ChangePasswordEvent($userEntity);
         $session->set($this->pswChangeSessionKey, false);
