@@ -28,9 +28,12 @@ export const init = () => {
     deleteButtons.on("click.delete", (e: Event)=> {
         const button:JQuery<EventTarget> = $(e.currentTarget);
         const id: string = button.data("id");
+        const confirm = window.confirm(button.data("confirm-message"));
 
-        doDelete(button.data("id"), button.data("url"))
-            .then(()=> {deleteRowFromList(id)})
-            .catch((data: any)=> {console.error(data)});
+        if(confirm) {
+            doDelete(button.data("id"), button.data("url"))
+                .then(()=> {deleteRowFromList(id)})
+                .catch((data: any)=> {console.error(data)});
+        }
     });
 };
