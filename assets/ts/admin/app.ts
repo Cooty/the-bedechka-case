@@ -3,6 +3,14 @@ import {toggleSidebarMenu} from "./sidebar-menu";
 import {init as initCustomFile} from "./show-file-names-in-uploads";
 import {init as initDeleteEntity} from "./delete-entity";
 
+import {IConfig} from "./interfaces/IConfig";
+
+declare global {
+    interface Window {
+        _config?: IConfig
+    }
+}
+
 class App {
     private static instance: App;
 

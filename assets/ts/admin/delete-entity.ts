@@ -13,7 +13,9 @@ const deleteEntity = (id: string, url: string)=> {
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({id})
-    }).then(() => id);
+    }).then((data: any) => {
+        console.log(data);
+    });
 };
 
 const doDelete = async (id: string, url: string) => {
@@ -28,7 +30,7 @@ export const init = () => {
     deleteButtons.on("click.delete", (e: Event)=> {
         const button:JQuery<EventTarget> = $(e.currentTarget);
         const id: string = button.data("id");
-        const confirm = window.confirm(button.data("confirm-message"));
+        const confirm = window.confirm(`${window._config.deleteEntityConfirmMessage} ${button.data("name")}`);
 
         if(confirm) {
             doDelete(button.data("id"), button.data("url"))

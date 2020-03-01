@@ -6,6 +6,17 @@
     {{ entityDisplayName|capitalize }}
 {% endblock %}
 
+{% block javascript_config %}
+    <script>
+        var _config = window._config || {};
+
+        _config["deleteEntityConfirmMessage"] = "Are you sure you want to delete";
+        _config["loginUri"] = "{{ path("admin_security_login") }}";
+
+        Object.freeze(_config);
+    </script>
+{% endblock %}
+
 {% block main %}
     <div class="row justify-content-center pt-3 mb-2">
         <div class="col-12 col-md-12 col-lg-10">
@@ -60,7 +71,7 @@
                                 <button type="button"
                                         data-id="{{ item.id }}"
                                         data-url="{{ path('admin_entity_archive', {'entityName': entityName}) }}"
-                                        data-confirm-message="Are you sure you want to delete {{ item.nameEN }}"
+                                        data-name="{{ item.nameEN }}"
                                         class="btn btn-outline-danger btn-sm btn-icon-left js-delete-entity-button">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>

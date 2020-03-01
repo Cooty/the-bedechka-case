@@ -20,6 +20,8 @@
         {% block main %}{% endblock %}
     </main>
 
+    {% block javascript_config %}
+    {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('admin') }}
     {% endblock %}
