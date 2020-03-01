@@ -2,11 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\MapCase;
 use App\Entity\User;
-use App\Enum\Admin\ContentTypes;
-use App\Repository\MapCaseRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\EntityService;
+use App\Service\JSONAPIService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,63 +23,24 @@ class DeleteController extends AbstractController
     private $security;
 
     /**
-     * @var EntityManagerInterface
+     * @var JSONAPIService
      */
-    private $entityManager;
+    private $jsonAPI;
 
     /**
-     * @var MapCaseRepository
+     * @var EntityService
      */
-    private $mapCaseRepository;
+    private $entityService;
 
     public function __construct(
         Security $security,
-        EntityManagerInterface $entityManager,
-        MapCaseRepository $mapCaseRepository
+        EntityService $entityService,
+        JSONAPIService $jsonAPI
     )
     {
         $this->security = $security;
-        $this->entityManager = $entityManager;
-        $this->mapCaseRepository = $mapCaseRepository;
-    }
-
-    protected function isValidRequest(Request $request): bool
-    {
-        if(strpos($request->headers->get('Content-Type'), ContentTypes::JSON) === false) {
-            return false;
-        }
-
-        $data = json_decode($request->getContent(), true);
-
-        return array_key_exists('id', $data);
-    }
-
-    protected function getIdFromRequestBody(Request $request): string
-    {
-        $data = json_decode($request->getContent(), true);
-
-        return (string)$data['id'];
-    }
-
-    protected function makeResponse(int $statusCode): JsonResponse
-    {
-        return $this->json([
-            'message'=> Response::$statusTexts[$statusCode]],
-            $statusCode);
-    }
-
-    /**
-     * @param string $entityName
-     * @param string $id
-     * @return object|null
-     */
-    protected function getEntity(string $entityName, string $id)
-    {
-        if($entityName === MapCase::URL_PARAM_NAME) {
-            return $this->mapCaseRepository->find($id);
-        } else {
-            return null;
-        }
+        $this->jsonAPI = $jsonAPI;
+        $this->entityService = $entityService;
     }
 
     /**
@@ -93,24 +52,24 @@ class DeleteController extends AbstractController
     public function delete(Request $request, string $entityName): JsonResponse
     {
         if(!$this->security->isGranted(User::ROLE_ADMIN)) {
-            return $this->makeResponse(Response::HTTP_FORBIDDEN);
+            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_FORBIDDEN);
         }
 
-        if(!$this->isValidRequest($request)) {
-            return $this->makeResponse(Response::HTTP_BAD_REQUEST);
+        if(!$this->jsonAPI->requestHasIDField($request)) {
+            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_BAD_REQUEST);
         }
 
-        $id = $this->getIdFromRequestBody($request);
+        $id = $this->jsonAPI->getIDFromRequestBody($request);
 
-        $entity = $this->getEntity($entityName, $id);
+        $entity = $this->entityService->getEntity($entityName, $id);
 
         if(empty($entity)) {
-            return $this->makeResponse(Response::HTTP_NOT_FOUND);
+            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_NOT_FOUND);
         }
 
-        $this->entityManager->remove($entity);
-        $this->entityManager->flush();
+        $this->entityService->entityManager->remove($entity);
+        $this->entityService->entityManager->flush();
 
-        return $this->makeResponse(Response::HTTP_OK);
+        return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_OK);
     }
 }
