@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Security;
 /**
  * @Route("/admin")
  */
-class DeleteController
+class ArchiveController
 {
     /**
      * @var Security
@@ -43,12 +43,12 @@ class DeleteController
     }
 
     /**
-     * @Route("/delete/{entityName}", methods="POST", name="admin_entity_delete")
+     * @Route("/archive/{entityName}", methods="POST", name="admin_entity_archive")
      * @param Request $request
      * @param string $entityName
      * @return JsonResponse
      */
-    public function delete(Request $request, string $entityName): JsonResponse
+    public function archive(Request $request, string $entityName): JsonResponse
     {
         if(!$this->security->isGranted(User::ROLE_ADMIN)) {
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_FORBIDDEN);
@@ -66,7 +66,11 @@ class DeleteController
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_NOT_FOUND);
         }
 
-        $this->entityService->entityManager->remove($entity);
+        if(!method_exists($entity, 'setArchived')) {
+            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        $entity->setArchived(true);
         $this->entityService->entityManager->flush();
 
         return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_OK);
