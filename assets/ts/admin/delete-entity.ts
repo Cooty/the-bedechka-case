@@ -6,20 +6,22 @@ const deleteRowFromList = (id: string)=> {
     row.remove();
 };
 
-const deleteEntity = (id: string, url: string)=> {
+const deleteEntity = (id: string, url: string) => {
     return $.ajax({
         url,
         method: "POST",
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({id})
-    }).then((data: any) => {
-        console.log(data);
     });
 };
 
-const doDelete = async (id: string, url: string) => {
-    deleteEntity(id, url);
+const redirectOnForbiddenResponse = (status)=> {
+    if(status === 403) {
+        window.location.href = `${window._config.loginUri}&
+            redirectUri=${encodeURIComponent(window.location.pathname)}&
+            implicitLogout=1`;
+    }
 };
 
 export const init = () => {
@@ -33,9 +35,13 @@ export const init = () => {
         const confirm = window.confirm(`${window._config.deleteEntityConfirmMessage} ${button.data("name")}`);
 
         if(confirm) {
-            doDelete(button.data("id"), button.data("url"))
-                .then(()=> {deleteRowFromList(id)})
-                .catch((data: any)=> {console.error(data)});
+            deleteEntity(button.data("id"), button.data("url"))
+                .then(() => {
+                    deleteRowFromList(id)
+                })
+                .fail((jqXHR) => {
+                    redirectOnForbiddenResponse(jqXHR.status);
+                }).catch(e=> console.error(e));
         }
     });
 };
