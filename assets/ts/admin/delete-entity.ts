@@ -16,7 +16,7 @@ const deleteEntity = (id: string, url: string) => {
     });
 };
 
-const redirectOnForbiddenResponse = (status)=> {
+const redirectOnForbiddenResponse = (status: number)=> {
     if(status === 403) {
         window.location.href = `${window._config.loginUri}&
             redirectUri=${encodeURIComponent(window.location.pathname)}&
@@ -35,11 +35,11 @@ export const init = () => {
         const confirm = window.confirm(`${window._config.deleteEntityConfirmMessage} ${button.data("name")}`);
 
         if(confirm) {
-            deleteEntity(button.data("id"), button.data("url"))
+            deleteEntity(id, button.data("url"))
                 .then(() => {
                     deleteRowFromList(id)
                 })
-                .fail((jqXHR) => {
+                .fail((jqXHR: any) => {
                     redirectOnForbiddenResponse(jqXHR.status);
                 }).catch(e=> console.error(e));
         }

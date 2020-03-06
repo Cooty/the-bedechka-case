@@ -39,15 +39,23 @@
 
     <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-10">
-            {% include('admin/includes/alert.html.twig') %}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    {% include('admin/includes/alert.html.twig') with {
+                        'message': message,
+                        'label': label,
+                        'classNames': 'mb-3'
+                    } %}
+                {% endfor %}
+            {% endfor %}
 
             {% if(items|length == 0) %}
-                <div class="alert alert-primary">
-                    No {{ entityDisplayName }} has been added yet. <br>
-                    <a href="{{ path('admin_entity_add', {'entityName': entityName}) }}">
-                        Create one!
-                    </a>
-                </div>
+                {% set addNewPath = path('admin_entity_add', {'entityName': entityName}) %}
+                {% include('admin/includes/alert.html.twig') with {
+                    'message': "No #{entityDisplayName} has been added yet. <a href=\"#{addNewPath}\">Create one!</a>",
+                    'label': 'primary',
+                    'classNames': 'mb-3'
+                } %}
             {% else %}
                 <ol class="entity-list list-unstyled">
                     {% for item in items %}
