@@ -6,10 +6,12 @@
             <div class="card w-100">
                 <div class="card-body">
                     <h5>404 Not found</h5>
-                    <div class="alert alert-primary">
-                        The page that you are looking for can't be found in the admin.
-                        Try going back to the <a href="{{ path('admin_dashboard') }}">Dashboard</a>
-                    </div>
+                    {% set dashBoardUri = path('admin_dashboard') %}
+                    {% set message = "The page that you are looking for can't be found in the admin. Try going back to the <a href=\"#{dashBoardUri}\">Dashboard</a>" %}
+                    {% include('admin/includes/alert.html.twig') with {
+                        'message': message,
+                        'label': 'primary'
+                    } %}
                 </div>
             </div>
         </div>

@@ -7,9 +7,18 @@
                 <div class="card-body">
                     <h5 class="card-title">Login</h5>
                     {% if error %}
-                        <div class="alert alert-danger mb-2">
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
-                        </div>
+                        {% include('admin/includes/alert.html.twig') with {
+                            'message': error.messageKey|trans(error.messageData, 'security'),
+                            'label': 'danger',
+                            'classNames': 'mb-3'
+                        } %}
+                    {% endif %}
+                    {% if app.request.cookies.get('tbc_1_implicitLogout') %}
+                        {% include('admin/includes/alert.html.twig') with {
+                            'message': 'You have been logged out because you\'re session has expired. Please log in again!',
+                            'label': 'info',
+                            'classNames': 'mb-3'
+                        } %}
                     {% endif %}
 
                     <form action="{{ path('admin_security_login') }}" method="post">

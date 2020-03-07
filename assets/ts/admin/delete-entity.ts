@@ -1,4 +1,5 @@
 import * as $ from "jquery";
+import {setCookie} from "./utils/cookie";
 
 const deleteRowFromList = (id: string)=> {
     const row:JQuery = $(`#js-row-${id}`);
@@ -6,18 +7,23 @@ const deleteRowFromList = (id: string)=> {
     row.remove();
 };
 
-const deleteEntity = (id: string, url: string)=> {
+const deleteEntity = (id: string, url: string) => {
     return $.ajax({
         url,
         method: "POST",
         dataType: "json",
         contentType: "application/json",
         data: JSON.stringify({id})
-    }).then(() => id);
+    });
 };
 
-const doDelete = async (id: string, url: string) => {
-    deleteEntity(id, url);
+const redirectOnForbiddenResponse = (status: number)=> {
+    if(status === 403) {
+        setCookie("tbc_1_implicitLogout", "1", null);
+        setCookie("tbc_1_redirectUri", window.location.pathname, null);
+
+        window.location.href = window._config.loginUri;
+    }
 };
 
 export const init = () => {
@@ -28,12 +34,16 @@ export const init = () => {
     deleteButtons.on("click.delete", (e: Event)=> {
         const button:JQuery<EventTarget> = $(e.currentTarget);
         const id: string = button.data("id");
-        const confirm = window.confirm(button.data("confirm-message"));
+        const confirm = window.confirm(`${window._config.deleteEntityConfirmMessage} ${button.data("name")}`);
 
         if(confirm) {
-            doDelete(button.data("id"), button.data("url"))
-                .then(()=> {deleteRowFromList(id)})
-                .catch((data: any)=> {console.error(data)});
+            deleteEntity(id, button.data("url"))
+                .then(() => {
+                    deleteRowFromList(id)
+                })
+                .fail((jqXHR: any) => {
+                    redirectOnForbiddenResponse(jqXHR.status);
+                }).catch(e=> console.error(e));
         }
     });
 };

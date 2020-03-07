@@ -58,8 +58,6 @@ trait Timestampable
         $now = new \DateTime();
         $this->setUpdatedAt($now);
 
-        dump($now);
-
         if($this->getCreatedAt() === null) {
             $this->setCreatedAt($now);
         }

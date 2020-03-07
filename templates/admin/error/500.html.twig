@@ -5,12 +5,13 @@
         <div class="col-12 col-md-8 col-lg-5 col-xl-4">
             <div class="card w-100">
                 <div class="card-body">
-                    <h5 class="card-title">😥 Something went wrong!</h5>
-
-                    <div class="alert alert-primary">
-                        The page that you are looking for can't be found in the admin.
-                        Try going back to the <a href="{{ path('admin_dashboard') }}">Dashboard</a>
-                    </div>
+                    <h5>😥 Something went wrong!</h5>
+                    {% set dashBoardUri = path('admin_dashboard') %}
+                    {% set message = "An error has happened. Try going back to the <a href=\"#{dashBoardUri}\">Dashboard</a> or reload the page" %}
+                    {% include('admin/includes/alert.html.twig') with {
+                        'message': message,
+                        'label': 'primary'
+                    } %}
                 </div>
             </div>
         </div>

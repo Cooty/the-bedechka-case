@@ -24,9 +24,11 @@
         <div class="col-12 col-md-8 col-lg-6">
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ label }} mb-3">
-                        {{ message }}
-                    </div>
+                    {% include('admin/includes/alert.html.twig') with {
+                        'message': message,
+                        'label': label,
+                        'classNames': 'mb-3'
+                    } %}
                 {% endfor %}
             {% endfor %}
 
