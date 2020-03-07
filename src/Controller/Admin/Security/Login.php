@@ -19,7 +19,10 @@ class Login extends AbstractAdminController
      * @param Request $request
      * @return Response
      */
-    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
+    public function login(
+        AuthenticationUtils $authenticationUtils,
+        Request $request
+    ): Response
     {
         if(empty($this->getUser())) {
             return $this->render(

@@ -1,4 +1,5 @@
 import * as $ from "jquery";
+import {setCookie} from "./utils/cookie";
 
 const deleteRowFromList = (id: string)=> {
     const row:JQuery = $(`#js-row-${id}`);
@@ -18,9 +19,10 @@ const deleteEntity = (id: string, url: string) => {
 
 const redirectOnForbiddenResponse = (status: number)=> {
     if(status === 403) {
-        window.location.href = `${window._config.loginUri}&
-            redirectUri=${encodeURIComponent(window.location.pathname)}&
-            implicitLogout=1`;
+        setCookie("tbc_1_implicitLogout", "1", null);
+        setCookie("tbc_1_redirectUri", window.location.pathname, null);
+
+        window.location.href = window._config.loginUri;
     }
 };
 

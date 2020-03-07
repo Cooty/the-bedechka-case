@@ -13,7 +13,7 @@
                             'classNames': 'mb-3'
                         } %}
                     {% endif %}
-                    {% if app.request.get('implicitLogout') %}
+                    {% if app.request.cookies.get('tbc_1_implicitLogout') %}
                         {% include('admin/includes/alert.html.twig') with {
                             'message': 'You have been logged out because you\'re session has expired. Please log in again!',
                             'label': 'info',
