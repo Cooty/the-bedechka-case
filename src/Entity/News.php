@@ -16,6 +16,9 @@ class News
     use Timestampable;
     use Archivable;
 
+    const URL_PARAM_NAME = 'news';
+    const DISPLAY_NAME = 'news item';
+
     /**
      * @var UuidInterface
      *

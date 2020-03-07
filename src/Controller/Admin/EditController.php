@@ -3,7 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\MapCase;
+use App\Entity\News;
 use App\Enum\Admin\FlashTypes;
+use App\Form\Admin\NewsForm;
+use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -36,21 +39,29 @@ class EditController extends AbstractAdminController
      * @var FormFactoryInterface
      */
     private $formFactory;
+
     /**
      * @var EntityManagerInterface
      */
     private $entityManager;
 
+    /**
+     * @var NewsRepository
+     */
+    private $newsRepository;
+
     public function __construct(
         MapCaseRepository $mapCaseRepository,
         string $pswChangeSessionKey,
         FormFactoryInterface $formFactory,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        NewsRepository $newsRepository
     )
     {
         $this->mapCaseRepository = $mapCaseRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
+        $this->newsRepository = $newsRepository;
 
         parent::__construct($pswChangeSessionKey);
     }
@@ -73,6 +84,24 @@ class EditController extends AbstractAdminController
 
     }
 
+    private function getEntityAndForm(string $entityName, string $id): array
+    {
+        switch ($entityName) {
+            case MapCase::URL_PARAM_NAME:
+                $entity = $this->mapCaseRepository->find($id);
+                $form = $this->formFactory->create(MapCaseEditForm::class, $entity);
+                break;
+            case News::URL_PARAM_NAME:
+                $entity = $this->newsRepository->find($id);
+                $form = $this->formFactory->create(NewsForm::class, $entity);
+                break;
+            default:
+                throw $this->createNotFoundException();
+        }
+
+        return [$entity, $form];
+    }
+
     /**
      * @Route("/edit/{entityName}/{id}", name="admin_entity_edit")
      * @param Request $request
@@ -88,12 +117,7 @@ class EditController extends AbstractAdminController
             return $this->redirectToPasswordChange();
         }
 
-        if ($entityName === MapCase::URL_PARAM_NAME) {
-            $entity = $this->mapCaseRepository->find($id);
-            $form = $this->formFactory->create(MapCaseEditForm::class, $entity);
-        } else {
-            throw $this->createNotFoundException();
-        }
+        list($entity, $form) = $this->getEntityAndForm($entityName, $id);
 
         $form->handleRequest($request);
 

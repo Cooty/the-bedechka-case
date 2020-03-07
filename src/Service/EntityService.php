@@ -3,7 +3,9 @@
 namespace App\Service;
 
 use App\Entity\MapCase;
+use App\Entity\News;
 use App\Repository\MapCaseRepository;
+use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class EntityService
@@ -18,13 +20,20 @@ class EntityService
      */
     public $entityManager;
 
+    /**
+     * @var NewsRepository
+     */
+    private $newsRepository;
+
     public function __construct(
         MapCaseRepository $mapCaseRepository,
+        NewsRepository $newsRepository,
         EntityManagerInterface $entityManager
     )
     {
         $this->mapCaseRepository = $mapCaseRepository;
         $this->entityManager = $entityManager;
+        $this->newsRepository = $newsRepository;
     }
 
     /**
@@ -32,12 +41,15 @@ class EntityService
      * @param string $id
      * @return object|null
      */
-    public function getEntity(string $entityName, string $id)
+    public function getEntityById(string $entityName, string $id)
     {
-        if($entityName === MapCase::URL_PARAM_NAME) {
-            return $this->mapCaseRepository->find($id);
-        } else {
-            return null;
+        switch ($entityName) {
+            case MapCase::URL_PARAM_NAME:
+                return $this->mapCaseRepository->find($id);
+            case News::URL_PARAM_NAME:
+                return $this->newsRepository->find($id);
+            default:
+                return null;
         }
     }
 }

@@ -60,7 +60,7 @@ class ArchiveController
 
         $id = $this->jsonAPI->getIDFromRequestBody($request);
 
-        $entity = $this->entityService->getEntity($entityName, $id);
+        $entity = $this->entityService->getEntityById($entityName, $id);
 
         if(empty($entity)) {
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_NOT_FOUND);

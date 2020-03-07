@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Enum\Admin\FlashTypes;
+use App\Form\Admin\NewsForm;
+use App\Entity\News;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -33,6 +35,31 @@ class AddController extends AbstractAdminController
      * @var EntityManagerInterface
      */
     private $entityManager;
+
+    /**
+     * @param AbstractEntityHandler|null $handler
+     * @param object|null $entity
+     * @param array $params
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    private function submit(?AbstractEntityHandler $handler, ?$entity, array $params = [])
+    {
+        try {
+            if($handler) {
+                $entity = $handler->getEntity($params);
+            }
+
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
+            $this->addFlash(FlashTypes::OK, 'The new '.$entity::DISPLAY_NAME .' has been created!');
+
+            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+
+    }
 
     /**
      * @var LoggerInterface
@@ -53,26 +80,26 @@ class AddController extends AbstractAdminController
         parent::__construct($pswChangeSessionKey);
     }
 
-    /**
-     * @param AbstractEntityHandler $handler
-     * @param array $params
-     * @param string $entityName
-     * @return RedirectResponse
-     * @throws Exception
-     */
-    private function submit(AbstractEntityHandler $handler, array $params, string $entityName)
+    private function getSubmitParams(string $entityName): array
     {
-        try {
-            $entity = $handler->getEntity($params);
-            $this->entityManager->persist($entity);
-            $this->entityManager->flush();
-            $this->addFlash(FlashTypes::OK, 'The new '.$entity::DISPLAY_NAME .' has been created!');
-
-            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entityName]);
-        } catch (Exception $exception) {
-            throw $exception;
+        switch ($entityName) {
+            case MapCase::URL_PARAM_NAME:
+                $entity = new MapCase();
+                $form = $this->formFactory->create(MapCaseForm::class, $entity);
+                $params = ['upload_path' => $this->getParameter('map_images_directory')];
+                $handler = new MapCaseHandler($entity, $form);
+                break;
+            case News::URL_PARAM_NAME:
+                $entity = new News();
+                $form = $this->formFactory->create(NewsForm::class, $entity);
+                $params = [];
+                $handler = null;
+                break;
+            default:
+                throw $this->createNotFoundException();
         }
 
+        return [$entity, $form, $params, $handler];
     }
 
     /**
@@ -85,25 +112,17 @@ class AddController extends AbstractAdminController
      */
     public function add(Request $request, string $entityName)
     {
-        // TODO: Figure out a way where we don't have to copy-paste this logic to all admin controllers! Events?
         if ($this->checkForPasswordChangeSession($request)) {
             return $this->redirectToPasswordChange();
         }
 
-        if ($entityName === MapCase::URL_PARAM_NAME) {
-            $entity = new MapCase();
-            $form = $this->formFactory->create(MapCaseForm::class, $entity);
-            $params = ['upload_path' => $this->getParameter('map_images_directory')];
-            $handler = new MapCaseHandler($entity, $form);
-        } else {
-            throw $this->createNotFoundException();
-        }
+        list($entity, $form, $params, $handler) = $this->getSubmitParams($entityName);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                return $this->submit($handler, $params, $entityName);
+                return $this->submit($handler, $entity, $params);
             } catch (Exception $exception) {
                 $this->addFlash(FlashTypes::ERROR, $exception->getMessage());
             }
