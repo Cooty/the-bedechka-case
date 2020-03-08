@@ -33,7 +33,8 @@ class NewsForm extends AbstractType
             ])
             ->add('source', TextType::class, [
                 'label' => 'Source',
-                'constraints' => new NotBlank()
+                'required' => false,
+                'help' => 'If left empty the domain name will be taken from the link above'
             ])
             ->add('save', SubmitType::class, ['label'=> 'Save News Item']);
     }

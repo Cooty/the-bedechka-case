@@ -9,10 +9,13 @@ use App\Form\Admin\MapCaseForm;
 use App\Form\Admin\NewsForm;
 use App\Repository\MapCaseRepository;
 use App\Repository\NewsRepository;
+use App\Service\Admin\AbstractEntityHandler;
 use App\Service\Admin\MapCaseHandler;
+use App\Service\Admin\NewsHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Exception;
 
 class EntityService
 {
@@ -91,22 +94,26 @@ class EntityService
         return [$items, $entityDisplayName];
     }
 
-    public function getEntityAndForm(string $entityName, string $id): array
+    public function getSubmitParamsForExisting(string $entityName, string $id): array
     {
         switch ($entityName) {
             case MapCase::URL_PARAM_NAME:
                 $entity = $this->mapCaseRepository->find($id);
                 $form = $this->formFactory->create(MapCaseEditForm::class, $entity);
+                $params = [];
+                $handler = null;
                 break;
             case News::URL_PARAM_NAME:
                 $entity = $this->newsRepository->find($id);
                 $form = $this->formFactory->create(NewsForm::class, $entity);
+                $params = [];
+                $handler = new NewsHandler($entity, $form);
                 break;
             default:
                 throw new NotFoundHttpException();
         }
 
-        return [$entity, $form];
+        return [$entity, $form, $params, $handler];
     }
 
     public function getSubmitParams(string $entityName): array
@@ -122,12 +129,58 @@ class EntityService
                 $entity = new News();
                 $form = $this->formFactory->create(NewsForm::class, $entity);
                 $params = [];
-                $handler = null;
+                $handler = new NewsHandler($entity, $form);
                 break;
             default:
                 throw new NotFoundHttpException();
         }
 
         return [$entity, $form, $params, $handler];
+    }
+
+    /**
+     * @param AbstractEntityHandler|null $handler
+     * @param object|null $entity
+     * @param array $params
+     * @return object
+     * @throws Exception
+     */
+    public function create(?AbstractEntityHandler $handler, $entity, array $params = [])
+    {
+        try {
+            if($handler) {
+                $entity = $handler->getEntity($params);
+            }
+
+            $this->entityManager->persist($entity);
+            $this->entityManager->flush();
+
+            return $entity;
+
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    /**
+     * @param AbstractEntityHandler|null $handler
+     * @param $entity
+     * @param array $params
+     * @return object
+     * @throws Exception
+     */
+    public function update(?AbstractEntityHandler $handler, $entity, array $params = [])
+    {
+        try {
+            if($handler) {
+                $entity = $handler->getEntity($params);
+            }
+
+            $this->entityManager->flush();
+
+            return $entity;
+        } catch (Exception $exception) {
+            throw $exception;
+        }
     }
 }
