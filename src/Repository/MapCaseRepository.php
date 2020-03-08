@@ -29,8 +29,7 @@ class MapCaseRepository extends ServiceEntityRepository
             ->where('mc.archived = false')
             ->orderBy('mc.createdAt', 'DESC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     /*

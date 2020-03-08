@@ -63,3 +63,7 @@ services:
         $isDebug: '%kernel.debug%'
       tags:
         - { name: kernel.event_listener, event: kernel.exception }
+
+    App\Service\EntityService:
+      arguments:
+        $mapImagesDirectory: '%map_images_directory%'

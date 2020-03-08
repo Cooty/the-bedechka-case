@@ -11,18 +11,22 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
      * @var string
      */
     private $locale;
+
     /**
      * @var string
      */
     private $languageSettingParamName;
+
     /**
      * @var string
      */
     private $defaultLocale;
+
     /**
      * @var string
      */
     private $secondaryLocale;
+
     /**
      * @var string
      */

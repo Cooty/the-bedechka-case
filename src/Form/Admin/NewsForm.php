@@ -2,6 +2,7 @@
 
 namespace App\Form\Admin;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Url;
@@ -33,6 +34,7 @@ class NewsForm extends AbstractType
             ->add('source', TextType::class, [
                 'label' => 'Source',
                 'constraints' => new NotBlank()
-            ]);
+            ])
+            ->add('save', SubmitType::class, ['label'=> 'Save News Item']);
     }
 }

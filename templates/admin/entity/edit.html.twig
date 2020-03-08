@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% set name = (entity.nameEN is defined) ? entity.nameEN : '' %}
+{% set name = (entity.nameEN is defined) ? entity.nameEN : entity.title %}
 
 {% block title %}
     Edit: {{ name }}

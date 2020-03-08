@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Handler\Admin;
+namespace App\Service\Admin;
 
 use App\Entity\LatLongCords;
 use Exception;
