@@ -62,4 +62,14 @@ trait Timestampable
             $this->setCreatedAt($now);
         }
     }
+
+    /**
+     * @ORM\PreUpdate()
+     * @throws Exception
+     */
+    public function setTimestampOnUpdate(): void
+    {
+        $now = new \DateTime();
+        $this->setUpdatedAt($now);
+    }
 }

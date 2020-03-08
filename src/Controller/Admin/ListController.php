@@ -2,16 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\MapCase;
-use App\Repository\MapCaseRepository;
+use App\Service\EntityService;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Traits\Admin\Security\PasswordChange;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -28,23 +25,24 @@ class ListController extends AbstractAdminController
      * @var LoggerInterface
      */
     private $logger;
+
     /**
-     * @var MapCaseRepository
+     * @var EntityService
      */
-    private $casesRepository;
+    private $entityService;
 
     public function __construct(
         string $pswChangeSessionKey,
         EntityManagerInterface $entityManager,
         LoggerInterface $logger,
-        MapCaseRepository $casesRepository
+        EntityService $entityService
     )
     {
         $this->entityManager = $entityManager;
         $this->logger = $logger;
+        $this->entityService = $entityService;
 
         parent::__construct($pswChangeSessionKey);
-        $this->casesRepository = $casesRepository;
     }
 
     /**
@@ -55,14 +53,11 @@ class ListController extends AbstractAdminController
      */
     public function edit(Request $request, string $entityName): Response
     {
-        if($this->checkForPasswordChangeSession($request)) {
+        if ($this->checkForPasswordChangeSession($request)) {
             return $this->redirectToPasswordChange();
         }
 
-        if($entityName === 'cases') {
-            $items = $this->casesRepository->findActive();
-            $entityDisplayName = MapCase::DISPLAY_NAME;
-        }
+        list($items, $entityDisplayName) = $this->entityService->getItemsAndDisplayName($entityName);
 
         return $this->render('admin/entity/list.html.twig', [
             'items' => $items,

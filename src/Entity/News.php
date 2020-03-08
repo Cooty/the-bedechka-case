@@ -6,6 +6,7 @@ use App\Traits\Archivable;
 use App\Traits\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NewsRepository")
@@ -15,6 +16,9 @@ class News
 {
     use Timestampable;
     use Archivable;
+
+    const URL_PARAM_NAME = 'news';
+    const DISPLAY_NAME = 'news item';
 
     /**
      * @var UuidInterface
@@ -28,16 +32,18 @@ class News
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=400)
+     * @Assert\Url(message="Please enter a valid web address")
      */
     private $link;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $source;
 
@@ -75,7 +81,7 @@ class News
         return $this->source;
     }
 
-    public function setSource(string $source): self
+    public function setSource(?string $source): self
     {
         $this->source = $source;
 
