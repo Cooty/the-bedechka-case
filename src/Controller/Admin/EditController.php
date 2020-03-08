@@ -47,6 +47,25 @@ class EditController extends AbstractAdminController
     }
 
     /**
+     * @param $entity
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    private function submit($entity)
+    {
+        try {
+            $this->entityManager->flush();
+            $name = method_exists($entity, 'getNameEN') ? $entity->getNameEN() : $entity->getTitle();
+
+            $this->addFlash(FlashTypes::OK, $name . ' has been updated!');
+
+            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
+        } catch (Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    /**
      * @Route("/edit/{entityName}/{id}", name="admin_entity_edit")
      * @param Request $request
      * @param string $entityName
@@ -78,25 +97,5 @@ class EditController extends AbstractAdminController
             'entity' => $entity,
             'entityDisplayName' => $entity::DISPLAY_NAME
         ]);
-    }
-
-    /**
-     * @param $entity
-     * @return RedirectResponse
-     * @throws Exception
-     */
-    private function submit($entity)
-    {
-        try {
-            $this->entityManager->flush();
-            $name = method_exists($entity, 'getNameEN') ? $entity->getNameEN() : $entity->getTitle();
-
-            $this->addFlash(FlashTypes::OK, $name . ' has been updated!');
-
-            return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
-        } catch (Exception $exception) {
-            throw $exception;
-        }
-
     }
 }
