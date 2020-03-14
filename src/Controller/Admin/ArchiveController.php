@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Service\EntityService;
 use App\Service\JSONAPIService;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,15 +32,22 @@ class ArchiveController
      */
     private $entityService;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         Security $security,
         EntityService $entityService,
-        JSONAPIService $jsonAPI
+        JSONAPIService $jsonAPI,
+        LoggerInterface $logger
     )
     {
         $this->security = $security;
         $this->jsonAPI = $jsonAPI;
         $this->entityService = $entityService;
+        $this->logger = $logger;
     }
 
     /**
@@ -70,9 +78,16 @@ class ArchiveController
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        $entity->setArchived(true);
-        $this->entityService->entityManager->flush();
+        try {
+            $entity->setArchived(true);
+            $this->entityService->entityManager->flush();
 
-        return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_OK);
+            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_OK);
+        } catch(\Exception $exception) {
+            $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+
+            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
     }
 }

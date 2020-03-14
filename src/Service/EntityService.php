@@ -4,15 +4,21 @@ namespace App\Service;
 
 use App\Entity\MapCase;
 use App\Entity\News;
-use App\Form\Admin\MapCaseEditForm;
-use App\Form\Admin\MapCaseForm;
-use App\Form\Admin\NewsForm;
+use App\Form\Admin\MapCaseEditType;
+use App\Form\Admin\MapCaseType;
+use App\Form\Admin\NewsType;
+use App\Form\Admin\ScreeningType;
+use App\Service\Admin\ScreeningHandler;
 use App\Repository\MapCaseRepository;
 use App\Repository\NewsRepository;
+use App\Entity\Screening;
+use App\Service\Admin\ScreeningUpdateHandler;
+use App\Repository\ScreeningRepository;
 use App\Service\Admin\AbstractEntityHandler;
 use App\Service\Admin\MapCaseHandler;
 use App\Service\Admin\NewsHandler;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use \Exception;
@@ -44,12 +50,24 @@ class EntityService
      */
     private $mapImagesDirectory;
 
+    /**
+     * @var ScreeningRepository
+     */
+    private $screeningRepository;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         MapCaseRepository $mapCaseRepository,
         NewsRepository $newsRepository,
+        ScreeningRepository $screeningRepository,
         EntityManagerInterface $entityManager,
         FormFactoryInterface $formFactory,
-        string $mapImagesDirectory
+        string $mapImagesDirectory,
+        LoggerInterface $logger
     )
     {
         $this->mapCaseRepository = $mapCaseRepository;
@@ -57,6 +75,8 @@ class EntityService
         $this->newsRepository = $newsRepository;
         $this->formFactory = $formFactory;
         $this->mapImagesDirectory = $mapImagesDirectory;
+        $this->screeningRepository = $screeningRepository;
+        $this->logger = $logger;
     }
 
     /**
@@ -71,6 +91,8 @@ class EntityService
                 return $this->mapCaseRepository->find($id);
             case News::URL_PARAM_NAME:
                 return $this->newsRepository->find($id);
+            case Screening::URL_PARAM_NAME:
+                return $this->screeningRepository->find($id);
             default:
                 return null;
         }
@@ -87,6 +109,10 @@ class EntityService
                 $items = $this->newsRepository->findActive();
                 $entityDisplayName = News::DISPLAY_NAME;
                 break;
+            case Screening::URL_PARAM_NAME:
+                $items = $this->screeningRepository->findActive();
+                $entityDisplayName = Screening::DISPLAY_NAME;
+                break;
             default:
                 throw new NotFoundHttpException();
         }
@@ -99,18 +125,31 @@ class EntityService
         switch ($entityName) {
             case MapCase::URL_PARAM_NAME:
                 $entity = $this->mapCaseRepository->find($id);
-                $form = $this->formFactory->create(MapCaseEditForm::class, $entity);
+                $form = $this->formFactory->create(MapCaseEditType::class, $entity);
                 $params = [];
                 $handler = null;
+                $formHandler = null;
                 break;
             case News::URL_PARAM_NAME:
                 $entity = $this->newsRepository->find($id);
-                $form = $this->formFactory->create(NewsForm::class, $entity);
+                $form = $this->formFactory->create(NewsType::class, $entity);
                 $params = [];
                 $handler = new NewsHandler($entity, $form);
+                $formHandler = null;
+                break;
+            case Screening::URL_PARAM_NAME:
+                $entity = $this->screeningRepository->find($id);
+                $form = $this->formFactory->create(ScreeningType::class, $entity);
+                $params = [];
+                $handler = new ScreeningHandler($entity, $form);
+                $formHandler = new ScreeningUpdateHandler($entity, $form);
                 break;
             default:
                 throw new NotFoundHttpException();
+        }
+
+        if($formHandler) {
+            $form = $formHandler->getForm();
         }
 
         return [$entity, $form, $params, $handler];
@@ -121,15 +160,21 @@ class EntityService
         switch ($entityName) {
             case MapCase::URL_PARAM_NAME:
                 $entity = new MapCase();
-                $form = $this->formFactory->create(MapCaseForm::class, $entity);
+                $form = $this->formFactory->create(MapCaseType::class, $entity);
                 $params = ['upload_path' => $this->mapImagesDirectory];
                 $handler = new MapCaseHandler($entity, $form);
                 break;
             case News::URL_PARAM_NAME:
                 $entity = new News();
-                $form = $this->formFactory->create(NewsForm::class, $entity);
+                $form = $this->formFactory->create(NewsType::class, $entity);
                 $params = [];
                 $handler = new NewsHandler($entity, $form);
+                break;
+            case Screening::URL_PARAM_NAME:
+                $entity = new Screening();
+                $form = $this->formFactory->create(ScreeningType::class, $entity);
+                $params = [];
+                $handler = new ScreeningHandler($entity, $form);
                 break;
             default:
                 throw new NotFoundHttpException();
@@ -158,6 +203,7 @@ class EntityService
             return $entity;
 
         } catch (Exception $exception) {
+            $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
             throw $exception;
         }
     }
@@ -180,6 +226,7 @@ class EntityService
 
             return $entity;
         } catch (Exception $exception) {
+            $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
             throw $exception;
         }
     }

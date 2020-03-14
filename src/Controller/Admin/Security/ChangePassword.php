@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use App\Form\Admin\Security\ChangePassword as ChangePasswordForm;
+use App\Form\Admin\Security\ChangePasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security as CoreSecurity;
@@ -69,7 +69,7 @@ class ChangePassword extends AbstractAdminController
     ): Response
     {
         $user = $security->getUser();
-        $form = $this->createForm(ChangePasswordForm::class, $user);
+        $form = $this->createForm(ChangePasswordType::class, $user);
         $form->handleRequest($request);
         $session = $request->getSession();
 
