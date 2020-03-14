@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Validator\Constraints\Image;
 use App\Enum\Admin\ImageSizes;
 
-class MapCaseEditForm extends AbstractType
+class MapCaseEditType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {

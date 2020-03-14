@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use App\Entity\News;
 
-class NewsForm extends AbstractType
+class NewsType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {

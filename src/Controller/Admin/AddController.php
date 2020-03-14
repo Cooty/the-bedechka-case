@@ -65,7 +65,8 @@ class AddController extends AbstractAdminController
 
                 return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
             } catch (Exception $exception) {
-                $this->addFlash(FlashTypes::ERROR, $exception->getMessage());
+                $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+                $this->addFlash(FlashTypes::ERROR, 'An error has happened while saving!');
             }
         }
 

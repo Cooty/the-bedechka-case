@@ -7,6 +7,7 @@ use App\Service\Admin\AbstractEntityHandler;
 use App\Service\EntityService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,16 +36,23 @@ class EditController extends AbstractAdminController
      */
     private $entityService;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         string $pswChangeSessionKey,
         EntityManagerInterface $entityManager,
-        EntityService $entityService
+        EntityService $entityService,
+        LoggerInterface $logger
     )
     {
         $this->entityManager = $entityManager;
         $this->entityService = $entityService;
 
         parent::__construct($pswChangeSessionKey);
+        $this->logger = $logger;
     }
 
     /**
@@ -76,7 +84,8 @@ class EditController extends AbstractAdminController
 
                 return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
             } catch (Exception $exception) {
-                $this->addFlash(FlashTypes::ERROR, $exception->getMessage());
+                $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+                $this->addFlash(FlashTypes::ERROR, 'An error has happened while saving');
             }
         }
 

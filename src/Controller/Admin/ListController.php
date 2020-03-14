@@ -2,12 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Enum\Admin\FlashTypes;
 use App\Service\EntityService;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -57,11 +59,18 @@ class ListController extends AbstractAdminController
             return $this->redirectToPasswordChange();
         }
 
-        list($items, $entityDisplayName) = $this->entityService->getItemsAndDisplayName($entityName);
+        try {
+            list($items, $entityDisplayName) = $this->entityService->getItemsAndDisplayName($entityName);
 
-        return $this->render('admin/entity/list.html.twig', [
-            'items' => $items,
-            'entityDisplayName' => $entityDisplayName
-        ]);
+            return $this->render('admin/entity/list.html.twig', [
+                'items' => $items,
+                'entityDisplayName' => $entityDisplayName
+            ]);
+        } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+            $this->addFlash(FlashTypes::ERROR, 'An error has happened while listing the items');
+
+            throw new NotFoundHttpException();
+        }
     }
 }

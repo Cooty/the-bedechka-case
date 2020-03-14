@@ -10,7 +10,7 @@ use App\Entity\User;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class ChangePassword extends AbstractType
+class ChangePasswordType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
