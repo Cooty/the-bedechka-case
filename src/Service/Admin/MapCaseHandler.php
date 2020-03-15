@@ -2,7 +2,7 @@
 
 namespace App\Service\Admin;
 
-use App\Entity\LatLongCords;
+use App\Entity\Transport\LatLongCords;
 use Exception;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
