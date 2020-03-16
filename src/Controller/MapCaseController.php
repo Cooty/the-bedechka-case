@@ -8,6 +8,8 @@ use DateInterval;
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -37,13 +39,22 @@ class MapCaseController extends AbstractController
     }
 
     /**
+     * @param Request $request
      * @param string $locale
      * @return JsonResponse
-     * @Route("/map-cases/{locale}", methods={"GET"}, name="api_map_cases")
      * @throws InvalidArgumentException
+     * @Route("/map-cases/{locale}", methods={"GET"}, name="api_map_cases")
      */
-    public function getMapCases(string $locale): JsonResponse
+    public function getMapCases(Request $request, string $locale): JsonResponse
     {
+        $submittedToken = $request->query->get('token');
+
+        if(!$this->isCsrfTokenValid('map-cases', $submittedToken)) {
+            return $this->json(
+                ['message' => Response::$statusTexts[Response::HTTP_UNAUTHORIZED]],
+                Response::HTTP_UNAUTHORIZED);
+        }
+
         $cases = $this->mapCaseRepository->findActive();
         $cache = new FilesystemAdapter();
         $cacheKey = 'map_cases-'.$locale;

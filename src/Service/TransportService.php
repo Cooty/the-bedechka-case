@@ -25,6 +25,7 @@ class TransportService
         $frontendCase->setCoords($coords);
 
         $frontendCase->setLink($case->getLink());
+        $frontendCase->setImage($case->getPictureURL());
 
         return $frontendCase;
     }

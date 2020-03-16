@@ -22,7 +22,7 @@ export class CasesMap {
     }
 
     private static async getLocations(): Promise<ILocations> {
-        const locationsAPIURL: RequestInfo = "/dummy-locations.json";
+        const locationsAPIURL: RequestInfo = `${window._config.mapCaseApiUrl}?token=${window._config.mapCaseEndpointToken}`;
 
         const response = await fetch(locationsAPIURL);
         if(response.status !== 200) {
@@ -93,7 +93,7 @@ export class CasesMap {
         const markers: Marker[] = [];
 
         locations.locations.map((location: ILocation) => {
-            const marker: Marker = window.L.marker([location.coords.lng, location.coords.lat])
+            const marker: Marker = window.L.marker([location.coords.latitude, location.coords.longitude])
                 .addTo(map);
             marker.bindPopup(popupContent(location));
 
