@@ -24,6 +24,7 @@
 
         _config.mapboxAccessToken = "{{ map_box_token }}";
         _config.mapCaseApiUrl = "{{ path('api_map_cases', {'locale': app.request.get('_locale')}) }}";
+        _config.mapCaseEndpointToken = "{{ csrf_token('map-cases') }}";
 
         if(Object.freeze) {
             Object.freeze(_config);

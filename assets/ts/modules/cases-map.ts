@@ -22,7 +22,7 @@ export class CasesMap {
     }
 
     private static async getLocations(): Promise<ILocations> {
-        const locationsAPIURL: RequestInfo = window._config.mapCaseApiUrl;
+        const locationsAPIURL: RequestInfo = `${window._config.mapCaseApiUrl}?token=${window._config.mapCaseEndpointToken}`;
 
         const response = await fetch(locationsAPIURL);
         if(response.status !== 200) {
