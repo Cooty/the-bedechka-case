@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\News;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use App\Enum\Pagination;
 
 /**
  * @method News|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,6 +28,23 @@ class NewsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('n')
             ->select('n')
             ->where('n.archived = false')
+            ->orderBy('n.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param int $pageSize
+     * @param int $offset
+     * @return News[] Returns an array of News objects
+     */
+    public function findActiveByPage(int $pageSize = Pagination::NEWS_PAGE_SIZE, int $offset = 0)
+    {
+        return $this->createQueryBuilder('n')
+            ->select('n')
+            ->where('n.archived = false')
+            ->setFirstResult($offset)
+            ->setMaxResults($pageSize)
             ->orderBy('n.createdAt', 'DESC')
             ->getQuery()
             ->getResult();

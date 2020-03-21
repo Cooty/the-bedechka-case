@@ -1,5 +1,5 @@
 import {ILocation} from "./ILocation";
 
 export interface ILocations {
-    locations?: ILocation[]
+    items?: ILocation[]
 }
