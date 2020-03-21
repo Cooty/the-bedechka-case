@@ -1,9 +1,10 @@
 import {ILocations} from "../interfaces/ILocations";
 import {ILocation} from "../interfaces/ILocation";
-import {Map, LatLngExpression, Marker} from "leaflet";
+import {LatLngExpression, Map, Marker} from "leaflet";
 import {popupContent} from "../templates/popup-content";
 import {openStreetMapsAttribution} from "../templates/open-street-maps-attribution";
 import {mapListNavigationItem} from "../templates/map-list-navigation-item";
+import {getNetworkErrorMessage} from "../utils/error-handling";
 
 const {loadCSS} = require("fg-loadcss/dist/loadCSS");
 
@@ -12,7 +13,7 @@ export class CasesMap {
     private readonly leafletCDNURL: string;
 
     constructor(rootElement: HTMLElement) {
-        if(!rootElement) {
+        if (!rootElement) {
             return;
         }
 
@@ -25,8 +26,8 @@ export class CasesMap {
         const locationsAPIURL: RequestInfo = `${window._config.mapCaseApiUrl}?token=${window._config.mapCaseEndpointToken}`;
 
         const response = await fetch(locationsAPIURL);
-        if(response.status !== 200) {
-            throw new Error(`The URL: ${locationsAPIURL} responded with ${response.status}`);
+        if (response.status !== 200) {
+            throw new Error(getNetworkErrorMessage(locationsAPIURL, response.status));
         } else {
             return await response.json();
         }
@@ -36,8 +37,8 @@ export class CasesMap {
         const leafletJSURL: RequestInfo = `${this.leafletCDNURL}/dist/leaflet.js`;
 
         const response = await fetch(leafletJSURL);
-        if(response.status !== 200) {
-            throw new Error(`The URL: ${leafletJSURL} responded with ${response.status}`);
+        if (response.status !== 200) {
+            throw new Error(getNetworkErrorMessage(leafletJSURL, response.status));
         } else {
             return await response.text();
         }
@@ -56,7 +57,7 @@ export class CasesMap {
         this.rootElement.style.display = "none";
     }
 
-    private static makeMap():Map {
+    private static makeMap(): Map {
         const mapContainerId: any = "js-cases-map-container";
         const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
         const defaultZoom = 7;
@@ -75,13 +76,12 @@ export class CasesMap {
     }
 
     private makeNavigationListItems(locations: ILocations, jsSelectorClass: string): string {
-        return locations.locations.map(location=> {
+        return locations.items.map(location => {
             return mapListNavigationItem(location.name, jsSelectorClass);
         }).join("");
     }
 
-    private appendAndReturnNavigationListItems(navigationListItems: string, jsSelectorClass: string): NodeList
-    {
+    private appendAndReturnNavigationListItems(navigationListItems: string, jsSelectorClass: string): NodeList {
         const locationList = this.rootElement.querySelector(".js-cases-map-location-list");
 
         locationList.innerHTML = navigationListItems;
@@ -92,7 +92,7 @@ export class CasesMap {
     private addLocationsToMap(locations: ILocations, map: Map): Marker[] {
         const markers: Marker[] = [];
 
-        locations.locations.map((location: ILocation) => {
+        locations.items.map((location: ILocation) => {
             const marker: Marker = window.L.marker([location.coords.latitude, location.coords.longitude])
                 .addTo(map);
             marker.bindPopup(popupContent(location));
@@ -108,13 +108,13 @@ export class CasesMap {
         // need this for IE and Edge to loop through a NodeList
         const navigationItemsList = Array.from(navigationItems);
 
-        navigationItemsList.map((navigationItem: HTMLElement, index: number)=> {
-            navigationItem.addEventListener("click", ()=> {
-                if(navigationItem.classList.contains(navigationButtonActiveClass)) {
+        navigationItemsList.map((navigationItem: HTMLElement, index: number) => {
+            navigationItem.addEventListener("click", () => {
+                if (navigationItem.classList.contains(navigationButtonActiveClass)) {
                     return;
                 }
 
-                navigationItemsList.map((navigationItem: HTMLElement)=> {
+                navigationItemsList.map((navigationItem: HTMLElement) => {
                     navigationItem.classList.remove(navigationButtonActiveClass);
                 });
 
@@ -136,29 +136,28 @@ export class CasesMap {
         this.controlPopupsFromNavigationList(navigationListItems, markers);
     }
 
-    public init() {
+    private async leafletCSSCallback() {
         try {
-            const leafletCSSURL = `${this.leafletCDNURL}/dist/leaflet.css`;
-            const leafletCSS = loadCSS(leafletCSSURL);
-
-            window.onloadCSS(leafletCSS, ()=> {
-                try {
-                    CasesMap.getLocations().then(locationsData=> {
-                        return locationsData;
-                    }).then((locationsData)=> {
-                        this.loadLeafletJS().then((scriptText)=> {
-                            this.initCasesMap(scriptText, locationsData);
-                        }).catch((e) => {
-                            this.handleError(e);
-                        });
-                    });
-                } catch (e) {
+            await CasesMap.getLocations().then(locationsData => {
+                return locationsData;
+            }).then((locationsData) => {
+                this.loadLeafletJS().then((scriptText) => {
+                    this.initCasesMap(scriptText, locationsData);
+                }).catch((e) => {
                     this.handleError(e);
-                }
+                });
             });
-        } catch(e) {
-            this.handleError(e);
+        } catch (e) {
+            this.handleError(e)
         }
+
+    }
+
+    public init() {
+        const leafletCSSURL = `${this.leafletCDNURL}/dist/leaflet.css`;
+        const leafletCSS = loadCSS(leafletCSSURL);
+
+        window.onloadCSS(leafletCSS, this.leafletCSSCallback.bind(this));
     }
 
 }
