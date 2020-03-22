@@ -1,3 +1,6 @@
-<div class="alert alert-{{ label }} {{ classNames is defined ? classNames : '' }}">
-    {{  message|raw }}
-</div>
+{% if message is defined %}
+    {% set type = label is defined ? label : 'primary' %}
+    <div class="alert alert-{{ label }} {{ classNames is defined ? classNames : '' }}">
+        {{  message|raw }}
+    </div>
+{% endif %}
