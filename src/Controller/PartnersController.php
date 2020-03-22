@@ -47,7 +47,7 @@ class PartnersController extends AbstractController
     }
 
     /**
-     * @Route({"en": "/partners", "bg": "/партньори"}, name="partners")
+     * @Route({"en": "/partners", "bg": "/партньори"}, name="partners", methods={"GET"})
      * @param Request $request
      * @return Response
      */

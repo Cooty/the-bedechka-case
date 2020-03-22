@@ -1,10 +1,10 @@
 import "../scss/app.scss";
 
-import {Header} from "./modules/header";
-import {Timeline} from "./modules/timeline";
-import {CasesMap} from "./modules/cases-map";
-
-import {IConfig} from "./interfaces/IConfig";
+import Header from "./modules/header";
+import Timeline from "./modules/timeline";
+import CasesMap from "./modules/cases-map";
+import NewsPagination from "./modules/news-pagination";
+import IConfig from "./interfaces/IConfig";
 
 declare global {
     interface Window {
@@ -28,9 +28,16 @@ class App {
     }
 
     public init() {
-        new Header(document.querySelector(".js-header"));
-        new Timeline(document.querySelector(".js-timeline"));
-        new CasesMap(document.querySelector(".js-cases-map"));
+        new Header(document.getElementById("js-header"));
+        new Timeline(document.getElementById("js-timeline"));
+
+        if(window._config && window._config.mapCaseApiUrl) {
+            new CasesMap(document.getElementById("js-cases-map"));
+        }
+
+        if(window._config && window._config.newsHasPagination) {
+            new NewsPagination(document.getElementById("js-news-load-more"));
+        }
     }
 }
 

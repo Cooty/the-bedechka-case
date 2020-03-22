@@ -1,6 +1,6 @@
-import {Responsive} from '../utils/responsive';
+import Responsive from '../utils/responsive';
 
-export class Header {
+export default class Header {
     private readonly header: HTMLElement;
 
     constructor(header: HTMLElement) {

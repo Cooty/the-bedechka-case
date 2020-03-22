@@ -393,6 +393,20 @@
                     Something bad happened, try reloading the page or go back to the homepage.
                 </target>
             </trans-unit>
+
+            <trans-unit id="generic.load.more">
+                <source>generic.load.more</source>
+                <target>
+                    Show more
+                </target>
+            </trans-unit>
+
+            <trans-unit id="generic.loading">
+                <source>generic.loading</source>
+                <target>
+                    Loading
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

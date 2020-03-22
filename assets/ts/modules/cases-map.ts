@@ -1,14 +1,22 @@
-import {ILocations} from "../interfaces/ILocations";
-import {ILocation} from "../interfaces/ILocation";
+import ILocations from "../interfaces/ILocations";
+import ILocation from "../interfaces/ILocation";
 import {LatLngExpression, Map, Marker} from "leaflet";
-import {popupContent} from "../templates/popup-content";
-import {openStreetMapsAttribution} from "../templates/open-street-maps-attribution";
-import {mapListNavigationItem} from "../templates/map-list-navigation-item";
+import popupContent from "../templates/popup-content";
+import openStreetMapsAttribution from "../templates/open-street-maps-attribution";
+import mapListNavigationItem from "../templates/map-list-navigation-item";
 import {getNetworkErrorMessage} from "../utils/error-handling";
-
+import IConfig from "../interfaces/IConfig";
 const {loadCSS} = require("fg-loadcss/dist/loadCSS");
 
-export class CasesMap {
+declare global {
+    interface Window {
+        _config?: IConfig,
+        L?: any,
+        onloadCSS?: Function
+    }
+}
+
+export default class CasesMap {
     private readonly rootElement: HTMLElement;
     private readonly leafletCDNURL: string;
 

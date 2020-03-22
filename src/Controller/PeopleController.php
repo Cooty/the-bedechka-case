@@ -39,7 +39,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route({"en": "/people", "bg": "/участници"}, name="people")
+     * @Route({"en": "/people", "bg": "/участници"}, name="people", methods={"GET"})
      * @param Request $request
      * @return Response
      */

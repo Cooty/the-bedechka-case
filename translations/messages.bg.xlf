@@ -394,6 +394,20 @@
                     Случи се нещо лошо, опитайте да презаредите страницата или да се върнете към началната страница.
                 </target>
             </trans-unit>
+
+            <trans-unit id="generic.load.more">
+                <source>generic.load.more</source>
+                <target>
+                    Покажи още
+                </target>
+            </trans-unit>
+
+            <trans-unit id="generic.loading">
+                <source>generic.loading</source>
+                <target>
+                    Зареждане
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

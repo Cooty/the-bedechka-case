@@ -1,5 +1,5 @@
-import {ILocation} from "./ILocation";
+import ILocation from "./ILocation";
 
-export interface ILocations {
-    items?: ILocation[]
+export default interface ILocations {
+    items: ILocation[]
 }
