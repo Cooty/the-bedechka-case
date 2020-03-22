@@ -4,6 +4,7 @@ namespace App\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
+use App\Enum\Pagination;
 
 class AppExtension extends AbstractExtension implements GlobalsInterface
 {
@@ -53,7 +54,8 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
             'language_setting_param' => $this->languageSettingParamName,
             'default_locale' => $this->defaultLocale,
             'secondary_locale' => $this->secondaryLocale,
-            'map_box_token' => $this->mapBoxToken
+            'map_box_token' => $this->mapBoxToken,
+            'news_items_per_page' => Pagination::NEWS_PAGE_SIZE
         ];
     }
 

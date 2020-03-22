@@ -39,7 +39,7 @@ class TheCrewController extends AbstractController
     }
 
     /**
-     * @Route({"en": "/the-crew", "bg": "/създатели"}, name="the_crew")
+     * @Route({"en": "/the-crew", "bg": "/създатели"}, name="the_crew", methods={"GET"})
      * @param Request $request
      * @return Response
      */

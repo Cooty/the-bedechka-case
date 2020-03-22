@@ -1,6 +1,6 @@
-import {ICoords} from "./ICoords";
+import ICoords from "./ICoords";
 
-export interface ILocation {
+export default interface ILocation {
     name: string,
     description: string,
     image: string,

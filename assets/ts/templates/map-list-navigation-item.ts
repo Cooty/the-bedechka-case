@@ -1,7 +1,10 @@
-export const mapListNavigationItem = (name: string, jsSelectorClass: string):string => {
-    return `<li class="cases-map__navigation-item">
+import sanitizeHTML from "../utils/sanitize-html";
+
+const mapListNavigationItem = (name: string, jsSelectorClass: string) =>
+    `<li class="cases-map__navigation-item">
         <button type="button" class="tag ${jsSelectorClass}">
-            ${name}
+            ${sanitizeHTML(name)}
         </button>
     </li>`;
-};
+
+export default mapListNavigationItem;

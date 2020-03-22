@@ -6,6 +6,9 @@ use App\Entity\News;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use App\Enum\Pagination;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Psr\Log\LoggerInterface;
 
 /**
  * @method News|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,9 +18,15 @@ use App\Enum\Pagination;
  */
 class NewsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
     {
         parent::__construct($registry, News::class);
+        $this->logger = $logger;
     }
 
     /**
@@ -50,15 +59,23 @@ class NewsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?News
+    /**
+     * @return int
+     */
+    public function getItemCount()
     {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        try {
+            return $this->createQueryBuilder('n')
+                ->select('count(n.id)')
+                ->where('n.archived = false')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException $e) {
+            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+            return 0;
+        } catch (NonUniqueResultException $e) {
+            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+            return 0;
+        }
     }
-    */
 }

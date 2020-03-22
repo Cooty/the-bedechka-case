@@ -1,8 +1,7 @@
-import {Responsive} from "../utils/responsive";
+import Responsive from "../utils/responsive";
 import {debounce} from "../utils/debounce";
 
-export class Timeline {
-
+export default class Timeline {
     private readonly timeline: HTMLElement;
     private readonly moverModifierClassName: string;
     private backButton: HTMLElement;
@@ -57,16 +56,17 @@ export class Timeline {
         if (duration <= 0)
             return;
 
+        const tick = 5;
         const difference = to - element.scrollLeft;
-        const perTick = difference / duration * 5;
+        const perTick = difference / duration * tick;
 
         setTimeout(() => {
             element.scrollLeft = element.scrollLeft + perTick;
             if (element.scrollLeft === to)
                 return;
 
-            this.scrollTo(element, to, duration - 5);
-        }, 5);
+            this.scrollTo(element, to, duration - tick);
+        }, tick);
     }
 
     private moveForward() {

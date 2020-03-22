@@ -1,47 +1,25 @@
-<section class="story">
-    {% include('./components/section-header.html.twig') with {'text': 'story.news.title', 'classes': 'story__header'} only %}
+{% if news_first_page|length > 0%}
+    <section class="story">
+        {% include('./components/section-header.html.twig') with {'text': 'story.news.title', 'classes': 'story__header'} only %}
 
-    <article class="news">
-        <ul class="news__list">
-            {% include('./home/partials/in-the-press-item.html.twig') with {
-                'link': 'https://uspelite.bg/shtastliva-razvrazka-izgubeniyat-goldan-retriivar-bernard-be-nameren-1',
-                'imageSource': 'https://picsum.photos/280/158',
-                'title': 'Щастлива развръзка! Изгубеният голдън ретрийвър Бернард бе намерен',
-                'source': 'uspelite.bg'
-            } %}
-            {% include('./home/partials/in-the-press-item.html.twig') with {
-                'link': 'https://index.hu/sport/kajak-kenu/2019/08/26/szeged_kajak_vb_ertekeles_kozak_kopasz/',
-                'title': 'Az új kajakkirály étrendje hadititok, szerénysége példás',
-                'source': 'index.hu'
-            } %}
-            {% include('./home/partials/in-the-press-item.html.twig') with {
-                'link': 'https://www.morgenpost.de/berlin/article226885691/S-Bahn-Berlin-Auf-diesen-Strecken-gibt-es-Einschraenkungen.html',
-                'imageSource': 'https://picsum.photos/280/158',
-                'title': 'Ab heute gibt es neue Einschränkungen bei der S-Bahn',
-                'source': 'morgenpost.de'
-            } %}
-            {% include('./home/partials/in-the-press-item.html.twig') with {
-                'link': 'https://vilagoszold.blog.hu/2019/08/25/politikai_eszkoz-e_az_erdotuz',
-                'imageSource': 'https://picsum.photos/280/158',
-                'title': 'Politikai eszköz-e az erdőtűz?',
-                'source': 'vilagoszold.blog.hu'
-            } %}
-            {% include('./home/partials/in-the-press-item.html.twig') with {
-                'link': 'https://vilagoszold.blog.hu/2019/08/25/politikai_eszkoz-e_az_erdotuz',
-                'title': 'Erdélyi Zsolt: A bunkóságot nem lehet betiltani',
-                'source': '24.hu'
-            } %}
-            {% include('./home/partials/in-the-press-item.html.twig') with {
-                'link': 'https://vilagoszold.blog.hu/2019/08/25/politikai_eszkoz-e_az_erdotuz',
-                'title': '25 éve ültek le a Jóbarátok a Central Perk kanapéjára, és mennyire jól tették',
-                'source': '24.hu'
-            } %}
-            <li class="news__item news__item--more">
-                <button type="button" class="button button--loader">
-                    <span class="button__text">Load more&#8230;</span>
-                    <span class="button__spinner spinner">Loading&#8230;</span>
-                </button>
-            </li>
-        </ul>
-    </article>
-</section>
+        <article class="news">
+            <ul class="news__list" id="js-news-list">
+                {% for news_item in news_first_page %}
+                    {% include('./home/partials/in-the-press-item.html.twig') with {
+                        'link': news_item.link,
+                        'title': news_item.title,
+                        'source': news_item.source
+                    } %}
+                {% endfor %}
+                {% if news_has_pagination %}
+                    <li class="news__item news__item--more" id="js-load-more-container">
+                        <button type="button" class="button button--loader" id="js-news-load-more">
+                            <span class="button__text">{{ 'generic.load.more'|trans }}</span>
+                            <span class="button__spinner spinner">{{ 'generic.loading'|trans }}&#8230;</span>
+                        </button>
+                    </li>
+                {% endif %}
+            </ul>
+        </article>
+    </section>
+{% endif %}
