@@ -9,9 +9,10 @@ framework:
     session:
         handler_id: ~
         cookie_secure: auto
-        cookie_samesite: lax
+        cookie_samesite: strict
 
-    #esi: true
-    #fragments: true
+    esi: true
+    fragments: true
+
     php_errors:
         log: true

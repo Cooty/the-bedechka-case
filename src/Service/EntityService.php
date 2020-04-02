@@ -4,36 +4,36 @@ namespace App\Service;
 
 use App\Entity\MapCase;
 use App\Entity\News;
+use App\Entity\Screening;
 use App\Form\Admin\MapCaseEditType;
 use App\Form\Admin\MapCaseType;
 use App\Form\Admin\NewsType;
 use App\Form\Admin\ScreeningType;
-use App\Service\Admin\ScreeningHandler;
 use App\Repository\MapCaseRepository;
 use App\Repository\NewsRepository;
-use App\Entity\Screening;
-use App\Service\Admin\ScreeningUpdateHandler;
 use App\Repository\ScreeningRepository;
 use App\Service\Admin\AbstractEntityHandler;
 use App\Service\Admin\MapCaseHandler;
 use App\Service\Admin\NewsHandler;
+use App\Service\Admin\ScreeningHandler;
+use App\Service\Admin\ScreeningUpdateHandler;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use \Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use \Exception;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EntityService
 {
     /**
-     * @var MapCaseRepository
-     */
-    private $mapCaseRepository;
-
-    /**
      * @var EntityManagerInterface
      */
     public $entityManager;
+
+    /**
+     * @var MapCaseRepository
+     */
+    private $mapCaseRepository;
 
     /**
      * @var NewsRepository
@@ -148,7 +148,7 @@ class EntityService
                 throw new NotFoundHttpException();
         }
 
-        if($formHandler) {
+        if ($formHandler) {
             $form = $formHandler->getForm();
         }
 
@@ -193,7 +193,7 @@ class EntityService
     public function create(?AbstractEntityHandler $handler, $entity, array $params = [])
     {
         try {
-            if($handler) {
+            if ($handler) {
                 $entity = $handler->getEntity($params);
             }
 
@@ -203,7 +203,7 @@ class EntityService
             return $entity;
 
         } catch (Exception $exception) {
-            $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+            $this->logger->error($exception->getMessage() . ' | ' . $exception->getTraceAsString());
             throw $exception;
         }
     }
@@ -218,7 +218,7 @@ class EntityService
     public function update(?AbstractEntityHandler $handler, $entity, array $params = [])
     {
         try {
-            if($handler) {
+            if ($handler) {
                 $entity = $handler->getEntity($params);
             }
 
@@ -226,7 +226,7 @@ class EntityService
 
             return $entity;
         } catch (Exception $exception) {
-            $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+            $this->logger->error($exception->getMessage() . ' | ' . $exception->getTraceAsString());
             throw $exception;
         }
     }
