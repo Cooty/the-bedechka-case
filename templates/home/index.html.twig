@@ -15,28 +15,11 @@
     {% include('./includes/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
     {% include('./home/partials/the-problem.html.twig') %}
     {% include('./home/partials/the-vision.html.twig') %}
-    {% include('./home/partials/in-the-press.html.twig') %}
+    {{ render_esi(controller('App\\Controller\\HomeController::getNewsSection')) }}
 {% endblock %}
 
 {% block javascript_config %}
-    <script>
-        var _config = window._config || {};
-
-        _config.mapboxAccessToken = "{{ map_box_token }}";
-        _config.mapCaseApiUrl = "{{ path('api_map_cases', {'locale': app.request.get('_locale')}) }}";
-        _config.mapCaseEndpointToken = "{{ csrf_token('map-cases') }}";
-        _config.newsHasPagination = {{ news_has_pagination }};
-        {% if news_has_pagination %}
-        _config.newsApiUrl = "{{ path('api_news_items') }}";
-        _config.newsEndpointToken = "{{ csrf_token('news') }}";
-        _config.newsItemsPerPage = {{ news_items_per_page }};
-        {% endif %}
-        _config.genericErrorMessage = "{{ 'error.generic'|trans|spaceless }}";
-
-        if(Object.freeze) {
-            Object.freeze(_config);
-        }
-    </script>
+    {{ render_esi(controller('App\\Controller\\HomeController::jsConfig')) }}
 {% endblock %}
 
 {% block preconectLinks %}

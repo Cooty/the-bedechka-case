@@ -3,17 +3,16 @@
 namespace App\Controller\Admin;
 
 use App\Enum\Admin\FlashTypes;
-use App\Service\Admin\AbstractEntityHandler;
 use App\Service\EntityService;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -41,11 +40,17 @@ class EditController extends AbstractAdminController
      */
     private $logger;
 
+    /**
+     * @var CacheInterface
+     */
+    private $cache;
+
     public function __construct(
         string $pswChangeSessionKey,
         EntityManagerInterface $entityManager,
         EntityService $entityService,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        CacheInterface $cache
     )
     {
         $this->entityManager = $entityManager;
@@ -53,6 +58,7 @@ class EditController extends AbstractAdminController
 
         parent::__construct($pswChangeSessionKey);
         $this->logger = $logger;
+        $this->cache = $cache;
     }
 
     /**
@@ -79,12 +85,12 @@ class EditController extends AbstractAdminController
                 $entity = $this->entityService->update($handler, $entity, $params);
 
                 $name = method_exists($entity, 'getNameEN') ? $entity->getNameEN() : $entity->getTitle();
-
                 $this->addFlash(FlashTypes::OK, $name . ' has been updated!');
+                $this->cache->clear();
 
                 return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
             } catch (Exception $exception) {
-                $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
+                $this->logger->error($exception->getMessage() . ' | ' . $exception->getTraceAsString());
                 $this->addFlash(FlashTypes::ERROR, 'An error has happened while saving');
             }
         }

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 /**
  * @Security("is_granted('ROLE_ADMIN')")
@@ -22,21 +23,29 @@ class AddController extends AbstractAdminController
      * @var LoggerInterface
      */
     private $logger;
+
     /**
      * @var EntityService
      */
     private $entityService;
 
+    /**
+     * @var CacheInterface
+     */
+    private $cache;
+
     public function __construct(
         string $pswChangeSessionKey,
         LoggerInterface $logger,
-        EntityService $entityService
+        EntityService $entityService,
+        CacheInterface $cache
     )
     {
         $this->logger = $logger;
         $this->entityService = $entityService;
 
         parent::__construct($pswChangeSessionKey);
+        $this->cache = $cache;
     }
 
     /**
@@ -62,6 +71,7 @@ class AddController extends AbstractAdminController
                 $entity = $this->entityService->create($handler, $entity, $params);
 
                 $this->addFlash(FlashTypes::OK, 'The new ' . $entity::DISPLAY_NAME . ' has been created!');
+                $this->cache->clear();
 
                 return $this->redirectToRoute('admin_entity_list', ['entityName' => $entity::URL_PARAM_NAME]);
             } catch (Exception $exception) {

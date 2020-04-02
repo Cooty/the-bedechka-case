@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\EventListener\AbstractSessionListener;
+use App\Enum\Cache;
 
 class PeopleController extends AbstractController
 {
@@ -51,6 +53,9 @@ class PeopleController extends AbstractController
 
         $response = new Response($this->renderView('people/index.html.twig'));
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
+        $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');
+        $response->setSharedMaxAge(Cache::FULL_PAGE_CACHE_EXPIRATION);
+        $response->headers->addCacheControlDirective('must-revalidate', true);
 
         return $response;
     }

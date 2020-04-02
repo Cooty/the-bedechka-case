@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Factory\CacheFactory;
 use App\Repository\NewsRepository;
 use App\Service\JSONAPIService;
 use App\Service\TransportService;
@@ -15,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\Cache\CacheInterface;
+use App\Enum\Cache;
 
 /**
  * @Route("/api")
@@ -37,28 +38,28 @@ class NewsController extends AbstractController
     private $logger;
 
     /**
-     * @var CacheFactory
-     */
-    private $cacheFactory;
-
-    /**
      * @var TransportService
      */
     private $transport;
+
+    /**
+     * @var CacheInterface
+     */
+    private $appCache;
 
     public function __construct(
         NewsRepository $newsRepository,
         JSONAPIService $jsonAPI,
         LoggerInterface $logger,
-        CacheFactory $cacheFactory,
-        TransportService $transport
+        TransportService $transport,
+        CacheInterface $appCache
     )
     {
         $this->newsRepository = $newsRepository;
         $this->jsonAPI = $jsonAPI;
         $this->logger = $logger;
-        $this->cacheFactory = $cacheFactory;
         $this->transport = $transport;
+        $this->appCache = $appCache;
     }
 
     /**
@@ -78,10 +79,9 @@ class NewsController extends AbstractController
             $pageSize = (int)$request->query->get('pageSize');
             $offset = (int)$request->query->get('offset');
 
-            $cache = $this->cacheFactory->create();
             $cacheKey = 'news-'.$pageSize.$offset;
-            $data = $cache->get($cacheKey, function(ItemInterface $item) use ($pageSize, $offset) {
-                $item->expiresAfter(DateInterval::createFromDateString('5 hours'));
+            $data = $this->appCache->get($cacheKey, function(ItemInterface $cacheItem) use ($pageSize, $offset) {
+                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::API_RESPONSE_EXPIRATION));
 
                 $news = $this->newsRepository->findActiveByPage($pageSize, $offset);
                 $newsItemsFrontend = $this->transport->makeNewsItemsFrontend($news);
