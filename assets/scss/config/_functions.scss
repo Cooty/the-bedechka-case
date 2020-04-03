@@ -1,0 +1,19 @@
+@function stripUnit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function pxToRem($size) {
+  $size: stripUnit($size);
+
+  @return ($size / 16) * 1rem;
+}
+
+@function pxToEm($size) {
+  $size: stripUnit($size);
+
+  @return ($size / 16) * 1em;
+}

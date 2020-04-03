@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% set heroTitle = {'mainTitle': 'about.title'} %}
+{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+
+{% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include('./includes/hero/background-style.html.twig') with {'background': 'partners'} only %}
+{% endblock %}
+
+{% block main %}
+    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
+    <article class="box box--center pull-over-hero">
+        <p>
+            The film “Case Bedechka” is seeking to be a part of the solution to the problem. The idea of ​​the film is to shed light on the mechanisms surrounding construction projects that are a thread to local biodiversity. The practices described in this film, however, are observed not only locally but also across the country ... and perhaps worldwide.
+        </p>
+
+        <p>
+            The film collects information and opinions of experts on one case:  the gradual destruction of a local park in Bulgaria. It aims to present the involved parties and their arguments objectively and unobtrusively. Tangled with the personal story of the film's director, it seeks to answer questions such as: Is that which appears legitimate actually fair? Is there a way for citizens to counteract the injustices done to their immediate environment? Are humans a greater threat to nature than nature is to themselves? Can we live in harmony with nature? Can we live without it at all?
+        </p>
+
+        <p>
+            The author of the film says, "It starts from my homeland and my childhood, then takes me to distant and hidden corners of the planet to teach me, that “love towards nature” is the common language among people around the globe. Preserving nature is not a difficult mission, but a path for the development of all living beings. "
+        </p>
+
+        <p>
+            In that sense, one of the messages of the film is that we can only connect through nature, and that only by connecting with one another can we preserve it.
+        </p>
+    </article>
+
+{% endblock %}

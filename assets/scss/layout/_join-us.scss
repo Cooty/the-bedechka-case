@@ -39,7 +39,7 @@
       max-width: 80%;
     }
 
-    @media (min-width: $desktop + $gutter-desktop * 2) {
+    @media (min-width: $desktop + pxToEm($gutter-desktop) * 2) {
       max-width: $desktop;
     }
 

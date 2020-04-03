@@ -1,4 +1,6 @@
-$desktop: 1024px;
-$phablet: 600px;
-$tablet: 768px;
-$smallest: 320px;
+@import "./functions";
+
+$desktop: pxToEm(1024);
+$phablet: pxToEm(600);
+$tablet: pxToEm(768);
+$smallest: pxToEm(320);
