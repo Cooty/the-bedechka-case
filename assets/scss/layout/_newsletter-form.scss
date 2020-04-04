@@ -30,25 +30,10 @@
     }
 
     @media (min-width: $tablet) {
-      $h: 47px;
       align-items: flex-end;
-
-      > label:last-of-type {
-
-        input {
-          height: $h;
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-
-      }
 
       .button {
         flex: 0 0 auto;
-        height: $h - $button-bottom-border-h;
-        margin: 0 0 $button-bottom-border-h 0;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
       }
     }
 
@@ -63,13 +48,16 @@
     }
 
     .form__row:first-of-type {
-      flex: 3;
-      margin-bottom: 0;
+      flex: 4;
       margin-right: $gutter-desktop;
     }
 
+    .form__row:nth-child(2) {
+      flex: 3;
+    }
+
     .form__row:last-of-type {
-      flex: 2;
+      flex: 0 0 100%;
     }
 
   }

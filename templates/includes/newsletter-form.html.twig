@@ -9,13 +9,15 @@
             <input type="text" name="last_name">
         </label>
     </div>
-    <div class="form__row form__row--single-line">
+    <div class="form__row">
         <label>
             <span class="form__label">
                 {{ 'newsletter.email'|trans }}<strong class="form__asterisk">&nbsp;*</strong>
             </span>
             <input type="email" name="email" required>
         </label>
+    </div>
+    <div class="form__row text-center">
         <button class="button" type="submit">{{ 'newsletter.submit'|trans }}</button>
     </div>
     <p class="form__legend">
