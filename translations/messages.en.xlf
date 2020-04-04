@@ -171,6 +171,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="footer.about">
+                <source>footer.about</source>
+                <target>
+                    About
+                </target>
+            </trans-unit>
+
             <trans-unit id="facebook.intro">
                 <source>facebook.intro</source>
                 <target>
@@ -413,6 +420,20 @@
                 <source>generic.loading</source>
                 <target>
                     Loading
+                </target>
+            </trans-unit>
+
+            <trans-unit id="screenings.cta">
+                <source>screenings.cta</source>
+                <target>
+                    Where to watch?
+                </target>
+            </trans-unit>
+
+            <trans-unit id="trailer.header">
+                <source>trailer.header</source>
+                <target>
+                    Watch the trailer
                 </target>
             </trans-unit>
         </body>

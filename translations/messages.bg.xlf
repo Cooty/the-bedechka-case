@@ -172,6 +172,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="footer.about">
+                <source>footer.about</source>
+                <target>
+                    Oтносно
+                </target>
+            </trans-unit>
+
             <trans-unit id="newsletter.title">
                 <source>newsletter.title</source>
                 <target>
@@ -414,6 +421,20 @@
                 <source>generic.loading</source>
                 <target>
                     Зареждане
+                </target>
+            </trans-unit>
+
+            <trans-unit id="screenings.cta">
+                <source>screenings.cta</source>
+                <target>
+                    Къде да гледам?
+                </target>
+            </trans-unit>
+
+            <trans-unit id="trailer.header">
+                <source>trailer.header</source>
+                <target>
+                    Виж трейлъра!
                 </target>
             </trans-unit>
         </body>

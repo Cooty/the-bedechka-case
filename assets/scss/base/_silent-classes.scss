@@ -49,7 +49,18 @@
     margin-right: $gutter-desktop;
   }
 
-  @media (min-width: $page-max-w + $gutter-desktop * 2) {
+  @media (min-width: pxToEm($page-max-w) + pxToEm($gutter-desktop) * 2) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+%pillar-box-article {
+  max-width: $article-max-w;
+  margin-left: $gutter;
+  margin-right: $gutter;
+
+  @media (min-width: pxToEm($article-max-w) + pxToEm($gutter-desktop) * 2) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -65,7 +76,7 @@
     margin-right: $gutter-desktop;
   }
 
-  @media (min-width: $xxl-w + $gutter-desktop * 2) {
+  @media (min-width: pxToEm($xxl-w) + pxToEm($gutter-desktop) * 2) {
     margin-left: auto;
     margin-right: auto;
   }
