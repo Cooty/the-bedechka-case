@@ -6,6 +6,14 @@
                 <source>site.name</source>
                 <target>Случаят Бедечка</target>
             </trans-unit>
+            <trans-unit id="site.tagline">
+                <source>site.tagline</source>
+                <target>Губим повече от просто паркове.</target>
+            </trans-unit>
+            <trans-unit id="about.title">
+                <source>about.title</source>
+                <target>Относно филма</target>
+            </trans-unit>
             <trans-unit id="home.hero.intro">
                 <source>home.hero.intro</source>
                 <target>Документален филм за застрояването на природата и последствията, които оказва върху обществото и културата.</target>
@@ -161,6 +169,13 @@
                 <source>footer.contact</source>
                 <target>
                     Контакт
+                </target>
+            </trans-unit>
+
+            <trans-unit id="footer.about">
+                <source>footer.about</source>
+                <target>
+                    Oтносно
                 </target>
             </trans-unit>
 
@@ -406,6 +421,20 @@
                 <source>generic.loading</source>
                 <target>
                     Зареждане
+                </target>
+            </trans-unit>
+
+            <trans-unit id="screenings.cta">
+                <source>screenings.cta</source>
+                <target>
+                    Къде да гледам?
+                </target>
+            </trans-unit>
+
+            <trans-unit id="trailer.header">
+                <source>trailer.header</source>
+                <target>
+                    Виж трейлъра!
                 </target>
             </trans-unit>
         </body>

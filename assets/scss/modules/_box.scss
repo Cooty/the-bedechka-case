@@ -9,8 +9,19 @@
     padding-right: $gutter-desktop;
   }
 
+  &--tablet-big-gutter {
+    @media (min-width: $tablet) {
+      padding-left: $gutter-desktop * 2;
+      padding-right: $gutter-desktop * 2;
+    }
+  }
+
   &--center {
     @extend %pillar-box;
+  }
+
+  &--center-narrow {
+    @extend %pillar-box-article;
   }
 
   &--center-xxl {

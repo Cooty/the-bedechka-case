@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="about.text">
+                <source>about.text</source>
+                <target>
+                    <![CDATA[<p>]]>
+                    The film “Case Bedechka” is seeking to be a part of the solution to the problem. The idea of ​​the film is to shed light on the mechanisms surrounding construction projects that are a thread to local biodiversity. The practices described in this film, however, are observed not only locally but also across the country ... and perhaps worldwide.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    The film collects information and opinions of experts on one case:  the gradual destruction of a local park in Bulgaria. It aims to present the involved parties and their arguments objectively and unobtrusively. Tangled with the personal story of the film's director, it seeks to answer questions such as: Is that which appears legitimate actually fair? Is there a way for citizens to counteract the injustices done to their immediate environment? Are humans a greater threat to nature than nature is to themselves? Can we live in harmony with nature? Can we live without it at all?
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    The author of the film says, "It starts from my homeland and my childhood, then takes me to distant and hidden corners of the planet to teach me, that “love towards nature” is the common language among people around the globe. Preserving nature is not a difficult mission, but a path for the development of all living beings."
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    In that sense, one of the messages of the film is that we can only connect through nature, and that only by connecting with one another can we preserve it.
+                    <![CDATA[</p>]]>
+                </target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

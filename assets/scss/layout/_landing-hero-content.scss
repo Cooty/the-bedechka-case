@@ -44,6 +44,10 @@
         width: auto;
         padding-right: 0;
       }
+
+      @media (min-width: $tablet) and (max-width: $desktop - 1) {
+        align-self: start;
+      }
     }
 
     @media (min-width: $desktop) {

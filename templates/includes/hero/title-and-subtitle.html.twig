@@ -1,2 +1,4 @@
 <h1 class="page-title page-title--main">{{ mainTitle|trans }}</h1>
+{% if subTitle is defined %}
 <p class="page-title page-title--sub">{{ subTitle|trans }}</p>
+{% endif %}

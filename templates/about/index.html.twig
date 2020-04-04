@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% set heroTitle = {'mainTitle': 'about.title'} %}
+{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+
+{% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include('./includes/hero/background-style.html.twig') with {'background': 'partners'} only %}
+{% endblock %}
+
+{% block main %}
+    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
+    <article class="box box--center-narrow box--tablet-big-gutter pull-over-hero">
+        <div class="main-copy">
+            {{ 'about.text'|trans({}, 'content')|raw }}
+        </div>
+
+        <div class="text-center mb-2">
+            <a href="#" class="button">
+                {{ 'screenings.cta'|trans }}
+            </a>
+        </div>
+
+        {% include('./components/sub-header.html.twig') with {'text': 'trailer.header', 'priority': 3, 'classes': 'text-center mb-1'} only %}
+
+        {% include('./components/video-embed.html.twig') with {
+            'url': 'https://www.youtube.com/watch?v=JfcjnnZ9iVM',
+            'thumbnail': 'https://picsum.photos/400/225',
+            'alt': 'The Case Bedechka Documentary English trailer'}
+        %}
+
+    </article>
+
+{% endblock %}
