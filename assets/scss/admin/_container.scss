@@ -1,7 +1,7 @@
 .container--with-sidebar {
   z-index: 1;
 
-  @media (min-width: map_get($grid-breakpoints, 'lg')) {
+  @media screen and (min-width: map_get($grid-breakpoints, 'lg')) {
     padding-left: $sidebar-w + $grid-gutter-width / 2;
   }
 }

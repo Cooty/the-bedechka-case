@@ -1,12 +1,12 @@
 .vision {
   @mixin column-desktop($width) {
-    @media (min-width: $desktop) {
-      flex: 0 0 calc(#{$width} - #{$gutter-desktop / 2});
-      max-width: calc(#{$width} - #{$gutter-desktop / 2});
+    @media screen and (min-width: $desktop) {
+      flex: 0 0 calc(#{$width} - #{$gutter});
+      max-width: calc(#{$width} - #{$gutter});
     }
   }
 
-  @media (min-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -17,7 +17,7 @@
     text-align: center;
     margin-bottom: $v-gutter-near;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       @include flex-column;
     }
 
@@ -26,7 +26,7 @@
   &__intro {
     @include column-desktop(40%);
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -43,7 +43,7 @@
       max-width: 100%;
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       margin-left: auto;
       margin-right: auto;
     }
@@ -59,15 +59,15 @@
       margin-bottom: 0;
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       flex: 0 0 calc(50% - #{$gutter / 2});
       max-width: calc(50% - #{$gutter / 2});
-      margin-bottom: -#{$box-v-gutter * 3} !important;
+      margin-bottom: -#{$grid-v-gutter * 3} !important;
     }
 
-    @media (min-width: $desktop) {
-      flex: 0 0 calc(50% - #{$gutter-desktop / 2});
-      max-width: calc(50% - #{$gutter-desktop / 2});
+    @media screen and (min-width: $desktop) {
+      flex: 0 0 calc(50% - #{$gutter});
+      max-width: calc(50% - #{$gutter});
     }
 
   }
@@ -75,7 +75,7 @@
 }
 
 .vision-offset-desktop {
-  @media (min-width: $tablet) {
-    padding-bottom: $box-v-gutter * 2;
+  @media screen and (min-width: $tablet) {
+    padding-bottom: $grid-v-gutter * 2;
   }
 }

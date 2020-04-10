@@ -2,48 +2,39 @@
   padding-left: $gutter;
   padding-right: $gutter;
 
-  @media (min-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     max-width: $desktop;
     margin-left: auto;
     margin-right: auto;
-    padding-left: $gutter / 2;
-    padding-right: $gutter / 2;
   }
 
-  @media (min-width: $desktop) {
-    padding-left: $gutter-desktop / 2;
-    padding-right: $gutter-desktop / 2;
-  }
-
-  @media (min-width: $xxl-w + $gutter-desktop * 2) {
+  @media screen and (min-width: $xxl-w + $gutter-desktop * 2) {
     max-width: $xxl-w;
   }
 
   &__item {
-    margin-bottom: $box-v-gutter;
+    margin-bottom: $grid-v-gutter;
 
-    @media (min-width: $tablet) {
-      padding-left: $gutter / 2;
-      padding-right: $gutter / 2;
+    @media screen and (min-width: $tablet) {
+      padding-left: $gutter;
+      padding-right: $gutter;
       @include flex-column(50%);
     }
 
-    @media (min-width: $desktop) {
-      padding-left: $gutter-desktop / 2;
-      padding-right: $gutter-desktop / 2;
+    @media screen and (min-width: $desktop) {
       @include flex-column(33.3333%);
     }
 
-    @media (min-width: $xxl-w + $gutter-desktop * 2) {
+    @media screen and (min-width: $xxl-w + $gutter-desktop * 2) {
       @include flex-column(25%);
     }
 
     > .box {
 
-      @media (max-width: $tablet - 1) {
+      @media screen and (max-width: $tablet - 1) {
         max-width: 400px;
         margin: 0 auto;
       }

@@ -18,7 +18,7 @@ body {
   font-size: $base-font-size;
   line-height: 1.3;
 
-  @media (min-width: $page-max-w) {
+  @media screen and (min-width: $page-max-w) {
     font-size: 1.2em;
   }
 

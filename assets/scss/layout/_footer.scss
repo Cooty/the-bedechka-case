@@ -32,7 +32,7 @@ body > .main {
     margin-bottom: 2vh;
     &:last-of-type { margin-bottom: 0; }
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       margin-bottom: 0;
       padding: 0 $gutter;
     }
@@ -42,7 +42,7 @@ body > .main {
   %label-font-size {
     font-size: .9rem;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       font-size: 1rem;
     }
   }
@@ -57,12 +57,12 @@ body > .main {
     padding-bottom: 30px;
     overflow: hidden;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       min-height: 320px;
       padding-top: 80px;
     }
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       text-align: left;
       display: flex;
       flex-direction: row;
@@ -89,7 +89,7 @@ body > .main {
     &-social-media {
       margin-bottom: 5vh;
 
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         display: flex;
         margin-bottom: 0;
         height: $icon-size-desktop;
@@ -136,7 +136,7 @@ body > .main {
           height: $icon-size;
         }
 
-        @media (min-width: $desktop) {
+        @media screen and (min-width: $desktop) {
           width: $icon-size-desktop + 10px;
           height: $icon-size-desktop + 10px;
           flex-basis: $icon-size-desktop + 10px;
@@ -153,7 +153,7 @@ body > .main {
       &-label {
         @extend %label-font-size;
 
-        @media (min-width: $desktop) and (max-width: 1280px) {
+        @media screen and (min-width: $desktop) and (max-width: 1280px) {
           display: none;
         }
 
@@ -162,7 +162,7 @@ body > .main {
     }
 
     &-menu {
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         display: flex;
         height: $icon-size-desktop;
       }
@@ -170,7 +170,7 @@ body > .main {
       &-item {
         @extend %list-item-v-gutter;
 
-        @media (min-width: $tablet) {
+        @media screen and (min-width: $tablet) {
           display: inline-flex;
           align-items: center;
           padding-left: $gutter;

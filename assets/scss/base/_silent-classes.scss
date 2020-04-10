@@ -41,15 +41,10 @@
 
 %pillar-box {
   max-width: $page-max-w;
-  margin-left: $gutter;
-  margin-right: $gutter;
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
 
-  @media (min-width: $desktop) {
-    margin-left: $gutter-desktop;
-    margin-right: $gutter-desktop;
-  }
-
-  @media (min-width: pxToEm($page-max-w) + pxToEm($gutter-desktop) * 2) {
+  @media screen and (min-width: pxToEm($page-max-w) + pxToEm($gutter-desktop) * 2) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -60,7 +55,7 @@
   margin-left: $gutter;
   margin-right: $gutter;
 
-  @media (min-width: pxToEm($article-max-w) + pxToEm($gutter-desktop) * 2) {
+  @media screen and (min-width: pxToEm($article-max-w) + pxToEm($gutter-desktop) * 2) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -68,15 +63,10 @@
 
 %pillar-box-xxl {
   max-width: $xxl-w;
-  margin-left: $gutter;
-  margin-right: $gutter;
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
 
-  @media (min-width: $desktop) {
-    margin-left: $gutter-desktop;
-    margin-right: $gutter-desktop;
-  }
-
-  @media (min-width: pxToEm($xxl-w) + pxToEm($gutter-desktop) * 2) {
+  @media screen and (min-width: pxToEm($xxl-w) + pxToEm($gutter-desktop) * 2) {
     margin-left: auto;
     margin-right: auto;
   }
@@ -98,13 +88,8 @@
 }
 
 %side-gutters {
-  padding-left: $gutter;
-  padding-right: $gutter;
-
-  @media (min-width: $desktop) {
-    padding-left: $gutter-desktop;
-    padding-right: $gutter-desktop;
-  }
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
 }
 
 %animated-underline {
@@ -179,6 +164,14 @@
     content: '';
     height: $gutter; // has to have height to display it
     flex: 0 0 1px; // just to give it layout, the last elements margin can now work
+  }
+
+}
+
+%visited-link {
+
+  &:visited {
+    color: $visited-link;
   }
 
 }

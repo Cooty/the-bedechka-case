@@ -1,14 +1,14 @@
 .navigation {
-  height: $mobile-navigation-h;
+  height: pxToRem($mobile-navigation-h);
   display: flex;
   flex-wrap: nowrap;
 
-  @media (min-width: $phablet) and (max-width: $desktop - 1) {
+  @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
     max-width: $phablet;
     margin: 0 auto;
   }
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     padding-right: $gutter-desktop;
     height: auto;
     flex: 1 1 auto;
@@ -24,7 +24,7 @@
     padding: 0 10px;
     font-size: 1rem;
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       flex: 0 0 auto;
       padding: 0 ($gutter-desktop * 2);
       font-size: 1.2rem;

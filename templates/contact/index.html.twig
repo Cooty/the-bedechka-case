@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
+
+{% block main %}
+    <article class="box box--center-narrow box--tablet-big-gutter no-hero">
+        <div class="main-copy">
+            {{ 'contact.text'|trans({}, 'content')|raw }}
+        </div>
+    </article>
+{% endblock %}

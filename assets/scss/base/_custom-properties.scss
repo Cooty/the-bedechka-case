@@ -1,0 +1,7 @@
+html {
+  --gutter: #{$gutter};
+
+  @media screen and (min-width: $desktop) {
+    --gutter: #{$gutter-desktop};
+  }
+}

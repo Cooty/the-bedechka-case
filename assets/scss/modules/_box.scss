@@ -1,16 +1,18 @@
 .box {
   background: white;
-  padding: $grid-v-gutter $gutter;
+  padding: $grid-v-gutter var(--gutter);
   border-radius: $box-radius;
   @include box-shadow();
 
-  @media (min-width: $desktop) {
-    padding-left: $gutter-desktop;
-    padding-right: $gutter-desktop;
+  @media print {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: none;
   }
 
   &--tablet-big-gutter {
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       padding-left: $gutter-desktop * 2;
       padding-right: $gutter-desktop * 2;
     }
@@ -39,7 +41,7 @@
     margin-bottom: 2.5vh;
     max-width: $mw;
 
-    @media (min-width: $mw + 2 * $gutter-desktop) {
+    @media screen and (min-width: $mw + 2 * $gutter-desktop) {
       margin-right: auto;
       margin-left: auto;
     }
@@ -50,14 +52,9 @@
     padding: 0;
     box-shadow: none;
 
-    @media (min-width: $tablet) {
-      padding: $grid-v-gutter $gutter;
+    @media screen and (min-width: $tablet) {
+      padding: $grid-v-gutter var(--gutter);
       @include box-shadow();
-    }
-
-    @media (min-width: $desktop) {
-      padding-left: $gutter-desktop;
-      padding-right: $gutter-desktop;
     }
 
     > .video {
@@ -65,8 +62,8 @@
       margin-left: -$gutter;
       margin-bottom: 2vh;
 
-      @media (min-width: $tablet) {
-        margin-top: -$box-v-gutter;
+      @media screen and (min-width: $tablet) {
+        margin-top: -$grid-v-gutter;
         overflow: hidden;
         border-radius: $box-radius;
 
@@ -77,7 +74,7 @@
 
       }
 
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         width: calc(100% + #{$gutter-desktop * 2});
         margin-left: -$gutter-desktop;
       }
@@ -88,7 +85,7 @@
 
   &__subtitle {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: calc(1.1rem + .2vw);
   }
 
   &__info {
@@ -106,7 +103,7 @@
 
     > .video {
       width: calc(100% + #{$gutter * 2});
-      margin: -$box-v-gutter 0 2vh $gutter * -1;
+      margin: -$grid-v-gutter 0 2vh $gutter * -1;
       overflow: hidden;
       border-radius: $box-radius;
       background: $image-placeholder-color;
@@ -116,7 +113,7 @@
         position: absolute;
       }
 
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         width: calc(100% + #{$gutter-desktop * 2});
         margin-left: -$gutter-desktop;
       }

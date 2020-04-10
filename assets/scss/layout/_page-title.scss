@@ -1,6 +1,4 @@
 .page-title {
-  $subDesktopSize: pxToRem(26);
-
   @extend %hero-text-shadow;
   color: $almost-white;
   text-align: center;
@@ -13,13 +11,13 @@
 
   &--main {
     font-family: $header-font;
-    font-size: pxToRem(28);
+    font-size: calc(#{pxToRem(26)} + .5vw);
     margin-bottom: pxToRem(14);
     letter-spacing: pxToRem(1);
     padding-top: pxToRem(60);
 
-    @media (min-width: $tablet) {
-      font-size: pxToRem(40);
+    @media screen and (min-width: $tablet) {
+      font-size: calc(#{pxToRem(39)} + .5vw);
       margin-bottom: pxToRem(100);
       padding-top: 0;
 
@@ -32,10 +30,10 @@
   }
 
   &--sub {
-    font-size: pxToRem(19);
+    font-size: calc(#{pxToRem(17)} + .5vw);
 
-    @media (min-width: $tablet) {
-      font-size: $subDesktopSize;
+    @media screen and (min-width: $tablet) {
+      font-size: calc(#{pxToRem(26)} + .5vw);
       line-height: 1.3;
       padding-bottom: pxToRem(100);
     }

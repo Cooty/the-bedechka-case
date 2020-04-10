@@ -8,14 +8,14 @@
   right: 0;
   transition: all .15s ease-in-out;
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     display: flex;
   }
 
   &--pulled-up {
     transform: translate3d(0, -#{$mobile-header-top-h + $mobile-navigation-h + 2px}, 0);
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       transform: none;
     }
   }
@@ -28,7 +28,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     text-align: center;
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       border-bottom: 0;
     }
   }
@@ -47,7 +47,7 @@
 body {
   padding-top: #{$mobile-header-top-h + $mobile-navigation-h};
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     padding-top: $desktop-header-h;
   }
 }

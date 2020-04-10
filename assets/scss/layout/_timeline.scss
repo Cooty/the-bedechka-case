@@ -39,8 +39,8 @@
     background-color: $beige;
   }
 
-  @media (min-width: $desktop) {
-    margin-bottom: calc(#{$section-items-v-gutter} + #{$box-v-gutter}) !important;
+  @media screen and (min-width: $desktop) {
+    margin-bottom: calc(#{$section-items-v-gutter} + #{$grid-v-gutter}) !important;
   }
 
   &__steps {
@@ -48,7 +48,7 @@
     @extend %slider;
     padding: ($box-shadow-size + $marker-h + $marker-label-h) 0 $box-shadow-size $gutter;
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       padding-left: $gutter-desktop;
     }
 
@@ -58,20 +58,20 @@
     margin-right: $gutter;
     @include item-width(92%, 8px);
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       @include item-width(80%, 8px);
     }
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       margin-right: $gutter-desktop;
       @include item-width(45%, 11px);
     }
 
-    @media (min-width: $page-max-w) {
+    @media screen and (min-width: $page-max-w) {
       @include item-width(31%, 11px);
     }
 
-    @media (min-width: $big-screen) {
+    @media screen and (min-width: $big-screen) {
       @include item-width(24%, 11px);
     }
 
@@ -124,11 +124,7 @@
       .timeline__box {
 
         &:before {
-          right: -#{$gutter};
-
-          @media (min-width: $desktop) {
-            right: -#{$gutter-desktop};
-          }
+          right: calc(var(--gutter) * -1);
         }
 
       }
@@ -152,7 +148,7 @@
         background-position: #{$illustration-w * $i * -1} 0;
         animation: illustration-animation 1s steps(2, end) infinite;
 
-        @media (min-width: $desktop) {
+        @media screen and (min-width: $desktop) {
           background-position: #{$illustration-w-desktop * $i * -1} 0;
           animation: illustration-animation-desktop 1s steps(2, end) infinite;
         }
@@ -166,9 +162,9 @@
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    padding-bottom: $box-v-gutter - $box-top-border-h;
+    padding-bottom: $grid-v-gutter - $box-top-border-h;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       align-items: center;
     }
 
@@ -178,11 +174,11 @@
       height: 10px;
       left: $gutter + $marker-spike-w;
       right: -#{$gutter * 2};
-      top: -#{$box-v-gutter + $marker-spike-h + $marker-dot-border-w};
+      top: -#{$grid-v-gutter + $marker-spike-h + $marker-dot-border-w};
       background-size: 14px 10px;
       background-repeat: repeat-x;
 
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         left: $gutter-desktop + $marker-spike-w;
         right: -#{$gutter-desktop * 2};
       }
@@ -204,7 +200,7 @@
     background-image: url(../../images/timeline-animation-sprite-optimized.png);
     background-size: ($illustration-w * $steps) ($illustration-h * 2);
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       width: $illustration-w-desktop;
       height: 206px;
       flex-basis: $illustration-w-desktop;
@@ -215,24 +211,15 @@
 
   &__text {
     flex: 1;
-    padding-left: $gutter;
-
-    @media (min-width: $desktop) {
-      padding-left: $gutter-desktop;
-    }
-
+    padding-left: var(--gutter);
   }
 
   &__marker {
     width: $marker-spike-w;
     height: $marker-h;
     position: absolute;
-    left: $gutter;
+    left: var(--gutter);
     top: -#{$marker-h};
-
-    @media (min-width: $desktop) {
-      left: $gutter-desktop;
-    }
 
     &:before,
     &:after {
@@ -296,7 +283,7 @@
   &__mover {
     display: none;
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       position: absolute;
       display: block;
       z-index: $z-low;

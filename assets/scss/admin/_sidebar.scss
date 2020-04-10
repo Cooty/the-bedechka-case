@@ -15,7 +15,7 @@
     transform: translate3d(0, 0, 0);
   }
 
-  @media (min-width: map_get($grid-breakpoints, 'lg')) {
+  @media screen and (min-width: map_get($grid-breakpoints, 'lg')) {
     transform: translate3d(0, 0, 0);
   }
 
