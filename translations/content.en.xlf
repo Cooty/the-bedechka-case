@@ -22,6 +22,37 @@
                     <![CDATA[</p>]]>
                 </target>
             </trans-unit>
+
+            <trans-unit id="contact.text">
+                <source>contact.text</source>
+                <target>
+                    <![CDATA[<p>]]>
+                        For inquiries please contact
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                        <![CDATA[<strong>]]>
+                            Dimana Shiskova
+                        <![CDATA[</strong>]]>
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                        <![CDATA[<strong>]]>
+                            Email:
+                        <![CDATA[</strong>]]>
+                        <![CDATA[<a href="mailto:shishkova.dimana@googlemail.com">]]>
+                            shishkova.dimana@googlemail.com
+                    <![CDATA[</a>]]>
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                        <![CDATA[<strong>]]>
+                            Phone:
+                        <![CDATA[</strong>]]>
+                        +49 176 47612007
+                    <![CDATA[</p>]]>
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

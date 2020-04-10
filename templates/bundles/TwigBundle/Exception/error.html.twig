@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    <article class="box box--center-xxl" style="margin-top: 14vh;">
+    <article class="box box--center-narrow box--tablet-big-gutter no-hero">
         <h1 class="section-header box__header">
             {{ 'error.generic'|trans }}
         </h1>
-        <p class="box__lead" style="text-align: center;">{{ 'error.genric.text'|trans }}</p>
+        <p class="box__lead text-center">{{ 'error.genric.text'|trans }}</p>
 
-        <p class="box__lead" style="text-align: center;">
+        <p class="box__lead text-center">
             <a href="{{ path('home') }}" class="button">{{ 'error.homepage.link'|trans }}</a>
         </p>
     </article>

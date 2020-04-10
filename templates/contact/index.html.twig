@@ -5,19 +5,7 @@
 {% block main %}
     <article class="box box--center-narrow box--tablet-big-gutter no-hero">
         <div class="main-copy">
-            <p>For inquiries please contact</p>
-
-            <p>
-                <strong>Dimana Shiskova</strong>
-            </p>
-
-            <p>
-                <strong>Email: </strong> <a href="mailto:shishkova.dimana@googlemail.com">shishkova.dimana@googlemail.com</a>
-            </p>
-
-            <p>
-                <strong>Phone:</strong> +49 176 47612007
-            </p>
+            {{ 'contact.text'|trans({}, 'content')|raw }}
         </div>
     </article>
 {% endblock %}
