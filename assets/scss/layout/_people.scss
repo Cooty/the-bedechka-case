@@ -1,32 +1,30 @@
 .people {
   @extend %pillar-box-xxl;
 
-  @media (min-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     display: table;
 
     > * {
       display: table-cell;
       width: 50%;
-      padding-left: $gutter;
-      padding-right: $gutter;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
     }
 
   }
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     > * {
       width: 33.3333%;
-      padding-left: $gutter-desktop;
-      padding-right: $gutter-desktop;
     }
   }
 
   @supports (grid-template-areas: unset) {
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: $gutter;
+      grid-column-gap: var(--gutter);
 
       > * {
         width: auto;
@@ -36,19 +34,18 @@
 
     }
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       grid-template-columns: 1fr 1fr 1fr;
-      grid-column-gap: $gutter-desktop;
     }
 
-    @media (min-width: $xxl-w) {
+    @media screen and (min-width: $xxl-w) {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
   }
 
   &__item {
-    margin-bottom: $box-v-gutter;
+    margin-bottom: $grid-v-gutter;
 
     > .box {
       height: 100%;

@@ -2,7 +2,7 @@
   $map-height-mobile: 80vh;
   $map-height: 60vh;
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     display: grid;
     grid-template-columns: [first] 4fr [second] 6fr;
     // TODO: Figure out a more flexible layout - If text grows significantly then rows, don't adjust
@@ -10,25 +10,25 @@
     grid-column-gap: $gutter-desktop;
   }
 
-  @media (min-width: $page-max-w) {
+  @media screen and (min-width: $page-max-w) {
     grid-column-gap: $gutter-desktop * 2;
   }
 
   @supports (grid-template-areas: unset) {
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       padding-right: 0 !important;
       height: $map-height;
     }
   }
 
   &__header.box__header {
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       grid-column-start: first;
       grid-row-start: title;
     }
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         text-align: left;
         margin-bottom: 0;
       }
@@ -37,7 +37,7 @@
   }
 
   &__lead {
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       grid-column-start: first;
       grid-row-start: intro;
       max-width: none !important;
@@ -53,19 +53,19 @@
     &:after {
       @include scroll-fader();
 
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         display: none;
       }
 
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       height: auto;
       width: 100%;
       overflow: visible;
     }
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       margin-bottom: 0;
       grid-column-start: first;
       grid-row-start: tags;
@@ -82,7 +82,7 @@
     box-sizing: content-box;
     padding-bottom: 17px;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       display: block;
       height: 100%;
       overflow-y: auto;
@@ -102,12 +102,12 @@
 
       // this is to keep tha last item away from the edge
       // when scrolled all the way
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         padding-right: 0;
       }
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       display: inline-block;
       margin: 0 $gutter-desktop ($gutter-desktop - 5px) 0;
     }
@@ -117,7 +117,7 @@
       // not fool-proof but works on most phone sizes
       min-width: 44vw;
 
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         min-width: 0;
       }
     }
@@ -134,11 +134,11 @@
     z-index: 1; // need to normalize this because the embeded Leaflet Map has a high z-index which makes it overlap the main header
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $desktop) {
+      @media screen and (min-width: $desktop) {
         width: 100%;
-        height: calc(#{$map-height} + #{$box-v-gutter * 2});
+        height: calc(#{$map-height} + #{$grid-v-gutter * 2});
         margin-left: 0;
-        margin-top: -$box-v-gutter * 2;
+        margin-top: -$grid-v-gutter * 2;
         margin-bottom: 0;
       }
     }
@@ -153,8 +153,8 @@
 
 .cases-map-offset-desktop {
   @supports (grid-template-areas: unset) {
-    @media (min-width: $desktop) {
-      padding-bottom: $box-v-gutter;
+    @media screen and (min-width: $desktop) {
+      padding-bottom: $grid-v-gutter;
     }
   }
 }

@@ -5,7 +5,7 @@
     > label:first-of-type {
       margin-bottom: $gutter;
 
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         margin-bottom: 0;
         padding-right: $gutter;
       }
@@ -14,7 +14,7 @@
 
     > label:last-of-type {
 
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         padding-left: $gutter;
       }
 
@@ -29,7 +29,7 @@
       margin: $gutter-desktop auto 0 auto;
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       align-items: flex-end;
 
       .button {
@@ -39,7 +39,7 @@
 
   }
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     display: flex;
     flex-wrap: wrap;
 

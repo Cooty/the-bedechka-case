@@ -21,12 +21,12 @@
       top: auto;
       left: auto;
       margin: auto;
-      right: 10px;
-      bottom: 10px;
+      right: pxToRem(10);
+      bottom: pxToRem(10);
 
-      @media (min-width: $desktop) {
-        right: 20px;
-        bottom: 20px;
+      @media screen and (min-width: $desktop) {
+        right: pxToRem(20);
+        bottom: pxToRem(20);
       }
 
     }

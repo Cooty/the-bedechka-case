@@ -7,9 +7,16 @@
   padding: 6px 12px;
   font-size: .85em;
   display: inline-block;
+  transition: all .3s ease-in-out;
 
   &--active {
     background: $dark-green;
     color: $almost-white;
+  }
+
+  &:hover,
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px $dark-green inset;
   }
 }

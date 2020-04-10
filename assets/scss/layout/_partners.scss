@@ -1,31 +1,24 @@
 .partners {
   text-align: center;
 
-  @media (min-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     display: table;
 
     > * {
       display: table-cell;
       width: 33.3333%;
-      padding-left: $gutter;
-      padding-right: $gutter;
+      padding-left: var(--gutter);
+      padding-right: var(--gutter);
     }
 
-  }
-
-  @media (min-width: $desktop) {
-    > * {
-      padding-left: $gutter-desktop;
-      padding-right: $gutter-desktop;
-    }
   }
 
   @supports (grid-template-areas: unset) {
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-column-gap: $gutter;
+      grid-column-gap: var(--gutter);
 
       > * {
         width: auto;
@@ -33,10 +26,6 @@
         padding-right: 0;
       }
 
-    }
-
-    @media (min-width: $desktop) {
-      grid-column-gap: $gutter-desktop;
     }
 
   }
@@ -48,7 +37,7 @@
       padding-bottom: 0;
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       padding-bottom: 0;
     }
 

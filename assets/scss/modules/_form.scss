@@ -21,7 +21,7 @@
       margin-bottom: 0;
     }
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       display: flex;
       margin-bottom: $gutter-desktop;
     }
@@ -29,7 +29,7 @@
   }
 
   &__row--single-line {
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       flex-wrap: nowrap;
     }
   }
@@ -71,7 +71,7 @@
     margin-top: $gutter-desktop;
     font-size: .8rem;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       text-align: right;
     }
 

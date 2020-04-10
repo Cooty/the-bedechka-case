@@ -6,16 +6,16 @@
   top: -39px;
   color: $base-text-color;
 
-  @media (min-width: $phablet) and (max-width: $desktop - 1) {
+  @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
     right: 0;
   }
 
-  @media (min-width: $tablet) {
+  @media screen and (min-width: $tablet) {
     display: flex;
     align-items: center;
   }
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     position: relative;
     margin-left: $gutter-desktop * 2;
     top: auto;
@@ -29,13 +29,13 @@
     width: 1px;
     height: 1px;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       height: auto;
       width: auto;
       overflow: visible;
       text-indent: 0;
-      font-size: 13px;
-      margin-right: 5px;
+      font-size: pxToRem(13);
+      margin-right: pxToRem(5);
     }
 
   }

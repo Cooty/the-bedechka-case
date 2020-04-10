@@ -4,7 +4,7 @@
   align-items: center;
   flex-wrap: nowrap;
 
-  @media (min-width: $desktop) {
+  @media screen and (min-width: $desktop) {
     padding-left: $gutter-desktop;
     flex: 0 0 auto;
   }
@@ -24,7 +24,7 @@
 
   &__typo {
     @extend %header-font;
-    font-size: 20px;
+    font-size: pxToRem(20);
     user-select: none;
   }
 }
@@ -32,8 +32,8 @@
 // leave space for lanaguage flag, as the Bulgarian name is way longer
 html[lang="bg"] .logo .logo__typo {
 
-  @media (max-width: 410px) {
-    font-size: 16px;
+  @media screen and (max-width: 410px) {
+    font-size: pxToRem(16);
   }
 
 }

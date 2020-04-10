@@ -3,9 +3,17 @@
   font-family: $header-font;
   text-transform: capitalize;
   text-align: center;
-  font-size: $header-font-size;
-  padding-bottom: 10px;
+  font-size: calc(#{$header-font-size} + .5vw);
+  padding-bottom: pxToRem(10);
 
+  @media screen and (min-width: $tablet) {
+    font-size: calc(#{$header-font-size-desktop} + .5vw);
+  }
+
+  @media print {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
 
   &:after {
     $w: 84px;
@@ -20,10 +28,6 @@
     height: $h;
     background: url('../../images/section-header-hr@2x.png') no-repeat 0 0;
     background-size: $w $h;
-  }
-
-  @media (min-width: $tablet) {
-    font-size: $header-font-size-desktop;
   }
 
 }

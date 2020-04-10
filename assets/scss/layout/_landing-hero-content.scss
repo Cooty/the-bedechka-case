@@ -4,17 +4,17 @@
   display: block;
   align-items: center;
 
-  @media (min-width: $page-max-w + $gutter-desktop * 2) {
+  @media screen and (min-width: $page-max-w + $gutter-desktop * 2) {
     width: $page-max-w;
   }
 
-  @media (min-width: $tablet) {
+  @media screen and  (min-width: $tablet) {
     display: table;
     vertical-align: middle;
   }
 
   @supports (grid-template-areas: unset) {
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       display: grid;
       vertical-align: baseline;
       grid-template-columns: 4fr 6fr;
@@ -29,7 +29,7 @@
     font-size: 1.1em;
     max-width: 500px;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       margin: 0;
       display: table-cell;
       width: 40%;
@@ -37,7 +37,7 @@
     }
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         grid-column-start: 1;
         grid-row-start: 1;
         align-self: center;
@@ -45,12 +45,12 @@
         padding-right: 0;
       }
 
-      @media (min-width: $tablet) and (max-width: $desktop - 1) {
+      @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
         align-self: start;
       }
     }
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       font-size: 1.2em;
     }
 
@@ -63,7 +63,7 @@
     margin: 0 auto $gutter-desktop auto;
     background-color: $base-text-color;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       margin: 0;
       width: 60%;
       padding-left: $gutter-desktop;
@@ -71,7 +71,7 @@
     }
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         margin: 0;
         padding-left: 0;
         width: auto;
@@ -84,12 +84,12 @@
   &__button {
     text-align: center;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       margin-top: $gutter-desktop;
     }
 
     @supports (grid-template-areas: unset) {
-      @media (min-width: $tablet) {
+      @media screen and (min-width: $tablet) {
         grid-column-start: 1;
         grid-row-start: 1;
         align-self: end;

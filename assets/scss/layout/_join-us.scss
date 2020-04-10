@@ -5,7 +5,7 @@
     max-width: $mw;
     margin: 0 $gutter $v-gutter-near $gutter;
 
-    @media (min-width: $mw + (2 * $gutter)) {
+    @media screen and (min-width: $mw + (2 * $gutter)) {
       margin-left: auto;
       margin-right: auto;
     }
@@ -35,18 +35,23 @@
     @extend %pillar-box;
     margin-bottom: 0;
 
-    @media (min-width: $tablet) {
+    @media screen and (min-width: $tablet) {
       max-width: 80%;
     }
 
-    @media (min-width: $desktop + pxToEm($gutter-desktop) * 2) {
+    @media screen and (min-width: $desktop + pxToEm($gutter-desktop) * 2) {
       max-width: $desktop;
     }
 
   }
 
+  > .sub-header,
+  > .section-header {
+    max-width: none;
+    padding-right: var(--gutter);
+  }
+
   > .sub-header {
-    @extend %pillar-box;
     text-align: center;
     margin-top: $v-gutter-far;
     margin-bottom: $v-gutter-near;
@@ -62,7 +67,7 @@
     max-width: $mw;
     margin: 0 $gutter;
 
-    @media (min-width: $mw + ($gutter * 2)) {
+    @media screen and  (min-width: $mw + ($gutter * 2)) {
       margin: 0 auto;
     }
 

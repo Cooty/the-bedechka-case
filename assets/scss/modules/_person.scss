@@ -23,7 +23,7 @@
     background: $image-placeholder-color;
     border-radius: 100%;
 
-    @media (min-width: $desktop) {
+    @media screen and (min-width: $desktop) {
       flex-basis: $avatar-big-width;
       max-width: $avatar-big-width;
       min-width: $avatar-big-width;

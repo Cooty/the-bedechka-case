@@ -4,10 +4,20 @@
     font-size: calc(1em + .1vw);
     margin-bottom: 1.3em;
     line-height: 1.4;
+
+    @media print {
+      orphans: 2;
+      widows: 2;
+    }
+
   }
 
   strong {
     font-weight: 500;
+  }
+
+  a {
+    @extend %visited-link;
   }
 
 }
