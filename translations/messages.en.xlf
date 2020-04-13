@@ -251,7 +251,14 @@
             <trans-unit id="navigation.people">
                 <source>navigation.people</source>
                 <target>
-                    People
+                    Protagonists
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.watch">
+                <source>navigation.watch</source>
+                <target>
+                    Watch
                 </target>
             </trans-unit>
 
@@ -434,6 +441,20 @@
                 <source>trailer.header</source>
                 <target>
                     Watch the trailer
+                </target>
+            </trans-unit>
+
+            <trans-unit id="past.screenings.header">
+                <source>past.screenings.header</source>
+                <target>
+                    Past screenings
+                </target>
+            </trans-unit>
+
+            <trans-unit id="more.info">
+                <source>more.info</source>
+                <target>
+                    more info
                 </target>
             </trans-unit>
         </body>

@@ -1,0 +1,34 @@
+{% if current_screenings is defined or past_screenings is defined %}
+    <div id="screening-list">
+        {% if current_screenings is defined and current_screenings %}
+            <ul class="box-grid section-v-gutter">
+                {% for screening in current_screenings %}
+                    {% include('./screenings/partials/item.html.twig') with {
+                        'name': screening.name,
+                        'venueName': screening.venueName,
+                        'venueLink': screening.venueLink,
+                        'eventLink': screening.eventLink,
+                        'start': screening.start,
+                        'active': true
+                    } %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if past_screenings is defined and past_screenings %}
+            {% include('./components/section-header.html.twig') with {'text': 'past.screenings.header', 'priority': 2, 'classes': 'story__header'} only %}
+            <ul class="box-grid">
+                {% for screening in past_screenings %}
+                    {% include('./screenings/partials/item.html.twig') with {
+                        'name': screening.name,
+                        'venueName': screening.venueName,
+                        'venueLink': screening.venueLink,
+                        'eventLink': screening.eventLink,
+                        'start': screening.start,
+                        'active': false
+                    } %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endif %}

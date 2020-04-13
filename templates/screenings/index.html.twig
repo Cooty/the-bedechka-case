@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'screenings.cta'|trans }} - {{ 'site.name'|trans }} {% endblock %}
+
+{% block main %}
+    <article class="box box--center-narrow box--tablet-big-gutter no-hero section-v-gutter">
+        {% include('./components/sub-header.html.twig') with {'text': 'screenings.cta', 'priority': 1, 'classes': 'box__header'} only %}
+
+        <div class="main-copy">
+            {{ 'screenings.intro'|trans({
+                '%list_anchor%': '#screening-list',
+                '%subscribe_link%': 'http://example.com',
+                '%contact_link%': path('contact')
+            }, 'content')|raw }}
+        </div>
+    </article>
+
+    {{ render_esi(controller('App\\Controller\\ScreeningsController::getScreenings')) }}
+{% endblock %}

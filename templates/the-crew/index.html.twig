@@ -13,7 +13,7 @@
 {% block main %}
     {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
 
-    <ul class="crew pull-over-hero">
+    <ul class="box-grid pull-over-hero">
         {% include('./the-crew/partials/item.html.twig') with {
             avatar: 'https://i.pravatar.cc/120',
             name: 'Dimana Shishkova',

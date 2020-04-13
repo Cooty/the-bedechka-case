@@ -4,9 +4,11 @@ namespace App\Service;
 
 use App\Entity\MapCase;
 use App\Entity\News;
+use App\Entity\Screening;
 use App\Entity\Transport\LatLongCords;
 use App\Entity\Transport\MapCaseFrontend;
 use App\Entity\Transport\NewsItemFrontend;
+use App\Entity\Transport\ScreeningFrontend;
 
 class TransportService
 {
@@ -62,5 +64,37 @@ class TransportService
         return array_map(function($n) {
             return $this->makeNewsItemFrontend($n);
         }, $news);
+    }
+
+
+    private function makeScreeningFrontend(Screening $screening, string $locale): ScreeningFrontend
+    {
+        $screeningFrontend = new ScreeningFrontend();
+
+        $name = $locale === self::BULGARIAN ? $screening->getNameBG() : $screening->getNameEN();
+        $screeningFrontend->setName($name);
+
+        $venueName = $locale === self::BULGARIAN ? $screening->getVenueNameBG() : $screening->getVenueNameEN();
+        $screeningFrontend->setVenueName($venueName);
+
+        $screeningFrontend->setEventLink($screening->getEventLink());
+
+        $screeningFrontend->setVenueLink($screening->getVenueLink());
+
+        $screeningFrontend->setStart($screening->getStart());
+
+        return $screeningFrontend;
+    }
+
+    /**
+     * @param Screening[] $screenings
+     * @param string $locale
+     * @return ScreeningFrontend[]
+     */
+    public function makeScreeningsFrontend(array $screenings, string $locale): array
+    {
+        return array_map(function($s) use ($locale) {
+            return $this->makeScreeningFrontend($s, $locale);
+        }, $screenings);
     }
 }
