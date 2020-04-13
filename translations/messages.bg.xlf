@@ -256,6 +256,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="navigation.watch">
+                <source>navigation.watch</source>
+                <target>
+                    Гледай
+                </target>
+            </trans-unit>
+
             <trans-unit id="navigation.crew">
                 <source>navigation.crew</source>
                 <target>
@@ -435,6 +442,20 @@
                 <source>trailer.header</source>
                 <target>
                     Виж трейлъра!
+                </target>
+            </trans-unit>
+
+            <trans-unit id="past.screenings.header">
+                <source>past.screenings.header</source>
+                <target>
+                    Минали прожекции
+                </target>
+            </trans-unit>
+
+            <trans-unit id="more.info">
+                <source>more.info</source>
+                <target>
+                    още информация
                 </target>
             </trans-unit>
         </body>

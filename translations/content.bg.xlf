@@ -68,6 +68,23 @@
                     <![CDATA[</p>]]>
                 </target>
             </trans-unit>
+
+            <trans-unit id="screenings.intro">
+                <source>screenings.intro</source>
+                <target>
+                    <![CDATA[<p>]]>
+                    <![CDATA[<em>]]>"Случаят Бедечка"<![CDATA[</em>]]> ще бъде представен на различни места в България и чужбина. Информация за предстоящите прожекции можете да намерите <![CDATA[<a href="%list_anchor%">]]>тук<![CDATA[</a>]]>.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    Филмът ще можете да гледате и онлайн. <![CDATA[<strong>]]><![CDATA[<a href="%subscribe_link%" target="_blank" rel="noopener noreferer">]]>Запишете се тук<![CDATA[</a>]]><![CDATA[</strong>]]>, за да получите информация щом филмът е качен в Интернет.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    Ако желаете да организирате прожекция на "Случая Бедечка", моля свържете се с нас посредством <![CDATA[<strong>]]><![CDATA[<a href="%contact_link%">]]>следните контакти<![CDATA[</a>]]><![CDATA[</strong>]]>!
+                    <![CDATA[</p>]]>
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -5,6 +5,7 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use App\Enum\Pagination;
+use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension implements GlobalsInterface
 {
@@ -45,6 +46,18 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         $this->defaultLocale = $defaultLocale;
         $this->secondaryLocale = $secondaryLocale;
         $this->mapBoxToken = $mapBoxToken;
+    }
+
+    public function getFunctions()
+    {
+        return [
+            new TwigFunction('is_facebook_link', [$this, 'isFacebookLink'])
+        ];
+    }
+
+    public function isFacebookLink(string $url): bool
+    {
+        return strpos($url, 'facebook.com') !== false;
     }
 
     public function getGlobals()

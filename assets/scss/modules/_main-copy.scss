@@ -18,6 +18,17 @@
 
   a {
     @extend %visited-link;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+  }
+
+  em {
+    font-style: italic;
   }
 
 }

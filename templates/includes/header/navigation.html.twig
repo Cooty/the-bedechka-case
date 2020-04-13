@@ -1,4 +1,8 @@
 <nav class="navigation">
+    <a href="{{ path('screenings') }}"
+       class="navigation__item{{ app.request.get('_route') == 'screenings' ? ' active' }}">
+        <span>{{ 'navigation.watch'|trans }}</span>
+    </a>
     <a href="{{ path('people') }}"
        class="navigation__item{{ app.request.get('_route') == 'people' ? ' active' }}">
         <span>{{ 'navigation.people'|trans }}</span>

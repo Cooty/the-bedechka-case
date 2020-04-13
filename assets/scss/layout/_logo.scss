@@ -24,16 +24,7 @@
 
   &__typo {
     @extend %header-font;
-    font-size: pxToRem(20);
+    font-size: pxToRem(16);
     user-select: none;
   }
-}
-
-// leave space for lanaguage flag, as the Bulgarian name is way longer
-html[lang="bg"] .logo .logo__typo {
-
-  @media screen and (max-width: 410px) {
-    font-size: pxToRem(16);
-  }
-
 }

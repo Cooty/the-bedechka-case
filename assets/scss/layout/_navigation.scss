@@ -1,7 +1,10 @@
 .navigation {
+  @extend %smooth-scroll;
   height: pxToRem($mobile-navigation-h);
   display: flex;
   flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
 
   @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
     max-width: $phablet;
@@ -13,6 +16,7 @@
     height: auto;
     flex: 1 1 auto;
     justify-content: flex-end;
+    overflow: visible;
   }
 
   &__item {

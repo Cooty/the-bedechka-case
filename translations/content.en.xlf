@@ -53,6 +53,23 @@
                     <![CDATA[</p>]]>
                 </target>
             </trans-unit>
+
+            <trans-unit id="screenings.intro">
+                <source>screenings.intro</source>
+                <target>
+                    <![CDATA[<p>]]>
+                    <![CDATA[<em>]]>The Bedechka Case<![CDATA[</em>]]> will be presented in Bulgaria and around Europe. See the <![CDATA[<a href="%list_anchor%">]]>list below<![CDATA[</a>]]> to find a screening near you!
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    The movie will also be available for streaming. <![CDATA[<strong>]]><![CDATA[<a href="%subscribe_link%" target="_blank" rel="noopener noreferer">]]>Subscribe here<![CDATA[</a>]]><![CDATA[</strong>]]> to get notified when it's online!
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    If you're interested in organizing a screening in your area, then please <![CDATA[<strong>]]><![CDATA[<a href="%contact_link%">]]>get in touch<![CDATA[</a>]]><![CDATA[</strong>]]>!
+                    <![CDATA[</p>]]>
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
