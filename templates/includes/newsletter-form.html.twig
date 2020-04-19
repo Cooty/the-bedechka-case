@@ -1,25 +1,54 @@
-<form action="/" class="newsletter-form form" method="post">
+{# Begin Mailchimp Signup Form #}
+<form action="https://casebedechka.us4.list-manage.com/subscribe/post?u=95ce3b3e43789e99c8bde621b&amp;id=6d7d0b7c1c"
+      method="post"
+      id="mc-embedded-subscribe-form"
+      name="mc-embedded-subscribe-form"
+      class="newsletter-form form"
+      target="_blank">
     <div class="form__row">
-        <label>
+        <label for="mce-FNAME">
             <span class="form__label">{{ 'newsletter.first.name'|trans }}</span>
-            <input type="text" name="first_name">
+            <input type="text"
+                   value=""
+                   name="FNAME"
+                   id="mce-FNAME">
         </label>
-        <label>
+
+        <label for="mce-LNAME">
             <span class="form__label">{{ 'newsletter.last.name'|trans }}</span>
-            <input type="text" name="last_name">
+            <input type="text"
+                   value=""
+                   name="LNAME"
+                   id="mce-LNAME">
         </label>
+
     </div>
     <div class="form__row">
-        <label>
+        <label for="mce-EMAIL">
             <span class="form__label">
                 {{ 'newsletter.email'|trans }}<strong class="form__asterisk">&nbsp;*</strong>
             </span>
-            <input type="email" name="email" required>
+
+            <input type="email"
+                   value=""
+                   name="EMAIL"
+                   required
+                   id="mce-EMAIL">
         </label>
     </div>
-    <div class="form__row text-center">
-        <button class="button" type="submit">{{ 'newsletter.submit'|trans }}</button>
+    {# real people should not fill this in and expect good things - do not remove this or risk form bot signups #}
+    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_95ce3b3e43789e99c8bde621b_6d7d0b7c1c" tabindex="-1" value="">
     </div>
+    <div class="form__row text-center">
+        <button type="submit"
+                name="subscribe"
+                id="mc-embedded-subscribe"
+                class="button">
+            {{ 'newsletter.submit'|trans }}
+        </button>
+    </div>
+
     <p class="form__legend">
         {{ 'newsletter.field.legend'|trans }}
     </p>
