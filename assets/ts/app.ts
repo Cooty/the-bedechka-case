@@ -36,7 +36,7 @@ class App {
         }
 
         if(window._config && window._config.newsHasPagination) {
-            new NewsPagination(document.getElementById("js-news-load-more"));
+            new NewsPagination(<HTMLButtonElement>document.getElementById("js-news-load-more"));
         }
     }
 }
