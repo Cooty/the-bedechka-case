@@ -1,18 +1,13 @@
 import "../scss/app.scss";
 
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import Header from "./modules/header";
 import Timeline from "./modules/timeline";
 import CasesMap from "./modules/cases-map";
 import NewsPagination from "./modules/news-pagination";
-import IConfig from "./interfaces/IConfig";
-
-declare global {
-    interface Window {
-        _config?: IConfig,
-        L?: any,
-        onloadCSS?: Function
-    }
-}
+import YTPlayer from "./modules/yt-player";
+import "./interfaces/WindowGlobals";
 
 class App {
     private static instance: App;
@@ -38,6 +33,8 @@ class App {
         if(window._config && window._config.newsHasPagination) {
             new NewsPagination(<HTMLButtonElement>document.getElementById("js-news-load-more"));
         }
+
+        new YTPlayer();
     }
 }
 

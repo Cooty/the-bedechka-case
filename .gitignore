@@ -93,3 +93,6 @@ scss/.sass-cache/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+# ENV
+.env.dev.local

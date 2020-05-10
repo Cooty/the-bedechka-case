@@ -48,41 +48,6 @@
 
   }
 
-  &--tablet-only {
-    padding: 0;
-    box-shadow: none;
-
-    @media screen and (min-width: $tablet) {
-      padding: $grid-v-gutter var(--gutter);
-      @include box-shadow();
-    }
-
-    > .video {
-      width: calc(100% + #{$gutter * 2});
-      margin-left: -$gutter;
-      margin-bottom: 2vh;
-
-      @media screen and (min-width: $tablet) {
-        margin-top: -$grid-v-gutter;
-        overflow: hidden;
-        border-radius: $box-radius;
-
-        &:before{
-          content: '';
-          position: absolute;
-        }
-
-      }
-
-      @media screen and (min-width: $desktop) {
-        width: calc(100% + #{$gutter-desktop * 2});
-        margin-left: -$gutter-desktop;
-      }
-
-    }
-
-  }
-
   &__subtitle {
     font-weight: 500;
     font-size: calc(1.1rem + .2vw);

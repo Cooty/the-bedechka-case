@@ -29,7 +29,8 @@ body > .main {
   @extend %section-v-divider;
 
   %list-item-v-gutter {
-    margin-bottom: 2vh;
+    margin-bottom: 2.8vh;
+
     &:last-of-type { margin-bottom: 0; }
 
     @media screen and (min-width: $desktop) {

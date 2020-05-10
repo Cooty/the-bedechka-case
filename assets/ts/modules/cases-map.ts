@@ -1,3 +1,5 @@
+import "../../scss/layout/_cases-map.scss";
+
 import ILocations from "../interfaces/ILocations";
 import ILocation from "../interfaces/ILocation";
 import {LatLngExpression, Map, Marker} from "leaflet";
@@ -5,16 +7,8 @@ import popupContent from "../templates/popup-content";
 import openStreetMapsAttribution from "../templates/open-street-maps-attribution";
 import mapListNavigationItem from "../templates/map-list-navigation-item";
 import {getNetworkErrorMessage} from "../utils/error-handling";
-import IConfig from "../interfaces/IConfig";
-const {loadCSS} = require("fg-loadcss/dist/loadCSS");
-
-declare global {
-    interface Window {
-        _config?: IConfig,
-        L?: any,
-        onloadCSS?: Function
-    }
-}
+import "../interfaces/WindowGlobals";
+const {loadCSS} = require("fg-loadcss/src/loadCSS");
 
 export default class CasesMap {
     private readonly rootElement: HTMLElement;
@@ -54,7 +48,6 @@ export default class CasesMap {
 
     private static appendScript(text: string) {
         const script = document.createElement("script");
-        script.id = "leafletJS";
         script.innerText = text;
 
         document.body.appendChild(script);
@@ -165,7 +158,7 @@ export default class CasesMap {
         const leafletCSSURL = `${this.leafletCDNURL}/dist/leaflet.css`;
         const leafletCSS = loadCSS(leafletCSSURL);
 
-        window.onloadCSS(leafletCSS, this.leafletCSSCallback.bind(this));
+        leafletCSS.onload = () => this.leafletCSSCallback();
     }
 
 }

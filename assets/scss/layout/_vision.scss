@@ -54,6 +54,40 @@
 
   &__case {
     margin-bottom: 4vh;
+    max-width: $yt-thumbnail-standard-w - $gutter * 2;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media screen and (min-width: $yt-thumbnail-standard-w) {
+      background: white;
+      padding: $grid-v-gutter var(--gutter);
+      border-radius: $box-radius;
+      @include box-shadow();
+    }
+
+    > .video {
+      width: calc(100% + #{$gutter * 2});
+      margin-left: -$gutter;
+      margin-bottom: 2vh;
+
+      @media screen and (min-width: $yt-thumbnail-standard-w) {
+        margin-top: -$grid-v-gutter;
+        overflow: hidden;
+        border-radius: $box-radius;
+
+        &:before{
+          content: '';
+          position: absolute;
+        }
+
+      }
+
+      @media screen and (min-width: $desktop) {
+        width: calc(100% + #{$gutter-desktop * 2});
+        margin-left: -$gutter-desktop;
+      }
+
+    }
 
     &:last-of-type {
       margin-bottom: 0;

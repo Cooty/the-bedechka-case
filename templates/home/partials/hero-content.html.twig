@@ -3,11 +3,12 @@
         {{ 'home.hero.intro'|trans }}
     </p>
     <div class="landing-hero-content__video">
-        {% include('./components/video-embed.html.twig') with {
-            'url': 'https://www.youtube.com/watch?v=JfcjnnZ9iVM',
-            'thumbnail': 'https://picsum.photos/400/225',
-            'alt': 'The Case Bedechka Documentary English trailer'}
-        %}
+        {% include('./components/youtube-embed.html.twig') with {
+            'id': trailer.id,
+            'thumbnails': trailer.thumbnails,
+            'title': trailer.title,
+            'titleBg': trailer.titleBg
+        } %}
     </div>
     <div class="landing-hero-content__button">
         <a href="{{ path('about') }}" class="button button--cta">{{ 'load.more'|trans }}</a>

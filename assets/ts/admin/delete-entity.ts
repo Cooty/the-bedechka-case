@@ -1,5 +1,6 @@
 import * as $ from "jquery";
 import {setCookie} from "./utils/cookie";
+import "./interfaces/WindowGlobals";
 
 const deleteRowFromList = (id: string)=> {
     const row:JQuery = $(`#js-row-${id}`);

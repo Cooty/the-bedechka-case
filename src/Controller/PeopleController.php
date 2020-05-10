@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Service\YouTubeService;
+use App\Enum\YouTubeVideos;
 use App\Traits\Locale;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,19 +31,26 @@ class PeopleController extends AbstractController
      */
     private $languageSettingSessionKey;
 
+    /**
+     * @var YouTubeService
+     */
+    private $youTubeService;
+
     public function __construct(
         string $secondaryLocale,
         string $languageSettingParamName,
-        string $languageSettingSessionKey
+        string $languageSettingSessionKey,
+        YouTubeService $youTubeService
     )
     {
         $this->secondaryLocale = $secondaryLocale;
         $this->languageSettingParamName = $languageSettingParamName;
         $this->languageSettingSessionKey = $languageSettingSessionKey;
+        $this->youTubeService = $youTubeService;
     }
 
     /**
-     * @Route({"en": "/people", "bg": "/участници"}, name="people", methods={"GET"})
+     * @Route({"en": "/protagonists", "bg": "/участници"}, name="people", methods={"GET"})
      * @param Request $request
      * @return Response
      */
@@ -51,7 +60,11 @@ class PeopleController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        $response = new Response($this->renderView('people/index.html.twig'));
+        $videos = $this->youTubeService->getVideosFromPlaylist(YouTubeVideos::PROTAGONISTS_PLAYLIST_ID);
+
+        $response = new Response($this->renderView('people/index.html.twig', [
+            'videos' => $videos
+        ]));
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
         $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');
         $response->setSharedMaxAge(Cache::FULL_PAGE_CACHE_EXPIRATION);

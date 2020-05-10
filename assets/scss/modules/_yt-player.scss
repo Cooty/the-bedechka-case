@@ -1,0 +1,102 @@
+@import "../config/colors";
+@import "../config/z-indexes";
+@import "../config/breakpoints";
+@import "../config/sizes";
+
+.header,
+.footer,
+.main {
+  transition: all .3s ease-in-out;
+
+  .yt-player-animated & {
+    filter: blur(8px);
+  }
+
+}
+
+.yt-player {
+  $close-w: 20px;
+
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-highest;
+  background: rgba($dark-green-border, .7);
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  &,
+  &__player-container {
+    opacity: 0;
+    transition: all .3s ease-in-out;
+  }
+
+  .yt-player-opened & {
+    display: flex;
+  }
+
+  .yt-player-animated & {
+    opacity: 1;
+  }
+
+  &__closer-layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  &__player-container {
+    background: black;
+    width: 100%;
+    max-width: 1000px;
+    transform-origin: center;
+    transform: scale(0);
+    z-index: 2;
+
+    .yt-player-animated & {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    @media screen and (min-width: $smallest + pxToEm($gutter * 2)) {
+      width: 90%;
+    }
+
+    @media screen and (min-width: pxToEm(480px)) {
+      width: 80%;
+    }
+
+    @media screen and (min-width: $desktop) {
+      width: 70%;
+    }
+
+  }
+
+  &__close {
+    width: $close-w;
+    height: $close-w;
+    position: absolute;
+    right: 0;
+    top: -$close-w;
+    background: $almost-white;
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+}

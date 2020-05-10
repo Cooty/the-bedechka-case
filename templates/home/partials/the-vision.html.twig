@@ -7,43 +7,44 @@
         </h3>
         <div class="copy vision__intro">
             <div>
-                <p>
-                    <strong>{{ 'vision.intro.bold'|trans }}</strong>
-                </p>
+                <h4 class="box__subtitle mb-2">
+                    {{ 'vision.intro.bold'|trans }}
+                </h4>
                 <p>
                     {{ 'vision.intro'|trans }}
                 </p>
             </div>
         </div>
         <figure class="vision__graphic">
-            {# TODO: Just dummy markup - some more responsive, more flexible stuff here after we have final design #}
             <picture>
-                <source srcset="{{ asset('build/the-vision-info-graphic-placeholder-desktop.png') }}" media="(min-width: 768px)">
-                <img src="{{ asset('build/the-vision-info-graphic-placeholder-mobile.png') }}" alt="">
+                <source srcset="{{ asset('build/images/the-vision-info-graphic-placeholder-desktop.png') }}" media="(min-width: 768px)">
+                <img src="{{ asset('build/images/the-vision-info-graphic-placeholder-mobile.png') }}" alt="">
             </picture>
         </figure>
         <h3 class="sub-header vision__header">
             {{ 'protection.mechanisms'|trans }}
         </h3>
-        <div class="box box--tablet-only vision__case">
+        <div class="vision__case">
             <div class="video">
-                {% include('./components/video-embed.html.twig') with {
-                    'url': 'https://www.youtube.com/watch?v=PegMHCQWls4',
-                    'thumbnail': 'https://picsum.photos/400/225',
-                    'alt': 'Sunset over the field / Залез над полето'}
-                %}
+                {% include('./components/youtube-embed.html.twig') with {
+                    'id': thf.id,
+                    'thumbnails': thf.thumbnails,
+                    'title': thf.title,
+                    'titleBg': thf.titleBg
+                } %}
             </div>
             <h4 class="box__subtitle">
                 {{ 'thf.case.title'|trans }}
             </h4>
         </div>
-        <div class="box box--tablet-only vision__case">
+        <div class="vision__case">
             <div class="video">
-                {% include('./components/video-embed.html.twig') with {
-                    'url': 'https://www.youtube.com/watch?v=MdmidVPid2',
-                    'thumbnail': 'https://picsum.photos/400/225',
-                    'alt': 'Life in the Jungle / Живот в джунглата'}
-                %}
+                {% include('./components/youtube-embed.html.twig') with {
+                    'id': lifeInTheJungle.id,
+                    'thumbnails': lifeInTheJungle.thumbnails,
+                    'title': lifeInTheJungle.title,
+                    'titleBg': lifeInTheJungle.titleBg
+                } %}
             </div>
             <h4 class="box__subtitle">
                 Humans as Stewards of Nature and not a Disaster to it
