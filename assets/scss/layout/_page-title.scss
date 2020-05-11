@@ -10,7 +10,7 @@
   }
 
   &--main {
-    font-family: $header-font;
+    @extend %header-font;
     font-size: calc(#{pxToRem(26)} + .5vw);
     margin-bottom: pxToRem(14);
     letter-spacing: pxToRem(1);
@@ -31,6 +31,7 @@
 
   &--sub {
     font-size: calc(#{pxToRem(17)} + .5vw);
+    font-weight: 300;
 
     @media screen and (min-width: $tablet) {
       font-size: calc(#{pxToRem(26)} + .5vw);

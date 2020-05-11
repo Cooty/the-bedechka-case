@@ -1,7 +1,6 @@
 .section-header {
   @extend %pillar-box;
-  font-family: $header-font;
-  text-transform: capitalize;
+  @extend %header-font;
   text-align: center;
   font-size: calc(#{$header-font-size} + .5vw);
   padding-bottom: pxToRem(10);

@@ -1,5 +1,5 @@
 .sub-header {
-  font-family: $header-font;
+  @extend %header-font;
   font-size: calc(#{$subheader-size} + .5vw);
   letter-spacing: pxToRem(1);
   line-height: 1.2;

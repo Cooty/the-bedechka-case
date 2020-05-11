@@ -48,7 +48,7 @@
 
 
   & &__title {
-    font-family: $header-font;
+    @extend %header-font;
     color: $base-text-color;
     font-size: 1.25em;
     line-height: 1.2;
