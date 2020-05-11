@@ -28,7 +28,6 @@ Encore
     .addEntry('app', './assets/ts/app.ts')
     .addEntry('admin', './assets/ts/admin/app.ts')
     .enableTypeScriptLoader()
-    .enableForkedTypeScriptTypesChecking()
     .addLoader(babelLoader)
     .enablePostCssLoader()
     .enableSassLoader((options) => {
@@ -43,5 +42,7 @@ const config = Encore.getWebpackConfig();
 config.watchOptions = {
     poll: true
 };
+
+config.optimization.noEmitOnErrors = true;
 
 module.exports = config;

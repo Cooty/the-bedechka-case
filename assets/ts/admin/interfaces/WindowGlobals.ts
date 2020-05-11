@@ -4,6 +4,6 @@ export {};
 
 declare global {
     interface Window {
-        _config?: IConfig
+        _configAdmin?: IConfig
     }
 }

@@ -23,7 +23,7 @@ const redirectOnForbiddenResponse = (status: number)=> {
         setCookie("tbc_1_implicitLogout", "1", null);
         setCookie("tbc_1_redirectUri", window.location.pathname, null);
 
-        window.location.href = window._config.loginUri;
+        window.location.href = window._configAdmin.loginUri;
     }
 };
 
@@ -35,7 +35,7 @@ export const init = () => {
     deleteButtons.on("click.delete", (e: Event)=> {
         const button:JQuery<EventTarget> = $(e.currentTarget);
         const id: string = button.data("id");
-        const confirm = window.confirm(`${window._config.deleteEntityConfirmMessage} ${button.data("name")}`);
+        const confirm = window.confirm(`${window._configAdmin.deleteEntityConfirmMessage} ${button.data("name")}`);
 
         if(confirm) {
             deleteEntity(id, button.data("url"))
