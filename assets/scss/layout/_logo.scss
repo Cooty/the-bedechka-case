@@ -24,7 +24,8 @@
 
   &__typo {
     @extend %header-font;
-    font-size: pxToRem(16);
+    text-transform: uppercase;
+    font-size: pxToRem(26);
     user-select: none;
   }
 }
