@@ -61,17 +61,18 @@ export default class YtPlayer {
 
     private showOverlay() {
         this.elements.body.classList.add(this.overlayOpenClassName);
-        window.setTimeout(()=> {
+        const timeOut = window.setTimeout(()=> {
             this.elements.body.classList.add(this.overlayAnimateClassName);
-        },1)
+            return window.clearTimeout(timeOut);
+        },1);
     }
 
     private closeOverlay() {
-        console.log(this);
         this.elements.body.classList.remove(this.overlayAnimateClassName);
-        window.setTimeout(()=> {
+        const timeOut = window.setTimeout(()=> {
             this.elements.body.classList.remove(this.overlayOpenClassName);
             this.elements.ytIframeContainer.innerHTML = "";
+            return window.clearTimeout(timeOut);
         }, this.cssTransitionTime);
     }
 

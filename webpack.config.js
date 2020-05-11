@@ -39,6 +39,7 @@ Encore
 
 const config = Encore.getWebpackConfig();
 
+// needed for Vagrant VM for watch mode to work correctly
 config.watchOptions = {
     poll: true
 };

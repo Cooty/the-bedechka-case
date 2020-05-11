@@ -24,7 +24,7 @@
   left: 0;
   right: 0;
   z-index: $z-highest;
-  background: rgba($dark-green-border, .7);
+  background: $backdrop-grey;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
