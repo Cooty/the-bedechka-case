@@ -5,6 +5,8 @@ export {};
 declare global {
     interface Window {
         _config?: IConfig,
-        L?: any
+        L?: any,
+        YT?: any,
+        onYouTubeIframeAPIReady?: Function
     }
 }

@@ -35,12 +35,9 @@
     align-items: center;
     padding-left: $gutter;
 
-    @media screen and (min-width: $tablet) {
-      padding-left: 0;
-    }
-
     @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
       max-width: $phablet;
+      justify-content: center;
       margin: 0 auto;
     }
 

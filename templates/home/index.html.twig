@@ -26,6 +26,16 @@
     {{ parent() }}
     {% include('./includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://unpkg.com/'} only %}
+
     {% include('./includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://api.tiles.mapbox.com/'} only %}
+
+    {% include('./includes/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://ytimg.com'} only %}
+
+    {% include('./includes/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://www.youtube.com'} only %}
+
+    {% include('./includes/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://www.youtube-nocookie.com'} only %}
 {% endblock %}
