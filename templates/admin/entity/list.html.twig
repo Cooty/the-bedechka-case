@@ -8,12 +8,12 @@
 
 {% block javascript_config %}
     <script>
-        var _config = window._config || {};
+        var _configAdmin = window._configAdmin || {};
 
-        _config["deleteEntityConfirmMessage"] = "Are you sure you want to delete";
-        _config["loginUri"] = "{{ path("admin_security_login") }}";
+        _configAdmin["deleteEntityConfirmMessage"] = "Are you sure you want to delete";
+        _configAdmin["loginUri"] = "{{ path("admin_security_login") }}";
 
-        Object.freeze(_config);
+        Object.freeze(_configAdmin);
     </script>
 {% endblock %}
 

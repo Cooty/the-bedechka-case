@@ -2,6 +2,37 @@
   $play-button-size: 91px;
   $play-button-offset: ($play-button-size / 2) * -1;
 
+  &,
+  &:before {
+    background-size: cover;
+    background-position: center;
+    background-color: $base-text-color;
+    background-repeat: no-repeat;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: $z-lowest;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+    background-blend-mode: soft-light;
+  }
+
+
+  &:hover,
+  &:focus {
+
+    &:before {
+      opacity: 0;
+    }
+
+  }
+
   &:after {
     content: '';
     position: absolute;

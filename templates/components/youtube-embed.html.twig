@@ -1,0 +1,35 @@
+{% if id is defined %}
+    <style>
+        .video-{{ id }},
+        .video-{{ id }}:before {
+            background-image: url({{ thumbnails.mobile }});
+        }
+
+        @media screen and (min-width: 48rem) {
+            .video-{{ id }},
+            .video-{{ id }}:before {
+                background-image: url({{ thumbnails.tablet }});
+            }
+        }
+
+        @media screen and (min-width: 64rem) {
+            .video-{{ id }},
+            .video-{{ id }}:before {
+                background-image: url({{ thumbnails.desktop }});
+            }
+        }
+    </style>
+
+    {% set classes = classes is defined ? classes : '' %}
+    <a href="https://www.youtube.com/watch?v={{ id }}"
+       data-id="{{ id }}"
+       class="js-video-embed video-embed embed-16-9 {{ classes }} video-{{ id }}">
+        <span class="visually-hidden">
+            {% if app.request.get('_locale') == 'en' %}
+                {{ title }}
+            {% else %}
+                {{ titleBg }}
+            {% endif %}
+        </span>
+    </a>
+{% endif %}

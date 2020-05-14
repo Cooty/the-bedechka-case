@@ -8,7 +8,7 @@ const babelLoader = {
                 "@babel/preset-env",
                 {
                     "useBuiltIns": "entry",
-                    "corejs": { version: 3, proposals: true }
+                    "corejs": {version: 3, proposals: true}
                 },
             ]
         ]
@@ -19,11 +19,12 @@ Encore
     .setOutputPath('public/build/')
     .copyFiles({
         from: './assets/images',
+        to: 'images/[path][name].[hash:8].[ext]'
     })
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
     .enableVersioning()
-    .enableSourceMaps(!Encore.isProduction())
+    .enableSourceMaps()
     .addEntry('app', './assets/ts/app.ts')
     .addEntry('admin', './assets/ts/admin/app.ts')
     .enableTypeScriptLoader()
@@ -33,12 +34,16 @@ Encore
     .enableSassLoader((options) => {
         options.outputStyle = 'compressed';
     })
-    .disableSingleRuntimeChunk();
+    .enableSingleRuntimeChunk()
+    .splitEntryChunks();
 
 const config = Encore.getWebpackConfig();
 
+// needed for Vagrant VM for watch mode to work correctly
 config.watchOptions = {
     poll: true
 };
+
+config.optimization.noEmitOnErrors = true;
 
 module.exports = config;

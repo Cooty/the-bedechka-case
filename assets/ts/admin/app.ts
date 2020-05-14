@@ -1,15 +1,13 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
+import * as $ from "jquery";
+import "bootstrap";
+
 import "../../scss/admin/app.scss";
 import {toggleSidebarMenu} from "./sidebar-menu";
 import {init as initCustomFile} from "./show-file-names-in-uploads";
 import {init as initDeleteEntity} from "./delete-entity";
-
-import {IConfig} from "./interfaces/IConfig";
-
-declare global {
-    interface Window {
-        _config?: IConfig
-    }
-}
 
 class App {
     private static instance: App;
@@ -25,9 +23,7 @@ class App {
     }
 
     public init() {
-        const $ = require('jquery');
-        require('bootstrap');
-
+        // @ts-ignore
         $('[data-toggle="dropdown"]').dropdown();
 
         const toggler = document.querySelector('.js-sidebar-opener');

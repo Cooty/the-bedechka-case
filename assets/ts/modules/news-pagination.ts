@@ -1,15 +1,7 @@
 import INewsItems from "../interfaces/INewsItems";
 import {getNetworkErrorMessage} from "../utils/error-handling";
-import IConfig from "../interfaces/IConfig";
 import newsItemInside from "../templates/news-item-inside";
-
-declare global {
-    interface Window {
-        _config?: IConfig,
-        L?: any,
-        onloadCSS?: Function
-    }
-}
+import "../interfaces/WindowGlobals";
 
 export default class NewsPagination {
     private currentPage: number;

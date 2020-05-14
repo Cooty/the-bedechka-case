@@ -67,3 +67,7 @@ services:
     App\Service\EntityService:
       arguments:
         $mapImagesDirectory: '%map_images_directory%'
+
+    App\Service\YouTubeService:
+      arguments:
+        $secondaryLocale: '%secondary_locale%'

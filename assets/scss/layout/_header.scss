@@ -6,7 +6,6 @@
   top: 0;
   left: 0;
   right: 0;
-  transition: all .15s ease-in-out;
 
   &:after {
     content: '';
@@ -36,12 +35,9 @@
     align-items: center;
     padding-left: $gutter;
 
-    @media screen and (min-width: $tablet) {
-      padding-left: 0;
-    }
-
     @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
       max-width: $phablet;
+      justify-content: center;
       margin: 0 auto;
     }
 

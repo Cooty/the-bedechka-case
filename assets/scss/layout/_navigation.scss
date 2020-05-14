@@ -44,14 +44,20 @@
 
     &:after {
       content: '';
-      height: 4px;
+      height: 3px;
       position: absolute;
       left: 50%;
-      bottom: -2px;
+      bottom: 0;
       transition: all .3s ease-in-out;
       opacity: 0;
       width: 0;
       transform: translate3d(-50%, 0, 0);
+
+      @media screen and (min-width: $desktop) {
+        bottom: -2px;
+        height: 4px;
+      }
+
     }
 
     &:focus,

@@ -1,16 +1,29 @@
 <li class="people__item">
     <article class="box box--video">
         <div class="video">
-            {% include('./components/video-embed.html.twig') with {
-                'url': videoUrl,
-                'thumbnail': videoThumbnail,
+            {% include('./components/youtube-embed.html.twig') with {
+                'id': video.id,
+                'thumbnails': video.thumbnails,
                 'classes': 'video-embed--bottom-right',
-                'alt': title}
-            %}
+                'title': video.title,
+                'titleBg': video.titleBg
+            } %}
         </div>
         <h4 class="box__subtitle">
-            {{ title }}
+            {% if app.request.get('_locale') == 'en' %}
+                {{ video.title }}
+            {% else %}
+                {{ video.titleBg }}
+            {% endif %}
         </h4>
-        <span class="box__info box__info--regular-size">{{ subTitle }}</span>
+        {% if video.description and video.descriptionBg %}
+            <span class="box__info box__info--regular-size">
+                {% if app.request.get('_locale') == 'en' %}
+                    {{ video.description }}
+                {% else %}
+                    {{ video.descriptionBg }}
+                {% endif %}
+            </span>
+        {% endif %}
     </article>
 </li>

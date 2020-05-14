@@ -6,4 +6,5 @@ abstract class Cache
 {
     const FULL_PAGE_CACHE_EXPIRATION = 3600; // 1h
     const API_RESPONSE_EXPIRATION = '5 hours';
+    const VIDEO_EXPIRATION = '12 hours';
 }

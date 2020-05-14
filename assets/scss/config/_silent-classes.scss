@@ -1,3 +1,9 @@
+@import "z-indexes";
+@import "colors";
+@import "typo";
+@import "sizes";
+@import "functions";
+
 %text-colored-link {
   color: $base-text-color;
   text-decoration: none;

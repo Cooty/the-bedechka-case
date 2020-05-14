@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\NewsService;
+use App\Service\YouTubeService;
 use App\Traits\Locale;
 use DateInterval;
 use Psr\Cache\InvalidArgumentException;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpKernel\EventListener\AbstractSessionListener;
 use App\Enum\Cache;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
+use App\Enum\YouTubeVideos;
 
 class HomeController extends AbstractController
 {
@@ -50,13 +52,19 @@ class HomeController extends AbstractController
      */
     private $logger;
 
+    /**
+     * @var YouTubeService
+     */
+    private $youTubeService;
+
     public function __construct(
         string $secondaryLocale,
         string $languageSettingParamName,
         string $languageSettingSessionKey,
         NewsService $newsService,
         CacheInterface $appCache,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        YouTubeService $youTubeService
     )
     {
         $this->secondaryLocale = $secondaryLocale;
@@ -65,6 +73,44 @@ class HomeController extends AbstractController
         $this->newsService = $newsService;
         $this->appCache = $appCache;
         $this->logger = $logger;
+        $this->youTubeService = $youTubeService;
+    }
+
+    private function getVideos(): array
+    {
+        $theVisionSectionVideosSizeMap = ['mobile'=> 'standard', 'tablet'=> 'high', 'desktop'=> 'standard'];
+
+        try {
+            $trailer = $this->appCache->get(YouTubeVideos::TRAILER_ID, function (ItemInterface $cacheItem) {
+                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+
+                return $this->youTubeService->getSingleVideo(YouTubeVideos::TRAILER_ID);
+            });
+
+            $thf = $this->appCache->get(
+                YouTubeVideos::THF_ID,
+                function (ItemInterface $cacheItem) use ($theVisionSectionVideosSizeMap) {
+                    $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+
+                    return $this->
+                            youTubeService->
+                            getSingleVideo(YouTubeVideos::THF_ID, $theVisionSectionVideosSizeMap);
+            });
+
+            $lifeInTheJungle = $this->appCache->get(
+                YouTubeVideos::LIFE_IN_THE_JUNGLE_ID,
+                function (ItemInterface $cacheItem) use ($theVisionSectionVideosSizeMap) {
+                    $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+
+                    return $this->
+                            youTubeService->
+                            getSingleVideo(YouTubeVideos::LIFE_IN_THE_JUNGLE_ID, $theVisionSectionVideosSizeMap);
+            });
+
+            return [$trailer, $thf, $lifeInTheJungle];
+        } catch (InvalidArgumentException $e) {
+            return [];
+        }
     }
 
     /**
@@ -78,7 +124,13 @@ class HomeController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        $response = new Response($this->renderView('home/index.html.twig'));
+        list($trailer, $thf, $lifeInTheJungle) = $this->getVideos();
+
+        $response = new Response($this->renderView('home/index.html.twig', [
+            'trailer'=> $trailer,
+            'thf'=> $thf,
+            'lifeInTheJungle'=> $lifeInTheJungle
+        ]));
 
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
         $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');

@@ -13,54 +13,11 @@
 {% block main %}
     {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
 
-    <ul class="people pull-over-hero">
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-        {% include('./people/partials/item.html.twig') with {
-            title: 'Zhivka, Ljuba and Mariana',
-            subTitle: 'NGO "Save the Bedechka"',
-            videoUrl: 'https://www.youtube.com/watch?v=PegMHCQWls4',
-            videoThumbnail: 'https://picsum.photos/400/225'}
-        %}
-    </ul>
+    {% if videos is defined and videos|length %}
+        <ul class="people pull-over-hero">
+            {% for video in videos %}
+                {% include('./people/partials/item.html.twig') with {video: video} %}
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
