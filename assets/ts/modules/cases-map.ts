@@ -1,4 +1,5 @@
-import "../../scss/layout/_cases-map.scss";
+import "../../scss/components/_cases-map.scss";
+import "../../scss/components/_leaflet-popup-content.scss";
 
 import ILocations from "../interfaces/ILocations";
 import ILocation from "../interfaces/ILocation";

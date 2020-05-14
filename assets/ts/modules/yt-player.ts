@@ -1,9 +1,9 @@
-import "../../scss/modules/_yt-player.scss";
+import "../../scss/components/_yt-player.scss";
 import "../interfaces/WindowGlobals";
 
 interface IElements {
     body?: HTMLBodyElement,
-    videoEmbeds?: Element[],
+    videoEmbeds?: HTMLElement[],
     closeButton?: HTMLButtonElement,
     ytIframeContainer?: HTMLElement,
     ytPlayerCloseLayer?: HTMLElement,
@@ -22,7 +22,7 @@ export default class YtPlayer {
     }
 
     private getElements() {
-        const videoEmbeds = Array.from(document.querySelectorAll('.js-video-embed'));
+        const videoEmbeds = Array.from(document.querySelectorAll('.js-video-embed') as NodeListOf<HTMLElement>);
         const body = document.querySelector('body');
 
         this.elements = {...this.elements, ...{body, videoEmbeds}};
@@ -34,8 +34,6 @@ export default class YtPlayer {
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName("script")[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        console.log(tag);
-
     }
 
     private onYouTubeIframeAPIReady() {
@@ -43,7 +41,7 @@ export default class YtPlayer {
         this.isInitialized = true;
     }
 
-    private makePlayerTarget() {
+    private static makePlayerTarget() {
         return document.createElement("div");
     }
 
@@ -70,7 +68,7 @@ export default class YtPlayer {
         const ytIframeContainer = document.createElement("div");
         ytIframeContainer.className = "embed-16-9";
 
-        const ytPlayerTarget = this.makePlayerTarget();
+        const ytPlayerTarget = YtPlayer.makePlayerTarget();
         this.addPlayerTarget(ytPlayerTarget, ytIframeContainer);
 
         const ytPlayerCloseLayer = document.createElement("div");
@@ -89,7 +87,6 @@ export default class YtPlayer {
     }
 
     private makePlayer(id: string) {
-        console.log(this.elements.ytPlayerTarget);
         return new window.YT.Player(this.elements.ytPlayerTarget, {
             host: "https://www.youtube-nocookie.com", // doesn't add tracking cookies
             videoId: id,
@@ -136,13 +133,11 @@ export default class YtPlayer {
                 }
 
                 if(!this.elements.ytPlayerTarget) {
-                    const ytPlayerTarget = this.makePlayerTarget();
+                    const ytPlayerTarget = YtPlayer.makePlayerTarget();
                     this.addPlayerTarget(ytPlayerTarget, this.elements.ytIframeContainer);
                 }
 
-                // @ts-ignore
                 this.makePlayer(videoEmbed.dataset.id);
-                console.log(this.elements);
                 this.showOverlay();
             });
         });

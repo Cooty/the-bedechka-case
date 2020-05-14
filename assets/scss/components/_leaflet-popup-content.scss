@@ -1,3 +1,7 @@
+@import "../config/breakpoints";
+@import "../config/silent-classes";
+@import "../config/colors";
+
 // Additions and overwrittes for the default CSS theme of
 // LeafletJS map provider.
 // the base CSS is loaded dynamically to the global scope where
