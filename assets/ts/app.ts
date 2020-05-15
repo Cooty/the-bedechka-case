@@ -1,7 +1,7 @@
 import "../scss/app.scss";
 
-import "core-js/stable";
 import "regenerator-runtime/runtime";
+
 import Header from "./modules/header";
 import Timeline from "./modules/timeline";
 import CasesMap from "./modules/cases-map";
