@@ -93,6 +93,8 @@ scss/.sass-cache/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+# only pakage-lock.json should be used
+yarn.lock
 
 # ENV
 .env.dev.local
