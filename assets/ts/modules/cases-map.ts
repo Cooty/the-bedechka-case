@@ -14,6 +14,7 @@ const {loadCSS} = require("fg-loadcss/src/loadCSS");
 export default class CasesMap {
     private readonly rootElement: HTMLElement;
     private readonly leafletCDNURL: string;
+    private locationsLoaded = false;
 
     constructor(rootElement: HTMLElement) {
         if (!rootElement) {
@@ -25,7 +26,8 @@ export default class CasesMap {
         this.init();
     }
 
-    private static async getLocations(): Promise<ILocations> {
+    private async getLocations(): Promise<ILocations> {
+        this.locationsLoaded = true;
         const locationsAPIURL: RequestInfo = `${window._config.mapCaseApiUrl}?token=${window._config.mapCaseEndpointToken}`;
 
         const response = await fetch(locationsAPIURL);
@@ -139,10 +141,13 @@ export default class CasesMap {
     }
 
     private async leafletCSSCallback() {
+        if(this.locationsLoaded) {
+            return;
+        }
+
+
         try {
-            await CasesMap.getLocations().then(locationsData => {
-                return locationsData;
-            }).then((locationsData) => {
+            await this.getLocations().then((locationsData) => {
                 this.loadLeafletJS().then((scriptText) => {
                     this.initCasesMap(scriptText, locationsData);
                 }).catch((e) => {

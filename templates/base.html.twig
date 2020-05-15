@@ -11,6 +11,9 @@
         {% block preconectLinks %}
             {% include('./includes/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://fonts.googleapis.com/'} only %}
+
+            {% include('./includes/preconnect-prefetch-links.html.twig')
+                with {'domain': 'https://polyfill.io/'} only %}
         {% endblock %}
 
         {% include './includes/site-icons.html.twig' %}
@@ -22,6 +25,10 @@
             <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+
+        {# Pollyfill.io creates a custom bundle for browsers that needed based on server-side UA detection #}
+        <script defer
+                src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.forEach%2CArray.prototype.indexOf%2CDOMRect%2CCustomEvent%2CHTMLPictureElement%2CIntersectionObserver%2CIntersectionObserverEntry%2CFunction.prototype.bind%2Cdocument.querySelector%2CElement.prototype.classList%2CObject.keys%2CPromise%2Cfetch%2Chtml5shiv%2Cconsole.warn%2CinnerWidth%2CinnerHeight%2CmatchMedia%2CgetComputedStyle%2CpageXOffset%2CpageYOffset%2CObject.assign%2CObject.freeze%2CJSON%2CURL%2CURLSearchParams"></script>
 
         {% block javascript_config %}
         {% endblock %}
