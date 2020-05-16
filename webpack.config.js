@@ -31,9 +31,7 @@ Encore
     .enableForkedTypeScriptTypesChecking()
     .addLoader(babelLoader)
     .enablePostCssLoader()
-    .enableSassLoader((options) => {
-        options.outputStyle = 'compressed';
-    })
+    .enableSassLoader()
     .enableSingleRuntimeChunk()
     .splitEntryChunks();
 
