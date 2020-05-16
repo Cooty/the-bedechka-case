@@ -131,6 +131,9 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/event-dispatcher": {
+        "version": "1.0.0"
+    },
     "psr/http-message": {
         "version": "1.0.1"
     },
@@ -200,9 +203,6 @@
     "symfony/css-selector": {
         "version": "v4.2.3"
     },
-    "symfony/debug": {
-        "version": "v4.2.3"
-    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
@@ -226,6 +226,9 @@
     },
     "symfony/dotenv": {
         "version": "v4.2.3"
+    },
+    "symfony/error-handler": {
+        "version": "v5.0.8"
     },
     "symfony/event-dispatcher": {
         "version": "v4.2.3"
@@ -444,15 +447,6 @@
             "branch": "master",
             "version": "3.3",
             "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
-        }
-    },
-    "symfony/web-server-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
         }
     },
     "symfony/webpack-encore-bundle": {
