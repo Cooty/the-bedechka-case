@@ -26,12 +26,7 @@
         </h3>
         <div class="vision__case">
             <div class="video">
-                {% include('./components/youtube-embed.html.twig') with {
-                    'id': thf.id,
-                    'thumbnails': thf.thumbnails,
-                    'title': thf.title,
-                    'titleBg': thf.titleBg
-                } %}
+                {% include('./components/youtube-embed.html.twig') with {'video': thf} %}
             </div>
             <h4 class="box__subtitle">
                 {{ 'thf.case.title'|trans }}
@@ -39,12 +34,7 @@
         </div>
         <div class="vision__case">
             <div class="video">
-                {% include('./components/youtube-embed.html.twig') with {
-                    'id': lifeInTheJungle.id,
-                    'thumbnails': lifeInTheJungle.thumbnails,
-                    'title': lifeInTheJungle.title,
-                    'titleBg': lifeInTheJungle.titleBg
-                } %}
+                {% include('./components/youtube-embed.html.twig') with {'video': lifeInTheJungle} %}
             </div>
             <h4 class="box__subtitle">
                 Humans as Stewards of Nature and not a Disaster to it
