@@ -33,11 +33,34 @@ class YouTubeService
      */
     private $logger;
 
-    public function __construct(string $secondaryLocale, LoggerInterface $logger)
+    /**
+     * @var Google_Client
+     */
+    private $client;
+
+    /**
+     * @var Google_Service_YouTube
+     */
+    private $service;
+
+    public function __construct(
+        string $secondaryLocale,
+        LoggerInterface $logger,
+        string $clientSecretFile
+    )
     {
         $this->client = new Google_Client();
         $this->client->setApplicationName(self::CLIENT_NAME);
         $this->client->setScopes(self::CLIENT_SCOPES);
+
+        try {
+            $this->client->setAuthConfig($clientSecretFile);
+        } catch (\Google_Exception $e) {
+            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+        }
+
+        $this->client->setAccessType('offline');
+
         $headers = array('Referer' => getenv('HOST_NAME'));
         $guzzleClient = new Client([
             'curl' => [CURLOPT_SSL_VERIFYPEER => false],
@@ -50,16 +73,6 @@ class YouTubeService
         $this->secondaryLocale = $secondaryLocale;
         $this->logger = $logger;
     }
-
-    /**
-     * @var Google_Client
-     */
-    private $client;
-
-    /**
-     * @var Google_Service_YouTube
-     */
-    private $service;
 
     /**
      * @param array $thumbnailsMap
