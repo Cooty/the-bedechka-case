@@ -3,6 +3,7 @@
   color: $almost-white;
   display: block;
   align-items: center;
+  min-height: 260px;
 
   @media screen and (min-width: $page-max-w + $gutter-desktop * 2) {
     width: $page-max-w;
