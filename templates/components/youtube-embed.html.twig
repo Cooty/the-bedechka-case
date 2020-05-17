@@ -1,34 +1,34 @@
-{% if id is defined %}
+{% if video %}
     <style>
-        .video-{{ id }},
-        .video-{{ id }}:before {
-            background-image: url({{ thumbnails.mobile }});
+        .video-{{ video.id }},
+        .video-{{ video.id }}:before {
+            background-image: url({{ video.thumbnails.mobile }});
         }
 
         @media screen and (min-width: 48rem) {
-            .video-{{ id }},
-            .video-{{ id }}:before {
-                background-image: url({{ thumbnails.tablet }});
+            .video-{{ video.id }},
+            .video-{{ video.id }}:before {
+                background-image: url({{ video.thumbnails.tablet }});
             }
         }
 
         @media screen and (min-width: 64rem) {
-            .video-{{ id }},
-            .video-{{ id }}:before {
-                background-image: url({{ thumbnails.desktop }});
+            .video-{{ video.id }},
+            .video-{{ video.id }}:before {
+                background-image: url({{ video.thumbnails.desktop }});
             }
         }
     </style>
 
     {% set classes = classes is defined ? classes : '' %}
-    <a href="https://www.youtube.com/watch?v={{ id }}"
-       data-id="{{ id }}"
-       class="js-video-embed video-embed embed-16-9 {{ classes }} video-{{ id }}">
+    <a href="https://www.youtube.com/watch?v={{ video.id }}"
+       data-id="{{ video.id }}"
+       class="js-video-embed video-embed embed-16-9 {{ classes }} video-{{ video.id }}">
         <span class="visually-hidden">
             {% if app.request.get('_locale') == 'en' %}
-                {{ title }}
+                {{ video.title }}
             {% else %}
-                {{ titleBg }}
+                {{ video.titleBg }}
             {% endif %}
         </span>
     </a>

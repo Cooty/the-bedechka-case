@@ -25,12 +25,7 @@
 
         {% include('./components/sub-header.html.twig') with {'text': 'trailer.header', 'priority': 3, 'classes': 'text-center mb-1'} only %}
 
-        {% include('./components/youtube-embed.html.twig') with {
-            'id': trailer.id,
-            'thumbnails': trailer.thumbnails,
-            'title': trailer.title,
-            'titleBg': trailer.titleBg
-        } %}
+        {% include('./components/youtube-embed.html.twig') with {'video': trailer} %}
 
     </article>
 

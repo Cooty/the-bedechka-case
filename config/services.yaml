@@ -13,6 +13,7 @@ parameters:
     psw_change_session_key: 'password_change_needed'
     language_setting_session_key: '_preferred_language'
     static_data_directory: '%kernel.project_dir%/data/'
+    google_client_secret: '%kernel.project_dir%/google_client_secret.json'
     mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
     map_images_directory: '%kernel.project_dir%/public/map-images/'
 
@@ -71,3 +72,4 @@ services:
     App\Service\YouTubeService:
       arguments:
         $secondaryLocale: '%secondary_locale%'
+        $clientSecretFile: '%google_client_secret%'

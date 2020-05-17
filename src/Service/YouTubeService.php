@@ -11,6 +11,8 @@ use Google_Service_YouTube_Video;
 use Google_Service_YouTube_VideoSnippet;
 use Google_Service_YouTube_ThumbnailDetails;
 use GuzzleHttp\Client;
+use Psr\Log\LoggerInterface;
+
 
 class YouTubeService
 {
@@ -26,22 +28,10 @@ class YouTubeService
      */
     private $secondaryLocale;
 
-    public function __construct(string $secondaryLocale)
-    {
-        $this->client = new Google_Client();
-        $this->client->setApplicationName(self::CLIENT_NAME);
-        $this->client->setScopes(self::CLIENT_SCOPES);
-        $headers = array('Referer' => getenv('HOST_NAME'));
-        $guzzleClient = new Client([
-            'curl' => [CURLOPT_SSL_VERIFYPEER => false],
-            'headers' => $headers
-        ]);
-        $this->client->setHttpClient($guzzleClient);
-        $this->client->setDeveloperKey(getenv('YT_API_KEY'));
-
-        $this->service = new Google_Service_YouTube($this->client);
-        $this->secondaryLocale = $secondaryLocale;
-    }
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * @var Google_Client
@@ -52,6 +42,37 @@ class YouTubeService
      * @var Google_Service_YouTube
      */
     private $service;
+
+    public function __construct(
+        string $secondaryLocale,
+        LoggerInterface $logger,
+        string $clientSecretFile
+    )
+    {
+        $this->client = new Google_Client();
+        $this->client->setApplicationName(self::CLIENT_NAME);
+        $this->client->setScopes(self::CLIENT_SCOPES);
+
+        try {
+            $this->client->setAuthConfig($clientSecretFile);
+        } catch (\Google_Exception $e) {
+            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+        }
+
+        $this->client->setAccessType('offline');
+
+        $headers = array('Referer' => getenv('HOST_NAME'));
+        $guzzleClient = new Client([
+            'curl' => [CURLOPT_SSL_VERIFYPEER => false],
+            'headers' => $headers
+        ]);
+        $this->client->setHttpClient($guzzleClient);
+        $this->client->setDeveloperKey(getenv('YT_API_KEY'));
+
+        $this->service = new Google_Service_YouTube($this->client);
+        $this->secondaryLocale = $secondaryLocale;
+        $this->logger = $logger;
+    }
 
     /**
      * @param array $thumbnailsMap
@@ -174,23 +195,29 @@ class YouTubeService
     /**
      * @param string $id
      * @param array $thumbnailsMap
-     * @return Video
+     * @return Video|null
      */
     public function getSingleVideo(
         string $id,
         array $thumbnailsMap = self::DEFAULT_THUMBNAIL_MAP
-    ): Video
+    ): ?Video
     {
-        $queryParams = [
-            'id'=> $id,
-            'fields'=> urlencode('items(id,snippet(title,thumbnails,description))')
-        ];
+        try {
+            $queryParams = [
+                'id'=> $id,
+                'fields'=> urlencode('items(id,snippet(title,thumbnails,description))')
+            ];
 
-        $response = $this->service->videos->listVideos(
-            'snippet',
-            $queryParams);
+            $response = $this->service->videos->listVideos(
+                'snippet',
+                $queryParams);
 
-        return $this->makeFrontendVideo($response->getItems()[0], $thumbnailsMap);
+            return $this->makeFrontendVideo($response->getItems()[0], $thumbnailsMap);
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+            return null;
+        }
+
     }
 
     public function getVideosFromPlaylist(
@@ -198,19 +225,24 @@ class YouTubeService
         array $thumbnailsMap = self::DEFAULT_THUMBNAIL_MAP
     ): array
     {
-        $queryParams = [
-            'maxResults' => self::YT_API_MAX_RESULTS_PER_PAGE,
-            'playlistId' => $id,
-            'fields'=> urlencode('items(snippet(title,thumbnails,description,resourceId(videoId)))')
-        ];
+        try {
+            $queryParams = [
+                'maxResults' => self::YT_API_MAX_RESULTS_PER_PAGE,
+                'playlistId' => $id,
+                'fields'=> urlencode('items(snippet(title,thumbnails,description,resourceId(videoId)))')
+            ];
 
-        $response = $this->service->playlistItems->listPlaylistItems('snippet', $queryParams);
-        $items = $response->getItems();
+            $response = $this->service->playlistItems->listPlaylistItems('snippet', $queryParams);
+            $items = $response->getItems();
 
-        $videos = array_map(function($item) use($thumbnailsMap) {
-            return $this->makeFrontendVideo($item, $thumbnailsMap);
-        }, (array)$items);
+            $videos = array_map(function($item) use($thumbnailsMap) {
+                return $this->makeFrontendVideo($item, $thumbnailsMap);
+            }, (array)$items);
 
-        return $videos;
+            return $videos;
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
+            return [];
+        }
     }
 }
