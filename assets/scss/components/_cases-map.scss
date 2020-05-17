@@ -117,16 +117,6 @@
       margin: 0 $gutter-desktop ($gutter-desktop - 5px) 0;
     }
 
-    > * {
-      // try to push the second item out of the scroll plane
-      // not fool-proof but works on most phone sizes
-      min-width: 44vw;
-
-      @media screen and (min-width: $tablet) {
-        min-width: 0;
-      }
-    }
-
   }
 
   &__map {
