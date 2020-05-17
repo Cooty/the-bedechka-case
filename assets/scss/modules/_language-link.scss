@@ -3,41 +3,21 @@
 
   position: absolute;
   right: $gutter;
-  top: -39px;
+  top: 22px;
   color: $base-text-color;
-
-  @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
-    right: 0;
-  }
-
-  @media screen and (min-width: $tablet) {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
 
   @media screen and (min-width: $desktop) {
     position: relative;
-    margin-left: $gutter-desktop * 2;
+    margin-right: $gutter-desktop;
     top: auto;
     right: auto;
   }
 
   &__label {
-    overflow: hidden;
-    text-indent: -100em;
-    display: block;
-    width: 1px;
-    height: 1px;
-
-    @media screen and (min-width: $tablet) {
-      height: auto;
-      width: auto;
-      overflow: visible;
-      text-indent: 0;
-      font-size: pxToRem(13);
-      margin-right: pxToRem(5);
-    }
-
+    font-size: pxToRem(13);
+    margin-right: pxToRem(5);
   }
 
   &__flag {
