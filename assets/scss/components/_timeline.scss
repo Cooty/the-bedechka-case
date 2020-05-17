@@ -67,7 +67,7 @@
     @include item-width(92%, 8px);
 
     @media screen and (min-width: $tablet) {
-      @include item-width(80%, 8px);
+      @include item-width(60%, 8px);
     }
 
     @media screen and (min-width: $desktop) {
