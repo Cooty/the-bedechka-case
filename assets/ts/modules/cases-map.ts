@@ -1,5 +1,7 @@
 import "../../scss/components/_cases-map.scss";
 import "../../scss/components/_leaflet-popup-content.scss";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
 import ILocations from "../interfaces/ILocations";
 import ILocation from "../interfaces/ILocation";
@@ -70,7 +72,7 @@ export default class CasesMap {
         const casesMap = window.L.map(mapContainerId).setView(mapCenter, defaultZoom);
         window.L.tileLayer(mapProviderURL, {
             attribution: openStreetMapsAttribution(),
-            maxZoom: 19,
+            maxZoom: 18,
             minZoom: 5,
             id: "mapbox.streets",
             accessToken: window._config.mapboxAccessToken
@@ -93,16 +95,16 @@ export default class CasesMap {
         return locationList.querySelectorAll(`.${jsSelectorClass}`);
     }
 
-    private addLocationsToMap(locations: ILocations, map: Map): Marker[] {
-        const markers: Marker[] = [];
+    private addLocationsToMap(locations: ILocations, map: Map) {
+        const markers = window.L.markerClusterGroup();
 
         locations.items.map((location: ILocation) => {
-            const marker: Marker = window.L.marker([location.coords.latitude, location.coords.longitude])
-                .addTo(map);
+            const marker: Marker = window.L.marker([location.coords.latitude, location.coords.longitude]);
             marker.bindPopup(popupContent(location));
-
-            markers.push(marker);
+            markers.addLayer(marker);
         });
+
+        map.addLayer(markers);
 
         return markers;
     }
@@ -130,21 +132,23 @@ export default class CasesMap {
 
     public initCasesMap(scriptText: string, locationsData: ILocations) {
         CasesMap.appendScript(scriptText);
-        const map = CasesMap.makeMap();
-        const markers = this.addLocationsToMap(locationsData, map);
-        const jsSelectorClass = "js-cases-map-navigation-btn";
-        const navigationList =
-            this.makeNavigationListItems(locationsData, jsSelectorClass);
-        const navigationListItems =
-            this.appendAndReturnNavigationListItems(navigationList, jsSelectorClass);
-        this.controlPopupsFromNavigationList(navigationListItems, markers);
+
+        import(/* webpackMode: "lazy-once" */<any>"leaflet.markercluster/dist/leaflet.markercluster").then(()=> {
+            const map = CasesMap.makeMap();
+            const markers = this.addLocationsToMap(locationsData, map);
+            const jsSelectorClass = "js-cases-map-navigation-btn";
+            const navigationList =
+                this.makeNavigationListItems(locationsData, jsSelectorClass);
+            const navigationListItems =
+                this.appendAndReturnNavigationListItems(navigationList, jsSelectorClass);
+            this.controlPopupsFromNavigationList(navigationListItems, markers);
+        });
     }
 
     private async leafletCSSCallback() {
         if(this.locationsLoaded) {
             return;
         }
-
 
         try {
             await this.getLocations().then((locationsData) => {
