@@ -15,7 +15,7 @@
     {% include('./includes/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
     {% include('./home/partials/the-problem.html.twig') %}
     {% include('./home/partials/the-vision.html.twig') %}
-    {{ render_esi(controller('App\\Controller\\HomeController::getNewsSection')) }}
+    {% include('./home/partials/in-the-press.html.twig') %}
 {% endblock %}
 
 {% block javascript_config %}

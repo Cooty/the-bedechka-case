@@ -1,3 +1,5 @@
+import "../../scss/components/_news.scss";
+
 import INewsItems from "../interfaces/INewsItems";
 import {getNetworkErrorMessage} from "../utils/error-handling";
 import newsItemInside from "../templates/news-item-inside";

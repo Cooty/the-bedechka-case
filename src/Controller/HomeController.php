@@ -129,7 +129,9 @@ class HomeController extends AbstractController
         $response = new Response($this->renderView('home/index.html.twig', [
             'trailer'=> $trailer,
             'thf'=> $thf,
-            'lifeInTheJungle'=> $lifeInTheJungle
+            'lifeInTheJungle'=> $lifeInTheJungle,
+            'newsFirstPage' => $this->newsService->getFirstPage(),
+            'newsHasPagination' => $this->newsService->hasPagination()
         ]));
 
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
@@ -141,38 +143,13 @@ class HomeController extends AbstractController
     }
 
     /**
-     * Serves the News section as a non-cached ESI fragment
-     * @return Response
-     */
-    public function getNewsSection(): Response
-    {
-        try {
-            $data = $this->appCache->get('news-section', function (ItemInterface $cacheItem) {
-                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::API_RESPONSE_EXPIRATION));
-
-                return [
-                    'news_first_page' => $this->newsService->getFirstPage(),
-                    'news_has_pagination' => $this->newsService->hasPagination()
-                ];
-            });
-        } catch (InvalidArgumentException $e) {
-
-            $data = [];
-        }
-
-        $response = new Response($this->renderView('home/partials/in-the-press.html.twig', $data));
-
-        return $response;
-    }
-
-    /**
      * Serves the js config object as a non-cached ESI fragment
      * @return Response
      */
     public function jsConfig(): Response
     {
         $response = new Response($this->renderView('home/partials/js-config.html.twig', [
-            'news_has_pagination' => $this->newsService->hasPagination()
+            'newsHasPagination' => $this->newsService->hasPagination()
         ]));
 
         return $response;
