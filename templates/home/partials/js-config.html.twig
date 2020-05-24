@@ -4,8 +4,8 @@
     _config.mapboxAccessToken = "{{ map_box_token }}";
     _config.mapCaseApiUrl = "{{ path('api_map_cases', {'locale': app.request.get('_locale')}) }}";
     _config.mapCaseEndpointToken = "{{ csrf_token('map-cases') }}";
-    _config.newsHasPagination = {{ news_has_pagination }};
-    {% if news_has_pagination %}
+    _config.newsHasPagination = {{ newsHasPagination ? 'true' : 'false' }};
+    {% if newsHasPagination %}
     _config.newsApiUrl = "{{ path('api_news_items') }}";
     _config.newsEndpointToken = "{{ csrf_token('news') }}";
     _config.newsItemsPerPage = {{ news_items_per_page }};
