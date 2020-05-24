@@ -69,11 +69,17 @@
       position: absolute;
       width: $icon-w;
       height: $icon-h;
-      background: url(../../images/icons/fb-like@2x.png) no-repeat 0 0;
+      background-repeat:  no-repeat;
       background-size: $icon-w $icon-h;
       top: 50%;
       margin-top: -($icon-h / 2);
       right: $side-padding;
+    }
+
+    &.lazy-loading-loaded {
+      &:after {
+        background-image: url(../../images/icons/fb-like@2x.png);
+      }
     }
 
   }

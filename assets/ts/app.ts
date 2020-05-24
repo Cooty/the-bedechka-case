@@ -7,6 +7,7 @@ import Timeline from "./modules/timeline";
 import CasesMap from "./modules/cases-map";
 import NewsPagination from "./modules/news-pagination";
 import YTPlayer from "./modules/yt-player";
+import LazyLoading from "./modules/lazy-loading";
 import "./interfaces/WindowGlobals";
 
 class App {
@@ -35,6 +36,8 @@ class App {
         }
 
         new YTPlayer();
+
+        new LazyLoading(".js-lazy-loading");
     }
 }
 

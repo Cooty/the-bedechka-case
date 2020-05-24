@@ -37,7 +37,7 @@ export default class Header {
         window.addEventListener('scroll', scrollListener);
     }
 
-    public init() {
+    private init() {
         if(Responsive.ltDesktop()) {
             this.addScrollEvent();
         }

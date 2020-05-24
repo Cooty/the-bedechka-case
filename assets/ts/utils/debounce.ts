@@ -1,4 +1,4 @@
-export const debounce = (fn:Function, time:number) => {
+const debounce = (fn:Function, time:number) => {
     let timeout:number;
 
     return function() {
@@ -8,3 +8,5 @@ export const debounce = (fn:Function, time:number) => {
         timeout = window.setTimeout(functionCall, time);
     }
 };
+
+export default debounce;

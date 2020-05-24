@@ -1,3 +1,9 @@
+@import "../config/breakpoints";
+@import "../config/sizes";
+@import "../config/decorations";
+@import "../config/silent-classes";
+@import "../config/mixins";
+
 .news {
   overflow: hidden;
 
