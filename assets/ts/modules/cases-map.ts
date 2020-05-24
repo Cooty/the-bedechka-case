@@ -18,6 +18,7 @@ export default class CasesMap {
     private locationsLoaded = false;
     private markerCluster: any;
     private markers: Marker[] = [];
+    private readonly navigationButtonActiveClass = "tag--active";
 
     constructor(rootElement: HTMLElement) {
         if (!rootElement) {
@@ -83,18 +84,16 @@ export default class CasesMap {
     }
 
     private mapLocationTagsClickHandler(el: HTMLElement, index: number) {
-        const navigationButtonActiveClass = "tag--active";
-
-        if(el.classList.contains(navigationButtonActiveClass)) {
+        if(el.classList.contains(this.navigationButtonActiveClass)) {
             return;
         }
         const listItems = Array.from(el.parentElement.parentElement.childNodes);
 
         listItems.map((el: HTMLElement)=> {
-            el.firstElementChild.classList.remove(navigationButtonActiveClass);
+            el.firstElementChild.classList.remove(this.navigationButtonActiveClass);
         });
 
-        el.classList.add(navigationButtonActiveClass);
+        el.classList.add(this.navigationButtonActiveClass);
 
         const m = this.markers[index];
 
@@ -112,6 +111,7 @@ export default class CasesMap {
             const li = document.createElement('li');
             li.className = 'cases-map__navigation-item';
             const button = document.createElement('button');
+            button.id = location.id;
             button.type = 'button';
             button.className = 'tag';
             button.innerText = location.name;
@@ -126,13 +126,32 @@ export default class CasesMap {
         });
     }
 
+    private markNavigationElementAsActive(event: any) {
+        const id = event.target.properties.id;
+        const button = document.getElementById(id);
+        const activeButtons = Array.from(button.parentElement.parentElement.querySelectorAll(`.${this.navigationButtonActiveClass}`));
+
+        activeButtons.map(button=> {
+            button.classList.remove(this.navigationButtonActiveClass);
+        });
+
+        button.classList.add(this.navigationButtonActiveClass);
+    }
+
     private addLocationsToMap(locations: ILocations, map: Map) {
         const markerCluster = window.L.markerClusterGroup();
 
         locations.items.map((location: ILocation)=> {
-            const marker: Marker = window.L.marker([location.coords.latitude, location.coords.longitude]);
+            const marker: any = window.L.marker([location.coords.latitude, location.coords.longitude]);
             marker.bindPopup(popupContent(location));
+            marker.properties = {};
+            marker.properties.id = location.id;
+
             markerCluster.addLayer(marker);
+
+            marker.on("click", (event: any)=> {
+                this.markNavigationElementAsActive(event);
+            });
             this.markers.push(marker);
         });
 
