@@ -8,7 +8,6 @@ import ILocation from "../interfaces/ILocation";
 import {LatLngExpression, Map, Marker} from "leaflet";
 import popupContent from "../templates/popup-content";
 import openStreetMapsAttribution from "../templates/open-street-maps-attribution";
-import mapListNavigationItem from "../templates/map-list-navigation-item";
 import {getNetworkErrorMessage} from "../utils/error-handling";
 import "../interfaces/WindowGlobals";
 const {loadCSS} = require("fg-loadcss/src/loadCSS");
@@ -17,6 +16,8 @@ export default class CasesMap {
     private readonly rootElement: HTMLElement;
     private readonly leafletCDNURL: string;
     private locationsLoaded = false;
+    private markerCluster: any;
+    private markers: Marker[] = [];
 
     constructor(rootElement: HTMLElement) {
         if (!rootElement) {
@@ -81,53 +82,63 @@ export default class CasesMap {
         return casesMap;
     }
 
-    private makeNavigationListItems(locations: ILocations, jsSelectorClass: string): string {
-        return locations.items.map(location => {
-            return mapListNavigationItem(location.name, jsSelectorClass);
-        }).join("");
+    private mapLocationTagsClickHandler(el: HTMLElement, index: number) {
+        const navigationButtonActiveClass = "tag--active";
+
+        if(el.classList.contains(navigationButtonActiveClass)) {
+            return;
+        }
+        const listItems = Array.from(el.parentElement.parentElement.childNodes);
+
+        listItems.map((el: HTMLElement)=> {
+            el.firstElementChild.classList.remove(navigationButtonActiveClass);
+        });
+
+        el.classList.add(navigationButtonActiveClass);
+
+        const m = this.markers[index];
+
+        // have to zoom into the the Marker Cluster first then show the popup
+        // @see https://github.com/Leaflet/Leaflet.markercluster/issues/72
+        this.markerCluster.zoomToShowLayer(m, ()=> {
+            m.openPopup();
+        });
     }
 
-    private appendAndReturnNavigationListItems(navigationListItems: string, jsSelectorClass: string): NodeList {
+    private makeNavigationListItems(locations: ILocations) {
         const locationList = this.rootElement.querySelector(".js-cases-map-location-list");
 
-        locationList.innerHTML = navigationListItems;
+        locations.items.forEach((location, index) => {
+            const li = document.createElement('li');
+            li.className = 'cases-map__navigation-item';
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'tag';
+            button.innerText = location.name;
 
-        return locationList.querySelectorAll(`.${jsSelectorClass}`);
+            li.appendChild(button);
+
+            li.addEventListener("click", () => {
+                this.mapLocationTagsClickHandler(button, index);
+            });
+
+            locationList.appendChild(li);
+        });
     }
 
     private addLocationsToMap(locations: ILocations, map: Map) {
-        const markers = window.L.markerClusterGroup();
+        const markerCluster = window.L.markerClusterGroup();
 
-        locations.items.map((location: ILocation) => {
+        locations.items.map((location: ILocation)=> {
             const marker: Marker = window.L.marker([location.coords.latitude, location.coords.longitude]);
             marker.bindPopup(popupContent(location));
-            markers.addLayer(marker);
+            markerCluster.addLayer(marker);
+            this.markers.push(marker);
         });
 
-        map.addLayer(markers);
+        map.addLayer(markerCluster);
 
-        return markers;
-    }
-
-    private controlPopupsFromNavigationList(navigationItems: NodeList, markers: Marker[]) {
-        const navigationButtonActiveClass = "tag--active";
-        // need this for IE and Edge to loop through a NodeList
-        const navigationItemsList = Array.from(navigationItems);
-
-        navigationItemsList.map((navigationItem: HTMLElement, index: number) => {
-            navigationItem.addEventListener("click", () => {
-                if (navigationItem.classList.contains(navigationButtonActiveClass)) {
-                    return;
-                }
-
-                navigationItemsList.map((navigationItem: HTMLElement) => {
-                    navigationItem.classList.remove(navigationButtonActiveClass);
-                });
-
-                navigationItem.classList.add(navigationButtonActiveClass);
-                markers[index].openPopup();
-            });
-        });
+        this.markerCluster = markerCluster;
     }
 
     public initCasesMap(scriptText: string, locationsData: ILocations) {
@@ -135,13 +146,8 @@ export default class CasesMap {
 
         import(/* webpackMode: "lazy-once" */<any>"leaflet.markercluster/dist/leaflet.markercluster").then(()=> {
             const map = CasesMap.makeMap();
-            const markers = this.addLocationsToMap(locationsData, map);
-            const jsSelectorClass = "js-cases-map-navigation-btn";
-            const navigationList =
-                this.makeNavigationListItems(locationsData, jsSelectorClass);
-            const navigationListItems =
-                this.appendAndReturnNavigationListItems(navigationList, jsSelectorClass);
-            this.controlPopupsFromNavigationList(navigationListItems, markers);
+            this.addLocationsToMap(locationsData, map);
+            this.makeNavigationListItems(locationsData);
         });
     }
 
