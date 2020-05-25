@@ -36,7 +36,7 @@
   &:after {
     content: '';
     position: absolute;
-    background: transparent url('../../images/play-button.png') no-repeat 0 0;
+    background: transparent no-repeat 0 0;
     background-size: $play-button-size;
     width: $play-button-size;
     height: $play-button-size;
@@ -44,6 +44,14 @@
     left: 50%;
     margin: $play-button-offset 0 0 $play-button-offset;
     z-index: $z-low;
+  }
+
+  &.lazy-loading-loaded {
+
+    &:after {
+      background-image: url('../../images/play-button.png');
+    }
+
   }
 
   &--bottom-right {

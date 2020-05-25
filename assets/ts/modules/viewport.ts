@@ -2,6 +2,8 @@ export default class Viewport {
     public static isInViewport(el: HTMLElement, threshold: number = 200) {
         const bounding = el.getBoundingClientRect();
 
+        console.log(threshold);
+
         return (
             bounding.top + threshold >= 0 &&
             bounding.left + threshold >= 0 &&

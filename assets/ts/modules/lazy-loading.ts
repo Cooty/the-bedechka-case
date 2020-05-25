@@ -33,10 +33,18 @@ export default class LazyLoading {
         }
 
         this.elements.forEach(element=> {
-            if(Viewport.isInViewport(element)) {
-                if(element.dataset.loaded) {
-                    return;
-                }
+            if(element.dataset.loaded) {
+                return;
+            }
+
+            const {lazyLoadThreshold} = element.dataset;
+            const args = [element];
+
+            if(lazyLoadThreshold) {
+                args.push(JSON.parse(lazyLoadThreshold));
+            }
+
+            if(Viewport.isInViewport.apply(null, args)) {
                 LazyLoading.doLazyLoading(element);
             }
         });
@@ -49,6 +57,6 @@ export default class LazyLoading {
     private init() {
         this.checkForElements();
 
-        window.addEventListener("scroll", debounce(this.scrollHandler.bind(this), 100), false);
+        window.addEventListener("scroll", debounce(this.scrollHandler.bind(this), 10), false);
     }
 };
