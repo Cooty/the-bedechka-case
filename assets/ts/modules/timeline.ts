@@ -1,5 +1,5 @@
 import Responsive from "../utils/responsive";
-import {debounce} from "../utils/debounce";
+import debounce from "../utils/debounce";
 import "../../scss/components/_timeline.scss"
 
 export default class Timeline {

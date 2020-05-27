@@ -2,7 +2,10 @@
     <article class="box">
         <div class="person">
             <div class="person__photo">
-                <img src="{{ avatar }}" alt="a photo of {{ name }}">
+                <img class="js-lazy-loading"
+                     src="{{ asset('build/images/empty.gif') }}"
+                     data-src="{{ avatar }}"
+                     alt="{{ name }}">
             </div>
             <div class="person__info">
                 <h2 class="person__header">{{ name }}</h2>

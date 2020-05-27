@@ -1,20 +1,20 @@
 {% if video %}
     <style>
-        .video-{{ video.id }},
-        .video-{{ video.id }}:before {
+        .lazy-loading-loaded.video-{{ video.id }},
+        .lazy-loading-loaded.video-{{ video.id }}:before {
             background-image: url({{ video.thumbnails.mobile }});
         }
 
         @media screen and (min-width: 48rem) {
-            .video-{{ video.id }},
-            .video-{{ video.id }}:before {
+            .lazy-loading-loaded.video-{{ video.id }},
+            .lazy-loading-loaded.video-{{ video.id }}:before {
                 background-image: url({{ video.thumbnails.tablet }});
             }
         }
 
         @media screen and (min-width: 64rem) {
-            .video-{{ video.id }},
-            .video-{{ video.id }}:before {
+            .lazy-loading-loaded.video-{{ video.id }},
+            .lazy-loading-loaded.video-{{ video.id }}:before {
                 background-image: url({{ video.thumbnails.desktop }});
             }
         }
@@ -23,7 +23,7 @@
     {% set classes = classes is defined ? classes : '' %}
     <a href="https://www.youtube.com/watch?v={{ video.id }}"
        data-id="{{ video.id }}"
-       class="js-video-embed video-embed embed-16-9 {{ classes }} video-{{ video.id }}">
+       class="js-video-embed video-embed embed-16-9 js-lazy-loading {{ classes }} video-{{ video.id }}">
         <span class="visually-hidden">
             {% if app.request.get('_locale') == 'en' %}
                 {{ video.title }}

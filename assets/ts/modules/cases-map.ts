@@ -10,6 +10,8 @@ import popupContent from "../templates/popup-content";
 import openStreetMapsAttribution from "../templates/open-street-maps-attribution";
 import {getNetworkErrorMessage} from "../utils/error-handling";
 import "../interfaces/WindowGlobals";
+import Viewport from "./viewport";
+import debounce from "../utils/debounce";
 const {loadCSS} = require("fg-loadcss/src/loadCSS");
 
 export default class CasesMap {
@@ -104,25 +106,30 @@ export default class CasesMap {
         });
     }
 
+    private createNavigationItem(location: ILocation, index: number) {
+        const navigationItem = document.createElement('li');
+        navigationItem.className = 'cases-map__navigation-item';
+
+        const button = document.createElement('button');
+        button.id = location.id;
+        button.type = 'button';
+        button.className = 'tag';
+        button.innerText = location.name;
+
+        navigationItem.appendChild(button);
+
+        navigationItem.addEventListener("click", () => {
+            this.mapLocationTagsClickHandler(button, index);
+        });
+
+        return navigationItem;
+    }
+
     private makeNavigationListItems(locations: ILocations) {
         const locationList = this.rootElement.querySelector(".js-cases-map-location-list");
 
         locations.items.forEach((location, index) => {
-            const li = document.createElement('li');
-            li.className = 'cases-map__navigation-item';
-            const button = document.createElement('button');
-            button.id = location.id;
-            button.type = 'button';
-            button.className = 'tag';
-            button.innerText = location.name;
-
-            li.appendChild(button);
-
-            li.addEventListener("click", () => {
-                this.mapLocationTagsClickHandler(button, index);
-            });
-
-            locationList.appendChild(li);
+            locationList.appendChild(this.createNavigationItem(location, index));
         });
     }
 
@@ -163,6 +170,10 @@ export default class CasesMap {
     public initCasesMap(scriptText: string, locationsData: ILocations) {
         CasesMap.appendScript(scriptText);
 
+        /**
+         * @see: https://medium.com/front-end-weekly/webpack-and-dynamic-imports-doing-it-right-72549ff49234
+         * @see: https://webpack.js.org/api/module-methods/#magic-comments
+         */
         import(/* webpackMode: "lazy-once" */<any>"leaflet.markercluster/dist/leaflet.markercluster").then(()=> {
             const map = CasesMap.makeMap();
             this.addLocationsToMap(locationsData, map);
@@ -189,11 +200,30 @@ export default class CasesMap {
 
     }
 
-    public init() {
+    private loadMap() {
         const leafletCSSURL = `${this.leafletCDNURL}/dist/leaflet.css`;
         const leafletCSS = loadCSS(leafletCSSURL);
 
         leafletCSS.onload = () => this.leafletCSSCallback();
+    }
+
+    private initializeMapWhenInViewport() {
+        if(Viewport.isInViewport(this.rootElement, 500)) {
+            this.loadMap();
+            window.removeEventListener("scroll", this.scrollHandler);
+        }
+    }
+
+    private scrollHandler = debounce(()=> {
+        this.initializeMapWhenInViewport()
+    },10);
+
+    public init() {
+        window.addEventListener("scroll", this.scrollHandler);
+        // will remove the scroll event handler if it's
+        // already in viewport on opening the page
+        // that's why we call it after the adding of the event handler
+        this.initializeMapWhenInViewport();
     }
 
 }
