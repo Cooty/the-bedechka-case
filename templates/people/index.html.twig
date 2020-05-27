@@ -21,3 +21,17 @@
         </ul>
     {% endif %}
 {% endblock %}
+
+{% block preconectLinks %}
+    {{ parent() }}
+
+    {% include('./includes/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://ytimg.com'} only %}
+
+    {% include('./includes/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://www.youtube.com'} only %}
+
+    {% include('./includes/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://www.youtube-nocookie.com'} only %}
+
+{% endblock preconectLinks %}
