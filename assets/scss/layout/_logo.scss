@@ -1,3 +1,8 @@
+@import "../config/silent-classes";
+@import "../config/breakpoints";
+@import "../config/sizes";
+@import "../config/functions";
+
 .logo {
   @extend %text-colored-link;
   display: inline-flex;

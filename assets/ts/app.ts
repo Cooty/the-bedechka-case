@@ -3,10 +3,6 @@ import "../scss/app.scss";
 import "regenerator-runtime/runtime";
 
 import Header from "./modules/header";
-import Timeline from "./modules/timeline";
-import CasesMap from "./modules/cases-map";
-import NewsPagination from "./modules/news-pagination";
-import YTPlayer from "./modules/yt-player";
 import LazyLoading from "./modules/lazy-loading";
 import "./interfaces/WindowGlobals";
 
@@ -25,18 +21,6 @@ class App {
 
     public init() {
         new Header(document.getElementById("js-header"));
-        new Timeline(document.getElementById("js-timeline"));
-
-        if(window._config && window._config.mapCaseApiUrl) {
-            new CasesMap(document.getElementById("js-cases-map"));
-        }
-
-        if(window._config && window._config.newsHasPagination) {
-            new NewsPagination(<HTMLButtonElement>document.getElementById("js-news-load-more"));
-        }
-
-        new YTPlayer();
-
         new LazyLoading(".js-lazy-loading");
     }
 }

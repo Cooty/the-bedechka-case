@@ -9,6 +9,8 @@
 {% block stylesheets %}
     {{ parent() }}
     {% include('./includes/hero/background-style.html.twig') with {'background': 'home'} only %}
+    {{ encore_entry_link_tags('home') }}
+    {{ encore_entry_link_tags('yt') }}
 {% endblock %}
 
 {% block main %}
@@ -20,6 +22,17 @@
 
 {% block javascript_config %}
     {{ render_esi(controller('App\\Controller\\HomeController::jsConfig')) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% for js in encore_entry_js_files('home') %}
+        <script src="{{ asset(js) }}" defer></script>
+    {% endfor %}
+
+    {% for js in encore_entry_js_files('yt') %}
+        <script src="{{ asset(js) }}" defer></script>
+    {% endfor %}
 {% endblock %}
 
 {% block preconectLinks %}

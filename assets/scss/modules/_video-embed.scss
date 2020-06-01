@@ -1,3 +1,9 @@
+@import "../config/sizes";
+@import "../config/colors";
+@import "../config/z-indexes";
+@import "../config/breakpoints";
+@import "../config/functions";
+
 .video-embed {
   $play-button-size: 91px;
   $play-button-offset: ($play-button-size / 2) * -1;

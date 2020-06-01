@@ -23,6 +23,7 @@
         {% block stylesheets %}
             {# TODO: Add async loading strategy with embeded font and JS loading #}
             <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+            {{ encore_entry_link_tags('critical-path') }}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 

@@ -1,3 +1,8 @@
+@import "../config/breakpoints";
+@import "../config/colors";
+@import "../config/sizes";
+@import "../config/silent-classes";
+
 .person {
   $avatar-width: 80px;
   $avatar-big-width: 100px;

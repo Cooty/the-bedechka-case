@@ -1,3 +1,8 @@
+@import "../config/sizes";
+@import "../config/breakpoints";
+@import "../config/silent-classes";
+@import "../config/mixins";
+
 .box {
   background: white;
   padding: $grid-v-gutter var(--gutter);
