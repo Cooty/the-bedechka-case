@@ -1,3 +1,6 @@
+@import "../config/z-indexes";
+@import "../config/sizes";
+
 .pull-over-hero {
   z-index: $z-middle;
   margin-top: -40px;

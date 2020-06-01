@@ -8,6 +8,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {% include('./includes/hero/background-style.html.twig') with {'background': 'about'} only %}
+    {{ encore_entry_link_tags('yt') }}
 {% endblock %}
 
 {% block main %}
@@ -29,6 +30,13 @@
 
     </article>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% for js in encore_entry_js_files('yt') %}
+        <script src="{{ asset(js) }}" defer></script>
+    {% endfor %}
 {% endblock %}
 
 {% block preconectLinks %}

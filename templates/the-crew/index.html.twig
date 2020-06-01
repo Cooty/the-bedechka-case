@@ -8,6 +8,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {% include('./includes/hero/background-style.html.twig') with {'background': 'crew'} only %}
+    {{ encore_entry_link_tags('the-crew') }}
 {% endblock %}
 
 {% block main %}

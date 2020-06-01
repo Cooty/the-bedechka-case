@@ -8,6 +8,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {% include('./includes/hero/background-style.html.twig') with {'background': 'partners'} only %}
+    {{ encore_entry_link_tags('partners') }}
 {% endblock %}
 
 {% block main %}
