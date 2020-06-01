@@ -8,7 +8,12 @@
 {% block stylesheets %}
     {{ parent() }}
     {% include('./includes/hero/background-style.html.twig') with {'background': 'about'} only %}
-    {{ encore_entry_link_tags('yt') }}
+
+    {% for css in encore_entry_css_files('yt') %}
+        {% include('includes/async-css.html.twig') with {
+            style_path: asset(css)
+        } %}
+    {% endfor %}
 {% endblock %}
 
 {% block main %}
