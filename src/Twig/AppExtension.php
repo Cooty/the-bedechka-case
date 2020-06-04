@@ -34,30 +34,52 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
      */
     private $mapBoxToken;
 
+    /**
+     * @var string
+     */
+    private $publicDirectory;
+
     public function __construct(
         string $locale,
         string $languageSettingParamName,
         string $defaultLocale,
         string $secondaryLocale,
-        string $mapBoxToken
+        string $mapBoxToken,
+        string $publicDirectory
     ) {
         $this->locale = $locale;
         $this->languageSettingParamName = $languageSettingParamName;
         $this->defaultLocale = $defaultLocale;
         $this->secondaryLocale = $secondaryLocale;
         $this->mapBoxToken = $mapBoxToken;
+        $this->publicDirectory = $publicDirectory;
     }
 
     public function getFunctions()
     {
         return [
-            new TwigFunction('is_facebook_link', [$this, 'isFacebookLink'])
+            new TwigFunction('is_facebook_link', [$this, 'isFacebookLink']),
+            new TwigFunction('get_asset_content', [$this, 'getAssetContent'])
         ];
     }
 
     public function isFacebookLink(string $url): bool
     {
         return strpos($url, 'facebook.com') !== false;
+    }
+
+    public function getAssetContent($asset): string
+    {
+        try {
+            $cacheKey = md5($asset);
+            dump($cacheKey);
+
+            $content = file_get_contents($this->publicDirectory.$asset);
+
+            return $content;
+        } catch(\Exception $e) {
+            return '';
+        }
     }
 
     public function getGlobals()

@@ -21,7 +21,11 @@
         {# TODO: Add dynamic meta description and open graph meta tags #}
 
         {% block stylesheets %}
-            {{ encore_entry_link_tags('critical-path') }}
+            {% for css in encore_entry_css_files('critical-path') %}
+                <style>
+                    {{ get_asset_content(css)|raw }}
+                </style>
+            {% endfor %}
 
             {% include('includes/async-css.html.twig') with {
                 style_path: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap'

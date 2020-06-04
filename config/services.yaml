@@ -49,11 +49,13 @@ services:
         arguments:
             $locale: '%kernel.default_locale%'
             $mapBoxToken: '%mapbox_access_token%'
+            $publicDirectory: '%kernel.project_dir%/public'
 
     App\Twig\Admin\AppExtension:
       arguments:
         $locale: '%kernel.default_locale%'
         $mapBoxToken: '%mapbox_access_token%'
+        $publicDirectory: '%kernel.project_dir%/public'
 
     App\EventSubscriber\LocaleSubscriber:
         arguments:
