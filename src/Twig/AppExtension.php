@@ -2,10 +2,13 @@
 
 namespace App\Twig;
 
+use Psr\Cache\InvalidArgumentException;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use App\Enum\Pagination;
 use Twig\TwigFunction;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class AppExtension extends AbstractExtension implements GlobalsInterface
 {
@@ -39,13 +42,19 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
      */
     private $publicDirectory;
 
+    /**
+     * @var CacheInterface
+     */
+    private $appCache;
+
     public function __construct(
         string $locale,
         string $languageSettingParamName,
         string $defaultLocale,
         string $secondaryLocale,
         string $mapBoxToken,
-        string $publicDirectory
+        string $publicDirectory,
+        CacheInterface $appCache
     ) {
         $this->locale = $locale;
         $this->languageSettingParamName = $languageSettingParamName;
@@ -53,6 +62,7 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         $this->secondaryLocale = $secondaryLocale;
         $this->mapBoxToken = $mapBoxToken;
         $this->publicDirectory = $publicDirectory;
+        $this->appCache = $appCache;
     }
 
     public function getFunctions()
@@ -72,12 +82,15 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
     {
         try {
             $cacheKey = md5($asset);
-            dump($cacheKey);
 
-            $content = file_get_contents($this->publicDirectory.$asset);
+            $content = $this->appCache->get($cacheKey, function() use ($asset) {
+                return file_get_contents($this->publicDirectory.$asset);
+            });
 
             return $content;
         } catch(\Exception $e) {
+            return '';
+        } catch (InvalidArgumentException $e) {
             return '';
         }
     }

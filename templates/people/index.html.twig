@@ -7,6 +7,13 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
+    {% for css in encore_entry_css_files('critical-path-subpages') %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
+    {% endfor %}
+
     {% include('./includes/hero/background-style.html.twig') with {'background': 'people'} only %}
 
     {% for css in encore_entry_css_files('yt') %}
