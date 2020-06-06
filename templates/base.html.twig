@@ -18,13 +18,24 @@
 
         {% include './includes/site-icons.html.twig' %}
 
-{#        TODO: Add dynamic meta description and open graph meta tags#}
+        {# TODO: Add dynamic meta description and open graph meta tags #}
 
         {% block stylesheets %}
-            {# TODO: Add async loading strategy with embeded font and JS loading #}
-            <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-            {{ encore_entry_link_tags('critical-path') }}
-            {{ encore_entry_link_tags('app') }}
+            {% for css in encore_entry_css_files('critical-path') %}
+                <style>
+                    {{ get_asset_content(css)|raw }}
+                </style>
+            {% endfor %}
+
+            {% include('includes/async-css.html.twig') with {
+                style_path: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap'
+            } %}
+
+            {% for css in encore_entry_css_files('app') %}
+                {% include('includes/async-css.html.twig') with {
+                    style_path: asset(css)
+                } %}
+            {% endfor %}
         {% endblock %}
 
         {# Pollyfill.io creates a custom bundle for browsers that needed based on server-side UA detection #}
@@ -40,7 +51,7 @@
             {% endfor %}
         {% endblock %}
     </head>
-    <body>
+    <body class="header-offset">
         {% include './includes/header.html.twig' %}
         <main class="main">
             {% block main %}{% endblock %}

@@ -1,0 +1,14 @@
+{# https://www.filamentgroup.com/lab/load-css-simpler/ #}
+
+{% if style_path is defined %}
+    <link rel="preload"
+          href="{{ style_path }}"
+          as="style">
+    <link rel="stylesheet"
+          href="{{ style_path }}"
+          media="print"
+          onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="{{ style_path }}">
+    </noscript>
+{% endif %}

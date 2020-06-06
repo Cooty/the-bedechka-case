@@ -34,6 +34,7 @@ Encore
     .addStyleEntry('screenings', './assets/scss/screenings.scss')
     .addStyleEntry('partners', './assets/scss/partners.scss')
     .addStyleEntry('critical-path', './assets/scss/critical-path.scss')
+    .addStyleEntry('critical-path-subpages', './assets/scss/critical-path-subpages.scss')
     .enableTypeScriptLoader()
     .enableForkedTypeScriptTypesChecking()
     .addLoader(babelLoader)

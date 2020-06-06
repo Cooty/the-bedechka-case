@@ -4,7 +4,18 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('screenings') }}
+
+    {% for css in encore_entry_css_files('critical-path-subpages') %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
+    {% endfor %}
+
+    {% for css in encore_entry_css_files('screenings') %}
+        {% include('includes/async-css.html.twig') with {
+            style_path: asset(css)
+        } %}
+    {% endfor %}
 {% endblock %}
 
 {% block main %}

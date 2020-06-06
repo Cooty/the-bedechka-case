@@ -7,9 +7,26 @@
 
 {% block stylesheets %}
     {{ parent() }}
+
+    {% for css in encore_entry_css_files('critical-path-subpages') %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
+    {% endfor %}
+
     {% include('./includes/hero/background-style.html.twig') with {'background': 'people'} only %}
-    {{ encore_entry_link_tags('yt') }}
-    {{ encore_entry_link_tags('people') }}
+
+    {% for css in encore_entry_css_files('yt') %}
+        {% include('includes/async-css.html.twig') with {
+            style_path: asset(css)
+        } %}
+    {% endfor %}
+
+    {% for css in encore_entry_css_files('people') %}
+        {% include('includes/async-css.html.twig') with {
+            style_path: asset(css)
+        } %}
+    {% endfor %}
 {% endblock %}
 
 {% block main %}
