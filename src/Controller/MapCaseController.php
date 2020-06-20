@@ -83,12 +83,6 @@ class MapCaseController extends AbstractController
      */
     public function getMapCases(Request $request, string $locale): JsonResponse
     {
-        $submittedToken = $request->query->get('token');
-
-        if (!$this->isCsrfTokenValid('map-cases', $submittedToken)) {
-            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_UNAUTHORIZED);
-        }
-
         try {
             $cacheKey = 'map_cases-' . $locale;
             $frontendCases = $this->appCache->get($cacheKey, function (ItemInterface $cacheItem) use ($locale) {

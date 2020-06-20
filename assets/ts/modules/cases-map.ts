@@ -34,11 +34,10 @@ export default class CasesMap {
 
     private async getLocations(): Promise<ILocations> {
         this.locationsLoaded = true;
-        const locationsAPIURL: RequestInfo = `${window._config.mapCaseApiUrl}?token=${window._config.mapCaseEndpointToken}`;
 
-        const response = await fetch(locationsAPIURL);
+        const response = await fetch(window._config.mapCaseApiUrl);
         if (response.status !== 200) {
-            throw new Error(getNetworkErrorMessage(locationsAPIURL, response.status));
+            throw new Error(getNetworkErrorMessage(window._config.mapCaseApiUrl, response.status));
         } else {
             return await response.json();
         }
