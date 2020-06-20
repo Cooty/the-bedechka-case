@@ -1,0 +1,70 @@
+@import "../config/colors";
+@import "../config/decorations";
+@import "../config/z-indexes";
+@import "../config/breakpoints";
+@import "../config/functions";
+@import "../config/sizes";
+
+.cookie-consent {
+  display: block;
+  position: fixed;
+  outline: none;
+  border: none;
+  padding: var(--gutter);
+  right: var(--gutter);
+  left: auto;
+  bottom: var(--gutter);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  z-index: $z-highest;
+  border-radius: 10px;
+  width: 90%;
+  background: $base-text-color;
+  color: $almost-white;
+  transition: all .3s ease-in-out;
+  opacity: 0;
+  transform: translate3d(0, 20%, 0);
+
+  &.cookie-consent--show {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media screen and (min-width: $phablet) {
+    left: auto;
+    width: 70%;
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: pxToRem(400px);
+  }
+
+  &__text {
+    font-size: pxToRem(13px);
+    padding-bottom: var(--gutter);
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__options-item {
+    margin: 0 $gutter $gutter 0;
+    font-size: pxToRem(13px);
+  }
+
+  &__button {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+
+    & .button:first-of-type {
+      margin-right: calc(var(--gutter) * 2);
+    }
+
+  }
+}

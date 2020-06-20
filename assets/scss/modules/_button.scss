@@ -1,3 +1,8 @@
+@import "../config/colors";
+@import "../config/silent-classes";
+@import "../config/decorations";
+@import "../config/functions";
+
 .button {
   $side-padding: 30px;
 
@@ -16,8 +21,6 @@
   border-bottom: 1px solid $dark-green-border;
   border-right: 1px solid $dark-green-border;
   border-left: 1px solid $light-green-border;
-  box-shadow: 1px 1px inset rgba(255, 255, 255, 0.3),
-              -1px -1px inset rgba(255, 255, 255, 0.5);
 
   &:hover,
   &:focus {
@@ -28,9 +31,24 @@
       border-bottom-color: $light-green-border;
       border-right-color: $light-green-border;
       border-left-color: $dark-green-border;
-      box-shadow: -1px -1px inset rgba(255, 255, 255, 0.5),
-                  1px 1px inset rgba(255, 255, 255, 0.3),
       ;
+    }
+  }
+
+  &--small {
+    font-size: pxToRem(13px);
+    padding: .5em $side-padding / 2;
+  }
+
+  &--outline {
+    background: transparent;
+    border: 1px solid $green;
+
+    &:hover,
+    &:focus {
+      &:not([disabled]) {
+        border-color: $dark-green;
+      }
     }
   }
 
@@ -49,8 +67,6 @@
     border-bottom: 1px solid darken($facebook-blue, 20%);
     border-right: 1px solid darken($facebook-blue, 20%);
     border-left: 1px solid lighten($facebook-blue, 20%);
-    box-shadow: 1px 1px inset rgba(255, 255, 255, 0.1),
-                -1px -1px inset rgba(255, 255, 255, 0.3);
 
     &:hover,
     &:focus {
@@ -59,8 +75,6 @@
         border-bottom: 1px solid lighten($facebook-blue, 20%);
         border-right: 1px solid lighten($facebook-blue, 20%);
         border-left: 1px solid darken($facebook-blue, 20%);
-        box-shadow: -1px -1px inset rgba(255, 255, 255, 0.3),
-                    1px 1px inset rgba(255, 255, 255, 0.1);
       }
     }
 

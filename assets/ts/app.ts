@@ -4,6 +4,8 @@ import "regenerator-runtime/runtime";
 
 import Header from "./modules/header";
 import LazyLoading from "./modules/lazy-loading";
+import Analytics from "./modules/analytics";
+import CookieConsentSettings from "./modules/cookie-consent-settings";
 import "./interfaces/WindowGlobals";
 
 class App {
@@ -22,6 +24,11 @@ class App {
     public init() {
         new Header(document.getElementById("js-header"));
         new LazyLoading(".js-lazy-loading");
+        const cookieConsent = new CookieConsentSettings();
+        cookieConsent.init();
+
+        const analytics = new Analytics();
+        analytics.init();
     }
 }
 

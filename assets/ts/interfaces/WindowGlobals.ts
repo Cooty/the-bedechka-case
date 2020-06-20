@@ -5,8 +5,10 @@ export {};
 declare global {
     interface Window {
         _config?: IConfig,
+        _translations?: any,
         L?: any,
         YT?: any,
-        onYouTubeIframeAPIReady?: Function
+        onYouTubeIframeAPIReady?: Function,
+        dataLayer?: any
     }
 }
