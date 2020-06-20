@@ -10,6 +10,12 @@
     {{ parent() }}
     {% include('./includes/hero/background-style.html.twig') with {'background': 'home'} only %}
 
+    {% for css in encore_entry_css_files('critical-path-home') %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
+    {% endfor %}
+
     {% for css in encore_entry_css_files('home') %}
         {% include('includes/async-css.html.twig') with {
             style_path: asset(css)
