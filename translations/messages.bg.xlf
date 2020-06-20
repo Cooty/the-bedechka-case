@@ -458,6 +458,34 @@
                     още информация
                 </target>
             </trans-unit>
+
+            <trans-unit id="cookie.consent.lead">
+                <source>cookie.consent.lead</source>
+                <target>
+                    This site uses cookies for the following purposes. You can change your settings latter by clicking "Cookie Setting" on the page. By using this site you consent to these settings.
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cookie.consent.tier.1">
+                <source>cookie.consent.tier.1</source>
+                <target>
+                    Functional
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cookie.consent.tier.2">
+                <source>cookie.consent.tier.2</source>
+                <target>
+                    Statistical
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cookie.consent.save">
+                <source>cookie.consent.save</source>
+                <target>
+                    Save settings
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

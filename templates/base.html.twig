@@ -45,11 +45,26 @@
         {% block javascript_config %}
         {% endblock %}
 
+        <script>
+            var _translations = window._translations || {};
+
+            _translations["cookieConsent"] = {};
+            _translations["cookieConsent"]["lead"] = '{{ 'cookie.consent.lead'|trans|spaceless }}';
+            _translations["cookieConsent"]["tier1"] = '{{ 'cookie.consent.tier.1'|trans|spaceless }}';
+            _translations["cookieConsent"]["tier2"] = '{{ 'cookie.consent.tier.2'|trans|spaceless }}';
+            _translations["cookieConsent"]["save"] = '{{ 'cookie.consent.save'|trans|spaceless }}';
+
+            if(Object.freeze) {
+                Object.freeze(_translations);
+            }
+        </script>
+
         {% block javascripts %}
             {% for js in encore_entry_js_files('app') %}
                 <script src="{{ asset(js) }}" defer></script>
             {% endfor %}
         {% endblock %}
+
     </head>
     <body class="header-offset">
         {% include './includes/header.html.twig' %}
