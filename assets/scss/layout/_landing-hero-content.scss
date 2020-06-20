@@ -1,3 +1,8 @@
+@import "../config/sizes";
+@import "../config/colors";
+@import "../config/breakpoints";
+@import "../config/silent-classes";
+
 .landing-hero-content {
   max-width: $page-max-w;
   color: $almost-white;
