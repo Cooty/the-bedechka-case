@@ -69,12 +69,6 @@ class NewsController extends AbstractController
      */
     public function getNewsItems(Request $request): JsonResponse
     {
-        $submittedToken = $request->query->get('token');
-
-        if(!$this->isCsrfTokenValid('news', $submittedToken)) {
-            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_UNAUTHORIZED);
-        }
-
         try {
             $pageSize = (int)$request->query->get('pageSize');
             $offset = (int)$request->query->get('offset');

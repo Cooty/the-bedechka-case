@@ -25,13 +25,12 @@ export default class NewsPagination {
     private async getNewsItems(): Promise<INewsItems> {
         const {
             newsApiUrl,
-            newsEndpointToken,
             newsItemsPerPage
         } = window._config;
 
         const offset = this.currentPage * newsItemsPerPage;
 
-        const newsAPIURL: RequestInfo = `${newsApiUrl}?token=${newsEndpointToken}&pageSize=${newsItemsPerPage}&offset=${offset}`;
+        const newsAPIURL: RequestInfo = `${newsApiUrl}?pageSize=${newsItemsPerPage}&offset=${offset}`;
         const response = await fetch(newsAPIURL);
 
         if(response.status !== 200) {
