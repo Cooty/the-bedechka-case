@@ -37,7 +37,7 @@
             {% for video in videos %}
                 {% include('./people/partials/item.html.twig') with {
                     video: video,
-                    isLazy: loop.index == 1 ? false : true
+                    isLazy: loop.first ? false : true
                 } %}
             {% endfor %}
         </ul>

@@ -29,13 +29,14 @@
     {% if crew_members is defined and crew_members|length %}
         <ul class="box-grid pull-over-hero">
             {% for member in crew_members %}
+                {% dump(loop.first) %}
                 {% include('./the-crew/partials/item.html.twig') with {
                     avatar: member.pictureUrl,
                     name: member.name,
                     title: member.title,
                     url: member.link,
                     urlLabel: member.linkLabel,
-                    isLazy: loop.index == 1 ? false : true
+                    isLazy: loop.first ? false : true
                 } only %}
             {% endfor %}
         </ul>
