@@ -1,23 +1,30 @@
 <aside class="sidebar bg-secondary js-sidebar">
     <ul class="sidebar__menu list-unstyled pt-3">
         <li class="sidebar__menu-row">
-            <a href="{{ path('admin_entity_add', {'entityName': 'cases'}) }}"
+            <a href="{{ path('admin_entity_list', {'entityName': 'cases'}) }}"
                class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'cases' ? 'active' : '' }}">
                 Edit Cases
             </a>
         </li>
 
         <li class="sidebar__menu-row">
-            <a href="{{ path('admin_entity_add', {'entityName': 'news'}) }}"
+            <a href="{{ path('admin_entity_list', {'entityName': 'news'}) }}"
                class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'news' ? 'active' : '' }}">
                 Edit "In the Press"
             </a>
         </li>
 
         <li class="sidebar__menu-row">
-            <a href="{{ path('admin_entity_add', {'entityName': 'screenings'}) }}"
+            <a href="{{ path('admin_entity_list', {'entityName': 'screenings'}) }}"
                class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'screenings' ? 'active' : '' }}">
                 Edit Screenings
+            </a>
+        </li>
+
+        <li class="sidebar__menu-row">
+            <a href="{{ path('admin_entity_list', {'entityName': 'crew-members'}) }}"
+               class="sidebar__menu-link d-block {{ app.request.get('entityName') == 'crew-members' ? 'active' : '' }}">
+                Edit Crew Members
             </a>
         </li>
     </ul>

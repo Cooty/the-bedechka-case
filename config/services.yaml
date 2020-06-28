@@ -15,7 +15,9 @@ parameters:
     static_data_directory: '%kernel.project_dir%/data/'
     google_client_secret: '%kernel.project_dir%/google_client_secret.json'
     mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
-    map_images_directory: '%kernel.project_dir%/public/map-images/'
+    map_images_directory: 'map-images/'
+    crew_member_images_directory: 'crew-member-images/'
+    public_directory_path: '%kernel.project_dir%/public/'
 
 services:
     # default configuration for services in *this* file
@@ -70,6 +72,20 @@ services:
     App\Service\EntityService:
       arguments:
         $mapImagesDirectory: '%map_images_directory%'
+        $crewMemberImagesDirectory: '%crew_member_images_directory%'
+        $publicDirectoryPath: '%public_directory_path%'
+
+    App\Factory\MapCaseFrontendFactory:
+      arguments:
+        $secondaryLocale: '%secondary_locale%'
+
+    App\Factory\ScreeningFrontendFactory:
+      arguments:
+        $secondaryLocale: '%secondary_locale%'
+
+    App\Factory\CrewMemberFrontendFactory:
+      arguments:
+        $secondaryLocale: '%secondary_locale%'
 
     App\Service\YouTubeService:
       arguments:

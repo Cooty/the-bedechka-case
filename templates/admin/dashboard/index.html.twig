@@ -10,23 +10,30 @@
             <h1>Dashboard</h1>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <a href="{{ path('admin_entity_add', {'entityName': 'cases'}) }}" class="card w-100 h-100">
+                    <a href="{{ path('admin_entity_list', {'entityName': 'cases'}) }}" class="card w-100 h-100">
                         <div class="card-body">
                             <h5 class="card-title">Edit Cases</h5>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <a href="{{ path('admin_entity_add', {'entityName': 'news'}) }}" class="card w-100 h-100">
+                    <a href="{{ path('admin_entity_list', {'entityName': 'news'}) }}" class="card w-100 h-100">
                         <div class="card-body">
                             <h5 class="card-title">Edit "In the Press"</h5>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <a href="{{ path('admin_entity_add', {'entityName': 'screenings'}) }}" class="card w-100 h-100">
+                    <a href="{{ path('admin_entity_list', {'entityName': 'screenings'}) }}" class="card w-100 h-100">
                         <div class="card-body">
                             <h5 class="card-title">Edit Screenings</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <a href="{{ path('admin_entity_list', {'entityName': 'crew-members'}) }}" class="card w-100 h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Edit Crew Members</h5>
                         </div>
                     </a>
                 </div>

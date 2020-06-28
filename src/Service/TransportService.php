@@ -2,36 +2,52 @@
 
 namespace App\Service;
 
+use App\Entity\CrewMember;
 use App\Entity\MapCase;
 use App\Entity\News;
 use App\Entity\Screening;
-use App\Entity\Transport\LatLongCords;
-use App\Entity\Transport\MapCaseFrontend;
-use App\Entity\Transport\NewsItemFrontend;
-use App\Entity\Transport\ScreeningFrontend;
+use App\Factory\CrewMemberFrontendFactory;
+use App\Model\Transport\CrewMemberFrontend;
+use App\Model\Transport\MapCaseFrontend;
+use App\Model\Transport\NewsItemFrontend;
+use App\Model\Transport\ScreeningFrontend;
+use App\Factory\MapCaseFrontendFactory;
+use App\Factory\NewsItemFrontendFactory;
+use App\Factory\ScreeningFrontendFactory;
 
 class TransportService
 {
-    const BULGARIAN = 'bg';
+    /**
+     * @var NewsItemFrontendFactory
+     */
+    private $newsItemFrontend;
 
-    private function makeMapCaseFrontend(MapCase $case, string $locale): MapCaseFrontend
+    /**
+     * @var MapCaseFrontendFactory
+     */
+    private $mapCaseFrontend;
+
+    /**
+     * @var ScreeningFrontendFactory
+     */
+    private $screeningFrontend;
+
+    /**
+     * @var CrewMemberFrontendFactory
+     */
+    private $crewMemberFrontend;
+
+    public function __construct(
+        NewsItemFrontendFactory $newsItemFrontend,
+        MapCaseFrontendFactory $mapCaseFrontend,
+        ScreeningFrontendFactory $screeningFrontend,
+        CrewMemberFrontendFactory $crewMemberFrontend
+    )
     {
-        $frontendCase = new MapCaseFrontend();
-        $frontendCase->setId($case->getId());
-
-        $name = $locale === self::BULGARIAN ? $case->getNameBG() : $case->getNameEN();
-        $frontendCase->setName($name);
-
-        $description = $locale === self::BULGARIAN ? $case->getDescriptionBG() : $case->getDescriptionEN();
-        $frontendCase->setDescription($description);
-
-        $coords = new LatLongCords($case->getLatitude(), $case->getLongitude());
-        $frontendCase->setCoords($coords);
-
-        $frontendCase->setLink($case->getLink());
-        $frontendCase->setImage($case->getPictureURL());
-
-        return $frontendCase;
+        $this->newsItemFrontend = $newsItemFrontend;
+        $this->mapCaseFrontend = $mapCaseFrontend;
+        $this->screeningFrontend = $screeningFrontend;
+        $this->crewMemberFrontend = $crewMemberFrontend;
     }
 
     /**
@@ -42,17 +58,8 @@ class TransportService
     public function makeMapCasesFrontend(array $cases, string $locale): array
     {
         return array_map(function($case) use ($locale) {
-            return $this->makeMapCaseFrontend($case, $locale);
+            return $this->mapCaseFrontend->create($case, $locale);
         }, $cases);
-    }
-
-    private function makeNewsItemFrontend(News $news): NewsItemFrontend
-    {
-        return new NewsItemFrontend(
-            $news->getTitle(),
-            $news->getLink(),
-            $news->getSource()
-        );
     }
 
     /**
@@ -62,28 +69,8 @@ class TransportService
     public function makeNewsItemsFrontend(array $news): array
     {
         return array_map(function($n) {
-            return $this->makeNewsItemFrontend($n);
+            return $this->newsItemFrontend->create($n);
         }, $news);
-    }
-
-
-    private function makeScreeningFrontend(Screening $screening, string $locale): ScreeningFrontend
-    {
-        $screeningFrontend = new ScreeningFrontend();
-
-        $name = $locale === self::BULGARIAN ? $screening->getNameBG() : $screening->getNameEN();
-        $screeningFrontend->setName($name);
-
-        $venueName = $locale === self::BULGARIAN ? $screening->getVenueNameBG() : $screening->getVenueNameEN();
-        $screeningFrontend->setVenueName($venueName);
-
-        $screeningFrontend->setEventLink($screening->getEventLink());
-
-        $screeningFrontend->setVenueLink($screening->getVenueLink());
-
-        $screeningFrontend->setStart($screening->getStart());
-
-        return $screeningFrontend;
     }
 
     /**
@@ -94,7 +81,19 @@ class TransportService
     public function makeScreeningsFrontend(array $screenings, string $locale): array
     {
         return array_map(function($s) use ($locale) {
-            return $this->makeScreeningFrontend($s, $locale);
+            return $this->screeningFrontend->create($s, $locale);
         }, $screenings);
+    }
+
+    /**
+     * @param CrewMember[] $crewMembers
+     * @param string $locale
+     * @return CrewMemberFrontend[]
+     */
+    public function makeCrewMembersFrontend(array $crewMembers, string $locale): array
+    {
+        return array_map(function($cm) use ($locale) {
+            return $this->crewMemberFrontend->create($cm, $locale);
+        }, $crewMembers);
     }
 }

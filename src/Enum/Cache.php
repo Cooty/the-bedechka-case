@@ -4,7 +4,7 @@ namespace App\Enum;
 
 abstract class Cache
 {
-    const FULL_PAGE_CACHE_EXPIRATION = 3600; // 1h
-    const API_RESPONSE_EXPIRATION = '5 hours';
-    const VIDEO_EXPIRATION = '12 hours';
+    const ONE_HOUR_IN_SECONDS = 3600; // 1h
+    const FIVE_HOURS_AS_STRING = '5 hours';
+    const TWELVE_HOURS_AS_STRING = '12 hours';
 }

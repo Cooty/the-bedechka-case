@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Repository\NewsRepository;
 use App\Enum\Pagination;
 use App\Entity\News;
-use App\Service\TransportService;
 
 class NewsService
 {
@@ -15,7 +14,7 @@ class NewsService
     private $newsRepository;
 
     /**
-     * @var \App\Service\TransportService
+     * @var TransportService
      */
     private $transportService;
 
