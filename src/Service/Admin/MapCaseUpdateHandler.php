@@ -2,12 +2,11 @@
 
 namespace App\Service\Admin;
 
-use App\Model\Transport\LatLongCords;
-use Exception;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Exception;
 
-class MapCaseHandler extends AbstractEntityHandler
+class MapCaseUpdateHandler extends AbstractEntityHandler
 {
     /**
      * @var FileUploadService
@@ -18,24 +17,6 @@ class MapCaseHandler extends AbstractEntityHandler
     {
         parent::__construct($entity, $form);
         $this->fileUploadService = $fileUploadService;
-    }
-
-    /**
-     * @param string $googleMapsURL
-     * @return LatLongCords
-     * @throws Exception
-     */
-    private function makeLatLongFromGoogleMapsURL(string $googleMapsURL): LatLongCords
-    {
-        preg_match('/@(.*),(.*),/', $googleMapsURL, $matches);
-
-        if(count($matches) !== 3) {
-            throw new Exception('Longitude and Latitude was not found in the URL. Are your sure it\'s a valid Google Maps URL?');
-        }
-
-        $latLong = new LatLongCords($matches[1], $matches[2]);
-
-        return $latLong;
     }
 
     /**
@@ -58,12 +39,6 @@ class MapCaseHandler extends AbstractEntityHandler
 
                 $this->entity->setPictureURL('/'.$params['upload_path'].$newFileName);
             }
-
-            $latLong = $this->makeLatLongFromGoogleMapsURL(
-                $this->form->get('google_maps_url')->getData());
-
-            $this->entity->setLatitude($latLong->getLatitude());
-            $this->entity->setLongitude($latLong->getLongitude());
 
             return $this->entity;
         } catch (Exception $exception) {

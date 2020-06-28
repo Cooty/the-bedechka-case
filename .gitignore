@@ -13,6 +13,7 @@ vendor/
 # Assets and user uploads
 /web/bundles/
 /public/map-images/
+/public/crew-member-images/
 
 # Build data
 build/

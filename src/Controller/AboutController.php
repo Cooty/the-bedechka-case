@@ -73,7 +73,7 @@ class AboutController extends AbstractController
         }
 
         $trailer = $this->appCache->get(YouTubeVideos::TRAILER_ID, function (ItemInterface $cacheItem) {
-            $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+            $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::TWELVE_HOURS_AS_STRING));
 
             return $this->youTubeService->getSingleVideo(YouTubeVideos::TRAILER_ID);
         });
@@ -84,7 +84,7 @@ class AboutController extends AbstractController
 
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
         $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');
-        $response->setSharedMaxAge(Cache::FULL_PAGE_CACHE_EXPIRATION);
+        $response->setSharedMaxAge(Cache::ONE_HOUR_IN_SECONDS);
         $response->headers->addCacheControlDirective('must-revalidate', true);
 
         return $response;

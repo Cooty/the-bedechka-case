@@ -2,8 +2,8 @@
 
 namespace App\Service;
 
-use App\Entity\Transport\Video;
-use App\Entity\Transport\VideoThumbnails;
+use App\Model\Transport\Video;
+use App\Model\Transport\VideoThumbnails;
 use Google_Client;
 use Google_Service_YouTube;
 use Google_Service_YouTube_PlaylistItem;

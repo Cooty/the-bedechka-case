@@ -82,7 +82,7 @@ class HomeController extends AbstractController
 
         try {
             $trailer = $this->appCache->get(YouTubeVideos::TRAILER_ID, function (ItemInterface $cacheItem) {
-                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::TWELVE_HOURS_AS_STRING));
 
                 return $this->youTubeService->getSingleVideo(YouTubeVideos::TRAILER_ID);
             });
@@ -90,7 +90,7 @@ class HomeController extends AbstractController
             $thf = $this->appCache->get(
                 YouTubeVideos::THF_ID,
                 function (ItemInterface $cacheItem) use ($theVisionSectionVideosSizeMap) {
-                    $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+                    $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::TWELVE_HOURS_AS_STRING));
 
                     return $this->
                             youTubeService->
@@ -100,7 +100,7 @@ class HomeController extends AbstractController
             $lifeInTheJungle = $this->appCache->get(
                 YouTubeVideos::LIFE_IN_THE_JUNGLE_ID,
                 function (ItemInterface $cacheItem) use ($theVisionSectionVideosSizeMap) {
-                    $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::VIDEO_EXPIRATION));
+                    $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::TWELVE_HOURS_AS_STRING));
 
                     return $this->
                             youTubeService->
@@ -136,7 +136,7 @@ class HomeController extends AbstractController
 
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
         $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');
-        $response->setSharedMaxAge(Cache::FULL_PAGE_CACHE_EXPIRATION);
+        $response->setSharedMaxAge(Cache::ONE_HOUR_IN_SECONDS);
         $response->headers->addCacheControlDirective('must-revalidate', true);
 
         return $response;

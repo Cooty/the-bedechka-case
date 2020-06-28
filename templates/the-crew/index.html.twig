@@ -26,29 +26,17 @@
 {% block main %}
     {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
 
-    <ul class="box-grid pull-over-hero">
-        {% include('./the-crew/partials/item.html.twig') with {
-            avatar: 'https://i.pravatar.cc/120',
-            name: 'Dimana Shishkova',
-            title: 'writer, camera, editing'
-        } %}
-        {% include('./the-crew/partials/item.html.twig') with {
-            avatar: 'https://i.pravatar.cc/120',
-            name: 'Tamás Kuti',
-            title: 'web development',
-            url: 'http://beardesign.hu',
-            urlLabel: 'beardesign.hu'
-        } %}
-        {% include('./the-crew/partials/item.html.twig') with {
-            avatar: 'https://i.pravatar.cc/120',
-            name: 'Stefka',
-            title: 'animations',
-            url: 'http://vimeo.com/something'
-        } %}
-        {% include('./the-crew/partials/item.html.twig') with {
-            avatar: 'https://i.pravatar.cc/120',
-            name: 'Florian',
-            title: 'original score'
-        } %}
-    </ul>
+    {% if crew_members is defined and crew_members|length %}
+        <ul class="box-grid pull-over-hero">
+            {% for member in crew_members %}
+                {% include('./the-crew/partials/item.html.twig') with {
+                    avatar: member.pictureUrl,
+                    name: member.name,
+                    title: member.title,
+                    url: member.link,
+                    urlLabel: member.linkLabel
+                } only %}
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

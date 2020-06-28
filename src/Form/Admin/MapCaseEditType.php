@@ -51,20 +51,21 @@ class MapCaseEditType extends AbstractType
                 'required' => false,
                 'constraints' => new Url()
             ])
-            ->add('longitude', NumberType::class, [
-                'label' => false,
-                'constraints' => new NotBlank(),
-                'attr' => ['hidden' => true]
-            ])
-            ->add('latitude', NumberType::class, [
-                'label' => false,
-                'constraints' => new NotBlank(),
-                'attr' => ['hidden' => true]
-            ])
-            ->add('picture_url', TextType::class, [
-                'label' => false,
+            ->add('image', FileType::class, [
+                'label' => 'Image (optional)',
+                'mapped' => false,
                 'required' => false,
-                'attr' => ['hidden' => true]
+                'help' => 'The image has to be '.ImageSizes::MAP_CASE_POPUP_WIDTH.'×'.ImageSizes::MAP_CASE_POPUP_HEIGHT.' pixels',
+                'constraints' => new Image([
+                    'maxSize' => '1024k',
+                    'allowPortrait' => false,
+                    'allowSquare' => false,
+                    'detectCorrupted' => true,
+                    'maxWidth' => ImageSizes::MAP_CASE_POPUP_WIDTH,
+                    'maxHeight' => ImageSizes::MAP_CASE_POPUP_HEIGHT,
+                    'minWidth' => ImageSizes::MAP_CASE_POPUP_WIDTH,
+                    'minHeight' => ImageSizes::MAP_CASE_POPUP_HEIGHT
+                ])
             ])
             ->add('save', SubmitType::class, ['label'=> 'Update Case']);
     }

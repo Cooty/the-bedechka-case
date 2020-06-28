@@ -26,7 +26,18 @@
 
             {{ form_start(form) }}
                 {{ form_widget(form) }}
+
+                {% if form.vars.data.pictureUrl is defined and form.vars.data.pictureUrl %}
+                    <div class="form-group">
+                        <label>
+                            Current Image:
+                        </label>
+                        <img src="{{ form.vars.data.pictureUrl }}" alt="" class="d-block">
+                    </div>
+
+                {% endif %}
             {{ form_end(form) }}
+
         </div>
     </div>
 {% endblock %}

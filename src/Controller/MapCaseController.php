@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Transport\MapCaseFrontend;
+use App\Model\Transport\MapCaseFrontend;
 use App\Enum\Cache;
 use App\Repository\MapCaseRepository;
 use App\Service\JSONAPIService;
@@ -86,7 +86,7 @@ class MapCaseController extends AbstractController
         try {
             $cacheKey = 'map_cases-' . $locale;
             $frontendCases = $this->appCache->get($cacheKey, function (ItemInterface $cacheItem) use ($locale) {
-                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::API_RESPONSE_EXPIRATION));
+                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::FIVE_HOURS_AS_STRING));
 
                 return $this->getItems($locale);
             });

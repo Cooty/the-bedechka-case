@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Transport;
+namespace App\Model\Transport;
 
 class LatLongCords
 {

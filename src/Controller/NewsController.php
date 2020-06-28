@@ -75,7 +75,7 @@ class NewsController extends AbstractController
 
             $cacheKey = 'news-'.$pageSize.$offset;
             $data = $this->appCache->get($cacheKey, function(ItemInterface $cacheItem) use ($pageSize, $offset) {
-                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::API_RESPONSE_EXPIRATION));
+                $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::FIVE_HOURS_AS_STRING));
 
                 $news = $this->newsRepository->findActiveByPage($pageSize, $offset);
                 $newsItemsFrontend = $this->transport->makeNewsItemsFrontend($news);
