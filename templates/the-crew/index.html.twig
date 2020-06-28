@@ -34,7 +34,8 @@
                     name: member.name,
                     title: member.title,
                     url: member.link,
-                    urlLabel: member.linkLabel
+                    urlLabel: member.linkLabel,
+                    isLazy: loop.index == 1 ? false : true
                 } only %}
             {% endfor %}
         </ul>

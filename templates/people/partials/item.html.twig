@@ -2,7 +2,10 @@
 <li class="people__item">
     <article class="box box--video">
         <div class="video">
-            {% include('./components/youtube-embed.html.twig') with {'video': video} %}
+            {% include('./components/youtube-embed.html.twig') with {
+                video: video,
+                isLazy: isLazy
+            } only %}
         </div>
         <h4 class="box__subtitle">
             {% if app.request.get('_locale') == 'en' %}
