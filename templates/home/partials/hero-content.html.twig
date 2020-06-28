@@ -3,7 +3,7 @@
         {{ 'home.hero.intro'|trans }}
     </p>
     <div class="landing-hero-content__video">
-        {% include('./components/youtube-embed.html.twig') with {'video': trailer} %}
+        {% include('./components/youtube-embed.html.twig') with {'video': trailer, isLazy: false} %}
     </div>
     <div class="landing-hero-content__button">
         <a href="{{ path('about') }}" class="button button--cta">{{ 'load.more'|trans }}</a>

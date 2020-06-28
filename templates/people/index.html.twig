@@ -35,7 +35,10 @@
     {% if videos is defined and videos|length %}
         <ul class="people pull-over-hero">
             {% for video in videos %}
-                {% include('./people/partials/item.html.twig') with {video: video} %}
+                {% include('./people/partials/item.html.twig') with {
+                    video: video,
+                    isLazy: loop.first ? false : true
+                } %}
             {% endfor %}
         </ul>
     {% endif %}

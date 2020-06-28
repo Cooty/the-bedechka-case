@@ -52,6 +52,7 @@
     z-index: $z-low;
   }
 
+  &:not(.js-lazy-loading),
   &.lazy-loading-loaded {
 
     &:after {

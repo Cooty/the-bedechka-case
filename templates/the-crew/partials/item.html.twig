@@ -2,10 +2,14 @@
     <article class="box">
         <div class="person">
             <div class="person__photo">
-                <img class="js-lazy-loading"
-                     src="{{ asset('build/images/empty.gif') }}"
-                     data-src="{{ avatar }}"
-                     alt="{{ name }}">
+                {% if isLazy %}
+                    <img class="js-lazy-loading"
+                         src="{{ asset('build/images/empty.gif') }}"
+                         data-src="{{ avatar }}"
+                         alt="{{ name }}">
+                {% else %}
+                    <img src="{{ avatar }}" alt="{{ name }}">
+                {% endif %}
             </div>
             <div class="person__info">
                 <h2 class="person__header">{{ name }}</h2>
