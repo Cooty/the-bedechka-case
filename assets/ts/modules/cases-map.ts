@@ -21,6 +21,7 @@ export default class CasesMap {
     private markerCluster: any;
     private markers: Marker[] = [];
     private readonly navigationButtonActiveClass = "tag--active";
+    private readonly locationList: HTMLElement;
 
     constructor(rootElement: HTMLElement) {
         if (!rootElement) {
@@ -28,6 +29,7 @@ export default class CasesMap {
         }
 
         this.rootElement = rootElement;
+        this.locationList = rootElement.querySelector(".js-cases-map-location-list");
         this.leafletCDNURL = "https://unpkg.com/leaflet@1.5.1";
         this.init();
     }
@@ -66,13 +68,25 @@ export default class CasesMap {
         this.rootElement.style.display = "none";
     }
 
-    private static makeMap(): Map {
+    private deactivateNavListItem() {
+        const activeNavItem = this.locationList
+            .querySelector(`.${this.navigationButtonActiveClass}`);
+        
+        if (activeNavItem && activeNavItem.classList) {
+            activeNavItem.classList.remove(this.navigationButtonActiveClass);
+        }
+    }
+
+    private makeMap(): Map {
         const mapContainerId: any = "js-cases-map-container";
         const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
         const defaultZoom = 7;
         const mapProviderURL = "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}";
 
         const casesMap = window.L.map(mapContainerId).setView(mapCenter, defaultZoom);
+
+        casesMap.on("popupclose", this.deactivateNavListItem.bind(this));
+
         window.L.tileLayer(mapProviderURL, {
             attribution: openStreetMapsAttribution(),
             maxZoom: 18,
@@ -125,10 +139,8 @@ export default class CasesMap {
     }
 
     private makeNavigationListItems(locations: ILocations) {
-        const locationList = this.rootElement.querySelector(".js-cases-map-location-list");
-
         locations.items.forEach((location, index) => {
-            locationList.appendChild(this.createNavigationItem(location, index));
+            this.locationList.appendChild(this.createNavigationItem(location, index));
         });
     }
 
@@ -174,7 +186,7 @@ export default class CasesMap {
          * @see: https://webpack.js.org/api/module-methods/#magic-comments
          */
         import(/* webpackMode: "lazy-once" */<any>"leaflet.markercluster/dist/leaflet.markercluster").then(()=> {
-            const map = CasesMap.makeMap();
+            const map = this.makeMap();
             this.addLocationsToMap(locationsData, map);
             this.makeNavigationListItems(locationsData);
         });
