@@ -1,0 +1,1 @@
+mkdir -p public/map-images public/crew-member-images
