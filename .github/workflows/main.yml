@@ -31,7 +31,9 @@ jobs:
         run: npm run build
 
       - name: Create the Google secrets file
-        run: sh ./scripts/create_google_secrets.sh ${{secrets.GOOGLE_CLIENT_SECRET}}
+        run: |
+          chmod +x ./scripts/create_google_secrets.sh
+          ./scripts/create_google_secrets.sh ${{secrets.GOOGLE_CLIENT_SECRET}}
 
       - name: Sync files
         env:
