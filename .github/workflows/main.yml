@@ -1,0 +1,86 @@
+# Deployment workflow for the project
+name: Deployment
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the develop branch
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1.1.0
+          with:
+            version: 12.x
+
+      - name: Install dependencies
+          run: |
+            composer install -o
+            npm ci
+
+      - name: Build frontend
+          run: npm run build
+
+      - name: Create the Google secrets file
+          run: sh ./scripts/create_google_secrets.sh ${{secrets.GOOGLE_CLIENT_SECRET}}
+
+      - name: Sync files
+          env:
+            dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
+          run: |
+            echo "${{secrets.WEB_USER_KEY}}" > deploy_key
+            chmod 600 ./deploy_key
+            rsync -chav --delete \
+              -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
+                  --exclude /deploy_key \
+                  --exclude /.git/ \
+                  --exclude /.github/ \
+                  --exclude /node_modules/ \
+                  --exclude /.gitignore  \
+                  --exclude /LICENSE \
+                  --exclude /README.md \
+                  --exclude /composer.json \
+                  --exclude /composer.lock \
+                  --exclude /package-lock.json \
+                  --exclude /package.json \
+                  --exclude /phpunit.xml.dist \
+                  --exclude /postcss.config.js \
+                  --exclude /symfony.lock \
+                  --exclude /tsconfig.json \
+                  --exclude /webpack.config.js \
+                  ./ ${{env.dest}}
+
+
+      - name: Setup environment
+          uses: garygrossgarten/github-action-ssh@release
+          with:
+            command: (cd /var/www/thebedechkacase.com/scripts && source create_user_content_directories.sh ${{secrets.APP_ENV}} ${{secrets.APP_SECRET}} ${{secrets.MAILER_URL}} ${{secrets.YT_API_KEY}} ${{secrets.DB_NAME}} ${{secrets.HOST_NAME}} ${{secrets.DB_USER}} ${{secrets.DB_PSW}})
+            host: ${{secrets.SSH_HOST}}
+            username: ${{secrets.WEB_USER_NAME}}
+            privateKey: ${{secrets.WEB_USER_KEY}}
+
+      - name: Create user content directories
+          uses: garygrossgarten/github-action-ssh@release
+          with:
+            command: (cd /var/www/thebedechkacase.com/scripts && sh create_user_content_directories.sh)
+            host: ${{secrets.SSH_HOST}}
+            username: ${{secrets.WEB_USER_NAME}}
+            privateKey: ${{secrets.WEB_USER_KEY}}
+
+      - name: Symfony scripts
+          uses: garygrossgarten/github-action-ssh@release
+          with:
+            command: (cd /var/www/thebedechkacase.com/scripts && sh symfony_scripts.sh)
+            host: ${{secrets.SSH_HOST}}
+            username: ${{secrets.WEB_USER_NAME}}
+            privateKey: ${{secrets.WEB_USER_KEY}}
