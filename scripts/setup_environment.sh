@@ -1,0 +1,8 @@
+export APP_DEBUG="0"
+export APP_ENV="$1"
+export APP_SECRET="$2"
+export MAILER_URL="$3"
+export YT_API_KEY="$4"
+export DATABASE_NAME="$5"
+export HOST_NAME="$6"
+export DATABASE_URL="mysql://$7:$8@localhost:3306/$5"
