@@ -99,6 +99,7 @@ yarn.lock
 
 # ENV
 .env.dev.local
+.env
 
 # YT API
 google_client_secret.json
