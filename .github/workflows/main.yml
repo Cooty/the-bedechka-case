@@ -24,6 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export APP_ENV=prod
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
@@ -46,6 +47,7 @@ jobs:
             --exclude /.git/ \
             --exclude /.github/ \
             --exclude /node_modules/ \
+            --exclude /assets/ \
             --exclude /.gitignore  \
             --exclude /LICENSE \
             --exclude /README.md \
