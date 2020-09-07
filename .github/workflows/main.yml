@@ -24,7 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer install -o
+          composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
       - name: Build frontend
@@ -49,13 +49,10 @@ jobs:
             --exclude /.gitignore  \
             --exclude /LICENSE \
             --exclude /README.md \
-            --exclude /composer.json \
-            --exclude /composer.lock \
             --exclude /package-lock.json \
             --exclude /package.json \
             --exclude /phpunit.xml.dist \
             --exclude /postcss.config.js \
-            --exclude /symfony.lock \
             --exclude /tsconfig.json \
             --exclude /webpack.config.js \
             ./ ${{env.dest}}
