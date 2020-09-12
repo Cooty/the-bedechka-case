@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           export APP_ENV=prod
-          composer install --no-dev --optimize-autoloader
+          composer install
           npm install --no-optional
 
       - name: Build frontend
