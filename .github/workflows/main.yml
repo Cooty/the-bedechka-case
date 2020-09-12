@@ -31,15 +31,13 @@ jobs:
       - name: Build frontend
         run: npm run build
 
-      - name: Create the Google secrets file
-        run: |
-          sh ./scripts/create_google_secrets.sh "${{secrets.GOOGLE_CLIENT_SECRET}}"
-
       - name: Sync files
         env:
           dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
         run: |
           echo "${{secrets.WEB_USER_KEY}}" > deploy_key
+          echo "${{secrets.GOOGLE_CLIENT_SECRET}}" > google_client_secret.json
+          echo "${{secrets.ENV}}" > .env
           chmod 600 ./deploy_key
           rsync -chav --delete \
             -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
@@ -48,6 +46,7 @@ jobs:
             --exclude /.github/ \
             --exclude /node_modules/ \
             --exclude /assets/ \
+            --exclude /tests/ \
             --exclude /.gitignore  \
             --exclude /LICENSE \
             --exclude /README.md \
@@ -58,14 +57,6 @@ jobs:
             --exclude /tsconfig.json \
             --exclude /webpack.config.js \
             ./ ${{env.dest}}
-
-      - name: Setup environment
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: (cd /var/www/thebedechkacase.com/scripts && source create_user_content_directories.sh ${{secrets.APP_ENV}} ${{secrets.APP_SECRET}} ${{secrets.MAILER_URL}} ${{secrets.YT_API_KEY}} ${{secrets.DB_NAME}} ${{secrets.HOST_NAME}} ${{secrets.DB_USER}} ${{secrets.DB_PSW}})
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
 
       - name: Create user content directories
         uses: garygrossgarten/github-action-ssh@release
@@ -78,7 +69,7 @@ jobs:
       - name: Symfony scripts
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: (cd /var/www/thebedechkacase.com/scripts && sh symfony_scripts.sh)
+          command: (cd /var/www/thebedechkacase.com/ && exec bash && bin/console doctrine:migrations:migrate --no-interaction && bin/console cache:clear && bin/console cache:warmup)
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
