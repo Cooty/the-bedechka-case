@@ -1,1 +1,0 @@
-echo "$1" > ../google_client_secret.json
