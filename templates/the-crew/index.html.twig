@@ -29,7 +29,6 @@
     {% if crew_members is defined and crew_members|length %}
         <ul class="box-grid pull-over-hero">
             {% for member in crew_members %}
-                {% dump(loop.first) %}
                 {% include('./the-crew/partials/item.html.twig') with {
                     avatar: member.pictureUrl,
                     name: member.name,
