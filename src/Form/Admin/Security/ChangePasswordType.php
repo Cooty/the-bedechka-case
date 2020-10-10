@@ -26,6 +26,6 @@ class ChangePasswordType extends AbstractType
                 'attr' => ['autofocus' => true]
             ],
             'second_options' => ['label' => 'Retype the new password']
-        ])->add('Change Password', SubmitType::class);
+        ])->add('save', SubmitType::class, ['label' => 'Change Password']);
     }
 }
