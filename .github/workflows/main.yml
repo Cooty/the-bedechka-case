@@ -83,9 +83,9 @@ jobs:
           privateKey: ${{secrets.WEB_USER_KEY}}
 
       - name: Set permissions to www-data
-          uses: garygrossgarten/github-action-ssh@release
-          with:
-            command: chmod -R www-data:www-data /var/www/thebedechkacase.com
-            host: ${{secrets.SSH_HOST}}
-            username: ${{secrets.WEB_USER_NAME}}
-            privateKey: ${{secrets.WEB_USER_KEY}}
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: chmod -R www-data:www-data /var/www/thebedechkacase.com
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.WEB_USER_NAME}}
+          privateKey: ${{secrets.WEB_USER_KEY}}
