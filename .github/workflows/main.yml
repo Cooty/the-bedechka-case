@@ -34,7 +34,7 @@ jobs:
       - name: Set permissions to deployment user
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: chown -R tbcweb:tbcweb /var/www/thebedechkacase.com
+          command: sudo chown -R tbcweb:tbcweb /var/www/thebedechkacase.com
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
@@ -85,7 +85,7 @@ jobs:
       - name: Set permissions to www-data
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: chown -R www-data:www-data /var/www/thebedechkacase.com
+          command: sudo chown -R www-data:www-data /var/www/thebedechkacase.com
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
