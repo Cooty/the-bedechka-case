@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           rm .env
-          export APP_ENV=prod
+          echo "${{secrets.ENV}}" > .env
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
@@ -54,7 +54,6 @@ jobs:
         run: |
           echo "${{secrets.WEB_USER_KEY}}" > deploy_key
           echo "${{secrets.GOOGLE_CLIENT_SECRET}}" > google_client_secret.json
-          echo "${{secrets.ENV}}" > .env
           chmod 600 ./deploy_key
           rsync -chav --delete \
             -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
