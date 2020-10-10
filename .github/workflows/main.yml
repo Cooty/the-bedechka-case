@@ -24,6 +24,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          rm .env
           export APP_ENV=prod
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
@@ -35,6 +36,14 @@ jobs:
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: echo ${{secrets.WEB_USER_PSW}} | sudo -S chown -R ${{secrets.WEB_USER_NAME}}:${{secrets.WEB_USER_NAME}} /var/www/thebedechkacase.com
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.WEB_USER_NAME}}
+          privateKey: ${{secrets.WEB_USER_KEY}}
+
+      - name: Delete vendor/ and cache/ and build/
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build)
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
