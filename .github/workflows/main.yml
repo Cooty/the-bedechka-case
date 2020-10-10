@@ -34,7 +34,7 @@ jobs:
       - name: Set permissions to deployment user
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: chmod -R ${{secrets.WEB_USER_NAME}}:${{secrets.WEB_USER_NAME}} /var/www/thebedechkacase.com
+          command: chmod -R tbcweb:tbcweb /var/www/thebedechkacase.com
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
