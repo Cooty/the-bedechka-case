@@ -34,19 +34,6 @@
     @include scroll-fader($beige, 20px);
   }
 
-  // mask the horizontal scrollbar
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: $z-middle;
-    pointer-events: none;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 17px;
-    background-color: $beige;
-  }
-
   @media screen and (min-width: $desktop) {
     margin-bottom: calc(#{$section-items-v-gutter} + #{$grid-v-gutter}) !important;
   }
@@ -54,6 +41,7 @@
   &__steps {
     @extend %smooth-scroll;
     @extend %slider;
+    scrollbar-width: none; // remove the scrollbar in FireFox
     padding: ($box-shadow-size + $marker-h + $marker-label-h) 0 $box-shadow-size $gutter;
 
     @media screen and (min-width: $desktop) {
@@ -64,6 +52,10 @@
 
   &__step {
     margin-right: $gutter;
+    scroll-snap-align: start;
+    -webkit-scroll-snap-coordinate: 0% 0%;
+    -ms-scroll-snap-coordinate: 0% 0%;
+    scroll-snap-coordinate: 0% 0%;
     @include item-width(92%, 8px);
 
     @media screen and (min-width: $phablet) {
