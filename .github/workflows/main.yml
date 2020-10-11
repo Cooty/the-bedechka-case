@@ -83,14 +83,13 @@ jobs:
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
 
-# TODO: Check why do doctrine migration fails and why does this command keep hanging
-#      - name: Symfony scripts
-#        uses: garygrossgarten/github-action-ssh@release
-#        with:
-#          command: (cd /var/www/thebedechkacase.com/ && exec bash && bin/console doctrine:migrations:migrate --no-interaction && bin/console cache:clear && bin/console cache:warmup)
-#          host: ${{secrets.SSH_HOST}}
-#          username: ${{secrets.WEB_USER_NAME}}
-#          privateKey: ${{secrets.WEB_USER_KEY}}
+      - name: Symfony scripts
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: (cd /var/www/thebedechkacase.com/ && exec bash && bin/console doctrine:migrations:migrate --no-interaction && bin/console cache:clear && bin/console cache:warmup)
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.WEB_USER_NAME}}
+          privateKey: ${{secrets.WEB_USER_KEY}}
 
       - name: Set permissions to www-data
         uses: garygrossgarten/github-action-ssh@release
