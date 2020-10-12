@@ -16,13 +16,13 @@
 
   &--main {
     @extend %header-font;
-    font-size: calc(#{pxToRem(26)} + .5vw);
+    font-size: calc(#{pxToRem(34)} + .5vw);
     margin-bottom: pxToRem(14);
     letter-spacing: pxToRem(1);
     padding-top: pxToRem(60);
 
     @media screen and (min-width: $tablet) {
-      font-size: calc(#{pxToRem(39)} + .5vw);
+      font-size: calc(#{pxToRem(57)} + .5vw);
       margin-bottom: pxToRem(100);
       padding-top: 0;
 
@@ -35,7 +35,7 @@
   }
 
   &--sub {
-    font-size: calc(#{pxToRem(17)} + .5vw);
+    font-size: calc(#{pxToRem(16)} + .5vw);
     font-weight: 300;
 
     @media screen and (min-width: $tablet) {
