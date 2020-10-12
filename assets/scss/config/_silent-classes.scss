@@ -147,6 +147,7 @@
   -ms-scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; // remove the scrollbar in FireFox
 }
 
 %slider {
