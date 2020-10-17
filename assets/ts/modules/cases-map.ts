@@ -81,7 +81,7 @@ export default class CasesMap {
         const mapContainerId: any = "js-cases-map-container";
         const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
         const defaultZoom = 7;
-        const mapProviderURL = "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}";
+        const mapProviderURL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
         const casesMap = window.L.map(mapContainerId).setView(mapCenter, defaultZoom);
 
@@ -91,8 +91,8 @@ export default class CasesMap {
             attribution: openStreetMapsAttribution(),
             maxZoom: 18,
             minZoom: 5,
-            id: "mapbox.streets",
-            accessToken: window._config.mapboxAccessToken
+            dragging: !window.L.Browser.mobile,
+            tap: !window.L.Browser.mobile
         }).addTo(casesMap);
 
         return casesMap;
