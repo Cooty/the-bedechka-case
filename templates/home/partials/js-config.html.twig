@@ -1,7 +1,6 @@
 <script>
     var _config = window._config || {};
 
-    _config.mapboxAccessToken = "{{ map_box_token }}";
     _config.mapCaseApiUrl = "{{ path('api_map_cases', {'locale': app.request.get('_locale')}) }}";
     _config.newsHasPagination = {{ newsHasPagination ? 'true' : 'false' }};
     {% if newsHasPagination %}
