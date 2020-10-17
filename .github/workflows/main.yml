@@ -82,14 +82,14 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
-# TODO: Fix migrations
-#      - name: Symfony scripts
-#        uses: garygrossgarten/github-action-ssh@release
-#        with:
-#          command: (cd /var/www/thebedechkacase.com/ && exec bash && bin/console doctrine:migrations:migrate --no-interaction && bin/console cache:clear && bin/console cache:warmup)
-#          host: ${{secrets.SSH_HOST}}
-#          username: ${{secrets.WEB_USER_NAME}}
-#          privateKey: ${{secrets.WEB_USER_KEY}}
+
+      - name: Symfony scripts
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: (cd /var/www/thebedechkacase.com/ && exec bash && bin/console doctrine:database:create --if-not-exists --no-interaction && bin/console doctrine:migrations:migrate --no-interaction && bin/console cache:clear && bin/console cache:warmup)
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.WEB_USER_NAME}}
+          privateKey: ${{secrets.WEB_USER_KEY}}
 
       - name: Set permissions to www-data
         uses: garygrossgarten/github-action-ssh@release
