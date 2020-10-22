@@ -41,7 +41,6 @@
   &__steps {
     @extend %smooth-scroll;
     @extend %slider;
-    scrollbar-width: none; // remove the scrollbar in FireFox
     padding: ($box-shadow-size + $marker-h + $marker-label-h) 0 $box-shadow-size $gutter;
 
     @media screen and (min-width: $desktop) {
@@ -51,19 +50,22 @@
   }
 
   &__step {
-    margin-right: $gutter;
-    scroll-snap-align: start;
-    -webkit-scroll-snap-coordinate: 0% 0%;
-    -ms-scroll-snap-coordinate: 0% 0%;
-    scroll-snap-coordinate: 0% 0%;
+    padding-left: $gutter;
     @include item-width(92%, 8px);
+
+    @media screen and (max-width: pxToEm($desktop-size - 1)) {
+      scroll-snap-align: start;
+      -webkit-scroll-snap-coordinate: 0% 0%;
+      -ms-scroll-snap-coordinate: 0% 0%;
+      scroll-snap-coordinate: 0% 0%;
+    }
 
     @media screen and (min-width: $phablet) {
       @include item-width(60%, 8px);
     }
 
     @media screen and (min-width: $desktop) {
-      margin-right: $gutter-desktop;
+      padding-left: $gutter-desktop;
       @include item-width(45%, 11px);
     }
 
