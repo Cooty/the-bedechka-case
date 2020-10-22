@@ -141,6 +141,7 @@
 
 %smooth-scroll {
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   -webkit-scroll-snap-type: mandatory;
   -webkit-scroll-snap-type: x mandatory;
   -ms-scroll-snap-type: mandatory;

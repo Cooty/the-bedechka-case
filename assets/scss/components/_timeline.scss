@@ -34,19 +34,6 @@
     @include scroll-fader($beige, 20px);
   }
 
-  // mask the horizontal scrollbar
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: $z-middle;
-    pointer-events: none;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 17px;
-    background-color: $beige;
-  }
-
   @media screen and (min-width: $desktop) {
     margin-bottom: calc(#{$section-items-v-gutter} + #{$grid-v-gutter}) !important;
   }
@@ -63,15 +50,22 @@
   }
 
   &__step {
-    margin-right: $gutter;
+    padding-left: $gutter;
     @include item-width(92%, 8px);
+
+    @media screen and (max-width: pxToEm($desktop-size - 1)) {
+      scroll-snap-align: start;
+      -webkit-scroll-snap-coordinate: 0% 0%;
+      -ms-scroll-snap-coordinate: 0% 0%;
+      scroll-snap-coordinate: 0% 0%;
+    }
 
     @media screen and (min-width: $phablet) {
       @include item-width(60%, 8px);
     }
 
     @media screen and (min-width: $desktop) {
-      margin-right: $gutter-desktop;
+      padding-left: $gutter-desktop;
       @include item-width(45%, 11px);
     }
 
