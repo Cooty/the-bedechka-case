@@ -28,7 +28,6 @@
 
   &__typo {
     @extend %header-font;
-    text-transform: uppercase;
     font-size: pxToRem(26);
     user-select: none;
 
