@@ -1,6 +1,8 @@
 @import "./functions";
 
-$desktop: pxToEm(1024);
+$desktop-size: 1024;
+
+$desktop: pxToEm($desktop-size);
 $phablet: pxToEm(600);
 $tablet: pxToEm(768);
 $smallest: pxToEm(320);
