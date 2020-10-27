@@ -27,7 +27,6 @@ jobs:
           rm .env
           echo "${{secrets.ENV}}" > .env
           export SYMFONY_ENV=prod
-          composer require symfony/mime
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
