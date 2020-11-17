@@ -29,10 +29,7 @@ class ScreeningType extends AbstractType
                 'widget' => 'single_text',
                 'empty_data' => TimeUtil::getFormattedNow(),
                 'constraints' => new NotBlank(),
-                'format' => 'yyyy-MM-dd',
-                'attr' => [
-                    'min' => TimeUtil::getFormattedNow()
-                ]
+                'format' => 'yyyy-MM-dd'
             ])
             ->add('hours', NumberType::class, [
                 'mapped' => false,
