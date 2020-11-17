@@ -95,7 +95,7 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         }
     }
 
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'locale' => $this->locale,
