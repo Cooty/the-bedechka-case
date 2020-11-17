@@ -12,8 +12,6 @@ class FileUploadService
         $safeFilename = transliterator_transliterate(
             'Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()',
             $originalFilename);
-        $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
-
-        return $newFilename;
+        return $safeFilename.'-'.uniqid().'.'.'jpg';
     }
 }

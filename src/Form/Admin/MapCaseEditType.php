@@ -13,7 +13,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Url;
-use Symfony\Component\Validator\Constraints\Image;
 use App\Enum\Admin\ImageSizes;
 
 class MapCaseEditType extends AbstractType
@@ -56,16 +55,7 @@ class MapCaseEditType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'help' => 'The image has to be '.ImageSizes::MAP_CASE_POPUP_WIDTH.'×'.ImageSizes::MAP_CASE_POPUP_HEIGHT.' pixels',
-                'constraints' => new Image([
-                    'maxSize' => '1024k',
-                    'allowPortrait' => false,
-                    'allowSquare' => false,
-                    'detectCorrupted' => true,
-                    'maxWidth' => ImageSizes::MAP_CASE_POPUP_WIDTH,
-                    'maxHeight' => ImageSizes::MAP_CASE_POPUP_HEIGHT,
-                    'minWidth' => ImageSizes::MAP_CASE_POPUP_WIDTH,
-                    'minHeight' => ImageSizes::MAP_CASE_POPUP_HEIGHT
-                ])
+                'constraints' => new NotBlank()
             ])
             ->add('save', SubmitType::class, ['label'=> 'Update Case']);
     }
