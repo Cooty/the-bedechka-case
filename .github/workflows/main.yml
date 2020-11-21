@@ -17,18 +17,23 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
         with:
           node-version: '8.12.0'
       
-      - name: Setup PHP with composer v2
+      # By default the Github runner has the latest stabil PHP/Composer version on it
+      # but this might not be compatible with our dependencies
+      - name: Setup PHP with composer v1
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           tools: composer:v1
 
-      - name: Install dependencies
+      - name: Install PHP and Node.js dependencies
         run: |
           rm .env
           echo "${{secrets.ENV}}" > .env
