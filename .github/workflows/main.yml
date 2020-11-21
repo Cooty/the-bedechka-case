@@ -21,6 +21,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '8.12.0'
+      
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v1
 
       - name: Install dependencies
         run: |
