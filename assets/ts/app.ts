@@ -7,6 +7,7 @@ import LazyLoading from "./modules/lazy-loading";
 import Analytics from "./modules/analytics";
 import CookieConsentSettings from "./modules/cookie-consent-settings";
 import "./interfaces/WindowGlobals";
+import detectWebP from "./modules/detect-webp";
 
 class App {
     private static instance: App;
@@ -29,6 +30,7 @@ class App {
 
         const analytics = new Analytics();
         analytics.init();
+        detectWebP();
     }
 }
 
