@@ -8,6 +8,14 @@
         {% include './includes/canonical.html.twig' %}
         <title>{% block title %}{{ 'site.name'|trans }}{% endblock %}</title>
 
+        {% if(app.request.get('_locale') == 'bg') %}
+            <meta property="og:image" content="{{ absolute_url(asset('build/images/social-media-share-image-bg.jpg')) }}" />
+            <link rel="image_src" href="{{ absolute_url(asset('build/images/social-media-share-image-bg.jpg')) }}" />
+        {% else %}
+            <meta property="og:image" content="{{ absolute_url(asset('build/images/social-media-share-image-en.jpg')) }}" />
+            <link rel="image_src" href="{{ absolute_url(asset('build/images/social-media-share-image-en.jpg')) }}" />
+        {% endif %}
+
         {% block preconectLinks %}
             {% include('./includes/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://fonts.googleapis.com/'} only %}
