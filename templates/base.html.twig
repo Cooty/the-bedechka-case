@@ -9,12 +9,14 @@
         <title>{% block title %}{{ 'site.name'|trans }}{% endblock %}</title>
 
         {% if(app.request.get('_locale') == 'bg') %}
-            <meta property="og:image" content="{{ absolute_url(asset('build/images/social-media-share-image-bg.jpg')) }}" />
-            <link rel="image_src" href="{{ absolute_url(asset('build/images/social-media-share-image-bg.jpg')) }}" />
+            <meta property="og:image" content="{{ absolute_url(asset('build/images/social-media-share-image-1200x630-bg.jpg')) }}" />
+            <link rel="image_src" href="{{ absolute_url(asset('build/images/social-media-share-image-1200x630-bg.jpg')) }}" />
         {% else %}
-            <meta property="og:image" content="{{ absolute_url(asset('build/images/social-media-share-image-en.jpg')) }}" />
-            <link rel="image_src" href="{{ absolute_url(asset('build/images/social-media-share-image-en.jpg')) }}" />
+            <meta property="og:image" content="{{ absolute_url(asset('build/images/social-media-share-image-1200x630-en.jpg')) }}" />
+            <link rel="image_src" href="{{ absolute_url(asset('build/images/social-media-share-image-1200x630-en.jpg')) }}" />
         {% endif %}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         {% block preconectLinks %}
             {% include('./includes/preconnect-prefetch-links.html.twig')
