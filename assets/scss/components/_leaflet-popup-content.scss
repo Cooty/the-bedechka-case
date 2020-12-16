@@ -70,7 +70,6 @@
 
   & &__link {
     @extend %single-line-ellipsis;
-    @extend %visited-link;
     display: block;
     color: $purple;
     text-decoration: underline;
