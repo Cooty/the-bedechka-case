@@ -53,10 +53,6 @@
   }
 
   &__item {
-    > a {
-      @extend %visited-link;
-    }
-
     margin-right: $gutter;
     @include item-width(92%, 8px);
 
