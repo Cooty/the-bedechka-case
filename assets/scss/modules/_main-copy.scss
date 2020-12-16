@@ -17,7 +17,6 @@
   }
 
   a {
-    @extend %visited-link;
     text-decoration: underline;
 
     &:hover,
