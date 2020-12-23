@@ -33,16 +33,16 @@ jobs:
           php-version: '7.4'
           tools: composer:v1
 
-      - name: Install PHP and Node.js dependencies
-        run: |
-          rm .env
-          echo "${{secrets.ENV}}" > .env
-          export SYMFONY_ENV=prod
-          composer install --no-dev --optimize-autoloader
-          npm install --no-optional
+      # - name: Install PHP and Node.js dependencies
+      #   run: |
+      #     rm .env
+      #     echo "${{secrets.ENV}}" > .env
+      #     export SYMFONY_ENV=prod
+      #     composer install --no-dev --optimize-autoloader
+      #     npm install --no-optional
 
-      - name: Build frontend
-        run: npm run build
+      # - name: Build frontend
+      #   run: npm run build
 
       - name: Set permissions to deployment user
         uses: garygrossgarten/github-action-ssh@release
@@ -52,39 +52,39 @@ jobs:
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Delete vendor/ and cache/ and build/
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build)
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+      # - name: Delete vendor/ and cache/ and build/
+      #   uses: garygrossgarten/github-action-ssh@release
+      #   with:
+      #     command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build)
+      #     host: ${{secrets.SSH_HOST}}
+      #     username: ${{secrets.WEB_USER_NAME}}
+      #     privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Sync files
-        env:
-          dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
-        run: |
-          echo "${{secrets.WEB_USER_KEY}}" > deploy_key
-          echo "${{secrets.GOOGLE_CLIENT_SECRET}}" > google_client_secret.json
-          chmod 600 ./deploy_key
-          rsync -chav --delete \
-            -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
-            --exclude /deploy_key \
-            --exclude /.git/ \
-            --exclude /.github/ \
-            --exclude /node_modules/ \
-            --exclude /assets/ \
-            --exclude /tests/ \
-            --exclude /.gitignore  \
-            --exclude /LICENSE \
-            --exclude /README.md \
-            --exclude /package-lock.json \
-            --exclude /package.json \
-            --exclude /phpunit.xml.dist \
-            --exclude /postcss.config.js \
-            --exclude /tsconfig.json \
-            --exclude /webpack.config.js \
-            ./ ${{env.dest}}
+      # - name: Sync files
+      #   env:
+      #     dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
+      #   run: |
+      #     echo "${{secrets.WEB_USER_KEY}}" > deploy_key
+      #     echo "${{secrets.GOOGLE_CLIENT_SECRET}}" > google_client_secret.json
+      #     chmod 600 ./deploy_key
+      #     rsync -chav --delete \
+      #       -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
+      #       --exclude /deploy_key \
+      #       --exclude /.git/ \
+      #       --exclude /.github/ \
+      #       --exclude /node_modules/ \
+      #       --exclude /assets/ \
+      #       --exclude /tests/ \
+      #       --exclude /.gitignore  \
+      #       --exclude /LICENSE \
+      #       --exclude /README.md \
+      #       --exclude /package-lock.json \
+      #       --exclude /package.json \
+      #       --exclude /phpunit.xml.dist \
+      #       --exclude /postcss.config.js \
+      #       --exclude /tsconfig.json \
+      #       --exclude /webpack.config.js \
+      #       ./ ${{env.dest}}
 
       - name: Create user content directories
         uses: garygrossgarten/github-action-ssh@release
@@ -94,42 +94,42 @@ jobs:
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Create DB
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: php /var/www/thebedechkacase.com/bin/console doctrine:database:create --if-not-exists --no-interaction
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+      # - name: Create DB
+      #   uses: garygrossgarten/github-action-ssh@release
+      #   with:
+      #     command: php /var/www/thebedechkacase.com/bin/console doctrine:database:create --if-not-exists --no-interaction
+      #     host: ${{secrets.SSH_HOST}}
+      #     username: ${{secrets.WEB_USER_NAME}}
+      #     privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Execute migrations
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: php /var/www/thebedechkacase.com/bin/console doctrine:migrations:migrate --no-interaction
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+      # - name: Execute migrations
+      #   uses: garygrossgarten/github-action-ssh@release
+      #   with:
+      #     command: php /var/www/thebedechkacase.com/bin/console doctrine:migrations:migrate --no-interaction
+      #     host: ${{secrets.SSH_HOST}}
+      #     username: ${{secrets.WEB_USER_NAME}}
+      #     privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Clear Symfony cache
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: php /var/www/thebedechkacase.com/bin/console cache:clear
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+      # - name: Clear Symfony cache
+      #   uses: garygrossgarten/github-action-ssh@release
+      #   with:
+      #     command: php /var/www/thebedechkacase.com/bin/console cache:clear
+      #     host: ${{secrets.SSH_HOST}}
+      #     username: ${{secrets.WEB_USER_NAME}}
+      #     privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Warmup Symfony cache
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: php /var/www/thebedechkacase.com/bin/console cache:warmup
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+      # - name: Warmup Symfony cache
+      #   uses: garygrossgarten/github-action-ssh@release
+      #   with:
+      #     command: php /var/www/thebedechkacase.com/bin/console cache:warmup
+      #     host: ${{secrets.SSH_HOST}}
+      #     username: ${{secrets.WEB_USER_NAME}}
+      #     privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Set permissions to www-data
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: echo ${{secrets.WEB_USER_PSW}} | sudo -S chown -R www-data:www-data /var/www/thebedechkacase.com
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+      # - name: Set permissions to www-data
+      #   uses: garygrossgarten/github-action-ssh@release
+      #   with:
+      #     command: echo ${{secrets.WEB_USER_PSW}} | sudo -S chown -R www-data:www-data /var/www/thebedechkacase.com
+      #     host: ${{secrets.SSH_HOST}}
+      #     username: ${{secrets.WEB_USER_NAME}}
+      #     privateKey: ${{secrets.WEB_USER_KEY}}
