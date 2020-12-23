@@ -7,5 +7,4 @@ if ([ ! -d "$map_folder" ] && [ ! -d "$crew_folder" ]); then
     chmod g+w $crew_folder
 else
     echo "${map_folder} and ${crew_folder} already exist"
-    exit 1
 fi

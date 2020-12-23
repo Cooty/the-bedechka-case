@@ -89,7 +89,7 @@ jobs:
       - name: Create user content directories
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: (cd /var/www/thebedechkacase.com/scripts && echo $PWD && sh create_user_content_directories.sh)
+          command: (cd /var/www/thebedechkacase.com/scripts && sh create_user_content_directories.sh)
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
