@@ -43,7 +43,12 @@ class CrewMemberType extends AbstractType
             ->add('linkLabel', TextType::class, [
                 'label' => 'Label for the link (optional)',
                 'required' => false,
-                'help' => 'If filled, this text will appear as the clickable text for the link'
+                'help' => 'If filled, this text will appear as the clickable text for the link in English'
+            ])
+            ->add('linkLabelBg', TextType::class, [
+                'label' => 'Label for the link (BG - optional)',
+                'required' => false,
+                'help' => 'If filled, this text will appear as the clickable text for the link in Bulgarian'
             ])
             ->add('image', FileType::class, [
                 'label' => 'Image',
