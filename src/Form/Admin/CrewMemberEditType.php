@@ -49,8 +49,7 @@ class CrewMemberEditType extends AbstractType
                 'label' => 'New Image',
                 'mapped' => false,
                 'required' => false,
-                'help' => 'The image has to be '.ImageSizes::CREW_MEMBER_PORTRAIT_WIDTH.'×'.ImageSizes::CREW_MEMBER_PORTRAIT_HEIGHT.' pixels',
-                'constraints' => new NotBlank()
+                'help' => 'The image has to be '.ImageSizes::CREW_MEMBER_PORTRAIT_WIDTH.'×'.ImageSizes::CREW_MEMBER_PORTRAIT_HEIGHT.' pixels'
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Update Crew Member'
