@@ -30,7 +30,8 @@ class CrewMemberFrontendFactory
         if($link = $crewMember->getLink()) {
             $crewMemberFrontend->setLink($link);
 
-            if($linkLabel = $crewMember->getLinkLabel()) {
+            if($crewMember->getLinkLabel() || $crewMember->getLinkLabelBg()) {
+                $linkLabel = $locale === $this->secondaryLocale ? $crewMember->getLinkLabelBg() : $crewMember->getLinkLabel();
                 $crewMemberFrontend->setLinkLabel($linkLabel);
             }
 

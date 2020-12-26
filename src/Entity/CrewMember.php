@@ -67,6 +67,11 @@ class CrewMember
      */
     private $linkLabel;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $linkLabelBg;
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -154,5 +159,21 @@ class CrewMember
         $this->linkLabel = $linkLabel;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinkLabelBg()
+    {
+        return $this->linkLabelBg;
+    }
+
+    /**
+     * @param mixed $linkLabelBg
+     */
+    public function setLinkLabelBg($linkLabelBg): void
+    {
+        $this->linkLabelBg = $linkLabelBg;
     }
 }
