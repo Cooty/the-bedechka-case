@@ -3,6 +3,11 @@
         <h3 class="box__subtitle">
             {{ title }}
         </h3>
-        <small class="box__info">{{ source }}</small>
+        <p class="news-source">
+            {% if logo %}
+            <img src="{{ logo }}" alt="" class="news-source__img" />
+            {% endif %}
+            <small class="box__info">{{ source }}</small>
+        </p>
     </a>
 </li>

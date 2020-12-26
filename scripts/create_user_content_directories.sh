@@ -1,11 +1,17 @@
-map_folder="../public/map-images"
-crew_folder="../public/crew-member-images"
+MAP_FOLDER="../public/map-images"
+CREW_FOLDER="../public/crew-member-images"
+NEWS_FOLDER="../public/news-logos"
 
-if ([ ! -d "$map_folder" ] && [ ! -d "$crew_folder" ]); then
-    mkdir -p -v $map_folder $crew_folder
-    chmod g+w $map_folder
-    chmod g+w $crew_folder
+if [ ! -d "$MAP_FOLDER" ]; then
+    mkdir -p -v "$MAP_FOLDER"
+    chmod g+w "$MAP_FOLDER"
+elif [ ! -d "$CREW_FOLDER" ]; then
+    mkdir -p -v "$CREW_FOLDER"
+    chmod g+w "$CREW_FOLDER"
+elif [ ! -d "$NEWS_FOLDER" ]; then
+    mkdir -p -v "$NEWS_FOLDER"
+    chmod g+w "$NEWS_FOLDER"
 else
-    echo "${map_folder} and ${crew_folder} already exist"
+    echo "All user upload folders already exist"
     exit 0
 fi

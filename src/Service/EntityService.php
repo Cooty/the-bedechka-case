@@ -87,6 +87,11 @@ class EntityService
      */
     private $fileUploadService;
 
+    /**
+     * @var string
+     */
+    private $newsLogoDirectory;
+
     public function __construct(
         MapCaseRepository $mapCaseRepository,
         NewsRepository $newsRepository,
@@ -98,7 +103,8 @@ class EntityService
         string $crewMemberImagesDirectory,
         CrewMemberRepository $crewMemberRepository,
         string $publicDirectoryPath,
-        FileUploadService $fileUploadService
+        FileUploadService $fileUploadService,
+        string $newsLogoDirectory
     )
     {
         $this->mapCaseRepository = $mapCaseRepository;
@@ -112,6 +118,7 @@ class EntityService
         $this->crewMemberRepository = $crewMemberRepository;
         $this->publicDirectoryPath = $publicDirectoryPath;
         $this->fileUploadService = $fileUploadService;
+        $this->newsLogoDirectory = $newsLogoDirectory;
     }
 
     /**
@@ -174,8 +181,8 @@ class EntityService
             case News::URL_PARAM_NAME:
                 $entity = $this->newsRepository->find($id);
                 $form = $this->formFactory->create(NewsType::class, $entity);
-                $params = [];
-                $handler = new NewsHandler($entity, $form);
+                $params = ['upload_path' => $this->newsLogoDirectory, 'public_path' => $this->publicDirectoryPath];
+                $handler = new NewsHandler($entity, $form, $this->fileUploadService);
                 $formHandler = null;
                 break;
             case Screening::URL_PARAM_NAME:
@@ -215,8 +222,8 @@ class EntityService
             case News::URL_PARAM_NAME:
                 $entity = new News();
                 $form = $this->formFactory->create(NewsType::class, $entity);
-                $params = [];
-                $handler = new NewsHandler($entity, $form);
+                $params = ['upload_path' => $this->newsLogoDirectory, 'public_path' => $this->publicDirectoryPath];
+                $handler = new NewsHandler($entity, $form, $this->fileUploadService);
                 break;
             case Screening::URL_PARAM_NAME:
                 $entity = new Screening();

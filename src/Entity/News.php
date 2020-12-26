@@ -47,6 +47,11 @@ class News
      */
     private $source;
 
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    private $logoURL;
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -86,5 +91,21 @@ class News
         $this->source = $source;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogoURL()
+    {
+        return $this->logoURL;
+    }
+
+    /**
+     * @param mixed $logoURL
+     */
+    public function setLogoURL($logoURL): void
+    {
+        $this->logoURL = $logoURL;
     }
 }

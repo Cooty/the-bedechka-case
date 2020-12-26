@@ -19,11 +19,17 @@ class NewsItemFrontend
      */
     private $source;
 
-    public function __construct(string $title, string $link, string $source)
+    /**
+     * @var string|null
+     */
+    private $logo;
+
+    public function __construct(string $title, string $link, string $source, ?string $logo)
     {
         $this->title = $title;
         $this->link = $link;
         $this->source = $source;
+        $this->logo = $logo;
     }
 
     /**
@@ -48,5 +54,13 @@ class NewsItemFrontend
     public function getSource(): string
     {
         return $this->source;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLogo(): ?string
+    {
+        return $this->logo;
     }
 }

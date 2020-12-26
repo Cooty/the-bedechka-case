@@ -2,6 +2,8 @@
 
 namespace App\Form\Admin;
 
+use App\Enum\Admin\ImageSizes;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -35,6 +37,12 @@ class NewsType extends AbstractType
                 'label' => 'Source',
                 'required' => false,
                 'help' => 'If left empty the domain name will be taken from the link above'
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Logo (optional)',
+                'mapped' => false,
+                'required' => false,
+                'help' => 'The image has to be '.ImageSizes::NEWS_ITEM_LOGO_HEIGHT.' pixels tall, ideally 1:1 ratio'
             ])
             ->add('save', SubmitType::class, ['label'=> 'Save News Item']);
     }
