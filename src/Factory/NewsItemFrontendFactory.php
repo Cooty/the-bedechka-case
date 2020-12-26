@@ -12,7 +12,8 @@ class NewsItemFrontendFactory
         return new NewsItemFrontend(
             $news->getTitle(),
             $news->getLink(),
-            $news->getSource()
+            $news->getSource(),
+            $news->getLogoURL()
         );
     }
 }

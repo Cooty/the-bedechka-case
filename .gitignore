@@ -14,6 +14,7 @@ vendor/
 /web/bundles/
 /public/map-images/
 /public/crew-member-images/
+/public/news-logos/
 
 # Build data
 build/

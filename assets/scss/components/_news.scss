@@ -5,6 +5,8 @@
 @import "../config/mixins";
 
 .news {
+  $logo-height: 32px;
+
   overflow: hidden;
 
   @media screen and (min-width: $tablet) {
@@ -101,5 +103,35 @@
     }
 
   }
+
+  &-source {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: center;
+    margin-top: 15px;
+    min-height: $logo-height; // 1)
+
+    & .box__info {
+      @extend %single-line-ellipsis;
+      margin-top: 0;
+      flex: 1;
+    }
+
+  }
+
+  &-source__img {
+    display: block;
+    margin-right: 6px;
+    width: auto; // 2)
+    height: $logo-height; // 2)
+  }
+
+  // 1) Height of the optional logo for the news source. Since the logo is an optional field
+  // the texts wouldn't be vertically in the same line if an item with and without logo
+  // are on the same grid row in desktop view
+
+  // 2) Uploaded images should be twice as big to look sharp on retina-screens.
+  // SVG is not an option here, since it's user-uploaded content
 
 }

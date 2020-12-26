@@ -17,6 +17,7 @@ parameters:
     mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
     map_images_directory: 'map-images/'
     crew_member_images_directory: 'crew-member-images/'
+    news_logo_directory: 'news-logos/'
     public_directory_path: '%kernel.project_dir%/public/'
 
 services:
@@ -74,6 +75,7 @@ services:
         $mapImagesDirectory: '%map_images_directory%'
         $crewMemberImagesDirectory: '%crew_member_images_directory%'
         $publicDirectoryPath: '%public_directory_path%'
+        $newsLogoDirectory: '%news_logo_directory%'
 
     App\Factory\MapCaseFrontendFactory:
       arguments:
