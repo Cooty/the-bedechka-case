@@ -54,8 +54,7 @@ class MapCaseEditType extends AbstractType
                 'label' => 'Image (optional)',
                 'mapped' => false,
                 'required' => false,
-                'help' => 'The image has to be '.ImageSizes::MAP_CASE_POPUP_WIDTH.'×'.ImageSizes::MAP_CASE_POPUP_HEIGHT.' pixels',
-                'constraints' => new NotBlank()
+                'help' => 'The image has to be '.ImageSizes::MAP_CASE_POPUP_WIDTH.'×'.ImageSizes::MAP_CASE_POPUP_HEIGHT.' pixels'
             ])
             ->add('save', SubmitType::class, ['label'=> 'Update Case']);
     }
