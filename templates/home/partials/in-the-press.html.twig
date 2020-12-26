@@ -8,7 +8,8 @@
                     {% include('./home/partials/in-the-press-item.html.twig') with {
                         'link': newsItem.link,
                         'title': newsItem.title,
-                        'source': newsItem.source
+                        'source': newsItem.source,
+                        'logo': newsItem.logo
                     } %}
                 {% endfor %}
                 {% if newsHasPagination %}

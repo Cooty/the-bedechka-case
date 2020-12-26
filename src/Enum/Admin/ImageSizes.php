@@ -9,4 +9,6 @@ abstract class ImageSizes
 
     const CREW_MEMBER_PORTRAIT_WIDTH = 120;
     const CREW_MEMBER_PORTRAIT_HEIGHT = 120;
+
+    const NEWS_ITEM_LOGO_HEIGHT = 64;
 }
