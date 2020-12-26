@@ -65,7 +65,7 @@
     color: $base-text-color;
     line-height: 1.2;
     margin-bottom: .4em;
-    word-break: break-all;
+    hyphens: auto;
   }
 
   & &__link {
