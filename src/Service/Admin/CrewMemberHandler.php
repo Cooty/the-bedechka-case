@@ -30,6 +30,9 @@ class CrewMemberHandler extends AbstractEntityHandler
             /** @var UploadedFile $imageFile */
             $imageFile = $this->form->get('image')->getData();
 
+            /** @var UploadedFile $imageFile */
+            $secondImageFile = $this->form->get('secondImage')->getData();
+
             if($imageFile) {
                 $newFileName = $this->fileUploadService->makeFilename($imageFile);
 
@@ -39,6 +42,17 @@ class CrewMemberHandler extends AbstractEntityHandler
                 );
 
                 $this->entity->setPictureURL('/'.$params['upload_path'].$newFileName);
+
+                if($secondImageFile) {
+                    $secondNewFileName = $this->fileUploadService->makeFilename($secondImageFile);
+
+                    $secondImageFile->move(
+                        $params['public_path'].$params['upload_path'],
+                        $secondNewFileName
+                    );
+
+                    $this->entity->setSecondPictureUrl('/'.$params['upload_path'].$secondNewFileName);
+                }
             }
 
             return $this->entity;

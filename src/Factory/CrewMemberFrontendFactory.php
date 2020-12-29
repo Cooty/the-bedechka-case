@@ -39,6 +39,10 @@ class CrewMemberFrontendFactory
 
         $crewMemberFrontend->setPictureUrl($crewMember->getPictureUrl());
 
+        if($secondPicture = $crewMember->getSecondPictureUrl()) {
+            $crewMemberFrontend->setSecondPictureUrl($secondPicture);
+        }
+
         return $crewMemberFrontend;
     }
 }

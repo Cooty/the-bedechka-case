@@ -28,11 +28,21 @@
                 {{ form_widget(form) }}
 
                 {% if form.vars.data.pictureUrl is defined and form.vars.data.pictureUrl %}
-                    <div class="form-group">
-                        <label>
-                            Current Image:
-                        </label>
-                        <img src="{{ form.vars.data.pictureUrl }}" alt="" class="d-block">
+                    <div class="d-flex">
+                        <div class="form-group">
+                            <label>
+                                Current Image:
+                            </label>
+                            <img src="{{ form.vars.data.pictureUrl }}" alt="" class="d-block">
+                        </div>
+                        {% if form.vars.data.secondPictureUrl is defined and form.vars.data.secondPictureUrl %}
+                            <div class="form-group ml-2">
+                                <label>
+                                    Current Funny Image:
+                                </label>
+                                <img src="{{ form.vars.data.secondPictureUrl }}" alt="" class="d-block">
+                            </div>
+                        {% endif %}
                     </div>
 
                 {% endif %}

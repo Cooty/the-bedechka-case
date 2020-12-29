@@ -31,11 +31,12 @@
             {% for member in crew_members %}
                 {% include('./the-crew/partials/item.html.twig') with {
                     avatar: member.pictureUrl,
+                    flippedAvatar: member.secondPictureUrl,
                     name: member.name,
                     title: member.title,
                     url: member.link,
                     urlLabel: member.linkLabel,
-                    isLazy: loop.first ? false : true
+                    isLazy: loop.first ? false : true,
                 } only %}
             {% endfor %}
         </ul>

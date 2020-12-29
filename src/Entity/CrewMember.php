@@ -63,6 +63,11 @@ class CrewMember
     private $pictureUrl;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $secondPictureUrl;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $linkLabel;
@@ -149,6 +154,22 @@ class CrewMember
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getSecondPictureUrl(): ?string
+    {
+        return $this->secondPictureUrl;
+    }
+
+    /**
+     * @param string|null $secondPictureUrl
+     */
+    public function setSecondPictureUrl(?string $secondPictureUrl): void
+    {
+        $this->secondPictureUrl = $secondPictureUrl;
+    }
+
     public function getLinkLabel(): ?string
     {
         return $this->linkLabel;
@@ -162,17 +183,17 @@ class CrewMember
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getLinkLabelBg()
+    public function getLinkLabelBg(): ?string
     {
         return $this->linkLabelBg;
     }
 
     /**
-     * @param mixed $linkLabelBg
+     * @param string|null $linkLabelBg
      */
-    public function setLinkLabelBg($linkLabelBg): void
+    public function setLinkLabelBg(?string $linkLabelBg): void
     {
         $this->linkLabelBg = $linkLabelBg;
     }

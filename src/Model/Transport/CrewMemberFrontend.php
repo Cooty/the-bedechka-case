@@ -27,6 +27,11 @@ class CrewMemberFrontend
     /**
      * @var string|null
      */
+    private $secondPictureUrl;
+
+    /**
+     * @var string|null
+     */
     private $linkLabel;
 
     /**
@@ -91,6 +96,22 @@ class CrewMemberFrontend
     public function setPictureUrl(string $pictureUrl): void
     {
         $this->pictureUrl = $pictureUrl;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSecondPictureUrl(): ?string
+    {
+        return $this->secondPictureUrl;
+    }
+
+    /**
+     * @param string|null $secondPictureUrl
+     */
+    public function setSecondPictureUrl(?string $secondPictureUrl): void
+    {
+        $this->secondPictureUrl = $secondPictureUrl;
     }
 
     /**
