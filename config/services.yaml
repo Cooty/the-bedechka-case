@@ -14,10 +14,10 @@ parameters:
     language_setting_session_key: '_preferred_language'
     static_data_directory: '%kernel.project_dir%/data/'
     google_client_secret: '%kernel.project_dir%/google_client_secret.json'
-    mapbox_access_token: 'pk.eyJ1IjoidGhlY2FzZWJlZGVjaGthIiwiYSI6ImNrMzMzZG9rbjA4ajIzYnAzZ2p2c2hocmoifQ.Dtc2gfsgj0catCgjQnoZng'
     map_images_directory: 'map-images/'
     crew_member_images_directory: 'crew-member-images/'
     news_logo_directory: 'news-logos/'
+    screening_directory: 'screenings/'
     public_directory_path: '%kernel.project_dir%/public/'
 
 services:
@@ -51,13 +51,11 @@ services:
     App\Twig\AppExtension:
         arguments:
             $locale: '%kernel.default_locale%'
-            $mapBoxToken: '%mapbox_access_token%'
             $publicDirectory: '%kernel.project_dir%/public'
 
     App\Twig\Admin\AppExtension:
       arguments:
         $locale: '%kernel.default_locale%'
-        $mapBoxToken: '%mapbox_access_token%'
         $publicDirectory: '%kernel.project_dir%/public'
 
     App\EventSubscriber\LocaleSubscriber:
@@ -76,6 +74,7 @@ services:
         $crewMemberImagesDirectory: '%crew_member_images_directory%'
         $publicDirectoryPath: '%public_directory_path%'
         $newsLogoDirectory: '%news_logo_directory%'
+        $screeningImagesDirectory: '%screening_directory%'
 
     App\Factory\MapCaseFrontendFactory:
       arguments:

@@ -3,7 +3,9 @@
 namespace App\Form\Admin;
 
 use App\Entity\Screening;
+use App\Enum\Admin\ImageSizes;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -76,6 +78,12 @@ class ScreeningType extends AbstractType
                 'label' => 'Link for the event (optional)',
                 'required' => false,
                 'constraints' => new Url()
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Image (optional)',
+                'mapped' => false,
+                'required' => false,
+                'help' => 'The image has to be '.ImageSizes::SCREENING_WIDTH.'×'.ImageSizes::SCREENING_HEIGHT.' pixels'
             ])
             ->add('save', SubmitType::class, ['label'=> 'Save Screening']);
         ;

@@ -92,6 +92,11 @@ class EntityService
      */
     private $newsLogoDirectory;
 
+    /**
+     * @var string
+     */
+    private $screeningImagesDirectory;
+
     public function __construct(
         MapCaseRepository $mapCaseRepository,
         NewsRepository $newsRepository,
@@ -104,7 +109,8 @@ class EntityService
         CrewMemberRepository $crewMemberRepository,
         string $publicDirectoryPath,
         FileUploadService $fileUploadService,
-        string $newsLogoDirectory
+        string $newsLogoDirectory,
+        string $screeningImagesDirectory
     )
     {
         $this->mapCaseRepository = $mapCaseRepository;
@@ -119,6 +125,7 @@ class EntityService
         $this->publicDirectoryPath = $publicDirectoryPath;
         $this->fileUploadService = $fileUploadService;
         $this->newsLogoDirectory = $newsLogoDirectory;
+        $this->screeningImagesDirectory = $screeningImagesDirectory;
     }
 
     /**
@@ -188,8 +195,8 @@ class EntityService
             case Screening::URL_PARAM_NAME:
                 $entity = $this->screeningRepository->find($id);
                 $form = $this->formFactory->create(ScreeningType::class, $entity);
-                $params = [];
-                $handler = new ScreeningHandler($entity, $form);
+                $params = ['upload_path' => $this->screeningImagesDirectory, 'public_path' => $this->publicDirectoryPath];
+                $handler = new ScreeningHandler($entity, $form, $this->fileUploadService);
                 $formHandler = new ScreeningUpdateHandler($entity, $form);
                 break;
             case CrewMember::URL_PARAM_NAME:
@@ -228,8 +235,8 @@ class EntityService
             case Screening::URL_PARAM_NAME:
                 $entity = new Screening();
                 $form = $this->formFactory->create(ScreeningType::class, $entity);
-                $params = [];
-                $handler = new ScreeningHandler($entity, $form);
+                $params = ['upload_path' => $this->screeningImagesDirectory, 'public_path' => $this->publicDirectoryPath];
+                $handler = new ScreeningHandler($entity, $form, $this->fileUploadService);
                 break;
             case CrewMember::URL_PARAM_NAME:
                 $entity = new CrewMember();

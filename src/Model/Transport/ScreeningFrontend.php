@@ -32,6 +32,11 @@ class ScreeningFrontend
     private $start;
 
     /**
+     * @var string|null
+     */
+    private $image;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -109,5 +114,21 @@ class ScreeningFrontend
     public function setStart(DateTimeInterface $start): void
     {
         $this->start = $start;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string|null $image
+     */
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 }

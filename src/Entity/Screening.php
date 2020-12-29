@@ -71,6 +71,11 @@ class Screening
      */
     private $eventLink;
 
+    /**
+     * @ORM\Column(type="string", length=200, nullable=true)
+     */
+    private $pictureURL;
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -158,5 +163,21 @@ class Screening
         $this->eventLink = $eventLink;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPictureURL()
+    {
+        return $this->pictureURL;
+    }
+
+    /**
+     * @param mixed $pictureURL
+     */
+    public function setPictureURL($pictureURL): void
+    {
+        $this->pictureURL = $pictureURL;
     }
 }

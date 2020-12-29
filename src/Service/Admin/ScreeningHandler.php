@@ -5,9 +5,22 @@ namespace App\Service\Admin;
 use Exception;
 use \DateTime;
 use App\Util\TimeUtil;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ScreeningHandler extends AbstractEntityHandler
 {
+    /**
+     * @var FileUploadService
+     */
+    private $fileUploadService;
+
+    public function __construct($entity, FormInterface $form, FileUploadService $fileUploadService)
+    {
+        parent::__construct($entity, $form);
+        $this->fileUploadService = $fileUploadService;
+    }
+
     private function getISO8601String(DateTime $date, int $hours, int $minutes): string
     {
         $date = $date->format('Y-m-d');
@@ -32,6 +45,20 @@ class ScreeningHandler extends AbstractEntityHandler
             $start = new DateTime($iso8601String);
 
             $this->entity->setStart($start);
+
+            /** @var UploadedFile $imageFile */
+            $imageFile = $this->form->get('image')->getData();
+
+            if($imageFile) {
+                $newFileName = $this->fileUploadService->makeFilename($imageFile);
+
+                $imageFile->move(
+                    $params['public_path'].$params['upload_path'],
+                    $newFileName
+                );
+
+                $this->entity->setPictureURL('/'.$params['upload_path'].$newFileName);
+            }
 
             return $this->entity;
 

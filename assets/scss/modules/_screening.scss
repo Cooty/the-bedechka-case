@@ -1,4 +1,5 @@
 @import "../config/colors";
+@import "../config/sizes";
 
 .screening {
 
@@ -39,6 +40,16 @@
       }
     }
 
+  }
+
+  & &__image-container {
+    background: rgba(0, 0, 0, .1);
+    margin: -#{$grid-v-gutter}
+      calc(var(--gutter) * -1)
+      .8em
+      calc(var(--gutter) * -1);
+    border-top-left-radius: $box-radius;
+    border-top-right-radius: $box-radius;
   }
 
 }
