@@ -33,9 +33,7 @@ class MapCaseHandler extends AbstractEntityHandler
             throw new Exception('Longitude and Latitude was not found in the URL. Are your sure it\'s a valid Google Maps URL?');
         }
 
-        $latLong = new LatLongCords($matches[1], $matches[2]);
-
-        return $latLong;
+        return new LatLongCords($matches[1], $matches[2]);
     }
 
     /**
