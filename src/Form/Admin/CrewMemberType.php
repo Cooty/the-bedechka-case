@@ -57,6 +57,12 @@ class CrewMemberType extends AbstractType
                 'help' => 'The image has to be '.ImageSizes::CREW_MEMBER_PORTRAIT_WIDTH.'×'.ImageSizes::CREW_MEMBER_PORTRAIT_HEIGHT.' pixels',
                 'constraints' => new NotBlank()
             ])
+            ->add('secondImage', FileType::class, [
+                'label' => 'Funny Image appearing on hover (optional)',
+                'mapped' => false,
+                'required' => false,
+                'help' => 'The image has to be '.ImageSizes::CREW_MEMBER_PORTRAIT_WIDTH.'×'.ImageSizes::CREW_MEMBER_PORTRAIT_HEIGHT.' pixels'
+            ])
             ->add('save', SubmitType::class, [
                 'label' => 'Save Crew Member'
             ])

@@ -1,16 +1,31 @@
 <li class="box-grid__item">
     <article class="box">
-        <div class="person">
-            <div class="person__photo">
-                {% if isLazy %}
-                    <img class="js-lazy-loading"
-                         src="{{ asset('build/images/empty.gif') }}"
-                         data-src="{{ avatar }}"
-                         alt="{{ name }}">
-                {% else %}
-                    <img src="{{ avatar }}" alt="{{ name }}">
+        <div class="person" tabindex="0">
+            <figure class="person__photo {{ flippedAvatar ? 'person__photo--flipper' : '' }}">
+                {% if flippedAvatar %}
+                    <div class="person__flip">
                 {% endif %}
-            </div>
+                    {% if isLazy %}
+                        <img class="js-lazy-loading"
+                             src="{{ asset('build/images/empty.gif') }}"
+                             data-src="{{ avatar }}"
+                             alt="{{ name }}">
+                        {% if flippedAvatar %}
+                            <img class="js-lazy-loading"
+                                 src="{{ asset('build/images/empty.gif') }}"
+                                 data-src="{{ flippedAvatar }}"
+                                 alt="">
+                        {% endif %}
+                    {% else %}
+                        <img src="{{ avatar }}" alt="{{ name }}">
+                        {% if flippedAvatar %}
+                            <img src="{{ flippedAvatar }}" alt="">
+                        {% endif %}
+                    {% endif %}
+                {% if flippedAvatar %}
+                    </div>
+                {% endif %}
+            </figure>
             <div class="person__info">
                 <h2 class="person__header">{{ name }}</h2>
                 <span class="person__title">{{ title }}</span>
