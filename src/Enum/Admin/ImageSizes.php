@@ -11,4 +11,7 @@ abstract class ImageSizes
     const CREW_MEMBER_PORTRAIT_HEIGHT = 120;
 
     const NEWS_ITEM_LOGO_HEIGHT = 64;
+
+    const SCREENING_WIDTH = 482;
+    const SCREENING_HEIGHT = 271;
 }

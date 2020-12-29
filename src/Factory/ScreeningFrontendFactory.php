@@ -33,6 +33,10 @@ class ScreeningFrontendFactory
 
         $screeningFrontend->setStart($screening->getStart());
 
+        if($image = $screening->getPictureURL()) {
+            $screeningFrontend->setImage($image);
+        }
+
         return $screeningFrontend;
     }
 }
