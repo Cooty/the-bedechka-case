@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CrewMemberRepository;
 use App\Traits\Archivable;
 use App\Traits\Timestampable;
+use App\Traits\Ordered;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,6 +18,7 @@ class CrewMember
 {
     use Timestampable;
     use Archivable;
+    use Ordered;
 
     const URL_PARAM_NAME = 'crew-members';
     const DISPLAY_NAME = 'crew member';
