@@ -1,0 +1,14 @@
+@import "variables";
+
+// CSS for HTML5 Sortable lib
+// https://github.com/lukasoppermann/html5sortable
+
+// https://github.com/lukasoppermann/html5sortable#styling
+.sortable-placeholder {
+  width: 100% !important;
+  box-sizing: border-box;
+  border: 2px dashed rgba(0, 0, 0, 0.125);
+  background-color: rgba(0, 0, 0, .1);
+  margin-bottom: $card-gutter;
+  border-radius: .25rem;
+}

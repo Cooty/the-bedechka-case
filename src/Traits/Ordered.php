@@ -9,22 +9,22 @@ trait Ordered
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $order;
+    private $orderOfAppearance;
 
     /**
      * @return int|null
      */
-    public function getOrder(): ?int
+    public function getOrderOfAppearance(): ?int
     {
-        return $this->order;
+        return $this->orderOfAppearance;
     }
 
     /**
-     * @param int|null $order
+     * @param int|null $orderOfAppearance
      */
-    public function setOrder(?int $order): void
+    public function setOrderOfAppearance(?int $orderOfAppearance): void
     {
-        $this->order = $order;
+        $this->orderOfAppearance = $orderOfAppearance;
     }
 
 }

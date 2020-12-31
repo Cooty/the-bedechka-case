@@ -1,6 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
 {% set entityName = app.request.get('entityName') %}
+{% set isSortable = items|length > 0 and items[0].orderOfAppearance is defined %}
 
 {% block title %}
     {{ entityDisplayName|capitalize }}
@@ -12,6 +13,7 @@
 
         _configAdmin["deleteEntityConfirmMessage"] = "Are you sure you want to delete";
         _configAdmin["loginUri"] = "{{ path("admin_security_login") }}";
+        _configAdmin["sortable"] = {{ isSortable|json_encode }};
 
         Object.freeze(_configAdmin);
     </script>
@@ -57,39 +59,46 @@
                     'classNames': 'mb-3'
                 } %}
             {% else %}
-                <ol class="entity-list list-unstyled">
+                <ol class="entity-list list-unstyled {{ isSortable ? 'js-sortable' : '' }}">
                     {% for item in items %}
-                    {% set name = item.nameEN is defined ? item.nameEN : item.title %}
-                    <li id="js-row-{{ item.id }}" class="entity-list__item d-md-flex">
-                        <h5 class="entity-list__item-header mb-md-0 text-center text-md-left">
-                            <a href="{{ path('admin_entity_edit', {'entityName': entityName, 'id': item.id}) }}">
-                                {{ name }}
-                            </a>
-                        </h5>
-                        <div class="entity-list__item-controls d-flex justify-content-center">
-                            <div class="col-auto">
-                                <a href="{{ path('admin_entity_edit', {'entityName': entityName, 'id': item.id}) }}"
-                                   class="btn btn-outline-primary btn-sm btn-icon-left">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-                                    </i>
-                                    Edit
+                        {% set name = item.nameEN is defined ? item.nameEN : item.title %}
+                        <li id="js-row-{{ item.id }}" class="entity-list__item {{ isSortable ? 'sortable' : '' }}" data-id="{{ item.id }}">
+                            {% if isSortable %}
+                                <span class="drag-handle">
+                                    {% for i in 0..5 %}
+                                        <i class="drag-handle__dot"></i>
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                            <h5 class="entity-list__item-header mb-md-0 text-center text-md-left">
+                                <a href="{{ path('admin_entity_edit', {'entityName': entityName, 'id': item.id}) }}">
+                                    {{ name }}
                                 </a>
+                            </h5>
+                            <div class="entity-list__item-controls d-flex justify-content-center">
+                                <div class="col-auto">
+                                    <a href="{{ path('admin_entity_edit', {'entityName': entityName, 'id': item.id}) }}"
+                                       class="btn btn-outline-primary btn-sm btn-icon-left">
+                                        <i class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                                        </i>
+                                        Edit
+                                    </a>
+                                </div>
+                                <div class="col-auto pr-md-0">
+                                    <button type="button"
+                                            data-id="{{ item.id }}"
+                                            data-url="{{ path('admin_entity_archive', {'entityName': entityName}) }}"
+                                            data-name="{{ name }}"
+                                            class="btn btn-outline-danger btn-sm btn-icon-left js-delete-entity-button">
+                                        <i class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                                        </i>
+                                        Delete
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-auto pr-md-0">
-                                <button type="button"
-                                        data-id="{{ item.id }}"
-                                        data-url="{{ path('admin_entity_archive', {'entityName': entityName}) }}"
-                                        data-name="{{ name }}"
-                                        class="btn btn-outline-danger btn-sm btn-icon-left js-delete-entity-button">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-                                    </i>
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
                     {% endfor %}
                 </ol>
             {% endif %}
