@@ -35,6 +35,17 @@
     font-size: 1.1em;
     max-width: 500px;
 
+    a {
+      color: $almost-white;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+
+    }
+
     @media screen and (min-width: $tablet) {
       margin: 0;
       display: table-cell;
