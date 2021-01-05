@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: '8.12.0'
       
-      # By default the Github runner has the latest stabil PHP/Composer version on it
+      # By default the Github runner has the latest stable PHP/Composer version on it
       # but this might not be compatible with our dependencies
       - name: Setup PHP with composer v1
         uses: shivammathur/setup-php@v2
@@ -39,7 +39,7 @@ jobs:
           echo "${{secrets.ENV}}" > .env
           export SYMFONY_ENV=prod
           composer install --no-dev --optimize-autoloader
-          npm install --no-optional
+          npm install --no-optional --build-from-source
 
       - name: Build frontend
         run: npm run build
