@@ -16,7 +16,12 @@
             </trans-unit>
             <trans-unit id="home.hero.intro">
                 <source>home.hero.intro</source>
-                <target>A documentary which analyzes the problem with the destruction of nature and its implications on society and culture</target>
+                <target>
+                    A documentary which analyzes the problem with the destruction of nature and its implications on society and culture
+                    <![CDATA[<br/>]]>
+                    <![CDATA[<br/>]]>
+                    For a limited time you can watch the full documentary “The Bedechka Case” <![CDATA[<a href="%full_movie_link%" target="_blank" rel="noopener noreferer">]]>here<![CDATA[</a>]]>
+                </target>
             </trans-unit>
             <trans-unit id="timeline.1.time">
                 <source>timeline.1.time</source>

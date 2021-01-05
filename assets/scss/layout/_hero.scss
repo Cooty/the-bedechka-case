@@ -4,7 +4,6 @@
 .hero {
   @extend %picture-background;
   @extend %side-gutters;
-  // TODO: Implement parallax effect https://stackoverflow.com/questions/21786272/css-background-size-cover-background-attachment-fixed-clipping-background-im
   overflow: hidden;
   height: 261px;
   display: flex;
@@ -18,11 +17,13 @@
   }
 
   &--tall {
-    height: 451px;
+    height: auto;
+    min-height: 451px;
     justify-content: center;
+    padding-bottom: 20px;
 
     @media screen and (min-width: $tablet) {
-      height: 568px;
+      min-height: 568px;
     }
   }
 
