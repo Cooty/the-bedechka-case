@@ -76,15 +76,19 @@ class HomeController extends AbstractController
         $this->youTubeService = $youTubeService;
     }
 
-    private function getVideos(): array
+    private function getVideos(string $requestLocale): array
     {
         $theVisionSectionVideosSizeMap = ['mobile'=> 'standard', 'tablet'=> 'high', 'desktop'=> 'standard'];
+        $trailerId = $requestLocale === $this->secondaryLocale ?
+            YouTubeVideos::FULL_MOVIE_BG
+            :
+            YouTubeVideos::FULL_MOVIE_EN;
 
         try {
-            $trailer = $this->appCache->get(YouTubeVideos::TRAILER_ID, function (ItemInterface $cacheItem) {
+            $trailer = $this->appCache->get($trailerId, function (ItemInterface $cacheItem) use ($trailerId) {
                 $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::TWELVE_HOURS_AS_STRING));
 
-                return $this->youTubeService->getSingleVideo(YouTubeVideos::TRAILER_ID);
+                return $this->youTubeService->getSingleVideo($trailerId);
             });
 
             $thf = $this->appCache->get(
@@ -124,7 +128,9 @@ class HomeController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        list($trailer, $thf, $lifeInTheJungle) = $this->getVideos();
+        $locale = $request->attributes->get('_locale');
+
+        list($trailer, $thf, $lifeInTheJungle) = $this->getVideos($locale);
 
         $response = new Response($this->renderView('home/index.html.twig', [
             'trailer'=> $trailer,
@@ -134,7 +140,7 @@ class HomeController extends AbstractController
             'newsHasPagination' => $this->newsService->hasPagination()
         ]));
 
-        $response->headers->set('Content-Language', $request->attributes->get('_locale'));
+        $response->headers->set('Content-Language', $locale);
         $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');
         $response->setSharedMaxAge(Cache::ONE_HOUR_IN_SECONDS);
         $response->headers->addCacheControlDirective('must-revalidate', true);
@@ -148,10 +154,8 @@ class HomeController extends AbstractController
      */
     public function jsConfig(): Response
     {
-        $response = new Response($this->renderView('home/partials/js-config.html.twig', [
+        return new Response($this->renderView('home/partials/js-config.html.twig', [
             'newsHasPagination' => $this->newsService->hasPagination()
         ]));
-
-        return $response;
     }
 }
