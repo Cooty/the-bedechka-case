@@ -39,7 +39,7 @@ jobs:
           echo "${{secrets.ENV}}" > .env
           export SYMFONY_ENV=prod
           composer install --no-dev --optimize-autoloader
-          npm install --no-optional --build-from-source
+          npm install --no-optional
 
       - name: Build frontend
         run: npm run build
