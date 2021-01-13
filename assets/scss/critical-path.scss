@@ -1,3 +1,8 @@
+@import "./base/custom-properties";
+@import "./base/global";
+@import "./base/reset";
+@import "./base/document";
+
 @import "./layout/header";
 @import "./layout/hero";
 @import "./layout/navigation";
