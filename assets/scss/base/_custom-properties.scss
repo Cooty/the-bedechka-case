@@ -1,3 +1,6 @@
+@import "../config/sizes";
+@import "../config/breakpoints";
+
 html {
   --gutter: #{$gutter};
 
