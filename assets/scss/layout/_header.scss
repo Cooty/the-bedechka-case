@@ -8,10 +8,14 @@
   background-color: $beige;
   box-shadow: $box-shadow-header;
   z-index: $z-top;
-  position: fixed;
+  position: relative; // 1)
   top: 0;
   left: 0;
   right: 0;
+
+  @media screen and (min-height: $smallest-height) { // 1)
+    position: fixed;
+  }
 
   &:after {
     content: '';
@@ -27,7 +31,7 @@
     display: flex;
   }
 
-  &--pulled-up {
+  &--pulled-up { // 2)
     transform: translate3d(0, -#{$mobile-header-top-h + $mobile-navigation-h + 2px}, 0);
 
     @media screen and (min-width: $desktop) {
@@ -67,9 +71,19 @@
 }
 
 body.header-offset {
-  padding-top: #{$mobile-header-top-h + $mobile-navigation-h};
+  @media screen and (min-height: $smallest-height) { // 1)
+    padding-top: #{$mobile-header-top-h + $mobile-navigation-h};
+  }
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: $desktop) and (min-height: $smallest-height) { // 1)
     padding-top: $desktop-header-h;
   }
 }
+
+// 1) In mobile devices when we focus into a form element and the virtual keyboard opens
+// the fixed header will take up almost all of the screen, making it hard to fill in the form
+// since there's no (easy) way to detect when the virtual keyboard is opened on a touch device
+// we'll just disable fixed header on any viewport that's smaller then the minimum supported
+
+// 2) Class for hiding the fix header when scrolling down, and then animating it in
+// once the user starts scrolling back up. This behaviour is only expected in mobile
