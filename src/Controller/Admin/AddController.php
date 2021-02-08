@@ -62,13 +62,13 @@ class AddController extends AbstractAdminController
             return $this->redirectToPasswordChange();
         }
 
-        list($entity, $form, $params, $handler) = $this->entityService->getSubmitParams($entityName);
+        list($entity, $form, $handler) = $this->entityService->getSubmitParams($entityName);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $entity = $this->entityService->create($handler, $entity, $params);
+                $entity = $this->entityService->create($handler, $entity);
 
                 $this->addFlash(FlashTypes::OK, 'The new ' . $entity::DISPLAY_NAME . ' has been created!');
                 $this->cache->clear();

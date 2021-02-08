@@ -11,11 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use App\Service\Admin\ReorderCrewMembersService;
+use Symfony\Contracts\Cache\CacheInterface;
 
 /**
  * @Route("/admin")
  */
-class DeleteController
+class ReorderCrewMembersController
 {
     /**
      * @var Security
@@ -37,53 +39,56 @@ class DeleteController
      */
     private $logger;
 
+    /**
+     * @var ReorderCrewMembersService
+     */
+    private $reorderCrewMembersService;
+
+    /**
+     * @var CacheInterface
+     */
+    private $cache;
+
     public function __construct(
         Security $security,
         EntityService $entityService,
         JSONAPIService $jsonAPI,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        ReorderCrewMembersService $reorderCrewMembersService,
+        CacheInterface $cache
     )
     {
         $this->security = $security;
-        $this->jsonAPI = $jsonAPI;
         $this->entityService = $entityService;
+        $this->jsonAPI = $jsonAPI;
         $this->logger = $logger;
+        $this->reorderCrewMembersService = $reorderCrewMembersService;
+        $this->cache = $cache;
     }
 
     /**
-     * @Route("/delete/{entityName}", methods="POST", name="admin_entity_delete")
+     * @Route("/reorder/crew-members", methods="POST", name="admin_crew_member_reorder")
      * @param Request $request
-     * @param string $entityName
      * @return JsonResponse
      */
-    public function delete(Request $request, string $entityName): JsonResponse
+    public function reorder(Request $request): JsonResponse
     {
         if(!$this->security->isGranted(User::ROLE_ADMIN)) {
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_FORBIDDEN);
         }
 
-        if(!$this->jsonAPI->requestHasIDField($request)) {
-            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_BAD_REQUEST);
-        }
-
-        $id = $this->jsonAPI->getIDFromRequestBody($request);
-
-        $entity = $this->entityService->getEntityById($entityName, $id);
-
-        if(empty($entity)) {
-            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_NOT_FOUND);
-        }
+        $object = json_decode($request->getContent(), true);
 
         try {
-            $this->entityService->entityManager->remove($entity);
-            $this->entityService->entityManager->flush();
-
+            $this->reorderCrewMembersService->reorder($object);
+            $this->cache->clear();
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_OK);
         } catch (\Exception $exception) {
             $this->logger->error($exception->getMessage().' | '.$exception->getTraceAsString());
 
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+
 
     }
 }

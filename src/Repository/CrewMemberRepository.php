@@ -27,7 +27,7 @@ class CrewMemberRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('cm')
             ->select('cm')
             ->where('cm.archived = false')
-            ->orderBy('cm.createdAt', 'DESC')
+            ->orderBy('cm.orderOfAppearance', 'ASC')
             ->getQuery()
             ->getResult();
     }

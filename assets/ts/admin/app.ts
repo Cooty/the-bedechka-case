@@ -33,6 +33,12 @@ class App {
 
         initCustomFile();
         initDeleteEntity();
+
+        if(window._configAdmin.sortable) {
+            import("./sortable").then(sortable => {
+                sortable.init();
+            })
+        }
     }
 }
 

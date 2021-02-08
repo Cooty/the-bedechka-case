@@ -13,18 +13,21 @@ class CrewMemberHandler extends AbstractEntityHandler
      */
     private $fileUploadService;
 
-    public function __construct($entity, FormInterface $form, FileUploadService $fileUploadService)
+    public function __construct(
+        $entity,
+        FormInterface $form,
+        FileUploadService $fileUploadService
+    )
     {
         parent::__construct($entity, $form);
         $this->fileUploadService = $fileUploadService;
     }
 
     /**
-     * @param array $params
      * @return mixed
      * @throws Exception
      */
-    public function getEntity(array $params)
+    public function getEntity()
     {
         try {
             /** @var UploadedFile $imageFile */
@@ -33,27 +36,11 @@ class CrewMemberHandler extends AbstractEntityHandler
             /** @var UploadedFile $imageFile */
             $secondImageFile = $this->form->get('secondImage')->getData();
 
-            if($imageFile) {
-                $newFileName = $this->fileUploadService->makeFilename($imageFile);
+            $imagePublicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
+            $secondImagePublicPath = $this->fileUploadService->moveImageAndGetPublicPath($secondImageFile);
 
-                $imageFile->move(
-                    $params['public_path'].$params['upload_path'],
-                    $newFileName
-                );
-
-                $this->entity->setPictureURL('/'.$params['upload_path'].$newFileName);
-
-                if($secondImageFile) {
-                    $secondNewFileName = $this->fileUploadService->makeFilename($secondImageFile);
-
-                    $secondImageFile->move(
-                        $params['public_path'].$params['upload_path'],
-                        $secondNewFileName
-                    );
-
-                    $this->entity->setSecondPictureUrl('/'.$params['upload_path'].$secondNewFileName);
-                }
-            }
+            $this->entity->setPictureURL($imagePublicPath);
+            $this->entity->setSecondPictureUrl($secondImagePublicPath);
 
             return $this->entity;
         } catch (Exception $exception) {

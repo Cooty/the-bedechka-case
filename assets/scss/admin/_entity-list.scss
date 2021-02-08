@@ -1,17 +1,35 @@
+@import "variables";
+
 .entity-list {
 
   &__item {
+    position: relative;
     background-color: $card-bg;
     background-clip: border-box;
     border: $card-border-width solid $card-border-color;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: $card-gutter;
+    margin-bottom: $card-gutter;
     @include border-radius($card-border-radius);
 
     @media screen and (min-width: map_get($grid-breakpoints, 'md')) {
+      display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
+    &.sortable {
+      cursor: grab;
+      padding-left: 30px;
+
+      .drag-handle {
+        position: absolute;
+        left: $card-gutter;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+      }
+
+    }
+
   }
 
 }
