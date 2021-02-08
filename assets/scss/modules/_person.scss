@@ -93,15 +93,6 @@
 
   }
 
-  &:hover,
-  &:focus {
-
-    .person__flip {
-      transform: rotateY(180deg);
-    }
-
-  }
-
   &__header {
     font-size: $subheader-size;
     font-weight: 500;
@@ -116,5 +107,21 @@
     @extend %info-row;
     word-break: break-all;
   }
+}
+
+// breaking BEM a bit here to get the padding areas of
+// the box to trigger the image flip effect not just "person"
+// which is just the middle of hte box
+.box--person {
+
+  &:hover,
+  &:focus {
+
+    .person__flip {
+      transform: rotateY(180deg);
+    }
+
+  }
+
 }
 

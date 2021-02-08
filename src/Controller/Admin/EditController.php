@@ -76,13 +76,13 @@ class EditController extends AbstractAdminController
             return $this->redirectToPasswordChange();
         }
 
-        list($entity, $form, $params, $handler) = $this->entityService->getSubmitParamsForExisting($entityName, $id);
+        list($entity, $form, $handler) = $this->entityService->getSubmitParamsForExisting($entityName, $id);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $entity = $this->entityService->update($handler, $entity, $params);
+                $entity = $this->entityService->update($handler, $entity);
 
                 $name = method_exists($entity, 'getNameEN') ? $entity->getNameEN() : $entity->getTitle();
                 $this->addFlash(FlashTypes::OK, $name . ' has been updated!');

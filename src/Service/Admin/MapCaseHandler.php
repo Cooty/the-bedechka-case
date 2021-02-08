@@ -14,7 +14,10 @@ class MapCaseHandler extends AbstractEntityHandler
      */
     private $fileUploadService;
 
-    public function __construct($entity, FormInterface $form, FileUploadService $fileUploadService)
+    public function __construct(
+        $entity, FormInterface $form,
+        FileUploadService $fileUploadService
+    )
     {
         parent::__construct($entity, $form);
         $this->fileUploadService = $fileUploadService;
@@ -37,25 +40,15 @@ class MapCaseHandler extends AbstractEntityHandler
     }
 
     /**
-     * @param array $params
      * @throws Exception
      */
-    public function getEntity(array $params)
+    public function getEntity()
     {
         try {
             /** @var UploadedFile $imageFile */
             $imageFile = $this->form->get('image')->getData();
-
-            if($imageFile) {
-                $newFileName = $this->fileUploadService->makeFilename($imageFile);
-
-                $imageFile->move(
-                    $params['public_path'].$params['upload_path'],
-                    $newFileName
-                );
-
-                $this->entity->setPictureURL('/'.$params['upload_path'].$newFileName);
-            }
+            $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
+            $this->entity->setPictureURL($publicPath);
 
             $latLong = $this->makeLatLongFromGoogleMapsURL(
                 $this->form->get('google_maps_url')->getData());
