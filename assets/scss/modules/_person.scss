@@ -107,15 +107,10 @@
     @extend %info-row;
     word-break: break-all;
   }
-}
-
-// breaking BEM a bit here to get the padding areas of
-// the box to trigger the image flip effect not just "person"
-// which is just the middle of hte box
-.box--person {
 
   &:hover,
   &:focus {
+    outline: none;
 
     .person__flip {
       transform: rotateY(180deg);
@@ -123,5 +118,21 @@
 
   }
 
-}
+  // needed to trigger the hover effect when we hover one the
+  // "padding" of the box, since this component is rendered
+  // inside a <div class="box"> the hover effect would only
+  // kick-in once we move the mouse in the inside area of the box
+  // which we want to avoid.
+  // We could also add the hover effect on the <div class="box">
+  // but that would break encapsulation and the BEM convention
+  // since the hover effect "belongs" to this component and not the box
+  &:before {
+    content: "";
+    position: absolute;
+    left: calc(var(--gutter) * -1);
+    right: calc(var(--gutter) * -1);
+    top: -#{$grid-v-gutter};
+    bottom: -#{$grid-v-gutter};
+  }
 
+}
