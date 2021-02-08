@@ -14,10 +14,7 @@ parameters:
     language_setting_session_key: '_preferred_language'
     static_data_directory: '%kernel.project_dir%/data/'
     google_client_secret: '%kernel.project_dir%/google_client_secret.json'
-    map_images_directory: 'map-images/'
-    crew_member_images_directory: 'crew-member-images/'
-    news_logo_directory: 'news-logos/'
-    screening_directory: 'screenings/'
+    user_images_directory: 'uploads/images/'
     public_directory_path: '%kernel.project_dir%/public/'
 
 services:
@@ -33,6 +30,7 @@ services:
           $languageSettingSessionKey: '%language_setting_session_key%'
           $pswChangeSessionKey: '%psw_change_session_key%'
           $staticDataDirectory: '%static_data_directory%'
+
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -51,12 +49,12 @@ services:
     App\Twig\AppExtension:
         arguments:
             $locale: '%kernel.default_locale%'
-            $publicDirectory: '%kernel.project_dir%/public'
+            $publicDirectory: '%public_directory_path%'
 
     App\Twig\Admin\AppExtension:
       arguments:
         $locale: '%kernel.default_locale%'
-        $publicDirectory: '%kernel.project_dir%/public'
+        $publicDirectory: '%public_directory_path%'
 
     App\EventSubscriber\LocaleSubscriber:
         arguments:
@@ -67,14 +65,6 @@ services:
         $isDebug: '%kernel.debug%'
       tags:
         - { name: kernel.event_listener, event: kernel.exception }
-
-    App\Service\EntityService:
-      arguments:
-        $mapImagesDirectory: '%map_images_directory%'
-        $crewMemberImagesDirectory: '%crew_member_images_directory%'
-        $publicDirectoryPath: '%public_directory_path%'
-        $newsLogoDirectory: '%news_logo_directory%'
-        $screeningImagesDirectory: '%screening_directory%'
 
     App\Factory\MapCaseFrontendFactory:
       arguments:
@@ -92,3 +82,8 @@ services:
       arguments:
         $secondaryLocale: '%secondary_locale%'
         $clientSecretFile: '%google_client_secret%'
+
+    App\Service\Admin\FileUploadService:
+      arguments:
+        $publicDirectoryPath: '%public_directory_path%'
+        $userImagesDirectory: '%user_images_directory%'

@@ -48,6 +48,7 @@
       calc(var(--gutter) * -1)
       .8em
       calc(var(--gutter) * -1);
+    overflow: hidden;
     border-top-left-radius: $box-radius;
     border-top-right-radius: $box-radius;
   }

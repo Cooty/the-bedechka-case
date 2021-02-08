@@ -53,11 +53,6 @@ class EntityService
     private $formFactory;
 
     /**
-     * @var string
-     */
-    private $mapImagesDirectory;
-
-    /**
      * @var ScreeningRepository
      */
     private $screeningRepository;
@@ -68,34 +63,14 @@ class EntityService
     private $logger;
 
     /**
-     * @var string
-     */
-    private $crewMemberImagesDirectory;
-
-    /**
      * @var CrewMemberRepository
      */
     private $crewMemberRepository;
 
     /**
-     * @var string
-     */
-    private $publicDirectoryPath;
-
-    /**
      * @var FileUploadService
      */
     private $fileUploadService;
-
-    /**
-     * @var string
-     */
-    private $newsLogoDirectory;
-
-    /**
-     * @var string
-     */
-    private $screeningImagesDirectory;
 
     public function __construct(
         MapCaseRepository $mapCaseRepository,
@@ -103,29 +78,19 @@ class EntityService
         ScreeningRepository $screeningRepository,
         EntityManagerInterface $entityManager,
         FormFactoryInterface $formFactory,
-        string $mapImagesDirectory,
         LoggerInterface $logger,
-        string $crewMemberImagesDirectory,
         CrewMemberRepository $crewMemberRepository,
-        string $publicDirectoryPath,
-        FileUploadService $fileUploadService,
-        string $newsLogoDirectory,
-        string $screeningImagesDirectory
+        FileUploadService $fileUploadService
     )
     {
         $this->mapCaseRepository = $mapCaseRepository;
         $this->entityManager = $entityManager;
         $this->newsRepository = $newsRepository;
         $this->formFactory = $formFactory;
-        $this->mapImagesDirectory = $mapImagesDirectory;
         $this->screeningRepository = $screeningRepository;
         $this->logger = $logger;
-        $this->crewMemberImagesDirectory = $crewMemberImagesDirectory;
         $this->crewMemberRepository = $crewMemberRepository;
-        $this->publicDirectoryPath = $publicDirectoryPath;
         $this->fileUploadService = $fileUploadService;
-        $this->newsLogoDirectory = $newsLogoDirectory;
-        $this->screeningImagesDirectory = $screeningImagesDirectory;
     }
 
     /**
@@ -181,28 +146,24 @@ class EntityService
             case MapCase::URL_PARAM_NAME:
                 $entity = $this->mapCaseRepository->find($id);
                 $form = $this->formFactory->create(MapCaseEditType::class, $entity);
-                $params = ['upload_path' => $this->mapImagesDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new MapCaseUpdateHandler($entity, $form, $this->fileUploadService);
                 $formHandler = null;
                 break;
             case News::URL_PARAM_NAME:
                 $entity = $this->newsRepository->find($id);
                 $form = $this->formFactory->create(NewsType::class, $entity);
-                $params = ['upload_path' => $this->newsLogoDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new NewsHandler($entity, $form, $this->fileUploadService);
                 $formHandler = null;
                 break;
             case Screening::URL_PARAM_NAME:
                 $entity = $this->screeningRepository->find($id);
                 $form = $this->formFactory->create(ScreeningType::class, $entity);
-                $params = ['upload_path' => $this->screeningImagesDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new ScreeningHandler($entity, $form, $this->fileUploadService);
                 $formHandler = new ScreeningUpdateHandler($entity, $form);
                 break;
             case CrewMember::URL_PARAM_NAME:
                 $entity = $this->crewMemberRepository->find($id);
                 $form = $this->formFactory->create(CrewMemberEditType::class, $entity);
-                $params = ['upload_path' => $this->crewMemberImagesDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new CrewMemberHandler($entity, $form, $this->fileUploadService);
                 $formHandler = null;
                 break;
@@ -214,7 +175,7 @@ class EntityService
             $form = $formHandler->getForm();
         }
 
-        return [$entity, $form, $params, $handler];
+        return [$entity, $form, $handler];
     }
 
     public function getSubmitParams(string $entityName): array
@@ -223,46 +184,41 @@ class EntityService
             case MapCase::URL_PARAM_NAME:
                 $entity = new MapCase();
                 $form = $this->formFactory->create(MapCaseType::class, $entity);
-                $params = ['upload_path' => $this->mapImagesDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new MapCaseHandler($entity, $form, $this->fileUploadService);
                 break;
             case News::URL_PARAM_NAME:
                 $entity = new News();
                 $form = $this->formFactory->create(NewsType::class, $entity);
-                $params = ['upload_path' => $this->newsLogoDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new NewsHandler($entity, $form, $this->fileUploadService);
                 break;
             case Screening::URL_PARAM_NAME:
                 $entity = new Screening();
                 $form = $this->formFactory->create(ScreeningType::class, $entity);
-                $params = ['upload_path' => $this->screeningImagesDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new ScreeningHandler($entity, $form, $this->fileUploadService);
                 break;
             case CrewMember::URL_PARAM_NAME:
                 $entity = new CrewMember();
                 $form = $this->formFactory->create(CrewMemberType::class, $entity);
-                $params = ['upload_path' => $this->crewMemberImagesDirectory, 'public_path' => $this->publicDirectoryPath];
                 $handler = new CrewMemberHandler($entity, $form, $this->fileUploadService);
                 break;
             default:
                 throw new NotFoundHttpException();
         }
 
-        return [$entity, $form, $params, $handler];
+        return [$entity, $form, $handler];
     }
 
     /**
      * @param AbstractEntityHandler|null $handler
      * @param object|null $entity
-     * @param array $params
      * @return object
      * @throws Exception
      */
-    public function create(?AbstractEntityHandler $handler, $entity, array $params = [])
+    public function create(?AbstractEntityHandler $handler, $entity)
     {
         try {
             if ($handler) {
-                $entity = $handler->getEntity($params);
+                $entity = $handler->getEntity();
             }
 
             $this->entityManager->persist($entity);
@@ -279,15 +235,14 @@ class EntityService
     /**
      * @param AbstractEntityHandler|null $handler
      * @param $entity
-     * @param array $params
      * @return object
      * @throws Exception
      */
-    public function update(?AbstractEntityHandler $handler, $entity, array $params = [])
+    public function update(?AbstractEntityHandler $handler, $entity)
     {
         try {
             if ($handler) {
-                $entity = $handler->getEntity($params);
+                $entity = $handler->getEntity();
             }
 
             $this->entityManager->flush();

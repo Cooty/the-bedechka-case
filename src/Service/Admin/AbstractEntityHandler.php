@@ -19,5 +19,5 @@ abstract class AbstractEntityHandler
         $this->form = $form;
     }
 
-    abstract public function getEntity(array $params);
+    abstract public function getEntity();
 }
