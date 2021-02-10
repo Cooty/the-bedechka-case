@@ -4,6 +4,12 @@
     {{'site.name'|trans}} - {{ 'site.tagline'|trans }}
 {% endblock %}
 
+{% block description %}
+    {% include('./includes/meta-description.html.twig') with {
+        'description': 'home'|trans({}, 'meta-descriptions')|raw|trim
+    } only %}
+{% endblock %}
+
 {% set heroContent = include('./home/partials/hero-content.html.twig') %}
 
 {% block stylesheets %}

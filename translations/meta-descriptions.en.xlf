@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="bg" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>
+                    The Bedechka Case is a documentary, which analyzes the problem with the destruction of nature and its implications on society and culture.
+                </target>
+            </trans-unit>
+            <trans-unit id="screenings">
+                <source>screenings</source>
+                <target>
+                    The Bedechka Case will be presented in Bulgaria and around the globe. Check here for more information on future screenings near you.
+                </target>
+            </trans-unit>
+            <trans-unit id="protagonists">
+                <source>protagonists</source>
+                <target>
+                    Urbanists, NGOs, artists, social scientists, politicians - here you can meet the people featured in the movie.
+                </target>
+            </trans-unit>
+            <trans-unit id="crew">
+                <source>crew</source>
+                <target>
+                    Meet the crew, that helped to realize thе project!
+                </target>
+            </trans-unit>
+            <trans-unit id="partners">
+                <source>partners</source>
+                <target>
+                    A bunch of organizations are already supporting the cause. Get more information about them.
+                </target>
+            </trans-unit>
+            <trans-unit id="about">
+                <source>about</source>
+                <target>
+                    Tangled with the personal story of the director, the film collects information and expert opinions on the destruction of urban green areas.
+                </target>
+            </trans-unit>
+            <trans-unit id="contact">
+                <source>contact</source>
+                <target>
+                    Your insight is valuable! Get in touch with the project and share your knowledge with the people behind it!
+                </target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
