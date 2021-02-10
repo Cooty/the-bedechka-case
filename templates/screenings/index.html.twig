@@ -2,6 +2,12 @@
 
 {% block title %}{{ 'screenings.cta'|trans }} - {{ 'site.name'|trans }} {% endblock %}
 
+{% block description %}
+    {% include('./includes/meta-description.html.twig') with {
+        'description': 'screenings'|trans({}, 'meta-descriptions')|raw|trim
+    } only %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
 

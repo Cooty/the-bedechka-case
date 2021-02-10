@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="bg" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="home">
+                <source>home</source>
+                <target>
+                    "Случаят Бедечка" е документален филм за застрояването на природата и последствията, които оказва върху обществото и културата.
+                </target>
+            </trans-unit>
+            <trans-unit id="screenings">
+                <source>screenings</source>
+                <target>
+                    "Случаят Бедечка" ще бъде представен на различни места в България и чужбина. Информация за предстоящите прожекции можете да намерите тук.
+                </target>
+            </trans-unit>
+            <trans-unit id="protagonists">
+                <source>protagonists</source>
+                <target>
+                    Урбанисти, активисти, артисти, учени, политици - тук можете да научите повече за участниците във филма.
+                </target>
+            </trans-unit>
+            <trans-unit id="crew">
+                <source>crew</source>
+                <target>
+                    Запознай се с екипа, който направи проекта реалност!
+                </target>
+            </trans-unit>
+            <trans-unit id="partners">
+                <source>partners</source>
+                <target>
+                    Много организации вече подкрепят каузата. Научи повече за тях.
+                </target>
+            </trans-unit>
+            <trans-unit id="about">
+                <source>about</source>
+                <target>
+                    Носен от личната история на режисьора, филмът събира информация и експертни мнения за унищожаването на зелените градски площи.
+                </target>
+            </trans-unit>
+            <trans-unit id="contact">
+                <source>contact</source>
+                <target>
+                    Tвоята ексертиза е ценна! Свържи се с проекта и я сподели с хората зад него!
+                </target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
