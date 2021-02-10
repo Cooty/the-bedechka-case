@@ -2,6 +2,12 @@
 
 {% block title %}{{ 'navigation.crew'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
+{% block description %}
+    {% include('./includes/meta-description.html.twig') with {
+        'description': 'crew'|trans({}, 'meta-descriptions')|raw|trim
+    } only %}
+{% endblock %}
+
 {% set heroTitle = {'mainTitle': 'crew.title', 'subTitle': 'crew.subtitle'} %}
 {% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 

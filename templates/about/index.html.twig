@@ -5,6 +5,12 @@
 
 {% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
+{% block description %}
+    {% include('./includes/meta-description.html.twig') with {
+        'description': 'about'|trans({}, 'meta-descriptions')|raw|trim
+    } only %}
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
 
