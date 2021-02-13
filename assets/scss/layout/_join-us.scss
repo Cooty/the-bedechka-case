@@ -25,16 +25,4 @@
     @include jc.pillar-box;
   }
 
-  .button--fb {
-    $mw: 300px;
-    display: block;
-    max-width: $mw;
-    margin: 0 s.$gutter;
-
-    @media screen and  (min-width: $mw + (s.$gutter * 2)) {
-      margin: 0 auto;
-    }
-
-  }
-
 }
