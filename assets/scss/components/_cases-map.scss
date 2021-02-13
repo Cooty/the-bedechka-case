@@ -51,7 +51,7 @@
 
   &__navigation {
     width: calc(100% + #{$gutter});
-    height: 33px; // has to match the width of the buttons - needs fixed height to hide OS scrollbar
+    height: $cases-map-tag-height;
     overflow: hidden;
     margin-bottom: 2vh;
 
