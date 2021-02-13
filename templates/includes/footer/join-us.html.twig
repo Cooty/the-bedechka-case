@@ -1,5 +1,9 @@
 <section class="join-us">
-    {% include('./components/section-header.html.twig') with {'text': 'newsletter.title', 'priority': 3} only %}
+    {% include('./components/section-header.html.twig') with {
+        'text': 'newsletter.title',
+        'priority': 3,
+        'classes': 'section-header--footer'
+    } only %}
 
     <p class="join-us__text">
         {{ 'facebook.intro'|trans }}
@@ -12,7 +16,11 @@
         {{ 'facebook.cta'|trans }}
     </a>
 
-    {% include('./components/sub-header.html.twig') with {'text': 'signup.newsletter', 'priority': 4} only %}
+    {% include('./components/sub-header.html.twig') with {
+        'text': 'signup.newsletter',
+        'priority': 4,
+        'classes': 'sub-header--footer'
+    } only %}
     <p class="join-us__text">
         {{ 'newsletter.info'|trans }}
     </p>

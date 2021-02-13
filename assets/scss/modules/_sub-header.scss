@@ -1,10 +1,23 @@
+@use "../config/breakpoints" as bp;
+@use "../config/typo" as t;
+@import "../config/silent-classes";
+
 .sub-header {
   @extend %header-font;
-  font-size: calc(#{$subheader-size} + .5vw);
+  font-size: calc(#{t.$subheader-size} + .5vw);
   letter-spacing: pxToRem(1);
   line-height: 1.2;
 
-  @media screen and (min-width: $tablet) {
-    font-size: calc(#{$subheader-size-desktop} + .2vw);
+  @media screen and (min-width: bp.$tablet) {
+    font-size: calc(#{t.$subheader-size-desktop} + .2vw);
   }
+
+  &--footer {
+    max-width: none;
+    padding-right: var(--gutter);
+    text-align: center;
+    margin-top: t.$v-gutter-far;
+    margin-bottom: t.$v-gutter-near;
+  }
+
 }
