@@ -1,19 +1,13 @@
+@use "../config/sizes" as s;
+@use "../config/breakpoints" as bp;
+@use "../config/functions" as f;
+@use "./join-us-components" as jc;
+@import "../config/silent-classes";
+
 .join-us {
-  $mw: 500px;
-
-  %pillar-box {
-    max-width: $mw;
-    margin: 0 $gutter $v-gutter-near $gutter;
-
-    @media screen and (min-width: $mw + (2 * $gutter)) {
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-
   background: white;
-  padding-top: $grid-v-gutter;
-  padding-bottom: $grid-v-gutter;
+  padding-top: s.$grid-v-gutter;
+  padding-bottom: s.$grid-v-gutter;
 
   &:before {
     @extend %grounge-mask;
@@ -28,46 +22,16 @@
   }
 
   &__text {
-    @extend %pillar-box;
-  }
-
-  > .newsletter-form {
-    @extend %pillar-box;
-    margin-bottom: 0;
-
-    @media screen and (min-width: $tablet) {
-      max-width: 80%;
-    }
-
-    @media screen and (min-width: $desktop + pxToEm($gutter-desktop) * 2) {
-      max-width: $desktop;
-    }
-
-  }
-
-  > .sub-header,
-  > .section-header {
-    max-width: none;
-    padding-right: var(--gutter);
-  }
-
-  > .sub-header {
-    text-align: center;
-    margin-top: $v-gutter-far;
-    margin-bottom: $v-gutter-near;
-  }
-
-  > .section-header {
-    margin-bottom: $v-gutter-far;
+    @include jc.pillar-box;
   }
 
   .button--fb {
     $mw: 300px;
     display: block;
     max-width: $mw;
-    margin: 0 $gutter;
+    margin: 0 s.$gutter;
 
-    @media screen and  (min-width: $mw + ($gutter * 2)) {
+    @media screen and  (min-width: $mw + (s.$gutter * 2)) {
       margin: 0 auto;
     }
 
