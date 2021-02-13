@@ -1,5 +1,11 @@
 {% if labelText is defined %}
-    <div class="timeline__label tag tag--active">{{ labelText|trans }}</div>
+    <div class="timeline__label">
+        <span class="tag tag--not-interactive tag--timeline">
+            <strong>
+                {{ labelText|trans }}
+            </strong>
+        </span>
+    </div>
     <span class="timeline__marker">
         <span class="timeline__marker-dot"></span>
         {% include('./home/partials/timeline/spike.svg.twig') %}

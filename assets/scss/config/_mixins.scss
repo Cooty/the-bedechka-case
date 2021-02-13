@@ -1,4 +1,20 @@
 @import "./decorations";
+@import "./typo";
+
+@mixin single-line-ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin button-base() {
+  cursor: pointer;
+  font-family: $copy-font;
+  -webkit-appearance: none;
+  transition: all .3s;
+  text-align: center;
+  font-size: 1rem;
+}
 
 @mixin scroll-fader($color: #fff, $width: 30px) {
   content: '';
