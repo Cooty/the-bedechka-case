@@ -1,3 +1,4 @@
+@use "../config/mixins" as m;
 @import "../config/breakpoints";
 @import "../config/silent-classes";
 @import "../config/colors";
@@ -69,7 +70,7 @@
   }
 
   & &__link {
-    @extend %single-line-ellipsis;
+    @include m.single-line-ellipsis;
     display: block;
     color: $purple;
     text-decoration: underline;
