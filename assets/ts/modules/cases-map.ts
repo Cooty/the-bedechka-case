@@ -83,13 +83,21 @@ export default class CasesMap {
         const defaultZoom = 7;
         const mapProviderURL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
-        const casesMap = window.L.map(mapContainerId).setView(mapCenter, defaultZoom);
+        const casesMap = window.L.map(
+            mapContainerId,
+            {
+                zoomControl: false // disable the default zoom control
+            }
+        ).setView(mapCenter, defaultZoom);
+
+        // add a new zoom controll to the bottom-right corner
+        // @see https://stackoverflow.com/questions/33614912/how-to-locate-leaflet-zoom-control-in-a-desired-position
+        new window.L.Control.Zoom({ position: "bottomright" }).addTo(casesMap);
 
         casesMap.on("popupclose", this.deactivateNavListItem.bind(this));
 
         window.L.tileLayer(mapProviderURL, {
             attribution: openStreetMapsAttribution(),
-            maxZoom: 18,
             minZoom: 5,
             dragging: !window.L.Browser.mobile,
             tap: !window.L.Browser.mobile
