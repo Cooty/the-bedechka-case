@@ -126,7 +126,7 @@ export default class CasesMap {
         const button = document.createElement('button');
         button.id = location.id;
         button.type = 'button';
-        button.className = 'tag';
+        button.className = 'tag tag--cases-map';
         button.innerText = location.name;
 
         navigationItem.appendChild(button);
