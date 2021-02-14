@@ -7,43 +7,7 @@
   @include jc.pillar-box;
 
   .form__row:last-of-type {
-
-    .button {
-      display: block;
-      margin: s.$gutter-desktop auto 0 auto;
-    }
-
-    @media screen and (min-width: bp.$tablet) {
-      align-items: flex-end;
-
-      .button {
-        flex: 0 0 auto;
-      }
-    }
-
+    justify-content: center;
   }
-
-  //@media screen and (min-width: bp.$desktop) {
-  //  display: flex;
-  //  flex-wrap: wrap;
-  //
-  //  .form__legend {
-  //    @include m.flex-column;
-  //  }
-  //
-  //  //.form__row:first-of-type {
-  //  //  flex: 4;
-  //  //  margin-right: s.$gutter-desktop;
-  //  //}
-  //  //
-  //  //.form__row:nth-child(2) {
-  //  //  flex: 3;
-  //  //}
-  //
-  //  //.form__row:last-of-type {
-  //  //  flex: 0 0 100%;
-  //  //}
-  //
-  //}
 
 }
