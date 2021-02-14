@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% set heroTitle = {'mainTitle': 'partners.title', 'subTitle': 'partners.subtitle'} %}
-{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block title %}{{ 'navigation.partners'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block description %}
-    {% include('./includes/meta-description.html.twig') with {
+    {% include('/includes/meta-description.html.twig') with {
         'description': 'partners'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
@@ -20,7 +20,7 @@
         </style>
     {% endfor %}
 
-    {% include('./includes/hero/background-style.html.twig') with {'background': 'partners'} only %}
+    {% include('/includes/hero/background-style.html.twig') with {'background': 'partners'} only %}
 
     {% for css in encore_entry_css_files('partners') %}
         {% include('includes/async-css.html.twig') with {
@@ -30,15 +30,15 @@
 {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
     <article class="box box--center partners pull-over-hero">
         {% for category in partners.categories %}
         <ul class="partners__list">
             <li class="partners__list-item">
-                {% include('./components/sub-header.html.twig') with {'text': category.name, 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {'text': category.name, 'priority': 2} only %}
             </li>
             {% for organization in category.organizations %}
-                {% include('./partners/partials/partner-item.html.twig') with {'organization': organization} only %}
+                {% include('/partners/partials/partner-item.html.twig') with {'organization': organization} only %}
             {% endfor %}
         </ul>
         {% endfor %}

@@ -1,5 +1,9 @@
 # Components coupled to JavaScript
 
+**IMPORTANT!**
+This is deprecated: Move all "modular styles" to the respective folder in `templates/componets`.
+The plan is to have all frontend files next to the twig files from where they are served.
+
 These components are tied to some JS functionality, so they are imported by a corresponding JS (TypeScript) module (see `../ts`).
 
 By contrast, styles that are not coupled with JS are added to some entry file which is imported by an entry TypeScript file (see `webpack.config.ts`), however these styles are all needed by a smaller TS module,

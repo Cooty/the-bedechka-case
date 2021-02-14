@@ -1,5 +1,5 @@
 <section class="story vision-offset-desktop">
-    {% include('./components/section-header.html.twig') with {'text': 'vision.title', 'classes': 'story__header'} only %}
+    {% include('/components/section-header/section-header.html.twig') with {'text': 'vision.title', 'classes': 'story__header'} only %}
 
     <article class="box box--center vision">
         <h3 class="sub-header vision__header">
@@ -32,7 +32,7 @@
         </h3>
         <div class="vision__case">
             <div class="video">
-                {% include('./components/youtube-embed.html.twig') with {'video': thf} %}
+                {% include('/components/youtube-embed.html.twig') with {'video': thf} %}
             </div>
             <h4 class="box__subtitle">
                 {{ 'thf.case.title'|trans }}
@@ -40,7 +40,7 @@
         </div>
         <div class="vision__case">
             <div class="video">
-                {% include('./components/youtube-embed.html.twig') with {'video': lifeInTheJungle} %}
+                {% include('/components/youtube-embed.html.twig') with {'video': lifeInTheJungle} %}
             </div>
             <h4 class="box__subtitle">
                 Humans as Stewards of Nature and not a Disaster to it
