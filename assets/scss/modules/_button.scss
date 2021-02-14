@@ -1,36 +1,39 @@
-@import "../config/colors";
+@use "../config/mixins" as m;
+@use "../config/colors" as c;
+@use "../config/typo" as t;
+@use "../config/sizes" as s;
+@use "../config/decorations" as d;
+@use "../config/functions" as f;
 @import "../config/silent-classes";
-@import "../config/decorations";
-@import "../config/functions";
 
 .button {
   $side-padding: 30px;
 
-  @extend %button-base;
-  @extend %single-line-ellipsis;
+  @include m.button-base;
+  @include m.single-line-ellipsis;
   background: $green;
-  border-radius: $form-border-radius;
+  border-radius: d.$form-border-radius;
   display: inline-block;
-  color: $almost-white;
+  color: c.$almost-white;
   text-decoration: none;
   padding: 1em $side-padding;
   font-weight: 500;
   letter-spacing: 1px;
   text-shadow: 1px 1px rgba(0, 0, 0, .1);
-  border-top: 1px solid $light-green-border;
-  border-bottom: 1px solid $dark-green-border;
-  border-right: 1px solid $dark-green-border;
-  border-left: 1px solid $light-green-border;
+  border-top: 1px solid c.$light-green-border;
+  border-bottom: 1px solid c.$dark-green-border;
+  border-right: 1px solid c.$dark-green-border;
+  border-left: 1px solid c.$light-green-border;
 
   &:hover,
   &:focus {
     &:not([disabled]) {
       outline: 0;
       text-decoration: none;
-      border-top-color: $dark-green-border;
-      border-bottom-color: $light-green-border;
-      border-right-color: $light-green-border;
-      border-left-color: $dark-green-border;
+      border-top-color: c.$dark-green-border;
+      border-bottom-color: c.$light-green-border;
+      border-right-color: c.$light-green-border;
+      border-left-color: c.$dark-green-border;
       ;
     }
   }
@@ -42,18 +45,18 @@
 
   &--outline {
     background: transparent;
-    border: 1px solid $green;
+    border: 1px solid c.$green;
 
     &:hover,
     &:focus {
       &:not([disabled]) {
-        border-color: $dark-green;
+        border-color: c.$dark-green;
       }
     }
   }
 
   &--cta {
-    font-size: $cta-font-size;
+    font-size: t.$cta-font-size;
     padding-right: 40px;
     padding-left: 40px;
   }
@@ -61,20 +64,28 @@
   &--fb {
     $icon-w: 30px;
     $icon-h: 29px;
+    $mw: 300px;
     padding-right: $side-padding + $icon-w + $side-padding / 2;
-    background-color: $facebook-blue;
-    border-top: 1px solid lighten($facebook-blue, 20%);
-    border-bottom: 1px solid darken($facebook-blue, 20%);
-    border-right: 1px solid darken($facebook-blue, 20%);
-    border-left: 1px solid lighten($facebook-blue, 20%);
+    background-color: c.$facebook-blue;
+    border-top: 1px solid lighten(c.$facebook-blue, 20%);
+    border-bottom: 1px solid darken(c.$facebook-blue, 20%);
+    border-right: 1px solid darken(c.$facebook-blue, 20%);
+    border-left: 1px solid lighten(c.$facebook-blue, 20%);
+    display: block;
+    max-width: $mw;
+    margin: 0 s.$gutter;
+
+    @media screen and  (min-width: $mw + (s.$gutter * 2)) {
+      margin: 0 auto;
+    }
 
     &:hover,
     &:focus {
       &:not([disabled]) {
-        border-top: 1px solid darken($facebook-blue, 20%);
-        border-bottom: 1px solid lighten($facebook-blue, 20%);
-        border-right: 1px solid lighten($facebook-blue, 20%);
-        border-left: 1px solid darken($facebook-blue, 20%);
+        border-top: 1px solid darken(c.$facebook-blue, 20%);
+        border-bottom: 1px solid lighten(c.$facebook-blue, 20%);
+        border-right: 1px solid lighten(c.$facebook-blue, 20%);
+        border-left: 1px solid darken(c.$facebook-blue, 20%);
       }
     }
 

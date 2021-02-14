@@ -14,8 +14,8 @@
 
 @import "./modules/button";
 @import "./modules/form";
-@import "./modules/section-header";
-@import "./modules/sub-header";
+@import "../../templates/components/section-header/section-header";
+@import "../../templates/components/sub-header/sub-header";
 @import "./modules/anim-underline";
 @import "./modules/story";
 @import "./modules/copy";

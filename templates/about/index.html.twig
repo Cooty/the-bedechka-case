@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% set heroTitle = {'mainTitle': 'about.title'} %}
-{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block description %}
-    {% include('./includes/meta-description.html.twig') with {
+    {% include('/includes/meta-description.html.twig') with {
         'description': 'about'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
@@ -20,7 +20,7 @@
         </style>
     {% endfor %}
 
-    {% include('./includes/hero/background-style.html.twig') with {'background': 'about'} only %}
+    {% include('/includes/hero/background-style.html.twig') with {'background': 'about'} only %}
 
     {% for css in encore_entry_css_files('yt') %}
         {% include('includes/async-css.html.twig') with {
@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
     <article class="box box--center-narrow box--tablet-big-gutter pull-over-hero">
         <div class="main-copy">
             {{ 'about.text'|trans({}, 'content')|raw }}
@@ -42,9 +42,9 @@
             </a>
         </div>
 
-        {% include('./components/sub-header.html.twig') with {'text': 'trailer.header', 'priority': 3, 'classes': 'text-center mb-1'} only %}
+        {% include('/components/sub-header/sub-header.html.twig') with {'text': 'trailer.header', 'priority': 3, 'classes': 'text-center mb-1'} only %}
 
-        {% include('./components/youtube-embed.html.twig') with {'video': trailer} %}
+        {% include('/components/youtube-embed.html.twig') with {'video': trailer} %}
 
     </article>
 
@@ -60,13 +60,13 @@
 {% block preconectLinks %}
     {{ parent() }}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://ytimg.com'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube.com'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube-nocookie.com'} only %}
 
 {% endblock preconectLinks %}

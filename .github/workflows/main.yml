@@ -74,6 +74,8 @@ jobs:
             --exclude /.github/ \
             --exclude /node_modules/ \
             --exclude /assets/ \
+            --exclude /*.ts \
+            --exclude /*.scss \
             --exclude /tests/ \
             --exclude /.gitignore  \
             --exclude /LICENSE \

@@ -3,13 +3,13 @@
 {% block title %}{{ 'navigation.crew'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block description %}
-    {% include('./includes/meta-description.html.twig') with {
+    {% include('/includes/meta-description.html.twig') with {
         'description': 'crew'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
 
 {% set heroTitle = {'mainTitle': 'crew.title', 'subTitle': 'crew.subtitle'} %}
-{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -20,7 +20,7 @@
         </style>
     {% endfor %}
 
-    {% include('./includes/hero/background-style.html.twig') with {'background': 'crew'} only %}
+    {% include('/includes/hero/background-style.html.twig') with {'background': 'crew'} only %}
 
     {% for css in encore_entry_css_files('the-crew') %}
         {% include('includes/async-css.html.twig') with {
@@ -30,12 +30,12 @@
 {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
 
     {% if crew_members is defined and crew_members|length %}
         <ul class="box-grid pull-over-hero">
             {% for member in crew_members %}
-                {% include('./the-crew/partials/item.html.twig') with {
+                {% include('/the-crew/partials/item.html.twig') with {
                     avatar: member.pictureUrl,
                     flippedAvatar: member.secondPictureUrl,
                     name: member.name,

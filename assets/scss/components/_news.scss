@@ -113,7 +113,7 @@
     min-height: $logo-height; // 1)
 
     & .box__info {
-      @extend %single-line-ellipsis;
+      @include single-line-ellipsis;
       margin-top: 0;
       flex: 1;
     }

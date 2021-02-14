@@ -17,7 +17,6 @@
   $marker-dot-h: 17px;
   $marker-dot-border-w: 3px;
   $marker-h: $marker-spike-h + $marker-dot-h + ($marker-line-h * 2);
-  $marker-label-h: 32px;
 
   $mover-radius: 4px;
 
@@ -41,7 +40,7 @@
   &__steps {
     @extend %smooth-scroll;
     @extend %slider;
-    padding: ($box-shadow-size + $marker-h + $marker-label-h) 0 $box-shadow-size $gutter;
+    padding: ($box-shadow-size + $marker-h + $timeline-marker-label-h) 0 $box-shadow-size $gutter;
 
     @media screen and (min-width: $desktop) {
       padding-left: $gutter-desktop;
@@ -90,13 +89,9 @@
 
       }
 
-      .timeline__marker {
+      .timeline__marker,
+      .timeline__label {
         color: $dark-green;
-      }
-
-      .timeline__label.tag {
-        background-color: $dark-green;
-        border-color: $dark-green;
       }
 
     }
@@ -113,13 +108,9 @@
         }
       }
 
-      .timeline__marker {
+      .timeline__marker,
+      .timeline__label {
         color: $orange;
-      }
-
-      .timeline__label.tag {
-        background-color: $orange;
-        border-color: $orange;
       }
 
     }
@@ -283,14 +274,10 @@
 
   }
 
-  &__label.tag {
+  &__label {
     position: absolute;
-    top: -#{$marker-h + $marker-label-h};
+    top: -#{$marker-h + $timeline-marker-label-h};
     left: 0;
-    height: $marker-label-h;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: default;
   }
 
   &__mover {

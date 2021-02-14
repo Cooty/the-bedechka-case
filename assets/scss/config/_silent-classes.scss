@@ -124,21 +124,6 @@
 
 }
 
-%button-base {
-  cursor: pointer;
-  font-family: $copy-font;
-  -webkit-appearance: none;
-  transition: all .3s;
-  text-align: center;
-  font-size: 1rem;
-}
-
-%single-line-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 %smooth-scroll {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;

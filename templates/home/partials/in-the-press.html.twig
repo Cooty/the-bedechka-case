@@ -1,11 +1,11 @@
 {% if newsFirstPage|length > 0 %}
     <section class="story">
-        {% include('./components/section-header.html.twig') with {'text': 'story.news.title', 'classes': 'story__header'} only %}
+        {% include('/components/section-header/section-header.html.twig') with {'text': 'story.news.title', 'classes': 'story__header'} only %}
 
         <article class="news">
             <ul class="news__list" id="js-news-list">
                 {% for newsItem in newsFirstPage %}
-                    {% include('./home/partials/in-the-press-item.html.twig') with {
+                    {% include('/home/partials/in-the-press-item.html.twig') with {
                         'link': newsItem.link,
                         'title': newsItem.title,
                         'source': newsItem.source,

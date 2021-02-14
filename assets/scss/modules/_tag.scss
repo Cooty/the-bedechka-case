@@ -1,10 +1,11 @@
 @use "../config/sizes" as s;
-@import "../config/silent-classes";
+@use "../config/mixins" as m;
+@use "../config/colors" as c;
 
 .tag {
-  @extend %button-base;
-  @extend %single-line-ellipsis;
-  border: 1px solid $dark-green;
+  @include m.button-base;
+  @include m.single-line-ellipsis;
+  border: 1px solid c.$dark-green;
   background: white;
   border-radius: 30px;
   padding: 6px 12px;
@@ -13,17 +14,34 @@
   transition: all .3s ease-in-out;
 
   &--active {
-    background: $dark-green;
-    color: $almost-white;
+    background: c.$dark-green;
+    color: c.$almost-white;
   }
 
-  &:hover,
-  &:focus {
+  &--not-interactive {
+    cursor: default;
+  }
+
+  &:not(.tag--not-interactive):hover,
+  &:not(.tag--not-interactive):focus {
     outline: 0;
-    box-shadow: 0 0 0 2px $dark-green inset;
+    box-shadow: 0 0 0 2px c.$dark-green inset;
   }
 
   &--cases-map {
     height: s.$cases-map-tag-height;
+  }
+
+  &--timeline {
+    height: s.$timeline-marker-label-h;
+    font-size: 14px;
+    border-color: currentColor;
+    background-color: currentColor;
+
+    > strong {
+      // needed so that currentColor won't affect the text color
+      color: c.$almost-white;
+    }
+
   }
 }

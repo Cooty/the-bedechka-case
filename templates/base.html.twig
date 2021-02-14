@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% include './includes/canonical.html.twig' %}
+        {% include '/includes/canonical.html.twig' %}
         <title>{% block title %}{{ 'site.name'|trans }}{% endblock %}</title>
 
         {% block description %}
@@ -22,14 +22,14 @@
         <meta property="og:image:height" content="630" />
 
         {% block preconectLinks %}
-            {% include('./includes/preconnect-prefetch-links.html.twig')
+            {% include('/includes/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://fonts.googleapis.com/'} only %}
 
-            {% include('./includes/preconnect-prefetch-links.html.twig')
+            {% include('/includes/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://polyfill.io/'} only %}
         {% endblock %}
 
-        {% include './includes/site-icons.html.twig' %}
+        {% include '/includes/site-icons.html.twig' %}
 
         {# TODO: Add dynamic meta description and open graph meta tags #}
 
@@ -80,11 +80,11 @@
 
     </head>
     <body class="header-offset">
-        {% include './includes/header.html.twig' %}
+        {% include '/includes/header.html.twig' %}
         <main class="main">
             {% block main %}{% endblock %}
         </main>
-        {% include './includes/footer.html.twig' %}
+        {% include '/includes/footer.html.twig' %}
     </body>
 </html>
 {% endapply %}
