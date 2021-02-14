@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block description %}
-    {% include('./includes/meta-description.html.twig') with {
+    {% include('/includes/meta-description.html.twig') with {
         'description': 'home'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
 
-{% set heroContent = include('./home/partials/hero-content.html.twig') %}
+{% set heroContent = include('/home/partials/hero-content.html.twig') %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {% include('./includes/hero/background-style.html.twig') with {'background': 'home'} only %}
+    {% include('/includes/hero/background-style.html.twig') with {'background': 'home'} only %}
 
     {% for css in encore_entry_css_files('critical-path-home') %}
         <style>
@@ -36,10 +36,10 @@
 {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
-    {% include('./home/partials/the-problem.html.twig') %}
-    {% include('./home/partials/the-vision.html.twig') %}
-    {% include('./home/partials/in-the-press.html.twig') %}
+    {% include('/includes/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
+    {% include('/home/partials/the-problem.html.twig') %}
+    {% include('/home/partials/the-vision.html.twig') %}
+    {% include('/home/partials/in-the-press.html.twig') %}
 {% endblock %}
 
 {% block javascript_config %}
@@ -59,18 +59,18 @@
 
 {% block preconectLinks %}
     {{ parent() }}
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://unpkg.com/'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://api.tiles.mapbox.com/'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://ytimg.com'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube.com'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube-nocookie.com'} only %}
 {% endblock %}

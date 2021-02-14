@@ -3,13 +3,13 @@
 {% block title %}{{ 'navigation.people'|trans }} - {{ 'site.name'|trans }} {% endblock %}
 
 {% block description %}
-    {% include('./includes/meta-description.html.twig') with {
+    {% include('/includes/meta-description.html.twig') with {
         'description': 'protagonists'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
 
 {% set heroTitle = {'mainTitle': 'people.title', 'subTitle': 'people.subtitle'} %}
-{% set heroContent = include('./includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -20,7 +20,7 @@
         </style>
     {% endfor %}
 
-    {% include('./includes/hero/background-style.html.twig') with {'background': 'people'} only %}
+    {% include('/includes/hero/background-style.html.twig') with {'background': 'people'} only %}
 
     {% for css in encore_entry_css_files('yt') %}
         {% include('includes/async-css.html.twig') with {
@@ -36,12 +36,12 @@
 {% endblock %}
 
 {% block main %}
-    {% include('./includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
 
     {% if videos is defined and videos|length %}
         <ul class="people pull-over-hero">
             {% for video in videos %}
-                {% include('./people/partials/item.html.twig') with {
+                {% include('/people/partials/item.html.twig') with {
                     video: video,
                     isLazy: loop.first ? false : true
                 } %}
@@ -60,13 +60,13 @@
 {% block preconectLinks %}
     {{ parent() }}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://ytimg.com'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube.com'} only %}
 
-    {% include('./includes/preconnect-prefetch-links.html.twig')
+    {% include('/includes/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube-nocookie.com'} only %}
 
 {% endblock preconectLinks %}

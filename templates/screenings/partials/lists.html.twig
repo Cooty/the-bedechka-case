@@ -3,7 +3,7 @@
         {% if current_screenings is defined and current_screenings %}
             <ul class="box-grid section-v-gutter">
                 {% for screening in current_screenings %}
-                    {% include('./screenings/partials/item.html.twig') with {
+                    {% include('/screenings/partials/item.html.twig') with {
                         'name': screening.name,
                         'venueName': screening.venueName,
                         'venueLink': screening.venueLink,
@@ -17,10 +17,10 @@
         {% endif %}
 
         {% if past_screenings is defined and past_screenings %}
-            {% include('./components/section-header.html.twig') with {'text': 'past.screenings.header', 'priority': 2, 'classes': 'story__header'} only %}
+            {% include('/components/section-header/section-header.html.twig') with {'text': 'past.screenings.header', 'priority': 2, 'classes': 'story__header'} only %}
             <ul class="box-grid">
                 {% for screening in past_screenings %}
-                    {% include('./screenings/partials/item.html.twig') with {
+                    {% include('/screenings/partials/item.html.twig') with {
                         'name': screening.name,
                         'venueName': screening.venueName,
                         'venueLink': screening.venueLink,

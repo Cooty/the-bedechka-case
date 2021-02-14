@@ -1,6 +1,6 @@
-@use "../config/breakpoints" as bp;
-@use "../config/typo" as t;
-@import "../config/silent-classes";
+@use "../../../assets/scss/config/breakpoints" as bp;
+@use "../../../assets/scss/config/typo" as t;
+@import "../../../assets/scss/config/silent-classes";
 
 .sub-header {
   @extend %header-font;

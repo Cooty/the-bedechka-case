@@ -3,7 +3,7 @@
 {% block title %}{{ 'screenings.cta'|trans }} - {{ 'site.name'|trans }} {% endblock %}
 
 {% block description %}
-    {% include('./includes/meta-description.html.twig') with {
+    {% include('/includes/meta-description.html.twig') with {
         'description': 'screenings'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
@@ -26,7 +26,7 @@
 
 {% block main %}
     <article class="box box--center-narrow box--tablet-big-gutter no-hero section-v-gutter">
-        {% include('./components/sub-header.html.twig') with {'text': 'screenings.cta', 'priority': 1, 'classes': 'box__header'} only %}
+        {% include('/components/sub-header/sub-header.html.twig') with {'text': 'screenings.cta', 'priority': 1, 'classes': 'box__header'} only %}
 
         <div class="main-copy">
             {{ 'screenings.intro'|trans({
