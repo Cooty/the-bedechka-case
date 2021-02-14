@@ -1,3 +1,6 @@
+@use "../config/breakpoints" as bp;
+@import "../config/silent-classes";
+
 // Flex-box sticky footer solution
 /**
  * 1. Avoid the IE 10-11 `min-height` bug.
@@ -25,7 +28,7 @@ body > .main {
 // Footer styles and custom layout
 .footer {
   $icon-size: 16px;
-  $icon-size-desktop: 24px;
+  $icon-size-desktop: 34px;
   @extend %section-v-divider;
 
   %list-item-v-gutter {
@@ -33,7 +36,7 @@ body > .main {
 
     &:last-of-type { margin-bottom: 0; }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       margin-bottom: 0;
       padding: 0 $gutter;
     }
@@ -43,7 +46,7 @@ body > .main {
   %label-font-size {
     font-size: .9rem;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       font-size: 1rem;
     }
   }
@@ -58,12 +61,12 @@ body > .main {
     padding-bottom: 30px;
     overflow: hidden;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       min-height: 320px;
       padding-top: 80px;
     }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       text-align: left;
       display: flex;
       flex-direction: row;
@@ -83,16 +86,19 @@ body > .main {
       margin-bottom: 4vh;
       font-size: 1.2rem;
 
-      > strong { font-weight: 500; }
+      @media screen and (min-width: bp.$desktop) {
+        margin-bottom: 0;
+      }
 
     }
 
     &-social-media {
       margin-bottom: 5vh;
 
-      @media screen and (min-width: $desktop) {
+      @media screen and (min-width: bp.$desktop) {
         display: flex;
         margin-bottom: 0;
+        align-items: center;
         height: $icon-size-desktop;
       }
 
@@ -137,7 +143,7 @@ body > .main {
           height: $icon-size;
         }
 
-        @media screen and (min-width: $desktop) {
+        @media screen and (min-width: bp.$desktop) {
           width: $icon-size-desktop + 10px;
           height: $icon-size-desktop + 10px;
           flex-basis: $icon-size-desktop + 10px;
@@ -154,7 +160,7 @@ body > .main {
       &-label {
         @extend %label-font-size;
 
-        @media screen and (min-width: $desktop) and (max-width: 1280px) {
+        @media screen and (min-width: bp.$desktop) and (max-width: 1280px) {
           display: none;
         }
 
@@ -163,7 +169,7 @@ body > .main {
     }
 
     &-menu {
-      @media screen and (min-width: $desktop) {
+      @media screen and (min-width: bp.$desktop) {
         display: flex;
         height: $icon-size-desktop;
       }
@@ -171,7 +177,7 @@ body > .main {
       &-item {
         @extend %list-item-v-gutter;
 
-        @media screen and (min-width: $tablet) {
+        @media screen and (min-width: bp.$tablet) {
           display: inline-flex;
           align-items: center;
           padding-left: $gutter;
