@@ -1,8 +1,11 @@
 {% if video %}
+
+    {% dump(video) %}
+
 <li class="people__item">
     <article class="box box--video">
         <div class="video">
-            {% include('/components/youtube-embed.html.twig') with {
+            {% include('/components/youtube-embed/youtube-embed.html.twig') with {
                 video: video,
                 isLazy: isLazy
             } only %}

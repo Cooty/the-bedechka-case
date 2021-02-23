@@ -1,8 +1,8 @@
-@import "../config/sizes";
-@import "../config/colors";
-@import "../config/z-indexes";
-@import "../config/breakpoints";
-@import "../config/functions";
+@import "assets/scss/config/sizes";
+@import "assets/scss/config/colors";
+@import "assets/scss/config/z-indexes";
+@import "assets/scss/config/breakpoints";
+@import "assets/scss/config/functions";
 
 .video-embed {
   $play-button-size: 91px;
@@ -56,7 +56,7 @@
   &.lazy-loading-loaded {
 
     &:after {
-      background-image: url('../../images/play-button.png');
+      background-image: url('./play-button.png');
     }
 
   }
