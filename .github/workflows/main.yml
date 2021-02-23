@@ -60,6 +60,8 @@ jobs:
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
 
+#  TODO: Refactor the long link of excludes to a --exclude-from
+#  https://linuxize.com/post/how-to-exclude-files-and-directories-with-rsync/
       - name: Sync files
         env:
           dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
@@ -74,8 +76,8 @@ jobs:
             --exclude /.github/ \
             --exclude /node_modules/ \
             --exclude /assets/ \
-            --exclude /*.ts \
-            --exclude /*.scss \
+            --exclude '*.ts' \
+            --exclude '*.scss' \
             --exclude /tests/ \
             --exclude /.gitignore  \
             --exclude /LICENSE \

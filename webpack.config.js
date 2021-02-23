@@ -28,7 +28,7 @@ Encore
     .enableSourceMaps()
     .addEntry("app", "./assets/ts/app.ts")
     .addEntry("home", "./assets/ts/home.ts")
-    .addEntry("yt", "./assets/ts/yt-player.ts")
+    .addEntry("yt", "./templates/ts-entrypoints/youtube-embed.ts")
     .addEntry("admin", "./assets/ts/admin/app.ts")
     .addStyleEntry("the-crew", "./assets/scss/the-crew.scss")
     .addStyleEntry("people", "./assets/scss/people.scss")
