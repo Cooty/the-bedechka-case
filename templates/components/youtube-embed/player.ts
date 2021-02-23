@@ -1,5 +1,7 @@
-import "../../scss/components/_yt-player.scss";
-import "../interfaces/WindowGlobals";
+import "./_yt-player.scss";
+import "./_video-embed.scss";
+import "../../../assets/scss/modules/_embed.scss";
+import "../../../assets/ts/interfaces/WindowGlobals";
 
 interface IElements {
     body?: HTMLBodyElement,
@@ -10,7 +12,13 @@ interface IElements {
     ytPlayerTarget?: HTMLElement
 }
 
-export default class YtPlayer {
+/**
+ * Manage the playback of youtube videos based on data pre-rendered to the DOM
+ * via the YT Data API integration. The static preview is in "./youtube-embed.html.twig"
+ * The JS generated from this file is responsible for loading the client-side JS player API
+ * and creating the video-embed.
+ */
+export default class Player {
     private isInitialized: boolean = false;
     private elements: IElements = {};
     private readonly overlayOpenClassName = "yt-player-opened";
@@ -68,7 +76,7 @@ export default class YtPlayer {
         const ytIframeContainer = document.createElement("div");
         ytIframeContainer.className = "embed-16-9";
 
-        const ytPlayerTarget = YtPlayer.makePlayerTarget();
+        const ytPlayerTarget = Player.makePlayerTarget();
         this.addPlayerTarget(ytPlayerTarget, ytIframeContainer);
 
         const ytPlayerCloseLayer = document.createElement("div");
@@ -110,7 +118,7 @@ export default class YtPlayer {
         },1);
     }
 
-    private clearPlayer() {
+    private cleanUpBeforeClosing() {
         this.elements.ytIframeContainer.innerHTML = "";
         delete this.elements.ytPlayerTarget;
     }
@@ -119,7 +127,7 @@ export default class YtPlayer {
         this.elements.body.classList.remove(this.overlayAnimateClassName);
         const timeOut = window.setTimeout(()=> {
             this.elements.body.classList.remove(this.overlayOpenClassName);
-            this.clearPlayer();
+            this.cleanUpBeforeClosing();
             return window.clearTimeout(timeOut);
         }, this.cssTransitionTime);
     }
@@ -133,7 +141,7 @@ export default class YtPlayer {
                 }
 
                 if(!this.elements.ytPlayerTarget) {
-                    const ytPlayerTarget = YtPlayer.makePlayerTarget();
+                    const ytPlayerTarget = Player.makePlayerTarget();
                     this.addPlayerTarget(ytPlayerTarget, this.elements.ytIframeContainer);
                 }
 
@@ -147,7 +155,7 @@ export default class YtPlayer {
         if(!this.isInitialized) {
             window.onYouTubeIframeAPIReady = this.onYouTubeIframeAPIReady.bind(this);
             this.getElements();
-            YtPlayer.loadYTIFrameAPI();
+            Player.loadYTIFrameAPI();
         }
     }
 }
