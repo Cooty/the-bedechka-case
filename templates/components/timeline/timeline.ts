@@ -1,6 +1,6 @@
-import Responsive from "../utils/responsive";
-import debounce from "../utils/debounce";
-import "../../scss/components/_timeline.scss"
+import Responsive from "../../../assets/ts/utils/responsive";
+import debounce from "../../../assets/ts/utils/debounce";
+import "./_timeline.scss"
 
 export default class Timeline {
     private readonly timeline: HTMLElement;
