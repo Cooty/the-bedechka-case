@@ -1,6 +1,6 @@
 import "../scss/home.scss";
 
-import Timeline from "./modules/timeline";
+import Timeline from "../../templates/components/timeline/timeline";
 import CasesMap from "./modules/cases-map";
 import NewsPagination from "./modules/news-pagination";
 import "./interfaces/WindowGlobals";
