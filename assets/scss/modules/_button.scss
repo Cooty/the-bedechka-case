@@ -28,7 +28,6 @@
   &:hover,
   &:focus {
     &:not([disabled]) {
-      outline: 0;
       text-decoration: none;
       border-top-color: c.$dark-green-border;
       border-bottom-color: c.$light-green-border;
