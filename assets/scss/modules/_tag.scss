@@ -24,7 +24,6 @@
 
   &:not(.tag--not-interactive):hover,
   &:not(.tag--not-interactive):focus {
-    outline: 0;
     box-shadow: 0 0 0 2px c.$dark-green inset;
   }
 
