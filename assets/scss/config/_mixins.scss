@@ -1,3 +1,5 @@
+@use "./functions" as f;
+@use "./sizes" as s;
 @import "./decorations";
 @import "./typo";
 
@@ -48,4 +50,15 @@
 @mixin item-width($w, $offset) {
   flex: 0 0 calc(#{$w} - #{$offset});
   max-width: calc(#{$w} - #{$offset});
+}
+
+@mixin pillar-box($max-width) {
+  max-width: $max-width;
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
+
+  @media screen and (min-width: f.pxToEm($max-width) + f.pxToEm(s.$gutter-desktop) * 2) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

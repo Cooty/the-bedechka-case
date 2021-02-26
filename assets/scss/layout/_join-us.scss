@@ -1,7 +1,8 @@
 @use "../config/sizes" as s;
+@use "../config/typo" as t;
 @use "../config/breakpoints" as bp;
 @use "../config/functions" as f;
-@use "./join-us-components" as jc;
+@use "../config/mixins" as m;
 @import "../config/silent-classes";
 
 .join-us {
@@ -22,7 +23,8 @@
   }
 
   &__text {
-    @include jc.pillar-box;
+    @include m.pillar-box(500px);
+    margin-bottom: t.$v-gutter-near;
   }
 
 }

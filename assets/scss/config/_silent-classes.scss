@@ -44,39 +44,6 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, .2), 0 0 26px rgba(0, 0, 0, .1);
 }
 
-%pillar-box {
-  max-width: $page-max-w;
-  margin-left: var(--gutter);
-  margin-right: var(--gutter);
-
-  @media screen and (min-width: pxToEm($page-max-w) + pxToEm($gutter-desktop) * 2) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-%pillar-box-article {
-  max-width: $article-max-w;
-  margin-left: $gutter;
-  margin-right: $gutter;
-
-  @media screen and (min-width: pxToEm($article-max-w) + pxToEm($gutter-desktop) * 2) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-%pillar-box-xxl {
-  max-width: $xxl-w;
-  margin-left: var(--gutter);
-  margin-right: var(--gutter);
-
-  @media screen and (min-width: pxToEm($xxl-w) + pxToEm($gutter-desktop) * 2) {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 %section-v-divider {
   margin-top: 14vh;
 }
