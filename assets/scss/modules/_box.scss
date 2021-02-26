@@ -1,13 +1,14 @@
-@import "../config/sizes";
-@import "../config/breakpoints";
+@use "../config/mixins" as m;
+@use "../config/sizes" as s;
+@use "../config/breakpoints" as bp;
+@use "../config/colors" as c;
 @import "../config/silent-classes";
-@import "../config/mixins";
 
 .box {
   background: white;
-  padding: $grid-v-gutter var(--gutter);
-  border-radius: $box-radius;
-  @include box-shadow();
+  padding: s.$grid-v-gutter var(--gutter);
+  border-radius: s.$box-radius;
+  @include m.box-shadow();
 
   @media print {
     page-break-inside: avoid;
@@ -17,22 +18,22 @@
   }
 
   &--tablet-big-gutter {
-    @media screen and (min-width: $tablet) {
-      padding-left: $gutter-desktop * 2;
-      padding-right: $gutter-desktop * 2;
+    @media screen and (min-width: bp.$tablet) {
+      padding-left: s.$gutter-desktop * 2;
+      padding-right: s.$gutter-desktop * 2;
     }
   }
 
   &--center {
-    @extend %pillar-box;
+    @include m.pillar-box(s.$page-max-w);
   }
 
   &--center-narrow {
-    @extend %pillar-box-article;
+    @include m.pillar-box(s.$article-max-w);
   }
 
   &--center-xxl {
-    @extend %pillar-box-xxl;
+    @include m.pillar-box(s.$xxl-w);
   }
 
   &__header {
@@ -41,16 +42,8 @@
   }
 
   &__lead {
-    $mw: 600px;
-
+    @include m.pillar-box(600px);
     margin-bottom: 2.5vh;
-    max-width: $mw;
-
-    @media screen and (min-width: $mw + 2 * $gutter-desktop) {
-      margin-right: auto;
-      margin-left: auto;
-    }
-
   }
 
   &__subtitle {
@@ -62,7 +55,7 @@
     display: block;
     margin-top: 15px;
     font-size: .8rem;
-    color: $secondary-text-color;
+    color: c.$secondary-text-color;
   }
 
   &__info--regular-size {
@@ -73,19 +66,19 @@
 
     > .video {
       width: calc(100% + #{$gutter * 2});
-      margin: -$grid-v-gutter 0 2vh $gutter * -1;
+      margin: -#{s.$grid-v-gutter} 0 2vh $gutter * -1;
       overflow: hidden;
-      border-radius: $box-radius;
+      border-radius: s.$box-radius;
       background: $image-placeholder-color;
 
-      &:before{
+      &:before {
         content: '';
         position: absolute;
       }
 
-      @media screen and (min-width: $desktop) {
-        width: calc(100% + #{$gutter-desktop * 2});
-        margin-left: -$gutter-desktop;
+      @media screen and (min-width: bp.$desktop) {
+        width: calc(100% + #{s.$gutter-desktop * 2});
+        margin-left: -#{s.$gutter-desktop};
       }
 
     }
@@ -99,7 +92,6 @@ a.box {
   &:hover,
   &:focus {
     text-decoration: none;
-    outline: 0;
 
     .box__subtitle {
       text-decoration: underline;

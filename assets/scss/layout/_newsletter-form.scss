@@ -1,10 +1,9 @@
 @use "../config/breakpoints" as bp;
 @use "../config/mixins" as m;
 @use "../config/sizes" as s;
-@use "./join-us-components" as jc;
 
 .newsletter-form {
-  @include jc.pillar-box;
+  @include m.pillar-box(500px);
 
   .form__row:last-of-type {
     justify-content: center;
