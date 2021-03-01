@@ -1,10 +1,11 @@
-import YTPlayer from "../components/youtube-embed/player";
-import "../../assets/ts/interfaces/WindowGlobals";
+import YTPlayer from "./player";
+import "../../../assets/ts/interfaces/WindowGlobals";
 
 /**
  * Entry point for the JS file that initializes the Youtube players
  * Add this file to templates where the YT player is the only
- * JS-related functionality.
+ * JS-related functionality
+ * (apart from the global JS functionality like header scrolling, analytics, etc)
  */
 class YouTubeEmbed {
     private static instance: YouTubeEmbed;
