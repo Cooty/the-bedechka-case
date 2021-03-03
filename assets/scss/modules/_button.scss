@@ -9,8 +9,8 @@
 .button {
   $side-padding: 30px;
 
-  @include m.button-base;
-  @include m.single-line-ellipsis;
+  @extend %button-base;
+  @extend %single-line-ellipsis;
   background: $green;
   border-radius: d.$form-border-radius;
   display: inline-block;

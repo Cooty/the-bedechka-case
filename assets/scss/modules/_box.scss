@@ -8,7 +8,7 @@
   background: white;
   padding: s.$grid-v-gutter var(--gutter);
   border-radius: s.$box-radius;
-  @include m.box-shadow();
+  @extend %box-shadow;
 
   @media print {
     page-break-inside: avoid;

@@ -50,7 +50,7 @@ $steps: 6;
 
   &__step {
     padding-left: $gutter;
-    @include item-width(92%, 8px);
+    @include flex-column-with-offset(92%, 8px);
 
     @media screen and (max-width: pxToEm($desktop-size - 1)) {
       scroll-snap-align: start;
@@ -60,20 +60,20 @@ $steps: 6;
     }
 
     @media screen and (min-width: $phablet) {
-      @include item-width(60%, 8px);
+      @include flex-column-with-offset(60%, 8px);
     }
 
     @media screen and (min-width: $desktop) {
       padding-left: $gutter-desktop;
-      @include item-width(45%, 11px);
+      @include flex-column-with-offset(45%, 11px);
     }
 
     @media screen and (min-width: $page-max-w) {
-      @include item-width(31%, 11px);
+      @include flex-column-with-offset(31%, 11px);
     }
 
     @media screen and (min-width: $big-screen) {
-      @include item-width(24%, 11px);
+      @include flex-column-with-offset(24%, 11px);
     }
 
     &:nth-child(odd) {
