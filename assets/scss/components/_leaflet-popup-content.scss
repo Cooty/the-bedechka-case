@@ -70,7 +70,7 @@
   }
 
   & &__link {
-    @include m.single-line-ellipsis;
+    @extend %single-line-ellipsis;
     display: block;
     color: $purple;
     text-decoration: underline;

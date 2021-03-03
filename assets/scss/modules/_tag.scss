@@ -1,10 +1,11 @@
 @use "../config/sizes" as s;
 @use "../config/mixins" as m;
 @use "../config/colors" as c;
+@import "../config/silent-classes";
 
 .tag {
-  @include m.button-base;
-  @include m.single-line-ellipsis;
+  @extend %button-base;
+  @extend %single-line-ellipsis;
   border: 1px solid c.$dark-green;
   background: white;
   border-radius: 30px;

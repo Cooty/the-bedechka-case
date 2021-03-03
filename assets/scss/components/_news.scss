@@ -56,7 +56,7 @@
 
   &__item {
     margin-right: $gutter;
-    @include item-width(92%, 8px);
+    @include flex-column-with-offset(92%, 8px);
 
     @media screen and (min-width: $tablet) {
       margin: 0 0 $grid-v-gutter 0;
@@ -113,7 +113,7 @@
     min-height: $logo-height; // 1)
 
     & .box__info {
-      @include single-line-ellipsis;
+      @extend %single-line-ellipsis;
       margin-top: 0;
       flex: 1;
     }

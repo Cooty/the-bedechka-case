@@ -3,21 +3,6 @@
 @import "./decorations";
 @import "./typo";
 
-@mixin single-line-ellipsis() {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@mixin button-base() {
-  cursor: pointer;
-  font-family: $copy-font;
-  -webkit-appearance: none;
-  transition: all .3s;
-  text-align: center;
-  font-size: 1rem;
-}
-
 @mixin scroll-fader($color: #fff, $width: 30px) {
   content: '';
   position: absolute;
@@ -37,19 +22,14 @@
               0 $size * -1 0 $color;
 }
 
-@mixin box-shadow() {
-  box-shadow: 0 0 $box-shadow-size rgba(0, 0, 0, .1),
-              0 0 6px rgba(0, 0, 0, .08);
-}
-
 @mixin flex-column($width: 100%) {
   flex: 0 0 $width;
   max-width: $width;
 }
 
-@mixin item-width($w, $offset) {
-  flex: 0 0 calc(#{$w} - #{$offset});
-  max-width: calc(#{$w} - #{$offset});
+@mixin flex-column-with-offset($width, $offset) {
+  flex: 0 0 calc(#{$width} - #{$offset});
+  max-width: calc(#{$width} - #{$offset});
 }
 
 @mixin pillar-box($max-width) {

@@ -3,6 +3,7 @@
 @import "typo";
 @import "sizes";
 @import "functions";
+@import "decorations";
 
 %text-colored-link {
   color: $base-text-color;
@@ -125,4 +126,24 @@
     flex: 0 0 1px; // just to give it layout, the last elements margin can now work
   }
 
+}
+
+%single-line-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%button-base {
+  cursor: pointer;
+  font-family: $copy-font;
+  -webkit-appearance: none;
+  transition: all .3s;
+  text-align: center;
+  font-size: 1rem;
+}
+
+%box-shadow {
+  box-shadow: 0 0 $box-shadow-size rgba(0, 0, 0, .1),
+  0 0 6px rgba(0, 0, 0, .08);
 }
