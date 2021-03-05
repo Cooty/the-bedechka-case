@@ -38,7 +38,7 @@ $side-padding: 30px;
   }
 
   &--small {
-    font-size: f.pxToRem(13px);
+    font-size: f.px-to-rem(13px);
     padding: .5em $side-padding / 2;
   }
 

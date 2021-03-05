@@ -28,11 +28,11 @@
 
   &__typo {
     @extend %header-font;
-    font-size: f.pxToRem(26);
+    font-size: f.px-to-rem(26);
     user-select: none;
 
     @media (min-width: bp.$desktop) {
-      font-size: f.pxToRem(35);
+      font-size: f.px-to-rem(35);
     }
   }
 }

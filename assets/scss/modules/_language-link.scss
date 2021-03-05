@@ -23,8 +23,8 @@ $flag-size: 16px;
   }
 
   &__label {
-    font-size: f.pxToRem(13);
-    margin-right: f.pxToRem(5);
+    font-size: f.px-to-rem(13);
+    margin-right: f.px-to-rem(5);
   }
 
   &__flag {

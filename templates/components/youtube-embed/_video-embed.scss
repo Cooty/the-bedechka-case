@@ -1,18 +1,18 @@
-@import "assets/scss/config/sizes";
-@import "assets/scss/config/colors";
-@import "assets/scss/config/z-indexes";
-@import "assets/scss/config/breakpoints";
-@import "assets/scss/config/functions";
+@use "assets/scss/config/sizes" as s;
+@use "assets/scss/config/colors" as c;
+@use "assets/scss/config/z-indexes" as z;
+@use "assets/scss/config/breakpoints" as bp;
+@use "assets/scss/config/functions" as f;
+
+$play-button-size: 91px;
+$play-button-offset: ($play-button-size / 2) * -1;
 
 .video-embed {
-  $play-button-size: 91px;
-  $play-button-offset: ($play-button-size / 2) * -1;
-
   &,
   &:before {
     background-size: cover;
     background-position: center;
-    background-color: $base-text-color;
+    background-color: c.$base-text-color;
     background-repeat: no-repeat;
   }
 
@@ -23,7 +23,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: $z-lowest;
+    z-index: z.$z-lowest;
     opacity: 1;
     transition: all .3s ease-in-out;
     background-blend-mode: soft-light;
@@ -49,7 +49,7 @@
     top: 50%;
     left: 50%;
     margin: $play-button-offset 0 0 $play-button-offset;
-    z-index: $z-low;
+    z-index: z.$z-low;
   }
 
   &:not(.js-lazy-loading),
@@ -67,12 +67,12 @@
       top: auto;
       left: auto;
       margin: auto;
-      right: pxToRem(10);
-      bottom: pxToRem(10);
+      right: f.px-to-rem(10);
+      bottom: f.px-to-rem(10);
 
-      @media screen and (min-width: $desktop) {
-        right: pxToRem(20);
-        bottom: pxToRem(20);
+      @media screen and (min-width: bp.$desktop) {
+        right: f.px-to-rem(20);
+        bottom: f.px-to-rem(20);
       }
 
     }
