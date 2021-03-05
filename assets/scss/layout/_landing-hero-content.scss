@@ -1,31 +1,32 @@
-@import "../config/sizes";
-@import "../config/colors";
-@import "../config/breakpoints";
+@use "../config/sizes" as s;
+@use "../config/spacings" as sp;
+@use "../config/colors" as c;
+@use "../config/breakpoints" as bp;
 @import "../config/silent-classes";
 
 .landing-hero-content {
-  max-width: $page-max-w;
-  color: $almost-white;
+  max-width: s.$page-max-w;
+  color: c.$almost-white;
   display: block;
   align-items: center;
   min-height: 260px;
 
-  @media screen and (min-width: $page-max-w + $gutter-desktop * 2) {
-    width: $page-max-w;
+  @media screen and (min-width: s.$page-max-w + sp.$gutter-desktop * 2) {
+    width: s.$page-max-w;
   }
 
-  @media screen and  (min-width: $tablet) {
+  @media screen and  (min-width: bp.$tablet) {
     display: table;
     vertical-align: middle;
   }
 
   @supports (grid-template-areas: unset) {
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       display: grid;
       vertical-align: baseline;
       grid-template-columns: 4fr 6fr;
       grid-template-rows: auto;
-      grid-column-gap: $gutter-desktop;
+      grid-column-gap: sp.$gutter-desktop;
     }
   }
 
@@ -36,7 +37,7 @@
     max-width: 500px;
 
     a {
-      color: $almost-white;
+      color: c.$almost-white;
       text-decoration: underline;
 
       &:hover,
@@ -46,15 +47,15 @@
 
     }
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       margin: 0;
       display: table-cell;
       width: 40%;
-      padding-right: $gutter-desktop;
+      padding-right: sp.$gutter-desktop;
     }
 
     @supports (grid-template-areas: unset) {
-      @media screen and (min-width: $tablet) {
+      @media screen and (min-width: bp.$tablet) {
         grid-column-start: 1;
         grid-row-start: 1;
         align-self: center;
@@ -62,12 +63,12 @@
         padding-right: 0;
       }
 
-      @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+      @media screen and (min-width: bp.$tablet) and (max-width: bp.$desktop - 1) {
         align-self: start;
       }
     }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       font-size: 1.2em;
     }
 
@@ -77,17 +78,17 @@
     @extend %hero-box-shadow;
     width: 100%;
     max-width: 400px;
-    margin: 0 auto $gutter-desktop auto;
+    margin: 0 auto sp.$gutter-desktop auto;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       margin: 0;
       width: 60%;
-      padding-left: $gutter-desktop;
+      padding-left: sp.$gutter-desktop;
       display: table-cell;
     }
 
     @supports (grid-template-areas: unset) {
-      @media screen and (min-width: $tablet) {
+      @media screen and (min-width: bp.$tablet) {
         margin: 0;
         padding-left: 0;
         width: auto;
@@ -100,12 +101,12 @@
   &__button {
     text-align: center;
 
-    @media screen and (min-width: $tablet) {
-      margin-top: $gutter-desktop;
+    @media screen and (min-width: bp.$tablet) {
+      margin-top: sp.$gutter-desktop;
     }
 
     @supports (grid-template-areas: unset) {
-      @media screen and (min-width: $tablet) {
+      @media screen and (min-width: bp.$tablet) {
         grid-column-start: 1;
         grid-row-start: 1;
         align-self: end;

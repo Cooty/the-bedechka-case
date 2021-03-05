@@ -1,39 +1,43 @@
-@import "../config/breakpoints";
-@import "../config/sizes";
-@import "../config/mixins";
+@use "../config/breakpoints" as bp;
+@use "../config/colors" as c;
+@use "../config/decorations" as d;
+@use "../config/sizes" as s;
+@use "../config/spacings" as sp;
+@use "../config/mixins" as m;
 @import "../config/silent-classes";
 
-.cases-map {
-  $map-height-mobile: 80vh;
-  $map-height: 60vh;
+$map-height-mobile: 80vh;
+$map-height: 60vh;
 
-  @media screen and (min-width: $desktop) {
+.cases-map {
+
+  @media screen and (min-width: bp.$desktop) {
     display: grid;
     grid-template-columns: [first] 4fr [second] 6fr;
     // TODO: Figure out a more flexible layout - If text grows significantly then rows, don't adjust
     grid-template-rows: [title] 10% [intro] 20% [tags] 70%;
-    grid-column-gap: $gutter-desktop;
+    grid-column-gap: var(--gutter);
   }
 
-  @media screen and (min-width: $page-max-w) {
-    grid-column-gap: $gutter-desktop * 2;
+  @media screen and (min-width: s.$page-max-w) {
+    grid-column-gap: sp.$gutter-desktop * 2;
   }
 
   @supports (grid-template-areas: unset) {
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       padding-right: 0 !important;
       height: $map-height;
     }
   }
 
   &__header.box__header {
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       grid-column-start: first;
       grid-row-start: title;
     }
 
     @supports (grid-template-areas: unset) {
-      @media screen and (min-width: $desktop) {
+      @media screen and (min-width: bp.$desktop) {
         text-align: left;
         margin-bottom: 0;
       }
@@ -42,7 +46,7 @@
   }
 
   &__lead {
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       grid-column-start: first;
       grid-row-start: intro;
       max-width: none !important;
@@ -50,27 +54,27 @@
   }
 
   &__navigation {
-    width: calc(100% + #{$gutter});
-    height: $cases-map-tag-height;
+    width: calc(100% + #{sp.$gutter});
+    height: s.$cases-map-tag-height;
     overflow: hidden;
     margin-bottom: 2vh;
 
     &:after {
-      @include scroll-fader();
+      @include m.scroll-fader();
 
-      @media screen and (min-width: $tablet) {
+      @media screen and (min-width: bp.$tablet) {
         display: none;
       }
 
     }
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       height: auto;
       width: 100%;
       overflow: visible;
     }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       margin-bottom: 0;
       grid-column-start: first;
       grid-row-start: tags;
@@ -87,7 +91,7 @@
     box-sizing: content-box;
     padding-bottom: 17px;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       display: block;
       height: 100%;
       overflow-y: auto;
@@ -103,37 +107,37 @@
 
     &:last-of-type {
       margin-right: 0;
-      padding-right: $gutter;
+      padding-right: sp.$gutter;
 
       // this is to keep tha last item away from the edge
       // when scrolled all the way
-      @media screen and (min-width: $tablet) {
+      @media screen and (min-width: bp.$tablet) {
         padding-right: 0;
       }
     }
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       display: inline-block;
-      margin: 0 $gutter-desktop ($gutter-desktop - 5px) 0;
+      margin: 0 sp.$gutter-desktop (sp.$gutter-desktop - 5px) 0;
     }
 
   }
 
   &__map {
-    width: calc(100% + #{$gutter * 2});
+    width: calc(100% + #{sp.$gutter * 2});
     height: $map-height-mobile;
-    margin-left: -$gutter;
-    margin-bottom: -$grid-v-gutter;
-    background: $base-text-color;
-    border-radius: $box-radius;
-    z-index: 1; // need to normalize this because the embeded Leaflet Map has a high z-index which makes it overlap the main header
+    margin-left: -#{sp.$gutter};
+    margin-bottom: -#{sp.$grid-v-gutter};
+    background: c.$base-text-color;
+    border-radius: d.$box-radius;
+    z-index: 1; // need to normalize this because the embedded Leaflet Map has a high z-index which makes it overlap the main header
 
     @supports (grid-template-areas: unset) {
-      @media screen and (min-width: $desktop) {
+      @media screen and (min-width: bp.$desktop) {
         width: 100%;
-        height: calc(#{$map-height} + #{$grid-v-gutter * 2});
+        height: calc(#{$map-height} + #{sp.$grid-v-gutter * 2});
         margin-left: 0;
-        margin-top: -$grid-v-gutter * 2;
+        margin-top: -#{sp.$grid-v-gutter * 2};
         margin-bottom: 0;
       }
     }
@@ -148,8 +152,8 @@
 
 .cases-map-offset-desktop {
   @supports (grid-template-areas: unset) {
-    @media screen and (min-width: $desktop) {
-      padding-bottom: $grid-v-gutter;
+    @media screen and (min-width: bp.$desktop) {
+      padding-bottom: sp.$grid-v-gutter;
     }
   }
 }

@@ -1,5 +1,4 @@
-@use "../config/sizes" as s;
-@use "../config/typo" as t;
+@use "../config/spacings" as sp;
 @use "../config/breakpoints" as bp;
 @use "../config/functions" as f;
 @use "../config/mixins" as m;
@@ -7,8 +6,8 @@
 
 .join-us {
   background: white;
-  padding-top: s.$grid-v-gutter;
-  padding-bottom: s.$grid-v-gutter;
+  padding-top: sp.$grid-v-gutter;
+  padding-bottom: sp.$grid-v-gutter;
 
   &:before {
     @extend %grounge-mask;
@@ -24,7 +23,7 @@
 
   &__text {
     @include m.pillar-box(500px);
-    margin-bottom: t.$v-gutter-near;
+    margin-bottom: sp.$v-gutter-near;
   }
 
 }
