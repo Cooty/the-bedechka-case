@@ -1,7 +1,9 @@
-@import "assets/scss/config/colors";
-@import "assets/scss/config/z-indexes";
-@import "assets/scss/config/breakpoints";
-@import "assets/scss/config/sizes";
+@use "assets/scss/config/colors" as c;
+@use "assets/scss/config/z-indexes" as z;
+@use "assets/scss/config/breakpoints" as bp;
+@use "assets/scss/config/sizes" as s;
+@use "assets/scss/config/spacings" as sp;
+@use "assets/scss/config/functions" as f;
 
 .header,
 .footer,
@@ -14,17 +16,17 @@
 
 }
 
-.yt-player {
-  $close-w: 20px;
+$close-w: 20px;
 
+.yt-player {
   display: none;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: $z-highest;
-  background: $backdrop-grey;
+  z-index: z.$z-highest;
+  background: c.$backdrop-grey;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
@@ -65,15 +67,15 @@
       opacity: 1;
     }
 
-    @media screen and (min-width: $smallest + pxToEm($gutter * 2)) {
+    @media screen and (min-width: bp.$smallest + f.pxToEm(sp.$gutter * 2)) {
       width: 90%;
     }
 
-    @media screen and (min-width: pxToEm(480px)) {
+    @media screen and (min-width: f.pxToEm(480px)) {
       width: 80%;
     }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       width: 70%;
     }
 
@@ -85,7 +87,7 @@
     position: absolute;
     right: 0;
     top: -$close-w;
-    background: $almost-white;
+    background: c.$almost-white;
     padding: 0;
     margin: 0;
     -webkit-appearance: none;

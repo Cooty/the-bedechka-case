@@ -1,10 +1,12 @@
-@import "assets/scss/config/mixins";
+@use "./assets/scss/config/mixins" as m;
+@use "./assets/scss/config/colors" as c;
+@use "./assets/scss/config/z-indexes" as z;
+@use "./assets/scss/config/decorations" as d;
+@use "./assets/scss/config/sizes" as s;
+@use "./assets/scss/config/spacings" as sp;
+@use "./assets/scss/config/breakpoints" as bp;
+@use "./assets/scss/config/functions" as f;
 @import "assets/scss/config/silent-classes";
-@import "assets/scss/config/colors";
-@import "assets/scss/config/z-indexes";
-@import "assets/scss/config/decorations";
-@import "assets/scss/config/sizes";
-@import "assets/scss/config/breakpoints";
 
 $box-top-border-h: 3px;
 $big-screen: 1800px;
@@ -25,61 +27,67 @@ $illustration-w-desktop: 101px;
 $illustration-h-desktop: 206px;
 $steps: 6;
 
+@mixin box-with-curved-shadow($color, $size) {
+  box-shadow: 0 0 d.$box-shadow-size rgba(0, 0, 0, .1),
+              0 0 6px rgba(0, 0, 0, .08),
+              0 $size * -1 0 $color;
+}
+
 .timeline {
   overflow: hidden;
-  margin-top: -$box-shadow-size;
+  margin-top: -#{d.$box-shadow-size};
 
   &:after {
-    @include scroll-fader($beige, 20px);
+    @include m.scroll-fader(c.$beige, 20px);
   }
 
-  @media screen and (min-width: $desktop) {
-    margin-bottom: calc(#{$section-items-v-gutter} + #{$grid-v-gutter}) !important;
+  @media screen and (min-width: bp.$desktop) {
+    margin-bottom: calc(#{sp.$section-items-v-gutter} + #{sp.$grid-v-gutter}) !important;
   }
 
   &__steps {
     @extend %smooth-scroll;
     @extend %slider;
-    padding: ($box-shadow-size + $marker-h + $timeline-marker-label-h) 0 $box-shadow-size $gutter;
+    padding: (d.$box-shadow-size + $marker-h + s.$timeline-marker-label-h) 0 d.$box-shadow-size sp.$gutter;
 
-    @media screen and (min-width: $desktop) {
-      padding-left: $gutter-desktop;
+    @media screen and (min-width: bp.$desktop) {
+      padding-left: sp.$gutter-desktop;
     }
 
   }
 
   &__step {
-    padding-left: $gutter;
-    @include flex-column-with-offset(92%, 8px);
+    padding-left: sp.$gutter;
+    @include m.flex-column-with-offset(92%, 8px);
 
-    @media screen and (max-width: pxToEm($desktop-size - 1)) {
+    @media screen and (max-width: f.pxToEm(bp.$desktop-size - 1)) {
       scroll-snap-align: start;
       -webkit-scroll-snap-coordinate: 0% 0%;
       -ms-scroll-snap-coordinate: 0% 0%;
       scroll-snap-coordinate: 0% 0%;
     }
 
-    @media screen and (min-width: $phablet) {
-      @include flex-column-with-offset(60%, 8px);
+    @media screen and (min-width: bp.$phablet) {
+      @include m.flex-column-with-offset(60%, 8px);
     }
 
-    @media screen and (min-width: $desktop) {
-      padding-left: $gutter-desktop;
-      @include flex-column-with-offset(45%, 11px);
+    @media screen and (min-width: bp.$desktop) {
+      padding-left: sp.$gutter-desktop;
+      @include m.flex-column-with-offset(45%, 11px);
     }
 
-    @media screen and (min-width: $page-max-w) {
-      @include flex-column-with-offset(31%, 11px);
+    @media screen and (min-width: s.$page-max-w) {
+      @include m.flex-column-with-offset(31%, 11px);
     }
 
     @media screen and (min-width: $big-screen) {
-      @include flex-column-with-offset(24%, 11px);
+      @include m.flex-column-with-offset(24%, 11px);
     }
 
     &:nth-child(odd) {
 
       .timeline__box {
-        @include box-with-curved-shadow($dark-green, $box-top-border-h);
+        @include box-with-curved-shadow(c.$dark-green, $box-top-border-h);
 
         .lazy-loading-loaded & {
           &:before {
@@ -91,7 +99,7 @@ $steps: 6;
 
       .timeline__marker,
       .timeline__label {
-        color: $dark-green;
+        color: c.$dark-green;
       }
 
     }
@@ -99,7 +107,7 @@ $steps: 6;
     &:nth-child(even) {
 
       .timeline__box {
-        @include box-with-curved-shadow($orange, $box-top-border-h);
+        @include box-with-curved-shadow(c.$orange, $box-top-border-h);
 
         .lazy-loading-loaded & {
           &:before {
@@ -110,7 +118,7 @@ $steps: 6;
 
       .timeline__marker,
       .timeline__label {
-        color: $orange;
+        color: c.$orange;
       }
 
     }
@@ -144,7 +152,7 @@ $steps: 6;
         background-position: #{$illustration-w * $i * -1} 0;
         animation: illustration-animation 1s steps(2, end) infinite;
 
-        @media screen and (min-width: $desktop) {
+        @media screen and (min-width: bp.$desktop) {
           background-position: #{$illustration-w-desktop * $i * -1} 0;
           animation: illustration-animation-desktop 1s steps(2, end) infinite;
         }
@@ -158,9 +166,9 @@ $steps: 6;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    padding-bottom: $grid-v-gutter - $box-top-border-h;
+    padding-bottom: sp.$grid-v-gutter - $box-top-border-h;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       align-items: center;
     }
 
@@ -168,15 +176,15 @@ $steps: 6;
       content: '';
       position: absolute;
       height: 10px;
-      left: $gutter + $marker-spike-w;
-      right: -#{$gutter * 2};
-      top: -#{$grid-v-gutter + $marker-spike-h + $marker-dot-border-w};
+      left: sp.$gutter + $marker-spike-w;
+      right: -#{sp.$gutter * 2};
+      top: -#{sp.$grid-v-gutter + $marker-spike-h + $marker-dot-border-w};
       background-size: 14px 10px;
       background-repeat: repeat-x;
 
-      @media screen and (min-width: $desktop) {
-        left: $gutter-desktop + $marker-spike-w;
-        right: -#{$gutter-desktop * 2};
+      @media screen and (min-width: bp.$desktop) {
+        left: sp.$gutter-desktop + $marker-spike-w;
+        right: -#{sp.$gutter-desktop * 2};
       }
 
     }
@@ -186,7 +194,7 @@ $steps: 6;
   &__header {
     margin-bottom: 2vh;
     text-align: center;
-    @include flex-column;
+    @include m.flex-column;
   }
 
   &__illustration {
@@ -204,7 +212,7 @@ $steps: 6;
 
     }
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       width: $illustration-w-desktop;
       height: 206px;
       flex-basis: $illustration-w-desktop;
@@ -276,20 +284,20 @@ $steps: 6;
 
   &__label {
     position: absolute;
-    top: -#{$marker-h + $timeline-marker-label-h};
+    top: -#{$marker-h + s.$timeline-marker-label-h};
     left: 0;
   }
 
   &__mover {
     display: none;
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       position: absolute;
       display: block;
-      z-index: $z-low;
+      z-index: z.$z-low;
       width: 50px;
       height: 140px;
-      background: $base-text-color;
+      background: c.$base-text-color;
       top: 50%;
       overflow: hidden;
       text-indent: -200em;
@@ -302,7 +310,7 @@ $steps: 6;
 
       &:hover,
       &:focus {
-        color: $orange;
+        color: c.$orange;
       }
 
       &:before {

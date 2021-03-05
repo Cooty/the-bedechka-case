@@ -1,12 +1,13 @@
 @use "../config/breakpoints" as bp;
 @use "../config/mixins" as m;
 @use "../config/sizes" as s;
-@use "../config/typo" as t;
+@use "../config/spacings" as sp;
+@use "../config/decorations" as d;
 @import "../config/silent-classes";
 
 @mixin column-desktop($width) {
   @media screen and (min-width: bp.$desktop) {
-    @include m.flex-column-with-offset($width, s.$gutter);
+    @include m.flex-column-with-offset($width, sp.$gutter);
   }
 }
 
@@ -24,7 +25,7 @@
 
   &__header {
     text-align: center;
-    margin-bottom: t.$v-gutter-near;
+    margin-bottom: sp.$v-gutter-near;
 
     @media screen and (min-width: bp.$tablet) {
       @include m.flex-column();
@@ -45,7 +46,7 @@
 
   &__graphic {
     text-align: center;
-    margin-bottom: t.$v-gutter-far;
+    margin-bottom: sp.$v-gutter-far;
     // TODO: Just placeholder, adopt to final design
     > img {
       max-width: 100%;
@@ -62,27 +63,27 @@
 
   &__case {
     margin-bottom: 4vh;
-    max-width: s.$yt-thumbnail-standard-w - s.$gutter * 2;
+    max-width: s.$yt-thumbnail-standard-w - sp.$gutter * 2;
     margin-right: auto;
     margin-left: auto;
 
     @media screen and (min-width: s.$yt-thumbnail-standard-w) {
       background: white;
-      padding: s.$grid-v-gutter var(--gutter);
-      border-radius: s.$box-radius;
-      box-shadow: 0 0 $box-shadow-size rgba(0, 0, 0, .1),
+      padding: sp.$grid-v-gutter var(--gutter);
+      border-radius: d.$box-radius;
+      box-shadow: 0 0 d.$box-shadow-size rgba(0, 0, 0, .1),
                   0 0 6px rgba(0, 0, 0, .08);
     }
 
     > .video {
-      width: calc(100% + #{s.$gutter * 2});
-      margin-left: -#{s.$gutter};
+      width: calc(100% + #{sp.$gutter * 2});
+      margin-left: -#{sp.$gutter};
       margin-bottom: 2vh;
 
       @media screen and (min-width: s.$yt-thumbnail-standard-w) {
-        margin-top: -#{s.$grid-v-gutter};
+        margin-top: -#{sp.$grid-v-gutter};
         overflow: hidden;
-        border-radius: s.$box-radius;
+        border-radius: d.$box-radius;
 
         &:before {
           content: '';
@@ -92,8 +93,8 @@
       }
 
       @media screen and (min-width: bp.$desktop) {
-        width: calc(100% + #{s.$gutter-desktop * 2});
-        margin-left: -#{s.$gutter-desktop};
+        width: calc(100% + #{sp.$gutter-desktop * 2});
+        margin-left: -#{sp.$gutter-desktop};
       }
 
     }
@@ -103,12 +104,12 @@
     }
 
     @media screen and (min-width: bp.$tablet) {
-      @include m.flex-column-with-offset(50%, #{s.$gutter / 2});
-      margin-bottom: -#{s.$grid-v-gutter * 3} !important;
+      @include m.flex-column-with-offset(50%, #{sp.$gutter / 2});
+      margin-bottom: -#{sp.$grid-v-gutter * 3} !important;
     }
 
     @media screen and (min-width: bp.$desktop) {
-      @include m.flex-column-with-offset(50%, s.$gutter);
+      @include m.flex-column-with-offset(50%, sp.$gutter);
     }
 
   }
@@ -117,6 +118,6 @@
 
 .vision-offset-desktop {
   @media screen and (min-width: bp.$tablet) {
-    padding-bottom: s.$grid-v-gutter * 2;
+    padding-bottom: sp.$grid-v-gutter * 2;
   }
 }

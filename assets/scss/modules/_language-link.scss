@@ -1,28 +1,30 @@
-@import "../config/colors";
-@import "../config/breakpoints";
-@import "../config/sizes";
-@import "../config/functions";
+@use "../config/colors" as c;
+@use "../config/breakpoints" as bp;
+@use "../config/sizes" as s;
+@use "../config/spacings" as sp;
+@use "../config/functions" as f;
+
+$flag-size: 16px;
 
 .language-link {
-  $flag-size: 16px;
 
   position: absolute;
-  right: $gutter;
+  right: sp.$gutter;
   top: 22px;
-  color: $base-text-color;
+  color: c.$base-text-color;
   display: flex;
   align-items: center;
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: bp.$desktop) {
     position: relative;
-    margin-right: $gutter-desktop;
+    margin-right: sp.$gutter-desktop;
     top: auto;
     right: auto;
   }
 
   &__label {
-    font-size: pxToRem(13);
-    margin-right: pxToRem(5);
+    font-size: f.pxToRem(13);
+    margin-right: f.pxToRem(5);
   }
 
   &__flag {
