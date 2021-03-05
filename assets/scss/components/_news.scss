@@ -1,31 +1,33 @@
-@import "../config/breakpoints";
-@import "../config/sizes";
-@import "../config/decorations";
+@use "../config/colors" as c;
+@use "../config/breakpoints" as bp;
+@use "../config/sizes" as s;
+@use "../config/spacings" as sp;
+@use "../config/decorations" as d;
+@use "../config/mixins" as m;
 @import "../config/silent-classes";
-@import "../config/mixins";
+
+$logo-height: 32px;
 
 .news {
-  $logo-height: 32px;
-
   overflow: hidden;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: bp.$tablet) {
     overflow: visible;
-    max-width: $desktop;
+    max-width: bp.$desktop;
     margin: 0 auto;
   }
 
-  @media screen and (min-width: $xxl-w + $gutter-desktop * 2) {
-    max-width: $xxl-w;
+  @media screen and (min-width: s.$xxl-w + sp.$gutter-desktop * 2) {
+    max-width: s.$xxl-w;
     margin-left: auto;
     margin-right: auto;
   }
 
   &:after {
     z-index: 1;
-    @include scroll-fader($beige, 20px);
+    @include m.scroll-fader(c.$beige, 20px);
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       display: none;
     }
 
@@ -34,10 +36,10 @@
   &__list {
     @extend %smooth-scroll;
     @extend %slider;
-    padding: $box-shadow-size 0 $box-shadow-size $gutter;
+    padding: d.$box-shadow-size 0 d.$box-shadow-size sp.$gutter;
 
-    @media screen and (min-width: $tablet) {
-      padding: 0 ($gutter / 2);
+    @media screen and (min-width: bp.$tablet) {
+      padding: 0 (sp.$gutter / 2);
       flex-wrap: wrap;
       justify-content: center;
       overflow: visible;
@@ -48,18 +50,18 @@
 
     }
 
-    @media screen and (min-width: $desktop) {
-      padding: 0 $gutter;
+    @media screen and (min-width: bp.$desktop) {
+      padding: 0 sp.$gutter;
     }
 
   }
 
   &__item {
-    margin-right: $gutter;
-    @include item-width(92%, 8px);
+    margin-right: sp.$gutter;
+    @include m.flex-column-with-offset(92%, 8px);
 
-    @media screen and (min-width: $tablet) {
-      margin: 0 0 $grid-v-gutter 0;
+    @media screen and (min-width: bp.$tablet) {
+      margin: 0 0 sp.$grid-v-gutter 0;
     }
 
     > .box {
@@ -69,26 +71,26 @@
       justify-content: space-between;
     }
 
-    padding: 0 ($gutter / 2);
+    padding: 0 (sp.$gutter / 2);
 
-    @media screen and (min-width: $tablet) {
-      @include flex-column(50%);
+    @media screen and (min-width: bp.$tablet) {
+      @include m.flex-column(50%);
     }
 
-    @media screen and (min-width: $desktop) {
-      padding: 0 $gutter;
-      @include flex-column(33.3333%);
+    @media screen and (min-width: bp.$desktop) {
+      padding: 0 sp.$gutter;
+      @include m.flex-column(33.3333%);
     }
 
-    @media screen and (min-width: $xxl-w + $gutter-desktop * 2) {
-      @include flex-column(25%);
+    @media screen and (min-width: s.$xxl-w + sp.$gutter-desktop * 2) {
+      @include m.flex-column(25%);
     }
 
   }
 
   &__item--more {
     background: rgba(0, 0, 0, .1);
-    border-radius: $box-radius;
+    border-radius: d.$box-radius;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,10 +98,10 @@
             0 0 16px rgba(0, 0, 0, .1) inset,
             0 0 6px rgba(0, 0, 0, .08) inset;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       background: none;
       box-shadow: none;
-      @include flex-column(100%);
+      @include m.flex-column(100%);
     }
 
   }
@@ -113,7 +115,7 @@
     min-height: $logo-height; // 1)
 
     & .box__info {
-      @include single-line-ellipsis;
+      @extend %single-line-ellipsis;
       margin-top: 0;
       flex: 1;
     }

@@ -1,18 +1,19 @@
-@import "../config/breakpoints";
-@import "../config/colors";
-@import "../config/sizes";
-@import "../config/silent-classes";
+@use "../config/breakpoints" as bp;
+@use "../config/colors" as c;
+@use "../config/sizes" as s;
+@use "../config/spacings" as sp;
+@use "../config/typo" as t;
+
+$avatar-width: 80px;
+$avatar-big-width: 100px;
+
+%info-row {
+  display: block;
+  margin-top: .6em;
+  font-size: .9rem;
+}
 
 .person {
-  $avatar-width: 80px;
-  $avatar-big-width: 100px;
-
-  %info-row {
-    display: block;
-    margin-top: .6em;
-    font-size: .9rem;
-  }
-
   height: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -25,10 +26,10 @@
     min-width: $avatar-width;
     height: $avatar-width;
     margin-right: 15px;
-    background: $image-placeholder-color;
+    background: c.$image-placeholder-color;
     border-radius: 100%;
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       flex-basis: $avatar-big-width;
       max-width: $avatar-big-width;
       min-width: $avatar-big-width;
@@ -94,13 +95,13 @@
   }
 
   &__header {
-    font-size: $subheader-size;
+    font-size: t.$subheader-size;
     font-weight: 500;
   }
 
   &__title {
     @extend %info-row;
-    color: $secondary-text-color;
+    color: c.$secondary-text-color;
   }
 
   &__link {
@@ -130,8 +131,8 @@
     position: absolute;
     left: calc(var(--gutter) * -1);
     right: calc(var(--gutter) * -1);
-    top: -#{$grid-v-gutter};
-    bottom: -#{$grid-v-gutter};
+    top: -#{sp.$grid-v-gutter};
+    bottom: -#{sp.$grid-v-gutter};
   }
 
 }

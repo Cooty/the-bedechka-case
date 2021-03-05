@@ -1,5 +1,6 @@
 @use "../config/mixins" as m;
 @use "../config/sizes" as s;
+@use "../config/spacings" as sp;
 @use "../config/breakpoints" as bp;
 
 .people {
@@ -49,7 +50,7 @@
   }
 
   &__item {
-    margin-bottom: s.$grid-v-gutter;
+    margin-bottom: sp.$grid-v-gutter;
 
     > .box {
       height: 100%;

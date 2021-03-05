@@ -1,21 +1,25 @@
+@use "../config/breakpoints" as bp;
+@use "../config/spacings" as sp;
+@use "../config/sizes" as s;
+@use "../config/functions" as f;
+@use "../config/colors" as c;
 @import "../config/silent-classes";
-@import "../config/breakpoints";
 
 .navigation {
   @extend %smooth-scroll;
-  height: pxToRem($mobile-navigation-h);
+  height: f.px-to-rem(s.$mobile-navigation-h);
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
 
-  @media screen and (min-width: $phablet) and (max-width: $desktop - 1) {
-    max-width: $phablet;
+  @media screen and (min-width: bp.$phablet) and (max-width: bp.$desktop - 1) {
+    max-width: bp.$phablet;
     margin: 0 auto;
   }
 
-  @media screen and (min-width: $desktop) {
-    padding-right: $gutter-desktop;
+  @media screen and (min-width: bp.$desktop) {
+    padding-right: sp.$gutter-desktop;
     height: auto;
     flex: 1 1 auto;
     justify-content: flex-end;
@@ -32,9 +36,9 @@
     padding: 0 10px;
     font-size: 1.4rem;
 
-    @media screen and (min-width: $desktop) {
+    @media screen and (min-width: bp.$desktop) {
       flex: 0 0 auto;
-      padding: 0 ($gutter-desktop * 2);
+      padding: 0 (sp.$gutter-desktop * 2);
       font-size: 1.8rem;
     }
 
@@ -56,7 +60,7 @@
       width: 0;
       transform: translate3d(-50%, 0, 0);
 
-      @media screen and (min-width: $desktop) {
+      @media screen and (min-width: bp.$desktop) {
         bottom: -2px;
         height: 4px;
       }
@@ -70,7 +74,7 @@
         &:after {
           opacity: 1;
           width: 100%;
-          background-color: $orange;
+          background-color: c.$orange;
         }
       }
     }
@@ -79,7 +83,7 @@
       &:after {
         opacity: 1;
         width: 100%;
-        background-color: $dark-green;
+        background-color: c.$dark-green;
       }
     }
 

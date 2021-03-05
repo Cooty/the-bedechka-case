@@ -1,47 +1,51 @@
-.box-grid {
-  padding-left: $gutter;
-  padding-right: $gutter;
+@use "../config/spacings" as sp;
+@use "../config/breakpoints" as bp;
+@use "../config/sizes" as s;
+@use "../config/mixins" as m;
 
-  @media screen and (min-width: $tablet) {
+.box-grid {
+  padding-left: sp.$gutter;
+  padding-right: sp.$gutter;
+
+  @media screen and (min-width: bp.$tablet) {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: $desktop;
+    max-width: bp.$desktop;
     margin-left: auto;
     margin-right: auto;
   }
 
-  @media screen and (min-width: $xxl-w + $gutter-desktop * 2) {
-    max-width: $xxl-w;
+  @media screen and (min-width: s.$xxl-w + sp.$gutter-desktop * 2) {
+    max-width: s.$xxl-w;
   }
 
   &__item {
-    margin-bottom: $grid-v-gutter;
+    margin-bottom: sp.$grid-v-gutter;
 
-    @media screen and (min-width: $tablet) {
-      padding-left: $gutter;
-      padding-right: $gutter;
-      @include flex-column(50%);
+    @media screen and (min-width: bp.$tablet) {
+      padding-left: sp.$gutter;
+      padding-right: sp.$gutter;
+      @include m.flex-column(50%);
     }
 
-    @media screen and (min-width: $desktop) {
-      @include flex-column(33.3333%);
+    @media screen and (min-width: bp.$desktop) {
+      @include m.flex-column(33.3333%);
     }
 
-    @media screen and (min-width: $xxl-w + $gutter-desktop * 2) {
-      @include flex-column(25%);
+    @media screen and (min-width: s.$xxl-w + sp.$gutter-desktop * 2) {
+      @include m.flex-column(25%);
     }
 
     > .box {
 
-      @media screen and (max-width: $tablet - 1) {
+      @media screen and (max-width: bp.$tablet - 1) {
         max-width: 400px;
         margin: 0 auto;
       }
 
       height: 100%;
     }
-
 
   }
 }

@@ -1,9 +1,8 @@
-@import "../config/colors";
-@import "../config/decorations";
-@import "../config/z-indexes";
-@import "../config/breakpoints";
-@import "../config/functions";
-@import "../config/sizes";
+@use "../config/colors" as c;
+@use "../config/z-indexes" as z;
+@use "../config/breakpoints" as bp;
+@use "../config/functions" as f;
+@use "../config/spacings" as sp;
 
 .cookie-consent {
   display: block;
@@ -14,11 +13,11 @@
   left: auto;
   bottom: var(--gutter);
   box-shadow: 0 0 20px rgba(0, 0, 0, .2);
-  z-index: $z-highest;
+  z-index: z.$z-highest;
   border-radius: 10px;
   width: 90%;
-  background: $base-text-color;
-  color: $almost-white;
+  background: c.$base-text-color;
+  color: c.$almost-white;
   transition: all .3s ease-in-out;
   opacity: 0;
   transform: translate3d(0, 20%, 0);
@@ -28,21 +27,21 @@
     transform: translate3d(0, 0, 0);
   }
 
-  @media screen and (min-width: $phablet) {
+  @media screen and (min-width: bp.$phablet) {
     left: auto;
     width: 70%;
   }
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: bp.$tablet) {
     width: 50%;
   }
 
-  @media screen and (min-width: $desktop) {
-    width: pxToRem(400px);
+  @media screen and (min-width: bp.$desktop) {
+    width: f.px-to-rem(400px);
   }
 
   &__text {
-    font-size: pxToRem(13px);
+    font-size: f.px-to-rem(13px);
     padding-bottom: var(--gutter);
   }
 
@@ -52,8 +51,8 @@
   }
 
   &__options-item {
-    margin: 0 $gutter $gutter 0;
-    font-size: pxToRem(13px);
+    margin: 0 sp.$gutter sp.$gutter 0;
+    font-size: f.px-to-rem(13px);
   }
 
   &__button {

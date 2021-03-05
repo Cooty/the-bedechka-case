@@ -1,16 +1,17 @@
-@import "z-indexes";
-@import "colors";
-@import "typo";
-@import "sizes";
-@import "functions";
+@use "z-indexes" as z;
+@use "colors" as c;
+@use "typo" as t;
+@use "spacings" as sp;
+@use "functions" as f;
+@use "decorations" as d;
 
 %text-colored-link {
-  color: $base-text-color;
+  color: c.$base-text-color;
   text-decoration: none;
 }
 
 %header-font {
-  font-family: $header-font;
+  font-family: t.$header-font;
   font-weight: 700;
 }
 
@@ -21,14 +22,14 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: $backdrop-grey;
-  z-index: $z-lowest;
+  background-color: c.$backdrop-grey;
+  z-index: z.$z-lowest;
 }
 
 %grounge-mask {
   content: '';
   position: absolute;
-  z-index: $z-low;
+  z-index: z.$z-low;
   left: 0;
   right: 0;
   height: 10px;
@@ -49,11 +50,11 @@
 }
 
 %v-gutter-inside-section {
-  margin-bottom: $section-items-v-gutter;
+  margin-bottom: sp.$section-items-v-gutter;
 }
 
 %picture-background {
-  background-color: $backdrop-grey;
+  background-color: c.$backdrop-grey;
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
@@ -121,8 +122,28 @@
   // to the window's edge
   &:after {
     content: '';
-    height: $gutter; // has to have height to display it
+    height: sp.$gutter; // has to have height to display it
     flex: 0 0 1px; // just to give it layout, the last elements margin can now work
   }
 
+}
+
+%single-line-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+%button-base {
+  cursor: pointer;
+  font-family: t.$copy-font;
+  -webkit-appearance: none;
+  transition: all .3s;
+  text-align: center;
+  font-size: 1rem;
+}
+
+%box-shadow {
+  box-shadow: 0 0 d.$box-shadow-size rgba(0, 0, 0, .1),
+  0 0 6px rgba(0, 0, 0, .08);
 }

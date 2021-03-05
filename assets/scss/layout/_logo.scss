@@ -1,7 +1,7 @@
+@use "../config/breakpoints" as bp;
+@use "../config/spacings" as sp;
+@use "../config/functions" as f;
 @import "../config/silent-classes";
-@import "../config/breakpoints";
-@import "../config/sizes";
-@import "../config/functions";
 
 .logo {
   @extend %text-colored-link;
@@ -9,7 +9,7 @@
   align-items: center;
   flex-wrap: nowrap;
 
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: bp.$desktop) {
     flex: 0 0 auto;
   }
 
@@ -17,9 +17,9 @@
     flex: 0;
     width: 53px;
     height: 47px;
-    margin-right: $gutter;
+    margin-right: sp.$gutter;
 
-    @media (min-width: $desktop) {
+    @media (min-width: bp.$desktop) {
       width: 60px;
       height: 53px;
     }
@@ -28,11 +28,11 @@
 
   &__typo {
     @extend %header-font;
-    font-size: pxToRem(26);
+    font-size: f.px-to-rem(26);
     user-select: none;
 
-    @media (min-width: $desktop) {
-      font-size: pxToRem(35);
+    @media (min-width: bp.$desktop) {
+      font-size: f.px-to-rem(35);
     }
   }
 }

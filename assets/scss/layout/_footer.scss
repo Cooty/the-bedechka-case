@@ -1,4 +1,8 @@
 @use "../config/breakpoints" as bp;
+@use "../config/spacings" as sp;
+@use "../config/typo" as t;
+@use "../config/colors" as c;
+@use "../config/z-indexes" as z;
 @import "../config/silent-classes";
 
 // Flex-box sticky footer solution
@@ -26,9 +30,11 @@ body > .main {
 }
 
 // Footer styles and custom layout
+
+$icon-size: 16px;
+$icon-size-desktop: 34px;
+
 .footer {
-  $icon-size: 16px;
-  $icon-size-desktop: 34px;
   @extend %section-v-divider;
 
   %list-item-v-gutter {
@@ -38,7 +44,7 @@ body > .main {
 
     @media screen and (min-width: bp.$desktop) {
       margin-bottom: 0;
-      padding: 0 $gutter;
+      padding: 0 sp.$gutter;
     }
 
   }
@@ -55,7 +61,7 @@ body > .main {
     @extend %picture-background;
     @extend %side-gutters;
     min-height: 240px;
-    color: $almost-white;
+    color: c.$almost-white;
     text-align: center;
     padding-top: 40px;
     padding-bottom: 30px;
@@ -79,7 +85,7 @@ body > .main {
     }
 
     > * {
-      z-index: $z-middle;
+      z-index: z.$z-middle;
     }
 
     &-title {
@@ -107,7 +113,7 @@ body > .main {
       }
 
       &-item-link {
-        color: $almost-white;
+        color: c.$almost-white;
         text-decoration: none;
         display: inline-flex;
         flex-wrap: nowrap;
@@ -129,7 +135,7 @@ body > .main {
       &-icon {
         width: $icon-size + 10px;
         height: $icon-size + 10px;
-        margin-right: $gutter;
+        margin-right: sp.$gutter;
         flex: 1;
         flex-basis: $icon-size + 10px;
         background: white;
@@ -180,8 +186,8 @@ body > .main {
         @media screen and (min-width: bp.$tablet) {
           display: inline-flex;
           align-items: center;
-          padding-left: $gutter;
-          padding-right: $gutter;
+          padding-left: sp.$gutter;
+          padding-right: sp.$gutter;
         }
 
       }
@@ -191,8 +197,8 @@ body > .main {
         padding: 0;
         background: transparent;
         border: 0;
-        color: $almost-white;
-        font-family: $copy-font;
+        color: c.$almost-white;
+        font-family: t.$copy-font;
         cursor: pointer;
         text-align: left;
       }

@@ -2,8 +2,8 @@
 
 $desktop-size: 1024;
 
-$desktop: pxToEm($desktop-size);
-$phablet: pxToEm(600);
-$tablet: pxToEm(768);
-$smallest: pxToEm(320);
-$smallest-height: pxToEm(480);
+$desktop: px-to-em($desktop-size);
+$phablet: px-to-em(600);
+$tablet: px-to-em(768);
+$smallest: px-to-em(320);
+$smallest-height: px-to-em(480);

@@ -1,5 +1,5 @@
-@import "../config/colors";
-@import "../config/sizes";
+@use "../config/spacings" as sp;
+@use "../config/decorations" as d;
 
 .screening {
 
@@ -20,9 +20,11 @@
   }
 
   &__icon {
-    flex: 0 0 24px;
-    width: 24px;
-    height: 24px;
+    $size: 24px;
+
+    flex: 0 0 $size;
+    width: $size;
+    height: $size;
     margin-right: 10px;
   }
 
@@ -44,13 +46,13 @@
 
   & &__image-container {
     background: rgba(0, 0, 0, .1);
-    margin: -#{$grid-v-gutter}
+    margin: -#{sp.$grid-v-gutter}
       calc(var(--gutter) * -1)
       .8em
       calc(var(--gutter) * -1);
     overflow: hidden;
-    border-top-left-radius: $box-radius;
-    border-top-right-radius: $box-radius;
+    border-top-left-radius: d.$box-radius;
+    border-top-right-radius: d.$box-radius;
   }
 
 }

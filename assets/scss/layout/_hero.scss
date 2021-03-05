@@ -1,5 +1,6 @@
+@use "../config/breakpoints" as bp;
+@use "../config/z-indexes" as z;
 @import "../config/silent-classes";
-@import "../config/breakpoints";
 
 .hero {
   @extend %picture-background;
@@ -11,7 +12,7 @@
   align-items: center;
   justify-content: flex-start;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: bp.$tablet) {
     height: 421px;
     justify-content: flex-end;
   }
@@ -22,7 +23,7 @@
     justify-content: center;
     padding-bottom: 20px;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       min-height: 568px;
     }
   }
@@ -38,6 +39,6 @@
   }
 
   > * {
-    z-index: $z-middle;
+    z-index: z.$z-middle;
   }
 }

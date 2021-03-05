@@ -1,3 +1,9 @@
+@use "../config/spacings" as sp;
+@use "../config/breakpoints" as bp;
+@use "../config/decorations" as d;
+@use "../config/colors" as c;
+@use "../config/typo" as t;
+
 .form {
 
   label,
@@ -15,39 +21,39 @@
   }
 
   &__row {
-    margin-bottom: $gutter;
+    margin-bottom: sp.$gutter;
 
     &:last-of-type {
       margin-bottom: 0;
     }
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       display: flex;
-      margin-bottom: $gutter-desktop;
+      margin-bottom: sp.$gutter-desktop;
     }
 
   }
 
   &__row--single-line {
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       flex-wrap: nowrap;
     }
   }
 
   input {
-    padding: 12px $gutter;
+    padding: 12px sp.$gutter;
     border: 2px solid rgba(0, 0, 0, .2);
-    border-radius: $form-border-radius;
+    border-radius: d.$form-border-radius;
     background: white;
-    color: $base-text-color;
+    color: c.$base-text-color;
     transition: all .3s ease-in-out;
-    font-family: $copy-font;
+    font-family: t.$copy-font;
     font-size: 1rem;
     -webkit-appearance: none;
 
     &:focus {
       border-color: rgba(0, 0, 0, .4);
-      box-shadow: 0 0 6px rgba($purple, .4);
+      box-shadow: 0 0 6px rgba(c.$purple, .4);
       outline: none;
     }
 
@@ -60,6 +66,7 @@
     font-style: normal;
     color: rgb(255, 0, 0);
     line-height: 0;
+    user-select: none;
   }
 
   &__asterisk--no-super {
@@ -68,10 +75,10 @@
 
   &__legend {
     font-style: italic;
-    margin-top: $gutter-desktop;
+    margin-top: sp.$gutter-desktop;
     font-size: .8rem;
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       text-align: right;
     }
 

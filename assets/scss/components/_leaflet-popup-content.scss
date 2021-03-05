@@ -1,9 +1,10 @@
 @use "../config/mixins" as m;
-@import "../config/breakpoints";
+@use "../config/breakpoints" as bp;
+@use "../config/colors" as c;
+@use "../config/typo" as t;
 @import "../config/silent-classes";
-@import "../config/colors";
 
-// Additions and overwrittes for the default CSS theme of
+// Additions and overwrites for the default CSS theme of
 // LeafletJS map provider.
 // the base CSS is loaded dynamically to the global scope where
 // the cases-map JS module is initialized
@@ -35,7 +36,7 @@
   font-size: .85rem;
   width: 290px !important;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: bp.$tablet) {
     font-size: 1rem;
     width: 310px !important;
   }
@@ -54,7 +55,7 @@
 
   & &__title {
     @extend %header-font;
-    color: $base-text-color;
+    color: c.$base-text-color;
     font-size: 1.25em;
     line-height: 1.2;
     letter-spacing: 1px;
@@ -62,17 +63,17 @@
   }
 
   & &__text {
-    font-family: $copy-font;
-    color: $base-text-color;
+    font-family: t.$copy-font;
+    color: c.$base-text-color;
     line-height: 1.2;
     margin-bottom: .4em;
     hyphens: auto;
   }
 
   & &__link {
-    @include m.single-line-ellipsis;
+    @extend %single-line-ellipsis;
     display: block;
-    color: $purple;
+    color: c.$base-text-color;
     text-decoration: underline;
 
     &:hover,
