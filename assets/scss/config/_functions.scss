@@ -1,4 +1,4 @@
-@function stripUnit($number) {
+@function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
@@ -6,14 +6,14 @@
   @return $number;
 }
 
-@function pxToRem($size) {
-  $size: stripUnit($size);
+@function px-to-rem($size) {
+  $size: strip-unit($size);
 
   @return ($size / 16) * 1rem;
 }
 
-@function pxToEm($size) {
-  $size: stripUnit($size);
+@function px-to-em($size) {
+  $size: strip-unit($size);
 
   @return ($size / 16) * 1em;
 }

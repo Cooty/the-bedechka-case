@@ -67,11 +67,11 @@ $close-w: 20px;
       opacity: 1;
     }
 
-    @media screen and (min-width: bp.$smallest + f.pxToEm(sp.$gutter * 2)) {
+    @media screen and (min-width: bp.$smallest + f.px-to-em(sp.$gutter * 2)) {
       width: 90%;
     }
 
-    @media screen and (min-width: f.pxToEm(480px)) {
+    @media screen and (min-width: f.px-to-em(480px)) {
       width: 80%;
     }
 

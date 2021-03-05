@@ -30,7 +30,7 @@
   margin-left: var(--gutter);
   margin-right: var(--gutter);
 
-  @media screen and (min-width: f.pxToEm($max-width) + f.pxToEm(sp.$gutter-desktop) * 2) {
+  @media screen and (min-width: f.px-to-em($max-width) + f.px-to-em(sp.$gutter-desktop) * 2) {
     margin-left: auto;
     margin-right: auto;
   }

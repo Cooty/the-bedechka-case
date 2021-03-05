@@ -37,11 +37,11 @@
   }
 
   @media screen and (min-width: bp.$desktop) {
-    width: f.pxToRem(400px);
+    width: f.px-to-rem(400px);
   }
 
   &__text {
-    font-size: f.pxToRem(13px);
+    font-size: f.px-to-rem(13px);
     padding-bottom: var(--gutter);
   }
 
@@ -52,7 +52,7 @@
 
   &__options-item {
     margin: 0 sp.$gutter sp.$gutter 0;
-    font-size: f.pxToRem(13px);
+    font-size: f.px-to-rem(13px);
   }
 
   &__button {

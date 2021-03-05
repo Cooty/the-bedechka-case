@@ -60,7 +60,7 @@ $steps: 6;
     padding-left: sp.$gutter;
     @include m.flex-column-with-offset(92%, 8px);
 
-    @media screen and (max-width: f.pxToEm(bp.$desktop-size - 1)) {
+    @media screen and (max-width: f.px-to-em(bp.$desktop-size - 1)) {
       scroll-snap-align: start;
       -webkit-scroll-snap-coordinate: 0% 0%;
       -ms-scroll-snap-coordinate: 0% 0%;

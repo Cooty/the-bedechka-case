@@ -7,7 +7,7 @@
 
 .navigation {
   @extend %smooth-scroll;
-  height: f.pxToRem(s.$mobile-navigation-h);
+  height: f.px-to-rem(s.$mobile-navigation-h);
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
