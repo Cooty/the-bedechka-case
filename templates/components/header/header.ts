@@ -1,4 +1,4 @@
-import Responsive from '../utils/responsive';
+import Responsive from '../../../assets/ts/utils/responsive';
 
 export default class Header {
     private readonly header: HTMLElement;

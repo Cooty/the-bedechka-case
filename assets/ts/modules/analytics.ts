@@ -1,5 +1,5 @@
 import "../interfaces/WindowGlobals";
-import CookieConsent from "../enum/cookie-consent";
+import CookieSettings from "../../../templates/components/cookie-settings/cookie-settings.enum";
 import deleteAllCookies from "../utils/delete-all-cookies";
 
 export default class Analytics {
@@ -27,7 +27,7 @@ export default class Analytics {
 
     public init() {
         try {
-            const cookieTier = JSON.parse(window.localStorage.getItem(CookieConsent.cookieTier));
+            const cookieTier = JSON.parse(window.localStorage.getItem(CookieSettings.cookieTier));
 
             if(cookieTier >= 2) {
                 this.load();
@@ -35,7 +35,7 @@ export default class Analytics {
             }
 
             document.querySelector("body")
-                .addEventListener(CookieConsent.customEventName, (e: CustomEvent)=> {
+                .addEventListener(CookieSettings.customEventName, (e: CustomEvent)=> {
                     if(JSON.parse(e.detail.cookieTier) >= 2 && !this.isLoaded) {
                         this.load();
                     } else {
