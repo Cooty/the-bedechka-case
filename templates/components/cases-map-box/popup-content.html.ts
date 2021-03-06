@@ -1,5 +1,5 @@
-import ILocation from "../interfaces/ILocation";
-import sanitizeHTML from "../utils/sanitize-html";
+import ILocation from "./ILocation";
+import sanitizeHTML from "../../../assets/ts/utils/sanitize-html";
 
 const popupContent = (location: ILocation): string => {
     const cssNS = "leaflet-popup-content";
