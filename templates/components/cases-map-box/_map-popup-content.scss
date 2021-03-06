@@ -1,8 +1,8 @@
-@use "../config/mixins" as m;
-@use "../config/breakpoints" as bp;
-@use "../config/colors" as c;
-@use "../config/typo" as t;
-@import "../config/silent-classes";
+@use "assets/scss/config/mixins" as m;
+@use "assets/scss/config/breakpoints" as bp;
+@use "assets/scss/config/colors" as c;
+@use "assets/scss/config/typo" as t;
+@import "assets/scss/config/silent-classes";
 
 // Additions and overwrites for the default CSS theme of
 // LeafletJS map provider.
@@ -11,9 +11,7 @@
 // The CSS is loaded from 3rd party CDN
 // https://unpkg.com/leaflet@1.5.1/dist/leaflet.css
 
-// Overwrite leaflet elements
-
-// closing "X" in the top-right corner of the pop-up of a marker
+// HTML generated from Leaflet
 .leaflet-popup-close-button {
   z-index: 2;
   background: white !important;
@@ -28,10 +26,13 @@
   line-height: 0 !important;
 }
 
+$leaflet-popup-radius: 12px;
+$leaflet-popup-v-gutter: 13px;
+$leaflet-popup-h-gutter: 19px;
+
+// HTML generated from our template
+// @see ./popup-content.html.ts
 .leaflet-popup-content {
-  $leaflet-popup-radius: 12px;
-  $leaflet-popup-v-gutter: 13px;
-  $leaflet-popup-h-gutter: 19px;
 
   font-size: .85rem;
   width: 290px !important;
