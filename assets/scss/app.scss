@@ -8,9 +8,9 @@
 @import "./config/z-indexes";
 @import "./config/functions";
 
-@import "./layout/footer";
-@import "./layout/join-us";
-@import "./layout/newsletter-form";
+@import "templates/components/footer/footer";
+@import "templates/components/footer/join-us/join-us";
+@import "templates/components/footer/join-us/newsletter-form/newsletter-form";
 
 @import "./modules/button";
 @import "./modules/form";
