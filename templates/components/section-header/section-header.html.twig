@@ -2,6 +2,6 @@
     {% set priority = priority is defined ? priority : 2 %}
     {% set classes = classes is defined ? classes : '' %}
     <h{{ priority }} class="section-header {{ classes }}">
-        {{ text|trans }}
+        {{ text }}
     </h{{ priority }}>
 {% endif %}
