@@ -35,7 +35,10 @@
         {% for category in partners.categories %}
         <ul class="partners__list">
             <li class="partners__list-item">
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': category.name, 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': category.name|trans,
+                    'priority': 2
+                } only %}
             </li>
             {% for organization in category.organizations %}
                 {% include('/partners/partials/partner-item.html.twig') with {'organization': organization} only %}

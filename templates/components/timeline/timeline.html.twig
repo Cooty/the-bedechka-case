@@ -6,7 +6,10 @@
         <li class="timeline__step">
             <div class="box timeline__box">
                 {% include('/components/timeline/partials/marker.html.twig') with { labelText: 'timeline.1.time' } %}
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': 'timeline.1.title', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': 'timeline.1.title'|trans,
+                    'classes': 'timeline__header',
+                    'priority': 2} only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     {{ 'timeline.1.text'|trans }}
@@ -16,7 +19,11 @@
         <li class="timeline__step">
             <div class="box timeline__box">
                 {% include('/components/timeline/partials/marker.html.twig') with { labelText: 'timeline.2.time' } %}
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': 'timeline.2.title', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': 'timeline.2.title'|trans,
+                    'classes': 'timeline__header',
+                    'priority': 2
+                } only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     {{ 'timeline.2.text'|trans }}
@@ -26,7 +33,11 @@
         <li class="timeline__step">
             <div class="box timeline__box">
                 {% include('/components/timeline/partials/marker.html.twig') with { labelText: 'timeline.3.time' } %}
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': 'timeline.3.title', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': 'timeline.3.title'|trans,
+                    'classes': 'timeline__header',
+                    'priority': 2
+                } only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     {{ 'timeline.3.text'|trans }}
@@ -36,7 +47,11 @@
         <li class="timeline__step">
             <div class="box timeline__box">
                 {% include('/components/timeline/partials/marker.html.twig') with { labelText: 'timeline.4.time' } %}
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': 'timeline.4.title', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': 'timeline.4.title'|trans,
+                    'classes': 'timeline__header',
+                    'priority': 2
+                } only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     {{ 'timeline.4.text'|trans }}
@@ -46,7 +61,11 @@
         <li class="timeline__step">
             <div class="box timeline__box">
                 {% include('/components/timeline/partials/marker.html.twig') with { labelText: 'timeline.5.time' } %}
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': 'timeline.5.title', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': 'timeline.5.title'|trans,
+                    'classes': 'timeline__header',
+                    'priority': 2
+                } only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     {{ 'timeline.5.text'|trans }}
@@ -56,7 +75,11 @@
         <li class="timeline__step">
             <div class="box timeline__box">
                 {% include('/components/timeline/partials/marker.html.twig') with { labelText: 'timeline.6.time' } %}
-                {% include('/components/sub-header/sub-header.html.twig') with {'text': 'timeline.6.title', 'classes': 'timeline__header', 'priority': 2} only %}
+                {% include('/components/sub-header/sub-header.html.twig') with {
+                    'text': 'timeline.6.title'|trans,
+                    'classes': 'timeline__header',
+                    'priority': 2
+                } only %}
                 <div class="timeline__illustration"></div>
                 <p class="timeline__text">
                     {{ 'timeline.6.text'|trans }}
