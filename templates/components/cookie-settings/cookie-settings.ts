@@ -1,12 +1,9 @@
-import "../interfaces/WindowGlobals";
-import "../../scss/components/_cookie-consent.scss";
-import CookieConsent from "../enum/cookie-consent";
-import "../templates/cookie-settings";
-import cookieSettings from "../templates/cookie-settings";
-import debounce from "../utils/debounce";
-import getScrollPercent from "../utils/get-scroll-percent";
+import "../../../assets/ts/interfaces/WindowGlobals";
+import "./_cookie-consent.scss";
+import settings from "./cookie-settings.enum";
+import template from "./cookie-settings.html";
 
-export default class CookieConsentSettings {
+export default class CookieSettings {
     private readonly openerClassName = "cookie-consent--show";
     private form: HTMLFormElement;
     private toastMessage: HTMLElement;
@@ -15,15 +12,15 @@ export default class CookieConsentSettings {
 
     private createToastMessage() {
         const tempContainer = document.createElement("div");
-        const selectedTier = JSON.parse(localStorage.getItem(CookieConsent.cookieTier));
+        const selectedTier = JSON.parse(localStorage.getItem(settings.cookieTier));
         let tier2Checked = true;
 
-        if(selectedTier && selectedTier !== CookieConsent.defaultTier) {
+        if(selectedTier && selectedTier !== settings.defaultTier) {
             tier2Checked = false;
         }
 
-        tempContainer.innerHTML = cookieSettings(tier2Checked);
-        this.form = tempContainer.querySelector('.js-cookie-tiers-form');
+        tempContainer.innerHTML = template(tier2Checked);
+        this.form = tempContainer.querySelector(".js-cookie-tiers-form");
         this.form.addEventListener("submit", (e)=> {
             e.preventDefault();
             this.saveAndClose();
@@ -61,10 +58,10 @@ export default class CookieConsentSettings {
         const cookieTier = formData.get("cookie_tier") || 1;
 
         try {
-            localStorage.setItem(CookieConsent.consent, "true");
-            localStorage.setItem(CookieConsent.cookieTier, cookieTier.toString());
+            localStorage.setItem(settings.consent, "true");
+            localStorage.setItem(settings.cookieTier, cookieTier.toString());
 
-            const event = new CustomEvent(CookieConsent.customEventName, {
+            const event = new CustomEvent(settings.customEventName, {
                 detail: {cookieTier},
                 bubbles: true
             });
@@ -80,7 +77,7 @@ export default class CookieConsentSettings {
     public init() {
         this.toggle = document.querySelector(".js-cookie-settings-toggle");
 
-        if(!window.localStorage.getItem(CookieConsent.consent)) {
+        if(!window.localStorage.getItem(settings.consent)) {
             this.open();
         }
 

@@ -1,8 +1,8 @@
-@use "../config/colors" as c;
-@use "../config/z-indexes" as z;
-@use "../config/breakpoints" as bp;
-@use "../config/functions" as f;
-@use "../config/spacings" as sp;
+@use "assets/scss/config/colors" as c;
+@use "assets/scss/config/z-indexes" as z;
+@use "assets/scss/config/breakpoints" as bp;
+@use "assets/scss/config/functions" as f;
+@use "assets/scss/config/spacings" as sp;
 
 .cookie-consent {
   display: block;
