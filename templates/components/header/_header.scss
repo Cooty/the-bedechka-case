@@ -5,6 +5,10 @@
 @use "assets/scss/config/spacings" as sp;
 @use "assets/scss/config/breakpoints" as bp;
 
+@use "./navigation/navigation";
+@use "./logo/logo";
+@use "./language-link/language-link";
+
 .header {
   background-color: c.$beige;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
