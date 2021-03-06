@@ -30,7 +30,7 @@ Encore
     .addEntry("home", "./assets/ts/home.ts")
     .addEntry("yt", "./templates/components/youtube-embed/youtube-embed.ts")
     .addEntry("admin", "./assets/ts/admin/app.ts")
-    .addStyleEntry("the-crew", "./assets/scss/the-crew.scss")
+    .addStyleEntry("the-crew", "./templates/the-crew/the-crew.scss")
     .addStyleEntry("people", "./assets/scss/people.scss")
     .addStyleEntry("screenings", "./assets/scss/screenings.scss")
     .addStyleEntry("partners", "./assets/scss/partners.scss")
