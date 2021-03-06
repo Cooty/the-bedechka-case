@@ -1,11 +1,11 @@
-import "../../scss/components/_news.scss";
+import "./_news.scss";
 
-import INewsItems from "../interfaces/INewsItems";
-import {getNetworkErrorMessage} from "../utils/error-handling";
-import newsItemInside from "../templates/news-item-inside";
-import "../interfaces/WindowGlobals";
+import INewsItems from "./INewsItems";
+import {getNetworkErrorMessage} from "../../../assets/ts/utils/error-handling";
+import template from "./news-list-item.html";
+import "../../../assets/ts/interfaces/WindowGlobals";
 
-export default class NewsPagination {
+export default class News {
     private currentPage: number;
     private readonly button: HTMLButtonElement;
     private readonly buttonContainer: HTMLElement;
@@ -42,7 +42,7 @@ export default class NewsPagination {
 
     private makeNewsItems(newsItems: INewsItems): string[] {
         return newsItems.items.map(n => {
-            return newsItemInside(n);
+            return template(n);
         });
     }
 
@@ -87,7 +87,7 @@ export default class NewsPagination {
                     }
                 });
         } catch (e) {
-            NewsPagination.handleError(e);
+            News.handleError(e);
         }
     }
 

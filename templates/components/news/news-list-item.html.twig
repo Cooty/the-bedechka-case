@@ -5,9 +5,11 @@
         </h3>
         <p class="news-source">
             {% if logo %}
-            <img src="{{ logo }}" alt="" class="news-source__img" />
+                <img src="{{ logo }}" alt="" class="news-source__img" />
             {% endif %}
-            <small class="box__info">{{ source }}</small>
+            <small class="box__info">
+                {{ source }}
+            </small>
         </p>
     </a>
 </li>
