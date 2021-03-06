@@ -2,7 +2,7 @@ import "../scss/home.scss";
 
 import Timeline from "../../templates/components/timeline/timeline";
 import CasesMapBox from "../../templates/components/cases-map-box/cases-map-box";
-import NewsPagination from "./modules/news-pagination";
+import News from "../../templates/components/news/news";
 import "./interfaces/WindowGlobals";
 
 class Home {
@@ -26,7 +26,7 @@ class Home {
         }
 
         if(window._config && window._config.newsHasPagination) {
-            new NewsPagination(<HTMLButtonElement>document.getElementById("js-news-load-more"));
+            new News(<HTMLButtonElement>document.getElementById("js-news-load-more"));
         }
     }
 }

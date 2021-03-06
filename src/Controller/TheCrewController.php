@@ -101,7 +101,7 @@ class TheCrewController extends AbstractController
 
         $crewMembersFrontend = $this->transport->makeCrewMembersFrontend($crewMembers, $request->getLocale());
 
-        $response = new Response($this->renderView('the-crew/index.html.twig', [
+        $response = new Response($this->renderView('the-crew/the-crew.html.twig', [
             'crew_members' => $crewMembersFrontend
         ]));
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));

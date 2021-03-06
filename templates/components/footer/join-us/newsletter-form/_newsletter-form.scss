@@ -1,0 +1,12 @@
+@use "assets/scss/config/breakpoints" as bp;
+@use "assets/scss/config/mixins" as m;
+@use "assets/scss/config/sizes" as s;
+
+.newsletter-form {
+  @include m.pillar-box(500px);
+
+  .form__row:last-of-type {
+    justify-content: center;
+  }
+
+}
