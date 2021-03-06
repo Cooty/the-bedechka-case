@@ -1,6 +1,6 @@
 <section class="join-us">
     {% include('/components/section-header/section-header.html.twig') with {
-        'text': 'newsletter.title',
+        'text': 'newsletter.title'|trans,
         'priority': 3,
         'classes': 'section-header--footer'
     } only %}
@@ -17,7 +17,7 @@
     </a>
 
     {% include('/components/sub-header/sub-header.html.twig') with {
-        'text': 'signup.newsletter',
+        'text': 'signup.newsletter'|trans,
         'priority': 4,
         'classes': 'sub-header--footer'
     } only %}

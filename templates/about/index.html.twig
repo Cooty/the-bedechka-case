@@ -42,7 +42,11 @@
             </a>
         </div>
 
-        {% include('/components/sub-header/sub-header.html.twig') with {'text': 'trailer.header', 'priority': 3, 'classes': 'text-center mb-1'} only %}
+        {% include('/components/sub-header/sub-header.html.twig') with {
+            'text': 'trailer.header'|trans,
+            'priority': 3,
+            'classes': 'text-center mb-1'
+        } only %}
 
         {% include('/components/youtube-embed/youtube-embed.html.twig') with {'video': trailer} %}
 
