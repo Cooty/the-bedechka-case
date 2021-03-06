@@ -1,20 +1,20 @@
-import "../../scss/components/_cases-map.scss";
-import "../../scss/components/_leaflet-popup-content.scss";
+import "./_cases-map.scss";
+import "./_map-popup-content.scss";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-import ILocations from "../interfaces/ILocations";
-import ILocation from "../interfaces/ILocation";
+import ILocations from "./ILocations";
+import ILocation from "./ILocation";
 import {LatLngExpression, Map, Marker} from "leaflet";
-import popupContent from "../templates/popup-content";
-import openStreetMapsAttribution from "../templates/open-street-maps-attribution";
-import {getNetworkErrorMessage} from "../utils/error-handling";
-import "../interfaces/WindowGlobals";
-import Viewport from "./viewport";
-import debounce from "../utils/debounce";
+import popupContent from "./popup-content.html";
+import openStreetMapsAttribution from "./open-street-maps-attribution.html";
+import {getNetworkErrorMessage} from "../../../assets/ts/utils/error-handling";
+import "../../../assets/ts/interfaces/WindowGlobals";
+import Viewport from "../../../assets/ts/utils/viewport";
+import debounce from "../../../assets/ts/utils/debounce";
 const {loadCSS} = require("fg-loadcss/src/loadCSS");
 
-export default class CasesMap {
+export default class CasesMapBox {
     private readonly rootElement: HTMLElement;
     private readonly leafletCDNURL: string;
     private locationsLoaded = false;
@@ -187,7 +187,7 @@ export default class CasesMap {
     }
 
     public initCasesMap(scriptText: string, locationsData: ILocations) {
-        CasesMap.appendScript(scriptText);
+        CasesMapBox.appendScript(scriptText);
 
         /**
          * @see: https://medium.com/front-end-weekly/webpack-and-dynamic-imports-doing-it-right-72549ff49234

@@ -1,5 +1,5 @@
 import debounce from "../utils/debounce";
-import Viewport from "./viewport";
+import Viewport from "../utils/viewport";
 
 export default class LazyLoading {
     readonly elements: HTMLElement[] = [];

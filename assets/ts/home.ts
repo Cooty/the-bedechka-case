@@ -1,7 +1,7 @@
 import "../scss/home.scss";
 
 import Timeline from "../../templates/components/timeline/timeline";
-import CasesMap from "./modules/cases-map";
+import CasesMapBox from "../../templates/components/cases-map-box/cases-map-box";
 import NewsPagination from "./modules/news-pagination";
 import "./interfaces/WindowGlobals";
 
@@ -22,7 +22,7 @@ class Home {
         new Timeline(document.getElementById("js-timeline"));
 
         if(window._config && window._config.mapCaseApiUrl) {
-            new CasesMap(document.getElementById("js-cases-map"));
+            new CasesMapBox(document.getElementById("js-cases-map"));
         }
 
         if(window._config && window._config.newsHasPagination) {
