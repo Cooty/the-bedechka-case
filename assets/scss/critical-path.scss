@@ -3,8 +3,8 @@
 @import "./base/global";
 @import "./base/document";
 
-@import "./layout/header";
+@import "templates/components/header/header";
 @import "./layout/hero";
-@import "./layout/navigation";
-@import "./modules/language-link";
-@import "./layout/logo";
+@import "templates/components/header/navigation/navigation";
+@import "templates/components/header/language-link/language-link";
+@import "templates/components/header/logo/logo";
