@@ -28,7 +28,7 @@
         } %}
     {% endfor %}
 
-    {% for css in encore_entry_css_files('people') %}
+    {% for css in encore_entry_css_files('protagonists') %}
         {% include('includes/async-css.html.twig') with {
             style_path: asset(css)
         } %}
@@ -39,9 +39,9 @@
     {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
 
     {% if videos is defined and videos|length %}
-        <ul class="people pull-over-hero">
+        <ul class="protagonists pull-over-hero">
             {% for video in videos %}
-                {% include('/people/partials/item.html.twig') with {
+                {% include('/protagonists/partials/item.html.twig') with {
                     video: video,
                     isLazy: loop.first ? false : true
                 } %}
