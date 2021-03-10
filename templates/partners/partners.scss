@@ -1,9 +1,9 @@
-@import "../config/breakpoints";
+@use "assets/scss/config/breakpoints" as bp;
 
 .partners {
   text-align: center;
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: bp.$tablet) {
     display: table;
 
     > * {
@@ -17,7 +17,7 @@
 
   @supports (grid-template-areas: unset) {
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-column-gap: var(--gutter);
@@ -39,7 +39,7 @@
       padding-bottom: 0;
     }
 
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: bp.$tablet) {
       padding-bottom: 0;
     }
 
