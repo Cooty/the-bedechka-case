@@ -31,7 +31,7 @@ Encore
     .addEntry("yt", "./templates/components/youtube-embed/youtube-embed.ts")
     .addEntry("admin", "./assets/ts/admin/app.ts")
     .addStyleEntry("the-crew", "./templates/the-crew/the-crew.scss")
-    .addStyleEntry("people", "./assets/scss/people.scss")
+    .addStyleEntry("protagonists", "./templates/protagonists/protagonists.scss")
     .addStyleEntry("screenings", "./assets/scss/screenings.scss")
     .addStyleEntry("partners", "./assets/scss/partners.scss")
     .addStyleEntry("critical-path", "./assets/scss/critical-path.scss")
