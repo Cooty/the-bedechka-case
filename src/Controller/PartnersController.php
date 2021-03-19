@@ -59,7 +59,7 @@ class PartnersController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        $response = new Response($this->renderView('partners/index.html.twig', [
+        $response = new Response($this->renderView('partners/partners.html.twig', [
             'partners' => $this->staticData->getDataFromFile('partners.json')
         ]));
 

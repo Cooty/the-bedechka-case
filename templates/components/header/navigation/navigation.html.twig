@@ -3,9 +3,9 @@
        class="navigation__item{{ app.request.get('_route') == 'screenings' ? ' active' }}">
         <span>{{ 'navigation.watch'|trans }}</span>
     </a>
-    <a href="{{ path('people') }}"
-       class="navigation__item{{ app.request.get('_route') == 'people' ? ' active' }}">
-        <span>{{ 'navigation.people'|trans }}</span>
+    <a href="{{ path('protagonists') }}"
+       class="navigation__item{{ app.request.get('_route') == 'protagonists' ? ' active' }}">
+        <span>{{ 'navigation.protagonists'|trans }}</span>
     </a>
     <a href="{{ path('the_crew') }}"
        class="navigation__item{{ app.request.get('_route') == 'the_crew' ? ' active' }}">

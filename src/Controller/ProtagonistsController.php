@@ -17,7 +17,7 @@ use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 use DateInterval;
 
-class PeopleController extends AbstractController
+class ProtagonistsController extends AbstractController
 {
     use Locale;
 
@@ -69,7 +69,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route({"en": "/protagonists", "bg": "/участници"}, name="people", methods={"GET"})
+     * @Route({"en": "/protagonists", "bg": "/участници"}, name="protagonists", methods={"GET"})
      * @param Request $request
      * @return Response
      */
@@ -92,7 +92,7 @@ class PeopleController extends AbstractController
             $this->logger->error($exception->getMessage().' '.$exception->getTraceAsString());
         }
 
-        $response = new Response($this->renderView('people/index.html.twig', [
+        $response = new Response($this->renderView('protagonists/protagonists.html.twig', [
             'videos' => $videos
         ]));
 

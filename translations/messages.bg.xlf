@@ -254,8 +254,8 @@
                 </target>
             </trans-unit>
 
-            <trans-unit id="navigation.people">
-                <source>navigation.people</source>
+            <trans-unit id="navigation.protagonists">
+                <source>navigation.protagonists</source>
                 <target>
                     Участници
                 </target>

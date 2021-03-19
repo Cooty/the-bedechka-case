@@ -3,7 +3,7 @@
 {% block title %}{{ 'navigation.crew'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block description %}
-    {% include('/includes/meta-description.html.twig') with {
+    {% include('/meta/meta-description.html.twig') with {
         'description': 'crew'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
@@ -23,7 +23,7 @@
     {% include('/includes/hero/background-style.html.twig') with {'background': 'crew'} only %}
 
     {% for css in encore_entry_css_files('the-crew') %}
-        {% include('includes/async-css.html.twig') with {
+        {% include('meta/async-css.html.twig') with {
             style_path: asset(css)
         } %}
     {% endfor %}
