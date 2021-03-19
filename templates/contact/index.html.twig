@@ -6,7 +6,7 @@
 {% block title %}{{ 'footer.contact'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block description %}
-    {% include('/includes/meta-description.html.twig') with {
+    {% include('/meta/meta-description.html.twig') with {
         'description': 'contact'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}

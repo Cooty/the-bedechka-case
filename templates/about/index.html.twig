@@ -6,7 +6,7 @@
 {% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
 {% block description %}
-    {% include('/includes/meta-description.html.twig') with {
+    {% include('/meta/meta-description.html.twig') with {
         'description': 'about'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
@@ -23,7 +23,7 @@
     {% include('/includes/hero/background-style.html.twig') with {'background': 'about'} only %}
 
     {% for css in encore_entry_css_files('yt') %}
-        {% include('includes/async-css.html.twig') with {
+        {% include('meta/async-css.html.twig') with {
             style_path: asset(css)
         } %}
     {% endfor %}
@@ -64,13 +64,13 @@
 {% block preconectLinks %}
     {{ parent() }}
 
-    {% include('/includes/preconnect-prefetch-links.html.twig')
+    {% include('/meta/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://ytimg.com'} only %}
 
-    {% include('/includes/preconnect-prefetch-links.html.twig')
+    {% include('/meta/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube.com'} only %}
 
-    {% include('/includes/preconnect-prefetch-links.html.twig')
+    {% include('/meta/preconnect-prefetch-links.html.twig')
         with {'domain': 'https://www.youtube-nocookie.com'} only %}
 
 {% endblock preconectLinks %}

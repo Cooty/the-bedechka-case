@@ -3,7 +3,7 @@
 {% block title %}{{ 'screenings.cta'|trans }} - {{ 'site.name'|trans }} {% endblock %}
 
 {% block description %}
-    {% include('/includes/meta-description.html.twig') with {
+    {% include('/meta/meta-description.html.twig') with {
         'description': 'screenings'|trans({}, 'meta-descriptions')|raw|trim
     } only %}
 {% endblock %}
@@ -18,7 +18,7 @@
     {% endfor %}
 
     {% for css in encore_entry_css_files('screenings') %}
-        {% include('includes/async-css.html.twig') with {
+        {% include('meta/async-css.html.twig') with {
             style_path: asset(css)
         } %}
     {% endfor %}

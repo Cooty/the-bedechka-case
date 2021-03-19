@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% include '/includes/canonical.html.twig' %}
+        {% include '/meta/canonical.html.twig' %}
         <title>{% block title %}{{ 'site.name'|trans }}{% endblock %}</title>
 
         {% block description %}
@@ -22,14 +22,14 @@
         <meta property="og:image:height" content="630" />
 
         {% block preconectLinks %}
-            {% include('/includes/preconnect-prefetch-links.html.twig')
+            {% include('/meta/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://fonts.googleapis.com/'} only %}
 
-            {% include('/includes/preconnect-prefetch-links.html.twig')
+            {% include('/meta/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://polyfill.io/'} only %}
         {% endblock %}
 
-        {% include '/includes/site-icons.html.twig' %}
+        {% include '/meta/site-icons.html.twig' %}
 
         {# TODO: Add dynamic meta description and open graph meta tags #}
 
@@ -40,12 +40,12 @@
                 </style>
             {% endfor %}
 
-            {% include('includes/async-css.html.twig') with {
+            {% include('meta/async-css.html.twig') with {
                 style_path: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap'
             } %}
 
             {% for css in encore_entry_css_files('app') %}
-                {% include('includes/async-css.html.twig') with {
+                {% include('meta/async-css.html.twig') with {
                     style_path: asset(css)
                 } %}
             {% endfor %}
