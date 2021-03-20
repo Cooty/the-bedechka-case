@@ -2,7 +2,7 @@
 @use "../config/breakpoints" as bp;
 @use "../config/decorations" as d;
 @use "../config/colors" as c;
-@use "../config/typo" as t;
+@use "assets/scss/config/typography" as t;
 
 .form {
 
