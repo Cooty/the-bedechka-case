@@ -337,15 +337,15 @@
                 </target>
             </trans-unit>
 
-            <trans-unit id="people.title">
-                <source>people.title</source>
+            <trans-unit id="protagonists.title">
+                <source>protagonists.title</source>
                 <target>
                     List of protagonists
                 </target>
             </trans-unit>
 
-            <trans-unit id="people.subtitle">
-                <source>people.subtitle</source>
+            <trans-unit id="protagonists.subtitle">
+                <source>protagonists.subtitle</source>
                 <target>
                     meet the people featured in the movie
                 </target>

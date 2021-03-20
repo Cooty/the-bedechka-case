@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'navigation.people'|trans }} - {{ 'site.name'|trans }} {% endblock %}
+{% block title %}{{ 'navigation.protagonists'|trans }} - {{ 'site.name'|trans }} {% endblock %}
 
 {% block description %}
     {% include('/meta/meta-description.html.twig') with {
@@ -8,7 +8,7 @@
     } only %}
 {% endblock %}
 
-{% set heroTitle = {'mainTitle': 'people.title', 'subTitle': 'people.subtitle'} %}
+{% set heroTitle = {'mainTitle': 'protagonists.title', 'subTitle': 'protagonists.subtitle'} %}
 {% set heroContent = include('/components/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}
