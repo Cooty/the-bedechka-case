@@ -1,9 +1,9 @@
-@use "../config/breakpoints" as bp;
-@use "../config/mixins" as m;
-@use "../config/sizes" as s;
-@use "../config/spacings" as sp;
-@use "../config/decorations" as d;
-@import "../config/silent-classes";
+@use "assets/scss/config/breakpoints" as bp;
+@use "assets/scss/config/mixins" as m;
+@use "assets/scss/config/sizes" as s;
+@use "assets/scss/config/spacings" as sp;
+@use "assets/scss/config/decorations" as d;
+@import "assets/scss/config/silent-classes";
 
 @mixin column-desktop($width) {
   @media screen and (min-width: bp.$desktop) {
