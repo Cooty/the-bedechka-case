@@ -52,10 +52,10 @@ jobs:
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
 
-      - name: Delete vendor/ and cache/ and build/
+      - name: Delete vendor/ and cache/ and build/ and templates/
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build)
+          command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build && rm -rf /var/www/thebedechkacase.com/templates)
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
