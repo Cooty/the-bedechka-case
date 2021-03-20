@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% set heroTitle = {'mainTitle': 'about.title'} %}
-{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/components/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block title %}{{ 'about.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
@@ -20,7 +20,7 @@
         </style>
     {% endfor %}
 
-    {% include('/includes/hero/background-style.html.twig') with {'background': 'about'} only %}
+    {% include('/components/hero/background-style.html.twig') with {'background': 'about'} only %}
 
     {% for css in encore_entry_css_files('yt') %}
         {% include('meta/async-css.html.twig') with {
@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block main %}
-    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/components/hero/hero.html.twig') with {'content': heroContent} only %}
     <article class="box box--center-narrow box--tablet-big-gutter pull-over-hero">
         <div class="main-copy">
             {{ 'about.text'|trans({}, 'content')|raw }}

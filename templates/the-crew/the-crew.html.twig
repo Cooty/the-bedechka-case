@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% set heroTitle = {'mainTitle': 'crew.title', 'subTitle': 'crew.subtitle'} %}
-{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/components/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -20,7 +20,7 @@
         </style>
     {% endfor %}
 
-    {% include('/includes/hero/background-style.html.twig') with {'background': 'crew'} only %}
+    {% include('/components/hero/background-style.html.twig') with {'background': 'crew'} only %}
 
     {% for css in encore_entry_css_files('the-crew') %}
         {% include('meta/async-css.html.twig') with {
@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block main %}
-    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/components/hero/hero.html.twig') with {'content': heroContent} only %}
 
     {% if crew_members is defined and crew_members|length %}
         <ul class="box-grid pull-over-hero">

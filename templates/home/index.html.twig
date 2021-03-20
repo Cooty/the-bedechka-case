@@ -10,11 +10,11 @@
     } only %}
 {% endblock %}
 
-{% set heroContent = include('/home/partials/hero-content.html.twig') %}
+{% set heroContent = include('/home/partials/landing-hero-content/landing-hero-content.html.twig') %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {% include('/includes/hero/background-style.html.twig') with {'background': 'home'} only %}
+    {% include('/components/hero/background-style.html.twig') with {'background': 'home'} only %}
 
     {% for css in encore_entry_css_files('critical-path-home') %}
         <style>
@@ -36,7 +36,7 @@
 {% endblock %}
 
 {% block main %}
-    {% include('/includes/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
+    {% include('/components/hero/hero.html.twig') with {'modifierCSSClassName': 'hero--tall', 'content': heroContent} only %}
     {% include('/home/partials/the-problem.html.twig') %}
     {% include('/home/partials/the-vision.html.twig') %}
     {% include('/home/partials/in-the-press.html.twig') %}

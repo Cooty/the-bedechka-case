@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% set heroTitle = {'mainTitle': 'footer.contact'} %}
-{% set heroContent = include('/includes/hero/title-and-subtitle.html.twig', heroTitle) %}
+{% set heroContent = include('/components/hero/title-and-subtitle.html.twig', heroTitle) %}
 
 {% block title %}{{ 'footer.contact'|trans }} - {{ 'site.name'|trans }}{% endblock %}
 
@@ -20,11 +20,11 @@
         </style>
     {% endfor %}
 
-    {% include('/includes/hero/background-style.html.twig') with {'background': 'contact'} only %}
+    {% include('/components/hero/background-style.html.twig') with {'background': 'contact'} only %}
 {% endblock %}
 
 {% block main %}
-    {% include('/includes/hero.html.twig') with {'content': heroContent} only %}
+    {% include('/components/hero/hero.html.twig') with {'content': heroContent} only %}
     <article class="box box--center-narrow box--tablet-big-gutter pull-over-hero">
         <div class="main-copy">
             {{ 'contact.text'|trans({}, 'content')|raw }}
