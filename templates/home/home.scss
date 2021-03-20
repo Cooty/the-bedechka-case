@@ -1,6 +1,6 @@
 @import "assets/scss/config/silent-classes";
 @import "assets/scss/config/mixins";
-@import "assets/scss/config/typo";
+@import "assets/scss/config/typography";
 @import "assets/scss/config/colors";
 @import "assets/scss/config/sizes";
 @import "assets/scss/config/decorations";
@@ -9,5 +9,5 @@
 @import "assets/scss/config/functions";
 
 @import "assets/scss/modules/tag";
-@import "assets/scss/modules/box";
+@import "assets/scss/modules/box/box";
 @import "./partials/vision/vision";

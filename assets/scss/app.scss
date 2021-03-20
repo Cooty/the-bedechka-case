@@ -1,6 +1,6 @@
 @import "./config/silent-classes";
 @import "./config/mixins";
-@import "./config/typo";
+@import "assets/scss/config/typography";
 @import "./config/colors";
 @import "./config/sizes";
 @import "./config/decorations";
@@ -16,13 +16,10 @@
 @import "./modules/form";
 @import "../../templates/components/section-header/section-header";
 @import "../../templates/components/sub-header/sub-header";
-@import "./modules/anim-underline";
+@import "./modules/typography";
 @import "./modules/story";
-@import "./modules/copy";
 @import "./modules/spinner";
 @import "./modules/main-copy";
-@import "./modules/text";
-@import "./modules/box-grid";
 
 @import "./utility/visually-hidden";
 @import "./utility/spacing";
