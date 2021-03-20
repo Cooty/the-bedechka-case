@@ -1,6 +1,6 @@
 @use "z-indexes" as z;
 @use "colors" as c;
-@use "typo" as t;
+@use "typography" as t;
 @use "spacings" as sp;
 @use "functions" as f;
 @use "decorations" as d;
@@ -63,33 +63,6 @@
 %side-gutters {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
-}
-
-%animated-underline {
-  &:after {
-    position: absolute;
-    display: inline-block;
-    content: '';
-    left: 0;
-    bottom: 0;
-    transition: all .3s ease-in-out;
-    opacity: 0;
-    width: 0;
-    height: 1px;
-    background-color: currentColor;
-  }
-
-  &:hover,
-  &:focus {
-    text-decoration: none;
-
-    &:after {
-      width: 100%;
-      opacity: 1;
-    }
-
-  }
-
 }
 
 %smooth-scroll {

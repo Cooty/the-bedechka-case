@@ -1,6 +1,6 @@
 @use "../config/mixins" as m;
 @use "../config/colors" as c;
-@use "../config/typo" as t;
+@use "assets/scss/config/typography" as t;
 @use "../config/spacings" as sp;
 @use "../config/decorations" as d;
 @use "../config/functions" as f;
