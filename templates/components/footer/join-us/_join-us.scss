@@ -11,14 +11,14 @@
 
   &:before {
     @extend %grounge-mask;
-    background-image: url(../../../../assets/images/grounge-mask-hero@2x.png);
+    background-image: url(../../hero/grounge-mask-hero@2x.png);
     top: -6px;
   }
 
   &:after {
     @extend %grounge-mask;
     bottom: -6px;
-    background-image: url(../../../../assets/images/grounge-mask-footer-white@2x.png);
+    background-image: url(./grounge-mask-footer-white@2x.png);
   }
 
   &__text {

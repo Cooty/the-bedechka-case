@@ -1,5 +1,5 @@
-@use "../config/spacings" as sp;
-@use "../config/decorations" as d;
+@use "assets/scss/config/spacings" as sp;
+@use "assets/scss/config/decorations" as d;
 
 .screening {
 
@@ -47,12 +47,11 @@
   & &__image-container {
     background: rgba(0, 0, 0, .1);
     margin: -#{sp.$grid-v-gutter}
-      calc(var(--gutter) * -1)
-      .8em
-      calc(var(--gutter) * -1);
+            calc(var(--gutter) * -1)
+            .8em
+            calc(var(--gutter) * -1);
     overflow: hidden;
-    border-top-left-radius: d.$box-radius;
-    border-top-right-radius: d.$box-radius;
+    border-radius: d.$box-radius;
   }
 
 }

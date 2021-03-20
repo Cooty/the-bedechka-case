@@ -67,7 +67,7 @@ class ScreeningsController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        $response = new Response($this->renderView('screenings/index.html.twig'));
+        $response = new Response($this->renderView('screenings/screenings.html.twig'));
 
         $response->headers->set('Content-Language', $request->attributes->get('_locale'));
         $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 'true');
