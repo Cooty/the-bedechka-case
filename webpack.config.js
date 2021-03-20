@@ -32,7 +32,7 @@ Encore
     .addEntry("admin", "./assets/ts/admin/app.ts")
     .addStyleEntry("the-crew", "./templates/the-crew/the-crew.scss")
     .addStyleEntry("protagonists", "./templates/protagonists/protagonists.scss")
-    .addStyleEntry("screenings", "./assets/scss/screenings.scss")
+    .addStyleEntry("screenings", "./templates/screenings/screenings.scss")
     .addStyleEntry("partners", "./templates/partners/partners.scss")
     .addStyleEntry("critical-path", "./assets/scss/critical-path.scss")
     .addStyleEntry("critical-path-home", "./assets/scss/critical-path-home.scss")
