@@ -1,5 +1,5 @@
 import "../interfaces/WindowGlobals";
-import CookieSettings from "../../../templates/components/cookie-settings/cookie-settings.enum";
+import CookieSettings from "../../components/cookie-settings/cookie-settings.enum";
 import deleteAllCookies from "../utils/delete-all-cookies";
 
 export default class Analytics {

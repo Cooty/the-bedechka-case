@@ -1,5 +1,5 @@
-import "../../scss/admin/_sortable.scss";
-import "../../scss/admin/_drag-handle.scss";
+import "../scss/_sortable.scss";
+import "../scss/_drag-handle.scss";
 // @ts-ignore
 import * as sortable from "html5sortable/dist/html5sortable.es.js";
 import * as $ from "jquery";

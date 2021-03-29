@@ -1,6 +1,6 @@
-@use "./functions" as f;
-@use "./spacings" as sp;
-@use "./decorations" as d;
+@use "templates/scss/config/functions" as f;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/decorations" as d;
 
 @mixin scroll-fader($color: #fff, $width: 30px) {
   content: '';

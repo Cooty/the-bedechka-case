@@ -1,5 +1,5 @@
-@use "assets/scss/config/z-indexes" as z;
-@use "assets/scss/config/spacings" as sp;
+@use "templates/scss/config/z-indexes" as z;
+@use "templates/scss/config/spacings" as sp;
 
 .pull-over-hero {
   z-index: z.$z-middle;

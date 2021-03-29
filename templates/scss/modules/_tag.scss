@@ -1,7 +1,7 @@
-@use "../config/sizes" as s;
-@use "../config/mixins" as m;
-@use "../config/colors" as c;
-@import "../config/silent-classes";
+@use "templates/scss/config/sizes" as s;
+@use "templates/scss/config/mixins" as m;
+@use "templates/scss/config/colors" as c;
+@import "templates/scss/config/silent-classes";
 
 .tag {
   @extend %button-base;

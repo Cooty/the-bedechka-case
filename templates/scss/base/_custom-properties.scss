@@ -1,5 +1,5 @@
-@use "../config/spacings" as sp;
-@use "../config/breakpoints" as bp;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/breakpoints" as bp;
 
 html {
   --gutter: #{sp.$gutter};

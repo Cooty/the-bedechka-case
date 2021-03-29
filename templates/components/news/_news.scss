@@ -1,10 +1,10 @@
-@use "assets/scss/config/colors" as c;
-@use "assets/scss/config/breakpoints" as bp;
-@use "assets/scss/config/sizes" as s;
-@use "assets/scss/config/spacings" as sp;
-@use "assets/scss/config/decorations" as d;
-@use "assets/scss/config/mixins" as m;
-@import "assets/scss/config/silent-classes";
+@use "templates/scss/config/colors" as c;
+@use "templates/scss/config/breakpoints" as bp;
+@use "templates/scss/config/sizes" as s;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/decorations" as d;
+@use "templates/scss/config/mixins" as m;
+@import "templates/scss/config/silent-classes";
 
 $logo-height: 32px;
 

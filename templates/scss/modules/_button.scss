@@ -1,10 +1,10 @@
-@use "../config/mixins" as m;
-@use "../config/colors" as c;
-@use "assets/scss/config/typography" as t;
-@use "../config/spacings" as sp;
-@use "../config/decorations" as d;
-@use "../config/functions" as f;
-@import "../config/silent-classes";
+@use "templates/scss/config/mixins" as m;
+@use "templates/scss/config/colors" as c;
+@use "templates/scss/config/typography" as t;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/decorations" as d;
+@use "templates/scss/config/functions" as f;
+@import "templates/scss/config/silent-classes";
 
 $side-padding: 30px;
 
@@ -102,7 +102,7 @@ $side-padding: 30px;
 
     &.lazy-loading-loaded {
       &:after {
-        background-image: url(../../images/icons/fb-like@2x.png);
+        background-image: url(../../../assets/images/icons/fb-like@2x.png);
       }
     }
 

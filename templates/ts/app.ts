@@ -2,10 +2,10 @@ import "../scss/app.scss";
 
 import "regenerator-runtime/runtime";
 
-import Header from "../../templates/components/header/header";
+import Header from "../components/header/header";
 import LazyLoading from "./modules/lazy-loading";
 import Analytics from "./modules/analytics";
-import CookieSettings from "../../templates/components/cookie-settings/cookie-settings";
+import CookieSettings from "../components/cookie-settings/cookie-settings";
 import "./interfaces/WindowGlobals";
 import detectWebP from "./modules/detect-webp";
 

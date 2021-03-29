@@ -7,7 +7,7 @@ import "./partials/vision/the-vision-info-graphic-placeholder-mobile.png";
 import Timeline from "../components/timeline/timeline";
 import CasesMapBox from "../components/cases-map-box/cases-map-box";
 import News from "../components/news/news";
-import "../../assets/ts/interfaces/WindowGlobals";
+import "../ts/interfaces/WindowGlobals";
 
 class Home {
     private static instance: Home;

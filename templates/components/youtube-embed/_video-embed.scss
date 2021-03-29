@@ -1,8 +1,8 @@
-@use "assets/scss/config/sizes" as s;
-@use "assets/scss/config/colors" as c;
-@use "assets/scss/config/z-indexes" as z;
-@use "assets/scss/config/breakpoints" as bp;
-@use "assets/scss/config/functions" as f;
+@use "templates/scss/config/sizes" as s;
+@use "templates/scss/config/colors" as c;
+@use "templates/scss/config/z-indexes" as z;
+@use "templates/scss/config/breakpoints" as bp;
+@use "templates/scss/config/functions" as f;
 
 $play-button-size: 91px;
 $play-button-offset: ($play-button-size / 2) * -1;

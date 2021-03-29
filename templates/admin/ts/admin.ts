@@ -4,22 +4,22 @@ import "regenerator-runtime/runtime";
 import * as $ from "jquery";
 import "bootstrap";
 
-import "../../scss/admin/app.scss";
+import "../scss/admin.scss";
 import {toggleSidebarMenu} from "./sidebar-menu";
 import {init as initCustomFile} from "./show-file-names-in-uploads";
 import {init as initDeleteEntity} from "./delete-entity";
 
-class App {
-    private static instance: App;
+class Admin {
+    private static instance: Admin;
 
     private constructor() {}
 
-    public static getInstance(): App {
-        if (!App.instance) {
-            App.instance = new App();
+    public static getInstance(): Admin {
+        if (!Admin.instance) {
+            Admin.instance = new Admin();
         }
 
-        return App.instance;
+        return Admin.instance;
     }
 
     public init() {
@@ -44,7 +44,7 @@ class App {
 
 // Need some additional settings to work with Vagrant file-syncing
 // https://github.com/symfony/webpack-encore/issues/191
-const app = App.getInstance();
+const app = Admin.getInstance();
 Object.freeze(app);
 
 app.init();

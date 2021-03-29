@@ -1,8 +1,8 @@
-@use "../../../assets/scss/config/breakpoints" as bp;
-@use "../../../assets/scss/config/colors" as c;
-@use "../../../assets/scss/config/sizes" as s;
-@use "../../../assets/scss/config/spacings" as sp;
-@use "assets/scss/config/typography" as t;
+@use "templates/scss/config/breakpoints" as bp;
+@use "templates/scss/config/colors" as c;
+@use "templates/scss/config/sizes" as s;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/typography" as t;
 
 $avatar-width: 80px;
 $avatar-big-width: 100px;
