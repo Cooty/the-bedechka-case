@@ -317,6 +317,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="kalu-yala.case.title">
+                <source>kalu-yala.case.title</source>
+                <target>
+                    Човекът като стопани на Природата, а не като бедствие за нея
+                </target>
+            </trans-unit>
+
             <trans-unit id="partners.title">
                 <source>partners.title</source>
                 <target>
