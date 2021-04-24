@@ -20,13 +20,13 @@
         </style>
     {% endfor %}
 
-    {% include('/components/hero/background-style.html.twig') with {'background': 'crew'} only %}
-
     {% for css in encore_entry_css_files('the-crew') %}
-        {% include('meta/async-css.html.twig') with {
-            style_path: asset(css)
-        } %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
     {% endfor %}
+
+    {% include('/components/hero/background-style.html.twig') with {'background': 'crew'} only %}
 {% endblock %}
 
 {% block main %}
