@@ -1,4 +1,4 @@
-import "../../../assets/ts/interfaces/WindowGlobals";
+import "../../ts/interfaces/WindowGlobals";
 import "./_cookie-consent.scss";
 import settings from "./cookie-settings.enum";
 import template from "./cookie-settings.html";

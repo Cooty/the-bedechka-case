@@ -1,5 +1,5 @@
 import INewsItem from "./INewsItem";
-import sanitizeHTML from "../../../assets/ts/utils/sanitize-html";
+import sanitizeHTML from "../../ts/utils/sanitize-html";
 
 // The HTML should match the HTML in the file
 // ./news-list-item.html.twig in the <li class="news__item">

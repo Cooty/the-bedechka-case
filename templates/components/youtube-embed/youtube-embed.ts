@@ -1,5 +1,5 @@
 import YTPlayer from "./player";
-import "../../../assets/ts/interfaces/WindowGlobals";
+import "../../ts/interfaces/WindowGlobals";
 
 /**
  * Entry point for the JS file that initializes the Youtube players

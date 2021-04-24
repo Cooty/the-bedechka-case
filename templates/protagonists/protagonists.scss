@@ -1,7 +1,7 @@
-@use "assets/scss/config/mixins" as m;
-@use "assets/scss/config/sizes" as s;
-@use "assets/scss/config/spacings" as sp;
-@use "assets/scss/config/breakpoints" as bp;
+@use "templates/scss/config/mixins" as m;
+@use "templates/scss/config/sizes" as s;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/breakpoints" as bp;
 
 .protagonists {
   @include m.pillar-box(s.$xxl-w);

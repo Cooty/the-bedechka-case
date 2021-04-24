@@ -1,0 +1,67 @@
+.text-center {
+  text-align: center;
+}
+
+.anim-underline {
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: '';
+    left: 0;
+    bottom: 0;
+    transition: all .3s ease-in-out;
+    opacity: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+
+    &:after {
+      width: 100%;
+      opacity: 1;
+    }
+
+  }
+}
+
+/**
+Use this as a wrapper for flow content where we don't want to add a class to every element
+ */
+.main-copy {
+
+  p {
+    font-size: calc(1em + .1vw);
+    margin-bottom: 1.3em;
+    line-height: 1.4;
+
+    @media print {
+      orphans: 2;
+      widows: 2;
+    }
+
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+  }
+
+  em {
+    font-style: italic;
+  }
+
+}

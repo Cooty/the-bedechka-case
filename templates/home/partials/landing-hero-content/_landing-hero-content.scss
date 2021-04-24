@@ -1,8 +1,8 @@
-@use "assets/scss/config/sizes" as s;
-@use "assets/scss/config/spacings" as sp;
-@use "assets/scss/config/colors" as c;
-@use "assets/scss/config/breakpoints" as bp;
-@import "assets/scss/config/silent-classes";
+@use "templates/scss/config/sizes" as s;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/colors" as c;
+@use "templates/scss/config/breakpoints" as bp;
+@import "templates/scss/config/silent-classes";
 
 .landing-hero-content {
   max-width: s.$page-max-w;

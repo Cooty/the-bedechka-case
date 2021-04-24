@@ -1,6 +1,6 @@
-@use "assets/scss/config/breakpoints" as bp;
-@use "assets/scss/config/mixins" as m;
-@use "assets/scss/config/sizes" as s;
+@use "templates/scss/config/breakpoints" as bp;
+@use "templates/scss/config/mixins" as m;
+@use "templates/scss/config/sizes" as s;
 
 .newsletter-form {
   @include m.pillar-box(500px);

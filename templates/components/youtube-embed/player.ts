@@ -1,7 +1,7 @@
 import "./_yt-player.scss";
 import "./_video-embed.scss";
-import "../../../assets/scss/modules/_embed.scss";
-import "../../../assets/ts/interfaces/WindowGlobals";
+import "../../scss/modules/_embed.scss";
+import "../../ts/interfaces/WindowGlobals";
 
 interface IElements {
     body?: HTMLBodyElement,

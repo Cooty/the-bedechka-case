@@ -1,13 +1,13 @@
-@import "assets/scss/config/silent-classes";
-@import "assets/scss/config/mixins";
-@import "assets/scss/config/typography";
-@import "assets/scss/config/colors";
-@import "assets/scss/config/sizes";
-@import "assets/scss/config/decorations";
-@import "assets/scss/config/breakpoints";
-@import "assets/scss/config/z-indexes";
-@import "assets/scss/config/functions";
+@import "templates/scss/config/silent-classes";
+@import "templates/scss/config/mixins";
+@import "templates/scss/config/typography";
+@import "templates/scss/config/colors";
+@import "templates/scss/config/sizes";
+@import "templates/scss/config/decorations";
+@import "templates/scss/config/breakpoints";
+@import "templates/scss/config/z-indexes";
+@import "templates/scss/config/functions";
 
-@import "assets/scss/modules/tag";
-@import "assets/scss/modules/box/box";
+@import "templates/scss/modules/tag";
+@import "templates/scss/modules/box/box";
 @import "./partials/vision/vision";

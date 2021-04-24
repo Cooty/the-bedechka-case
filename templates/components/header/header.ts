@@ -1,4 +1,4 @@
-import Responsive from "../../../assets/ts/utils/responsive";
+import Responsive from "../../ts/utils/responsive";
 // Need to import the file so that Twig can reference it from the public/build folder
 // as an <img src="{{ asset('build/images/logo@2x.png') }}">
 // with the build hash attached to the file.

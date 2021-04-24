@@ -1,8 +1,8 @@
-@use "../../../assets/scss/config/breakpoints" as bp;
-@use "assets/scss/config/typography" as t;
-@use "../../../assets/scss/config/spacings" as sp;
-@use "../../../assets/scss/config/functions" as f;
-@import "../../../assets/scss/config/silent-classes";
+@use "templates/scss/config/breakpoints" as bp;
+@use "templates/scss/config/typography" as t;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/functions" as f;
+@import "templates/scss/config/silent-classes";
 
 .sub-header {
   @extend %header-font;
