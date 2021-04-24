@@ -323,6 +323,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="kalu-yala.case.title">
+                <source>kalu-yala.case.title</source>
+                <target>
+                    Humans as Stewards of Nature and not a Disaster to it
+                </target>
+            </trans-unit>
+
             <trans-unit id="partners.title">
                 <source>partners.title</source>
                 <target>
