@@ -1,9 +1,9 @@
 import "./_news.scss";
 
 import INewsItems from "./INewsItems";
-import {getNetworkErrorMessage} from "../../../assets/ts/utils/error-handling";
+import {getNetworkErrorMessage} from "../../ts/utils/error-handling";
 import template from "./news-list-item.html";
-import "../../../assets/ts/interfaces/WindowGlobals";
+import "../../ts/interfaces/WindowGlobals";
 
 export default class News {
     private currentPage: number;

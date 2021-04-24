@@ -1,9 +1,9 @@
-@use "assets/scss/config/breakpoints" as bp;
-@use "assets/scss/config/spacings" as sp;
-@use "assets/scss/config/typography" as t;
-@use "assets/scss/config/colors" as c;
-@use "assets/scss/config/z-indexes" as z;
-@import "assets/scss/config/silent-classes";
+@use "templates/scss/config/breakpoints" as bp;
+@use "templates/scss/config/spacings" as sp;
+@use "templates/scss/config/typography" as t;
+@use "templates/scss/config/colors" as c;
+@use "templates/scss/config/z-indexes" as z;
+@import "templates/scss/config/silent-classes";
 
 // Flex-box sticky footer solution
 /**

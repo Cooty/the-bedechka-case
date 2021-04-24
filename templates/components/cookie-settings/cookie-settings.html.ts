@@ -1,4 +1,4 @@
-import "../../../assets/ts/interfaces/WindowGlobals";
+import "../../ts/interfaces/WindowGlobals";
 
 const cookieSettings = (tier2Checked: boolean = false)=> `
     <form class="cookie-consent js-cookie-tiers-form" action="/" novalidate name="cookie-settings">
