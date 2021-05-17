@@ -31,31 +31,31 @@ class MapCase
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(type="string", length=300)
      * @Assert\NotBlank()
      */
     private $nameEN;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(type="string", length=300)
      * @Assert\NotBlank()
      */
     private $nameBG;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
     private $descriptionEN;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
     private $descriptionBG;
 
     /**
-     * @ORM\Column(type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=500, nullable=true)
      * @Assert\Url(message="Please enter a valid web address")
      */
     private $link;
@@ -73,7 +73,7 @@ class MapCase
     private $latitude;
 
     /**
-     * @ORM\Column(type="string", length=200, nullable=true)
+     * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $pictureURL;
 
