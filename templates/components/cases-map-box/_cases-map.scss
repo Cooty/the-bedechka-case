@@ -98,6 +98,7 @@ $map-height: 60vh;
       overflow-x: hidden;
       padding-bottom: 0;
       box-sizing: border-box;
+      scrollbar-width: auto;
       @include m.custom-scrollbar();
     }
 
