@@ -79,7 +79,7 @@ class HomeController extends AbstractController
     private function getVideos(string $requestLocale): array
     {
         $theVisionSectionVideosSizeMap = ['mobile'=> 'standard', 'tablet'=> 'high', 'desktop'=> 'standard'];
-        $trailerId = YouTubeVideos::TRAILER_ID;
+        $trailerId = $requestLocale === $this->secondaryLocale ? YouTubeVideos::TRAILER_BG_ID : YouTubeVideos::TRAILER_ID;
 
         try {
             $trailer = $this->appCache->get($trailerId, function (ItemInterface $cacheItem) use ($trailerId) {
