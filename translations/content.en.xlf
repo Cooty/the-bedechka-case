@@ -6,7 +6,7 @@
                 <source>about.text</source>
                 <target>
                     <![CDATA[<p>]]>
-                    The film “Case Bedechka” is seeking to be a part of the solution to the problem. The idea of ​​the film is to shed light on the mechanisms surrounding construction projects that are a thread to local biodiversity. The practices described in this film, however, are observed not only locally but also across the country ... and perhaps worldwide.
+                    The film “The Bedechka Case” is seeking to be a part of the solution to the problem. The idea of ​​the film is to shed light on the mechanisms surrounding construction projects that are a thread to local biodiversity. The practices described in this film, however, are observed not only locally but also across the country ... and perhaps worldwide.
                     <![CDATA[</p>]]>
 
                     <![CDATA[<p>]]>
@@ -67,6 +67,50 @@
 
                     <![CDATA[<p>]]>
                     If you're interested in organizing a screening in your area, then please <![CDATA[<strong>]]><![CDATA[<a href="%contact_link%">]]>get in touch<![CDATA[</a>]]><![CDATA[</strong>]]>!
+                    <![CDATA[</p>]]>
+                </target>
+            </trans-unit>
+
+            <trans-unit id="petition.text">
+                <source>petition.text</source>
+                <target>
+                    <![CDATA[<p>]]>
+                    Do you witness suspicious tree logging or construction in green spaces in urban environments?
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    The Bulgarian legislation concerning green elements of the urban environment does not provide categorical protection. The Law on Spatial Planning (ZUT) has been repeatedly rewritten and allows abuses. There is no definition of what a 'green space' is; urban forest parks and suburban forests do not receive the care they need. Many of our urban trees are not inventoried, and the procedures for their maintenance
+                    are not clearly regulated.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    "The Bedechka Case” seeks to address the pressing problem of nature destruction in cities. In addition to analysing the vicious mechanisms, the film reveals a powerful weapon in the fight for green urban areas - citizens' pressure on decision takers with clear demands for legislative changes.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    On 18th June 2021, together with representatives of a myriad of environmental NGOs and civic groups, we launched a joint petition to protect green spaces in urban areas.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<div class="text-center mb-2">]]>
+                        <![CDATA[<a class="button" href="https://www.peticiq.com/328518" target="_blank" noopener noopener>]]>
+                        To the Petition
+                        <![CDATA[</a>]]>
+                    <![CDATA[</div>]]>
+
+                    <![CDATA[<p>]]>
+                    The petition will be sent to three line ministries (Ministry of Regional Development, Ministry of Environment, Ministry of Agriculture and Rural Development), the 46th National Assembly and the headquarters of the parties represented in it.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    The proposed programme of measures aims to ensure publicity and transparency of procedures affecting green spaces, as well as access to justice for all citizens and their organisations.
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    Please support the petition - every signature counts!
+                    <![CDATA[</p>]]>
+
+                    <![CDATA[<p>]]>
+                    <![CDATA[<em>]]>* For a valid "signature" it must be confirmed via e-mail.<![CDATA[</em>]]>
                     <![CDATA[</p>]]>
                 </target>
             </trans-unit>

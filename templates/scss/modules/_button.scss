@@ -37,6 +37,26 @@ $side-padding: 30px;
     }
   }
 
+  &--orange {
+    background: c.$orange;
+    border-top: 1px solid lighten(c.$orange, 10%);
+    border-bottom: 1px solid darken(c.$orange, 10%);
+    border-right: 1px solid darken(c.$orange, 10%);
+    border-left: 1px solid lighten(c.$orange, 10%);
+
+    &:hover,
+    &:focus {
+      &:not([disabled]) {
+        text-decoration: none;
+        border-top-color: darken(c.$orange, 10%);
+        border-bottom-color: lighten(c.$orange, 10%);
+        border-right-color: lighten(c.$orange, 10%);
+        border-left-color: darken(c.$orange, 10%);
+      ;
+      }
+    }
+  }
+
   &--small {
     font-size: f.px-to-rem(13px);
     padding: .5em $side-padding / 2;

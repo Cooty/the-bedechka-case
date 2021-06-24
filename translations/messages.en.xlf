@@ -475,7 +475,7 @@
             <trans-unit id="cookie.consent.lead">
                 <source>cookie.consent.lead</source>
                 <target>
-                    This site uses cookies for the following purposes. You can change your settings latter by clicking "Cookie Setting" on the page. By using this site you consent to these settings.
+                    This site uses cookies for the following purposes. You can change your settings later by clicking "Cookie Setting" on the page. By using this site you consent to these settings.
                 </target>
             </trans-unit>
 
@@ -497,6 +497,27 @@
                 <source>cookie.consent.save</source>
                 <target>
                     Save settings
+                </target>
+            </trans-unit>
+
+            <trans-unit id="petition.title">
+                <source>petition.title</source>
+                <target>
+                    Petition
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cta.petition">
+                <source>cta.petition</source>
+                <target>
+                    Petition
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cta.movie">
+                <source>cta.movie</source>
+                <target>
+                    Movie
                 </target>
             </trans-unit>
         </body>
