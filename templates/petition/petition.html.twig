@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'petition.title'|trans }} - {{ 'site.name'|trans }} {% endblock %}
+
+{% block description %}
+    {% include('/meta/meta-description.html.twig') with {
+        'description': 'petition'|trans({}, 'meta-descriptions')|raw|trim
+    } only %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% for css in encore_entry_css_files('critical-path-subpages') %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
+    {% endfor %}
+{% endblock %}
+
+{% block main %}
+    <article class="box box--center-narrow box--tablet-big-gutter no-hero section-v-gutter">
+        <div class="main-copy">
+            {{ 'petition.text'|trans({}, 'content')|raw }}
+        </div>
+    </article>
+{% endblock %}

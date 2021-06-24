@@ -44,6 +44,12 @@
                     Your insight is valuable! Get in touch with the project and share your knowledge with the people behind it!
                 </target>
             </trans-unit>
+            <trans-unit id="petition">
+                <source>petition</source>
+                <target>
+                Do you witness suspicious tree logging or construction in green spaces in urban environments?
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
