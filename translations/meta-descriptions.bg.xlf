@@ -44,6 +44,12 @@
                     Tвоята ексертиза е ценна! Свържи се с проекта и я сподели с хората зад него!
                 </target>
             </trans-unit>
+            <trans-unit id="petition">
+                <source>petition</source>
+                <target>
+                Ставате ли свидетели на подозрителна сеч или строежи в зелени площи в градска среда?
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

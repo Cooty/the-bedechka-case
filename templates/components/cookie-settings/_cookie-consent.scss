@@ -59,10 +59,5 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-end;
-
-    & .button:first-of-type {
-      margin-right: calc(var(--gutter) * 2);
-    }
-
   }
 }

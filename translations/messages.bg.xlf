@@ -476,28 +476,49 @@
             <trans-unit id="cookie.consent.lead">
                 <source>cookie.consent.lead</source>
                 <target>
-                    This site uses cookies for the following purposes. You can change your settings latter by clicking "Cookie Setting" on the page. By using this site you consent to these settings.
+                Този сайт използва бисквитки. Можете да промените настройките си по-късно през менюто "Настройка на бисквитките". С използването на този сайт вие се съгласявате с тези настройки.
                 </target>
             </trans-unit>
 
             <trans-unit id="cookie.consent.tier.1">
                 <source>cookie.consent.tier.1</source>
                 <target>
-                    Functional
+                    Функционални
                 </target>
             </trans-unit>
 
             <trans-unit id="cookie.consent.tier.2">
                 <source>cookie.consent.tier.2</source>
                 <target>
-                    Statistical
+                    Статистически
                 </target>
             </trans-unit>
 
             <trans-unit id="cookie.consent.save">
                 <source>cookie.consent.save</source>
                 <target>
-                    Save settings
+                    Запазване на настройките
+                </target>
+            </trans-unit>
+
+            <trans-unit id="petition.title">
+                <source>petition.title</source>
+                <target>
+                    Петицията
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cta.petition">
+                <source>cta.petition</source>
+                <target>
+                    Петиция
+                </target>
+            </trans-unit>
+
+            <trans-unit id="cta.movie">
+                <source>cta.movie</source>
+                <target>
+                    Филм
                 </target>
             </trans-unit>
         </body>

@@ -99,7 +99,22 @@
   }
 
   &__button {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+
+    > .button:not(:last-of-type) {
+      margin-bottom: 1.6rem;
+
+      @media screen and (min-width: bp.$desktop) {
+        margin-right: 2rem;
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: bp.$desktop) {
+      flex-direction: row;
+    }
 
     @media screen and (min-width: bp.$tablet) {
       margin-top: sp.$gutter-desktop;
