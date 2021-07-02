@@ -23,15 +23,10 @@
 
         {% block preconectLinks %}
             {% include('/meta/preconnect-prefetch-links.html.twig')
-                with {'domain': 'https://fonts.googleapis.com/'} only %}
-
-            {% include('/meta/preconnect-prefetch-links.html.twig')
                 with {'domain': 'https://polyfill.io/'} only %}
         {% endblock %}
 
         {% include '/meta/site-icons.html.twig' %}
-
-        {# TODO: Add dynamic meta description and open graph meta tags #}
 
         {% block stylesheets %}
             {% for css in encore_entry_css_files('critical-path') %}
@@ -39,10 +34,6 @@
                     {{ get_asset_content(css)|raw }}
                 </style>
             {% endfor %}
-
-            {% include('meta/async-css.html.twig') with {
-                style_path: 'https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Roboto:wght@300;400;500&display=swap'
-            } %}
 
             {% for css in encore_entry_css_files('app') %}
                 {% include('meta/async-css.html.twig') with {
