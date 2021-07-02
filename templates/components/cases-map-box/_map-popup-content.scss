@@ -37,6 +37,10 @@ $leaflet-popup-h-gutter: 19px;
   font-size: .85rem;
   width: 290px !important;
 
+  @media screen and (max-width: bp.$smallest) {
+    width: 250px !important;
+  }
+
   @media screen and (min-width: bp.$tablet) {
     font-size: 1rem;
     width: 310px !important;
@@ -69,9 +73,13 @@ $leaflet-popup-h-gutter: 19px;
     line-height: 1.2;
     margin-bottom: .4em;
     hyphens: auto;
-    max-height: 260px;
+    max-height: 170px;
     overflow: auto;
     @include m.custom-scrollbar();
+
+    @media screen and (max-width: bp.$smallest) {
+      max-height: 100px;
+    }
   }
 
   & &__link {
