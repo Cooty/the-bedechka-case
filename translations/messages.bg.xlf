@@ -291,17 +291,11 @@
                 </target>
             </trans-unit>
 
-            <trans-unit id="vision.intro.bold">
-                <source>vision.intro.bold</source>
-                <target>
-                    Добродетелен кръг:
-                </target>
-            </trans-unit>
-
             <trans-unit id="vision.intro">
                 <source>vision.intro</source>
                 <target>
-                    Активистите, подкрепени с научни факти информират гражданите. Те на свой ред оказват натиск над адмиснитрацията за ограничаване дейностите на инвеститорите.
+                    "Добродетелен кръг", в който <![CDATA[<span class="vision__highlight vision__highlight--activists">]]>активистите<![CDATA[</span>]]> отварят очите на <![CDATA[<span class="vision__highlight vision__highlight--citizens">]]>гражданите<![CDATA[</span>]]>. <![CDATA[<span class="vision__highlight vision__highlight--citizens">]]>Гражданите<![CDATA[</span>]]> оказват натиск върху <![CDATA[<span class="vision__highlight vision__highlight--government">]]>управляващите<![CDATA[</span>]]>. От своя страна <![CDATA[<span class="vision__highlight vision__highlight--activists">]]>активистите<![CDATA[</span>]]> се захранват с информация от <![CDATA[<span class="vision__highlight vision__highlight--academia">]]>учените<![CDATA[</span>]]>, и обратно.
+                    <![CDATA[<br/><br/>]]>Резултатът е обединението около <![CDATA[<span class="vision__highlight vision__highlight--petition">]]>обща идея<![CDATA[</span>]]> и генерирането на <![CDATA[<span class="vision__highlight vision__highlight--petition">]]>петиция<![CDATA[</span>]]>, които имат потенциал да окажат по-силно влияние върху управляващите.
                 </target>
             </trans-unit>
 

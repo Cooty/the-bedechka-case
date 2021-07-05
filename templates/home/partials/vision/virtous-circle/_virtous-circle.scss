@@ -1,0 +1,42 @@
+@use "templates/scss/config/breakpoints" as bp;
+
+.virtous-circle {
+  $sprite-width: 8400px;
+  $sprite-height: 280px;
+
+  $sprite-width-large: 12000px;
+  $sprite-height-large: 400px;
+
+  $sprite-correction: -1px; // 1)
+
+  width: 270px; // 1)
+  height: $sprite-height;
+  background-size: $sprite-width $sprite-height;
+  background-image: url('./virtous-circle-animation-sprite-min.jpg');
+  background-repeat: no-repeat;
+  background-position: 0 $sprite-correction;
+  animation: play-infographic 7s steps(31, end) infinite;
+
+  @media screen and (min-width: bp.$phablet) {
+    width: 385px; // 1)
+    height: $sprite-height-large;
+    background-size: $sprite-width-large $sprite-height-large;
+    animation: play-infographic-large 7s steps(31, end) infinite;
+  }
+
+  // 1) We have to "cheat" with the dimensions of the sprite to crop some white-space
+  // and pixel-dirt, if the asset gets fixed we can adjust the vertical bg-position to 0
+  // and the width to a square
+
+  @keyframes play-infographic {
+    100% {
+      background-position: -#{$sprite-width} $sprite-correction;
+    }
+  }
+
+  @keyframes play-infographic-large {
+    100% {
+      background-position: -#{$sprite-width-large} $sprite-correction;
+    }
+  }
+}
