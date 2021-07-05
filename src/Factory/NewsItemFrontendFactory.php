@@ -13,7 +13,7 @@ class NewsItemFrontendFactory
             $news->getTitle(),
             $news->getLink(),
             $news->getSource(),
-            $news->getLogoURL()
+            $news->getPictureURL()
         );
     }
 }

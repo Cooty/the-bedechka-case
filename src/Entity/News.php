@@ -50,7 +50,7 @@ class News
     /**
      * @ORM\Column(type="string", length=200, nullable=true)
      */
-    private $logoURL;
+    private $pictureURL;
 
     public function getId(): UuidInterface
     {
@@ -96,16 +96,16 @@ class News
     /**
      * @return mixed
      */
-    public function getLogoURL()
+    public function getPictureURL()
     {
-        return $this->logoURL;
+        return $this->pictureURL;
     }
 
     /**
-     * @param mixed $logoURL
+     * @param mixed $pictureURL
      */
-    public function setLogoURL($logoURL): void
+    public function setPictureURL($pictureURL): void
     {
-        $this->logoURL = $logoURL;
+        $this->pictureURL = $pictureURL;
     }
 }
