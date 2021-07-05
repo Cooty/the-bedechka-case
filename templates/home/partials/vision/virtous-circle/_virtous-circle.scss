@@ -12,10 +12,13 @@
   width: 270px; // 1)
   height: $sprite-height;
   background-size: $sprite-width $sprite-height;
-  background-image: url('./virtous-circle-animation-sprite-min.jpg');
   background-repeat: no-repeat;
   background-position: 0 $sprite-correction;
   animation: play-infographic 7s steps(31, end) infinite;
+
+  &.lazy-loading-loaded {
+    background-image: url('./virtous-circle-animation-sprite-min.jpg');
+  }
 
   @media screen and (min-width: bp.$phablet) {
     width: 385px; // 1)
