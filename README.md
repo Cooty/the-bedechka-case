@@ -1,8 +1,8 @@
-#Website for the Bedechka Case Documentary project
+# Website for the Bedechka Case Documentary project
 
-##Frontend
+## Frontend
 
-###Webfonts
+### Webfonts
 Webfonts are added using CSS's `@font-face` feature, the font-files are self-hosted, and they can be found under `assets/fonts`.
 The reason for self-hosting these fonts is that this way we have precise control over cache headings (we use a long-term caching on static assets via Nginx) and also to avoid GDPR-related potential [legal issues](https://usercentrics.com/knowledge-hub/google-fonts-gdpr-compliant/).
 

@@ -3,7 +3,9 @@
 @use "templates/scss/config/sizes" as s;
 @use "templates/scss/config/spacings" as sp;
 @use "templates/scss/config/decorations" as d;
+@use "templates/scss/config/colors" as c;
 @import "templates/scss/config/silent-classes";
+@import "./virtous-circle/virtous-circle";
 
 @mixin column-desktop($width) {
   @media screen and (min-width: bp.$desktop) {
@@ -42,15 +44,17 @@
       align-items: center;
     }
 
+    .main-copy p {
+      line-height: 1.8;
+    }
+
   }
 
   &__graphic {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: sp.$v-gutter-far;
-    // TODO: Just placeholder, adopt to final design
-    > img {
-      max-width: 100%;
-    }
 
     @media screen and (min-width: bp.$tablet) {
       margin-left: auto;
@@ -58,6 +62,39 @@
     }
 
     @include column-desktop(60%);
+
+  }
+
+  &__highlight {
+    font-size: 86%;
+    border-radius: 6px;
+    padding: .2em .4em;
+    font-weight: 500;
+    white-space: nowrap;
+
+    &--activists {
+      background: #443f46;
+      color: c.$almost-white;
+    }
+
+    &--citizens {
+      background: #e5c147;
+    }
+
+    &--government {
+      background: #e58b97;
+      color: c.$almost-white;
+    }
+
+    &--academia {
+      background: #4e89b1;
+      color: c.$almost-white;
+    }
+
+    &--petition {
+      background: #6b5fdd;
+      color: c.$almost-white;
+    }
 
   }
 

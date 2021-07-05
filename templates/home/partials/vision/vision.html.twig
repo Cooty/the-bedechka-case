@@ -10,25 +10,13 @@
         </h3>
         <div class="vision__intro">
             <div class="main-copy">
-                <h4 class="box__subtitle mb-2">
-                    {{ 'vision.intro.bold'|trans }}
-                </h4>
                 <p>
-                    {{ 'vision.intro'|trans }}
+                    {{ 'vision.intro'|trans|raw }}
                 </p>
             </div>
         </div>
         <figure class="vision__graphic">
-            <picture>
-                <source srcset="{{ asset('build/images/empty.gif') }}"
-                        class="js-lazy-loading"
-                        data-srcset="{{ asset('build/images/the-vision-info-graphic-placeholder-desktop.png') }}"
-                        media="(min-width: 768px)">
-                <img src="{{ asset('build/images/empty.gif') }}"
-                     class="js-lazy-loading"
-                     data-src="{{ asset('build/images/the-vision-info-graphic-placeholder-mobile.png') }}"
-                     alt="">
-            </picture>
+            {% include('/home/partials/vision/virtous-circle/virtous-circle.html.twig') %}
         </figure>
         <h3 class="sub-header vision__header">
             {{ 'protection.mechanisms'|trans }}

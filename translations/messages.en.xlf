@@ -297,17 +297,11 @@
                 </target>
             </trans-unit>
 
-            <trans-unit id="vision.intro.bold">
-                <source>vision.intro.bold</source>
-                <target>
-                    A virtuous circle:
-                </target>
-            </trans-unit>
-
             <trans-unit id="vision.intro">
                 <source>vision.intro</source>
                 <target>
-                    Activists that use scientific data to ignite the citizens. They pressure the administration restrict the actions of investors.
+                    A "virtuous circle" in which <![CDATA[<span class="vision__highlight vision__highlight--activists">]]>activists<![CDATA[</span>]]> engage <![CDATA[<span class="vision__highlight vision__highlight--citizens">]]>citizens<![CDATA[</span>]]>. <![CDATA[<span class="vision__highlight vision__highlight--citizens">]]>Citizens<![CDATA[</span>]]> pressure the <![CDATA[<span class="vision__highlight vision__highlight--government">]]>government<![CDATA[</span>]]>. Meanwhile, <![CDATA[<span class="vision__highlight vision__highlight--activists">]]>activists<![CDATA[</span>]]> are supported, or vice versa, by the <![CDATA[<span class="vision__highlight vision__highlight--academia">]]>academia<![CDATA[</span>]]>.
+                    <![CDATA[<br/>]]><![CDATA[<br/>]]>The result is the promotion of a <![CDATA[<span class="vision__highlight vision__highlight--petition">]]>common idea<![CDATA[</span>]]> and the generation of a <![CDATA[<span class="vision__highlight vision__highlight--petition">]]>petition<![CDATA[</span>]]> with potential for greater impact on the authorities.
                 </target>
             </trans-unit>
 
@@ -321,7 +315,7 @@
             <trans-unit id="thf.case.title">
                 <source>thf.case.title</source>
                 <target>
-                    Social Engagement as a Powerful Tool for the Preseravation of Urban Green Areas
+                    Social Engagement as a Powerful Tool for the Preservation of Urban Green Areas
                 </target>
             </trans-unit>
 

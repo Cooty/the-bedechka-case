@@ -1,9 +1,4 @@
 import "./home.scss";
-// need to import the images so that Webpack will move them to the build folder included
-// with the content hash. They are referenced in Twig templates.
-import "./partials/vision/the-vision-info-graphic-placeholder-desktop.png";
-import "./partials/vision/the-vision-info-graphic-placeholder-mobile.png";
-
 import Timeline from "../components/timeline/timeline";
 import CasesMapBox from "../components/cases-map-box/cases-map-box";
 import News from "../components/news/news";
