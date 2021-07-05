@@ -1,11 +1,12 @@
 <li class="box-grid__item">
     <article class="box screening {{ not active ? 'screening--inactive' : '' }}">
         {% if image %}
-            <figure class="screening__image-container">
+            <figure class="box__image-container">
                 <div class="embed-16-9">
-                    <img src="{{ image }}"
+                    <img data-src="{{ asset('build/images/empty.gif') }}"
+                         src="{{ image }}"
                          alt="{{ name }} - {{ venueName }}"
-                         class="screening__image" />
+                         class="box__image js-lazy-loading" />
                 </div>
             </figure>
         {% endif %}

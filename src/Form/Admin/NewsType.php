@@ -39,10 +39,10 @@ class NewsType extends AbstractType
                 'help' => 'If left empty the domain name will be taken from the link above'
             ])
             ->add('image', FileType::class, [
-                'label' => 'Logo (optional)',
+                'label' => 'Image',
                 'mapped' => false,
                 'required' => false,
-                'help' => 'The image has to be '.ImageSizes::NEWS_ITEM_LOGO_HEIGHT.' pixels tall, ideally 1:1 ratio'
+                'help' => 'The image has to be '.ImageSizes::NEWS_ITEM_IMAGE_WIDTH.'×'.ImageSizes::NEWS_ITEM_IMAGE_HEIGHT.' pixels tall.'
             ])
             ->add('save', SubmitType::class, ['label'=> 'Save News Item']);
     }

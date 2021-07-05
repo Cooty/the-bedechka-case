@@ -22,14 +22,14 @@ class NewsItemFrontend
     /**
      * @var string|null
      */
-    private $logo;
+    private $image;
 
-    public function __construct(string $title, string $link, string $source, ?string $logo)
+    public function __construct(string $title, string $link, string $source, ?string $image)
     {
         $this->title = $title;
         $this->link = $link;
         $this->source = $source;
-        $this->logo = $logo;
+        $this->image = $image;
     }
 
     /**
@@ -59,8 +59,8 @@ class NewsItemFrontend
     /**
      * @return string|null
      */
-    public function getLogo(): ?string
+    public function getImage(): ?string
     {
-        return $this->logo;
+        return $this->image;
     }
 }
