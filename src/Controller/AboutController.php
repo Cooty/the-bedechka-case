@@ -72,10 +72,13 @@ class AboutController extends AbstractController
             return $this->redirectToSecondaryLanguageRoute($request);
         }
 
-        $trailer = $this->appCache->get(YouTubeVideos::TRAILER_ID, function (ItemInterface $cacheItem) {
+        $trailerId = $request->attributes->get('_locale') === 'bg' ?
+            YouTubeVideos::TRAILER_BG_ID : YouTubeVideos::TRAILER_ID;
+
+        $trailer = $this->appCache->get($trailerId, function (ItemInterface $cacheItem) use ($trailerId) {
             $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::TWELVE_HOURS_AS_STRING));
 
-            return $this->youTubeService->getSingleVideo(YouTubeVideos::TRAILER_ID);
+            return $this->youTubeService->getSingleVideo($trailerId);
         });
 
         $response = new Response($this->renderView('about/index.html.twig', [
