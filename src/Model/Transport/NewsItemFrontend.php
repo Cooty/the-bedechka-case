@@ -79,7 +79,7 @@ class NewsItemFrontend
     /**
      * @return string|null
      */
-    public function getPublishingDate()
+    public function getPublishingDate(): ?string
     {
         return $this->publishingDate;
     }

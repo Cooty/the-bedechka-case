@@ -20,13 +20,17 @@ class NewsItemFrontendFactory
     public function create(News $news, string $locale): NewsItemFrontend
     {
         $dateFormat = $locale === $this->secondaryLocale ? 'd.m.o' : 'd/m/o';
+        $publishedDate = $news->getPublishingDate() ?
+            $news->getPublishingDate()->format($dateFormat)
+            :
+            null;
 
         return new NewsItemFrontend(
             $news->getTitle(),
             $news->getLink(),
             $news->getSource(),
             $news->getPictureURL(),
-            $news->getPublishingDate()->format($dateFormat)
+            $publishedDate
         );
     }
 }
