@@ -27,16 +27,6 @@ class NewsService
         $this->transportService = $transportService;
     }
 
-    /**
-     * @return News[]
-     */
-    public function getFirstPage(): array
-    {
-        $firstPage = $this->newsRepository->findActiveByPage(Pagination::NEWS_PAGE_SIZE, 0);
-
-        return $this->transportService->makeNewsItemsFrontend($firstPage);
-    }
-
     public function hasPagination(): bool
     {
         $secondPage = $this->newsRepository->findActiveByPage(Pagination::NEWS_PAGE_SIZE,

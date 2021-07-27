@@ -132,9 +132,7 @@ class HomeController extends AbstractController
         $response = new Response($this->renderView('home/index.html.twig', [
             'trailer'=> $trailer,
             'thf'=> $thf,
-            'lifeInTheJungle'=> $lifeInTheJungle,
-            'newsFirstPage' => $this->newsService->getFirstPage(),
-            'newsHasPagination' => $this->newsService->hasPagination()
+            'lifeInTheJungle'=> $lifeInTheJungle
         ]));
 
         $response->headers->set('Content-Language', $locale);

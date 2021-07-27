@@ -36,11 +36,15 @@ class CrewMemberHandler extends AbstractEntityHandler
             /** @var UploadedFile $imageFile */
             $secondImageFile = $this->form->get('secondImage')->getData();
 
-            $imagePublicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
-            $secondImagePublicPath = $this->fileUploadService->moveImageAndGetPublicPath($secondImageFile);
+            if($imageFile) {
+                $imagePublicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
+                $this->entity->setPictureURL($imagePublicPath);
+            }
 
-            $this->entity->setPictureURL($imagePublicPath);
-            $this->entity->setSecondPictureUrl($secondImagePublicPath);
+            if($secondImageFile) {
+                $secondImagePublicPath = $this->fileUploadService->moveImageAndGetPublicPath($secondImageFile);
+                $this->entity->setSecondPictureUrl($secondImagePublicPath);
+            }
 
             return $this->entity;
         } catch (Exception $exception) {

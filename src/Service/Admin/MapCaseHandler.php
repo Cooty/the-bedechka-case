@@ -47,8 +47,10 @@ class MapCaseHandler extends AbstractEntityHandler
         try {
             /** @var UploadedFile $imageFile */
             $imageFile = $this->form->get('image')->getData();
-            $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
-            $this->entity->setPictureURL($publicPath);
+            if($imageFile) {
+                $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
+                $this->entity->setPictureURL($publicPath);
+            }
 
             $latLong = $this->makeLatLongFromGoogleMapsURL(
                 $this->form->get('google_maps_url')->getData());

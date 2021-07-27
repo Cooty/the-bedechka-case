@@ -70,9 +70,7 @@ class MapCaseController extends AbstractController
     private function getItems(string $locale): array
     {
         $cases = $this->mapCaseRepository->findActive();
-        $frontendCases = $this->transport->makeMapCasesFrontend($cases, $locale);
-
-        return $frontendCases;
+        return $this->transport->makeMapCasesFrontend($cases, $locale);
     }
 
     /**

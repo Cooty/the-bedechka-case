@@ -64,31 +64,29 @@ class NewsController extends AbstractController
 
     /**
      * @param Request $request
+     * @param string $locale
      * @return JsonResponse
-     * @Route("/news", methods={"GET"}, name="api_news_items")
+     * @Route("/news/{locale}", methods={"GET"}, name="api_news_items")
      */
-    public function getNewsItems(Request $request): JsonResponse
+    public function getNewsItems(Request $request, string $locale): JsonResponse
     {
         try {
             $pageSize = (int)$request->query->get('pageSize');
             $offset = (int)$request->query->get('offset');
 
-            $cacheKey = 'news-'.$pageSize.$offset;
-            $data = $this->appCache->get($cacheKey, function(ItemInterface $cacheItem) use ($pageSize, $offset) {
+            $cacheKey = 'news-'.$pageSize.$offset.$locale;
+            $data = $this->appCache->get($cacheKey, function(ItemInterface $cacheItem) use ($pageSize, $offset, $locale) {
                 $cacheItem->expiresAfter(DateInterval::createFromDateString(Cache::FIVE_HOURS_AS_STRING));
 
                 $news = $this->newsRepository->findActiveByPage($pageSize, $offset);
-                $newsItemsFrontend = $this->transport->makeNewsItemsFrontend($news);
+                $newsItemsFrontend = $this->transport->makeNewsItemsFrontend($news, $locale);
                 $count = $this->newsRepository->getItemCount();
 
                 return ['items'=> $newsItemsFrontend, 'total'=> $count];
             });
 
             return $this->json($data);
-        } catch (\Exception $exception) {
-            $this->logger->error($exception->getMessage().' '.$exception->getTraceAsString());
-            return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_INTERNAL_SERVER_ERROR);
-        } catch (InvalidArgumentException $exception) {
+        } catch (\Exception | InvalidArgumentException $exception) {
             $this->logger->error($exception->getMessage().' '.$exception->getTraceAsString());
             return $this->jsonAPI->makeHTTPJSONResponse(Response::HTTP_INTERNAL_SERVER_ERROR);
         }

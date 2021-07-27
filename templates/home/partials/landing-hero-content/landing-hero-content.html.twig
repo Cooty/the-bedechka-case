@@ -1,8 +1,10 @@
 <div class="landing-hero-content">
     <p class="landing-hero-content__intro">
-        {{ 'home.hero.intro'|trans({
-            '%full_movie_link%': "https://www.youtube.com/watch?v=#{trailer.id}"
-        })|raw }}
+        {% if trailer %}
+            {{ 'home.hero.intro'|trans({
+                '%full_movie_link%': "https://www.youtube.com/watch?v=#{trailer.id}"
+            })|raw }}
+        {% endif %}
     </p>
     <div class="landing-hero-content__video">
         {% include('/components/youtube-embed/youtube-embed.html.twig') with {'video': trailer, isLazy: false} %}

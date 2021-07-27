@@ -57,6 +57,10 @@ export default class LazyLoading {
     private init() {
         this.checkForElements();
 
-        window.addEventListener("scroll", debounce(this.scrollHandler.bind(this), 10), false);
+        window.addEventListener(
+            "scroll",
+            debounce(this.scrollHandler.bind(this), 10),
+            false
+        );
     }
 };

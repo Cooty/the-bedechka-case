@@ -1,20 +1,10 @@
 <article class="news">
     <ul class="news__list" id="js-news-list">
-        {% for newsItem in newsFirstPage %}
-            {% include('/components/news/news-list-item.html.twig') with {
-                'link': newsItem.link,
-                'title': newsItem.title,
-                'source': newsItem.source,
-                'image': newsItem.image
-            } %}
-        {% endfor %}
-        {% if newsHasPagination %}
-            <li class="news__item news__item--more" id="js-load-more-container">
-                <button type="button" class="button button--loader" id="js-news-load-more">
-                    <span class="button__text">{{ 'generic.load.more'|trans }}</span>
-                    <span class="button__spinner spinner">{{ 'generic.loading'|trans }}&#8230;</span>
-                </button>
-            </li>
-        {% endif %}
+        <li class="news__item news__item--more" id="js-load-more-container">
+            <button type="button" class="button button--loader" id="js-news-load-more">
+                <span class="button__text">{{ 'generic.load.more'|trans }}</span>
+                <span class="button__spinner spinner">{{ 'generic.loading'|trans }}&#8230;</span>
+            </button>
+        </li>
     </ul>
 </article>

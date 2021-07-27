@@ -4,21 +4,29 @@ import INewsItems from "./INewsItems";
 import {getNetworkErrorMessage} from "../../ts/utils/error-handling";
 import template from "./news-list-item.html";
 import "../../ts/interfaces/WindowGlobals";
+import debounce from "../../ts/utils/debounce";
+import Viewport from "../../ts/utils/viewport";
 
 export default class News {
     private currentPage: number;
     private readonly button: HTMLButtonElement;
     private readonly buttonContainer: HTMLElement;
     private readonly list: HTMLElement;
+    private readonly container: HTMLElement;
+    private isFirstPageLoaded: boolean;
+    private isContainerReached: boolean;
 
     constructor(button: HTMLButtonElement) {
         if (!button) {
             return;
         }
         this.button = button;
-        this.currentPage = 1; // the 0th page is already rendered to the template from server-side
+        this.currentPage = 0; // the 0th page is already rendered to the template from server-side
         this.buttonContainer = document.getElementById("js-load-more-container");
         this.list = document.getElementById("js-news-list");
+        this.container = document.getElementById("js-news-section-container");
+        this.isFirstPageLoaded = false;
+        this.isContainerReached = false;
         this.init();
     }
 
@@ -67,27 +75,34 @@ export default class News {
         return this.currentPage * window._config.newsItemsPerPage >= total;
     }
 
-    private removeButtonContainer() {
-        this.list.removeChild(this.buttonContainer);
+    private isNoItems(total: number) {
+        return total === 0;
     }
 
-    private async buttonListener() {
+    private static remove(el: HTMLElement) {
+        el.parentNode.removeChild(el)
+    }
+
+    private async load() {
         try {
             this.button.disabled = true;
-            await this.getNewsItems()
-                .then((newsItems: INewsItems) => {
-                    return newsItems
-                }).then((newsItems: INewsItems)=> {
-                    this.addItems(this.makeNewsItems(newsItems));
-                    this.currentPage++;
-                    if(this.isLastPage(newsItems.total)) {
-                        this.removeButtonContainer();
-                    } else {
-                        this.button.disabled = false;
-                    }
-                });
+            const newsItems = await this.getNewsItems();
+            this.addItems(this.makeNewsItems(newsItems));
+            this.currentPage++;
+
+            if(this.isLastPage(newsItems.total)) {
+                News.remove(this.buttonContainer);
+
+                if(this.isNoItems(newsItems.total)) {
+                    News.remove(this.container);
+                }
+            }
         } catch (e) {
             News.handleError(e);
+        } finally {
+            if(this.button) {
+                this.button.disabled = false;
+            }
         }
     }
 
@@ -96,8 +111,29 @@ export default class News {
         console.error(e);
     }
 
+    private loadFirstPage() {
+        this.load().then(() => {
+            this.isFirstPageLoaded = true;
+        });
+    }
+
+    private scrollHandler() {
+        if(
+            !this.isContainerReached &&
+            Viewport.isInViewport(this.container, 300)
+        ) {
+            this.isContainerReached = true;
+            this.loadFirstPage();
+        }
+    }
+
     public init() {
-        this.button.addEventListener("click", this.buttonListener.bind(this));
+        window.addEventListener(
+            "scroll",
+            debounce(this.scrollHandler.bind(this), 10),
+            false
+        );
+        this.button.addEventListener("click", this.load.bind(this));
     }
 
 }

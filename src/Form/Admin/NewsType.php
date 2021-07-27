@@ -3,6 +3,8 @@
 namespace App\Form\Admin;
 
 use App\Enum\Admin\ImageSizes;
+use App\Util\TimeUtil;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,17 +31,24 @@ class NewsType extends AbstractType
                 'label' => 'Title',
                 'constraints' => new NotBlank()
             ])
+            ->add('publishingDate', DateType::class, [
+                'label' => 'Publishing date',
+                'widget' => 'single_text',
+                'empty_data' => TimeUtil::getFormattedNow(),
+                'constraints' => new NotBlank(),
+                'format' => 'yyyy-MM-dd'
+            ])
             ->add('link', TextType::class, [
                 'label' => 'Link',
                 'constraints' => new Url()
             ])
             ->add('source', TextType::class, [
-                'label' => 'Source',
+                'label' => 'Source (optional)',
                 'required' => false,
                 'help' => 'If left empty the domain name will be taken from the link above'
             ])
             ->add('image', FileType::class, [
-                'label' => 'Image',
+                'label' => 'Image (optional)',
                 'mapped' => false,
                 'required' => false,
                 'help' => 'The image has to be '.ImageSizes::NEWS_ITEM_IMAGE_WIDTH.'×'.ImageSizes::NEWS_ITEM_IMAGE_HEIGHT.' pixels tall.'

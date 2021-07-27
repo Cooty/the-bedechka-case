@@ -22,7 +22,7 @@ class MapCaseRepository extends ServiceEntityRepository
     /**
       * @return MapCase[] Returns an array of MapCase objects
     */
-    public function findActive()
+    public function findActive(): array
     {
         return $this->createQueryBuilder('mc')
             ->select('mc')

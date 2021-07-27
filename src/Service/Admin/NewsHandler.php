@@ -38,8 +38,10 @@ class NewsHandler extends AbstractEntityHandler
             $source = $this->form->get('source')->getData();
             /** @var UploadedFile $imageFile */
             $imageFile = $this->form->get('image')->getData();
-            $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
-            $this->entity->setPictureURL($publicPath);
+            if($imageFile) {
+                $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
+                $this->entity->setPictureURL($publicPath);
+            }
 
             if(empty($source)) {
                 $url = $this->form->get('link')->getData();

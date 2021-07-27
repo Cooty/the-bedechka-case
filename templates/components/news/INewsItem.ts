@@ -3,4 +3,5 @@ export default interface INewsItem {
     source: string,
     link: string,
     image?: string,
+    publishingDate?: string,
 }

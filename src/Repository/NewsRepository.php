@@ -32,7 +32,7 @@ class NewsRepository extends ServiceEntityRepository
     /**
      * @return News[] Returns an array of News objects
      */
-    public function findActive()
+    public function findActive(): array
     {
         return $this->createQueryBuilder('n')
             ->select('n')
@@ -47,14 +47,14 @@ class NewsRepository extends ServiceEntityRepository
      * @param int $offset
      * @return News[] Returns an array of News objects
      */
-    public function findActiveByPage(int $pageSize = Pagination::NEWS_PAGE_SIZE, int $offset = 0)
+    public function findActiveByPage(int $pageSize = Pagination::NEWS_PAGE_SIZE, int $offset = 0): array
     {
         return $this->createQueryBuilder('n')
             ->select('n')
             ->where('n.archived = false')
             ->setFirstResult($offset)
             ->setMaxResults($pageSize)
-            ->orderBy('n.createdAt', 'DESC')
+            ->orderBy('n.publishingDate', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -62,7 +62,7 @@ class NewsRepository extends ServiceEntityRepository
     /**
      * @return int
      */
-    public function getItemCount()
+    public function getItemCount(): int
     {
         try {
             return $this->createQueryBuilder('n')
@@ -70,10 +70,7 @@ class NewsRepository extends ServiceEntityRepository
                 ->where('n.archived = false')
                 ->getQuery()
                 ->getSingleScalarResult();
-        } catch (NoResultException $e) {
-            $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
-            return 0;
-        } catch (NonUniqueResultException $e) {
+        } catch (NoResultException | NonUniqueResultException $e) {
             $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
             return 0;
         }

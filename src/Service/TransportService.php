@@ -64,12 +64,13 @@ class TransportService
 
     /**
      * @param News[] $news
+     * @param string $locale
      * @return NewsItemFrontend[]
      */
-    public function makeNewsItemsFrontend(array $news): array
+    public function makeNewsItemsFrontend(array $news, string $locale = 'en'): array
     {
-        return array_map(function($n) {
-            return $this->newsItemFrontend->create($n);
+        return array_map(function($n) use ($locale) {
+            return $this->newsItemFrontend->create($n, $locale);
         }, $news);
     }
 
