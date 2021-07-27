@@ -22,7 +22,7 @@ class CrewMemberRepository extends ServiceEntityRepository
     /**
      * @return CrewMember[] Returns an array of CrewMember objects
      */
-    public function findActive()
+    public function findActive(): array
     {
         return $this->createQueryBuilder('cm')
             ->select('cm')
@@ -31,33 +31,4 @@ class CrewMemberRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-    // /**
-    //  * @return CrewMemeber[] Returns an array of CrewMemeber objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?CrewMemeber
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

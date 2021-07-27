@@ -3,10 +3,8 @@
 
     _config.mapCaseApiUrl = "{{ path('api_map_cases', {'locale': app.request.get('_locale')}) }}";
     _config.newsHasPagination = {{ newsHasPagination ? 'true' : 'false' }};
-    {% if newsHasPagination %}
-    _config.newsApiUrl = "{{ path('api_news_items') }}";
+    _config.newsApiUrl = "{{ path('api_news_items', {'locale': app.request.get('_locale')}) }}";
     _config.newsItemsPerPage = {{ news_items_per_page }};
-    {% endif %}
     _config.genericErrorMessage = "{{ 'error.generic'|trans|spaceless }}";
 
     if(Object.freeze) {

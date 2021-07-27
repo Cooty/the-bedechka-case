@@ -24,9 +24,7 @@ class Home {
             new CasesMapBox(document.getElementById("js-cases-map"));
         }
 
-        if(window._config && window._config.newsHasPagination) {
-            new News(<HTMLButtonElement>document.getElementById("js-news-load-more"));
-        }
+        new News(<HTMLButtonElement>document.getElementById("js-news-load-more"));
     }
 }
 

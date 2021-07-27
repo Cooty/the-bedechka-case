@@ -23,7 +23,7 @@ class ScreeningRepository extends ServiceEntityRepository
     /**
      * @return Screening[] Returns an array of Screening objects
     */
-    public function findActive()
+    public function findActive(): array
     {
         return $this->createQueryBuilder('s')
             ->select('s')
@@ -36,7 +36,7 @@ class ScreeningRepository extends ServiceEntityRepository
     /**
      * @return Screening[] Returns an array of Screening objects
      */
-    public function findCurrent()
+    public function findCurrent(): array
     {
         try {
             $now = new \DateTime();
@@ -57,7 +57,7 @@ class ScreeningRepository extends ServiceEntityRepository
     /**
      * @return Screening[] Returns an array of Screening objects
      */
-    public function findPast()
+    public function findPast(): array
     {
         try {
             $now = new \DateTime();

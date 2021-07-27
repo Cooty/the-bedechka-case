@@ -166,17 +166,17 @@ class Screening
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPictureURL()
+    public function getPictureURL(): string
     {
         return $this->pictureURL;
     }
 
     /**
-     * @param mixed $pictureURL
+     * @param string $pictureURL
      */
-    public function setPictureURL($pictureURL): void
+    public function setPictureURL(string $pictureURL): void
     {
         $this->pictureURL = $pictureURL;
     }

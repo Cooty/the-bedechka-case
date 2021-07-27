@@ -51,8 +51,10 @@ class ScreeningHandler extends AbstractEntityHandler
 
             /** @var UploadedFile $imageFile */
             $imageFile = $this->form->get('image')->getData();
-            $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
-            $this->entity->setPictureURL($publicPath);
+            if($imageFile) {
+                $publicPath = $this->fileUploadService->moveImageAndGetPublicPath($imageFile);
+                $this->entity->setPictureURL($publicPath);
+            }
 
             return $this->entity;
 

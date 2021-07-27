@@ -78,6 +78,10 @@ services:
       arguments:
         $secondaryLocale: '%secondary_locale%'
 
+    App\Factory\NewsItemFrontendFactory:
+      arguments:
+        $secondaryLocale: '%secondary_locale%'
+
     App\Service\YouTubeService:
       arguments:
         $secondaryLocale: '%secondary_locale%'

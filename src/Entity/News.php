@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Traits\Archivable;
 use App\Traits\Timestampable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -52,6 +53,11 @@ class News
      */
     private $pictureURL;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publishingDate;
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -94,18 +100,31 @@ class News
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPictureURL()
+    public function getPictureURL(): ?string
     {
         return $this->pictureURL;
     }
 
     /**
-     * @param mixed $pictureURL
+     * @param string|null $pictureURL
      */
-    public function setPictureURL($pictureURL): void
+    public function setPictureURL(?string $pictureURL): void
     {
         $this->pictureURL = $pictureURL;
+    }
+
+    public function getPublishingDate(): ?DateTimeInterface
+    {
+        return $this->publishingDate;
+    }
+
+    /**
+     * @param DateTimeInterface|null $publishingDate
+     */
+    public function setPublishingDate(?DateTimeInterface $publishingDate): void
+    {
+        $this->publishingDate = $publishingDate;
     }
 }

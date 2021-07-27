@@ -15,7 +15,7 @@ class NewsItemFrontend
     private $link;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $source;
 
@@ -24,12 +24,24 @@ class NewsItemFrontend
      */
     private $image;
 
-    public function __construct(string $title, string $link, string $source, ?string $image)
+    /**
+     * @var string|null
+     */
+    private $publishingDate;
+
+    public function __construct(
+        string $title,
+        string $link,
+        ?string $source,
+        ?string $image,
+        ?string $publishingDate
+    )
     {
         $this->title = $title;
         $this->link = $link;
         $this->source = $source;
         $this->image = $image;
+        $this->publishingDate = $publishingDate;
     }
 
     /**
@@ -62,5 +74,21 @@ class NewsItemFrontend
     public function getImage(): ?string
     {
         return $this->image;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPublishingDate()
+    {
+        return $this->publishingDate;
+    }
+
+    /**
+     * @param string|null $publishingDate
+     */
+    public function setPublishingDate(?string $publishingDate): void
+    {
+        $this->publishingDate = $publishingDate;
     }
 }
