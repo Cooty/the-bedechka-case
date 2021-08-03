@@ -32,11 +32,14 @@
             'classes': 'box__header'
         } only %}
 
+        {% set streaming_link = app.request.get('_locale') == 'en' ? 'https://youtu.be/1hVCx08svd4' : 'https://youtu.be/c3xTcWGC-2g' %}
+
         <div class="main-copy">
             {{ 'screenings.intro'|trans({
                 '%list_anchor%': '#screening-list',
                 '%subscribe_link%': 'http://eepurl.com/g0nQYX',
-                '%contact_link%': path('contact')
+                '%contact_link%': path('contact'),
+                '%streaming_link%': streaming_link
             }, 'content')|raw }}
         </div>
     </article>

@@ -73,11 +73,11 @@
                 <source>screenings.intro</source>
                 <target>
                     <![CDATA[<p>]]>
-                    <![CDATA[<em>]]>"Случаят Бедечка"<![CDATA[</em>]]> ще бъде представен на различни места в България и чужбина. Информация за предстоящите прожекции можете да намерите <![CDATA[<a href="%list_anchor%">]]>тук<![CDATA[</a>]]>.
+                    <![CDATA[<em>]]>"Случаят Бедечка"<![CDATA[</em>]]> ще бъде представен на различни места в България и чужбина. Информация за предстоящите прожекции можете да намерите <![CDATA[<strong>]]><![CDATA[<a href="%list_anchor%">]]>тук<![CDATA[</a>]]><![CDATA[</strong>]]>.
                     <![CDATA[</p>]]>
 
                     <![CDATA[<p>]]>
-                    Филмът ще можете да гледате и онлайн. <![CDATA[<strong>]]><![CDATA[<a href="%subscribe_link%" target="_blank" rel="noopener noreferer">]]>Запишете се тук<![CDATA[</a>]]><![CDATA[</strong>]]>, за да получите информация щом филмът е качен в Интернет.
+                    Филмът ще можете да <![CDATA[<strong>]]><![CDATA[<a href="%streaming_link%" target="_blank" rel="noopener noreferer">]]>гледате и онлайн<![CDATA[</a>]]><![CDATA[</strong>]]>. <![CDATA[<strong>]]><![CDATA[<a href="%subscribe_link%" target="_blank" rel="noopener noreferer">]]>Запишете се тук<![CDATA[</a>]]><![CDATA[</strong>]]>, за да получите информация щом филмът е качен в Интернет.
                     <![CDATA[</p>]]>
 
                     <![CDATA[<p>]]>
