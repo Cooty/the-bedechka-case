@@ -58,11 +58,11 @@
                 <source>screenings.intro</source>
                 <target>
                     <![CDATA[<p>]]>
-                    <![CDATA[<em>]]>The Bedechka Case<![CDATA[</em>]]> will be presented in Bulgaria and around Europe. See the <![CDATA[<a href="%list_anchor%">]]>list below<![CDATA[</a>]]> to find a screening near you!
+                    <![CDATA[<em>]]>The Bedechka Case<![CDATA[</em>]]> will be presented in Bulgaria and around Europe. See the <![CDATA[<strong>]]><![CDATA[<a href="%list_anchor%">]]>list below<![CDATA[</a>]]><![CDATA[</strong>]]> to find a screening near you!
                     <![CDATA[</p>]]>
 
                     <![CDATA[<p>]]>
-                    The movie will also be available for streaming. <![CDATA[<strong>]]><![CDATA[<a href="%subscribe_link%" target="_blank" rel="noopener noreferer">]]>Subscribe here<![CDATA[</a>]]><![CDATA[</strong>]]> to get notified when it's online!
+                    The movie will also be available for <![CDATA[<strong>]]><![CDATA[<a href="%streaming_link%" target="_blank" rel="noopener noreferer">]]>streaming<![CDATA[</a>]]><![CDATA[</strong>]]>. <![CDATA[<strong>]]><![CDATA[<a href="%subscribe_link%" target="_blank" rel="noopener noreferer">]]>Subscribe here<![CDATA[</a>]]><![CDATA[</strong>]]> to get notified when it's online!
                     <![CDATA[</p>]]>
 
                     <![CDATA[<p>]]>
