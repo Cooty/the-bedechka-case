@@ -1,0 +1,93 @@
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/config/z-indexes" as z;
+@use "../../scss/config/colors" as c;
+@use "../../scss/config/sizes" as s;
+@use "../../scss/config/functions" as f;
+@import "../../scss/config/silent-classes";
+
+.hero {
+  @extend %picture-background;
+  @extend %side-gutters;
+  overflow: hidden;
+  height: 261px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media screen and (min-width: bp.$tablet) {
+    height: 421px;
+    justify-content: flex-end;
+  }
+
+  &--tall {
+    height: auto;
+    min-height: 451px;
+    justify-content: center;
+    padding-bottom: 20px;
+
+    @media screen and (min-width: bp.$tablet) {
+      min-height: 568px;
+    }
+  }
+
+  &:before {
+    @extend %backdrop;
+  }
+
+  &:after {
+    @extend %grounge-mask;
+    bottom: -1px;
+    background-image: url(grounge-mask-hero@2x.png);
+  }
+
+  > * {
+    z-index: z.$z-middle;
+  }
+
+  &__title {
+    @extend %hero-text-shadow;
+    color: c.$almost-white;
+    text-align: center;
+    line-height: 1.2;
+
+    &--main,
+    &--sub {
+      max-width: s.$narrow-content-w;
+    }
+
+    &--main {
+      @extend %header-font;
+      font-size: calc(#{f.px-to-rem(34)} + .5vw);
+      margin-bottom: f.px-to-rem(14);
+      letter-spacing: f.px-to-rem(1);
+      padding-top: f.px-to-rem(60);
+
+      @media screen and (min-width: bp.$tablet) {
+        font-size: calc(#{f.px-to-rem(57)} + .5vw);
+        margin-bottom: f.px-to-rem(100);
+        padding-top: 0;
+
+        + .page-title--sub {
+          margin-top: f.px-to-rem(86) * -1;
+        }
+
+      }
+
+    }
+
+    &--sub {
+      font-size: calc(#{f.px-to-rem(16)} + .5vw);
+      font-weight: 300;
+
+      @media screen and (min-width: bp.$tablet) {
+        font-size: calc(#{f.px-to-rem(26)} + .5vw);
+        line-height: 1.3;
+        padding-bottom: f.px-to-rem(100);
+      }
+    }
+
+
+  }
+
+}

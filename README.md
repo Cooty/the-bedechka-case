@@ -11,3 +11,15 @@ Both families were downloaded from [Google Fonts](https://fonts.google.com) web-
 Both folders for the respective font files contain a file called `generator_config.txt`, with this you should be able to recreate the exact settings that were used to generate the files.
 
 If you add new fonts (either using Font Squirrel or other tool to generate the final assets) please make sure to add somekind of generator setting files (or if not possible, then manual documentation), how the files were generated and add this to VCS! 
+
+https://symfony.com/doc/current/configuration.html#configuring-environment-variables-in-production
+
+https://knplabs.com/en/blog/how-to-dockerise-a-symfony-4-project
+
+https://www.cloudbees.com/blog/using-docker-compose-for-php-development
+
+https://stackoverflow.com/questions/44284484/docker-compose-share-named-volume-between-multiple-containers
+
+https://blog.gougousis.net/file-permissions-the-painful-side-of-docker/
+
+https://stackoverflow.com/questions/39842112/php-cannot-write-in-docker-container

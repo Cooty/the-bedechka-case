@@ -1,0 +1,29 @@
+@import "../config/colors";
+
+a {
+  color: $purple;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape while allowing user zoom */
+}
+
+button {
+  -webkit-appearance: none;
+}
+
+strong,
+b {
+  font-weight: 500;
+}

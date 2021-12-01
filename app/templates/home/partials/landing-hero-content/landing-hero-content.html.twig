@@ -1,0 +1,16 @@
+<div class="landing-hero-content" data-hello="world">
+    <p class="landing-hero-content__intro">
+        {% if trailer %}
+            {{ 'home.hero.intro'|trans({
+                '%full_movie_link%': "https://www.youtube.com/watch?v=#{trailer.id}"
+            })|raw }}
+        {% endif %}
+    </p>
+    <div class="landing-hero-content__video">
+        {% include('/components/youtube-embed/youtube-embed.html.twig') with {'video': trailer, isLazy: false} %}
+    </div>
+    <div class="landing-hero-content__button">
+        <a href="{{ path('petition') }}" class="button button--cta button--orange">{{ 'cta.petition'|trans }}</a>
+        <a href="{{ path('about') }}" class="button button--cta">{{ 'cta.movie'|trans }}</a>
+    </div>
+</div>

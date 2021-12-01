@@ -73,9 +73,6 @@ Temporary Items
 # WebStorm
 .idea/
 
-# Node.js modules
-node_modules/
-
 # SASS cache
 scss/.sass-cache/
 
@@ -88,16 +85,17 @@ scss/.sass-cache/
 # VS Code
 .vscode
 ###> symfony/webpack-encore-bundle ###
-/node_modules/
-/public/build/
-npm-debug.log
-yarn-error.log
+app/node_modules/
+app/public/build/
+app/npm-debug.log
+app/yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 # only pakage-lock.json should be used
-yarn.lock
+app/yarn.lock
 
 # ENV
 .env.dev.local
+.env
 
 # YT API
-google_client_secret.json
+app/google_client_secret.json

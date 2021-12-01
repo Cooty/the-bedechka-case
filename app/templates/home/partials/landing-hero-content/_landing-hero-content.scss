@@ -1,0 +1,134 @@
+@use "../../../scss/config/sizes" as s;
+@use "../../../scss/config/spacings" as sp;
+@use "../../../scss/config/colors" as c;
+@use "../../../scss/config/breakpoints" as bp;
+@import "../../../scss/config/silent-classes";
+
+.landing-hero-content {
+  max-width: s.$page-max-w;
+  color: c.$almost-white;
+  display: block;
+  align-items: center;
+  min-height: 260px;
+
+  @media screen and (min-width: s.$page-max-w + sp.$gutter-desktop * 2) {
+    width: s.$page-max-w;
+  }
+
+  @media screen and  (min-width: bp.$tablet) {
+    display: table;
+    vertical-align: middle;
+  }
+
+  @supports (grid-template-areas: unset) {
+    @media screen and (min-width: bp.$tablet) {
+      display: grid;
+      vertical-align: baseline;
+      grid-template-columns: 4fr 6fr;
+      grid-template-rows: auto;
+      grid-column-gap: sp.$gutter-desktop;
+    }
+  }
+
+  &__intro {
+    @extend %hero-text-shadow;
+    margin: 4vh auto 2vh auto;
+    font-size: 1.1em;
+    max-width: 500px;
+
+    a {
+      color: c.$almost-white;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+
+    }
+
+    @media screen and (min-width: bp.$tablet) {
+      margin: 0;
+      display: table-cell;
+      width: 40%;
+      padding-right: sp.$gutter-desktop;
+    }
+
+    @supports (grid-template-areas: unset) {
+      @media screen and (min-width: bp.$tablet) {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        align-self: center;
+        width: auto;
+        padding-right: 0;
+      }
+
+      @media screen and (min-width: bp.$tablet) and (max-width: bp.$desktop - 1) {
+        align-self: start;
+      }
+    }
+
+    @media screen and (min-width: bp.$desktop) {
+      font-size: 1.2em;
+    }
+
+  }
+
+  &__video {
+    @extend %hero-box-shadow;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto sp.$gutter-desktop auto;
+
+    @media screen and (min-width: bp.$tablet) {
+      margin: 0;
+      width: 60%;
+      padding-left: sp.$gutter-desktop;
+      display: table-cell;
+    }
+
+    @supports (grid-template-areas: unset) {
+      @media screen and (min-width: bp.$tablet) {
+        margin: 0;
+        padding-left: 0;
+        width: auto;
+        max-width: none;
+      }
+    }
+
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    > .button:not(:last-of-type) {
+      margin-bottom: 1.6rem;
+
+      @media screen and (min-width: bp.$desktop) {
+        margin-right: 2rem;
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (min-width: bp.$desktop) {
+      flex-direction: row;
+    }
+
+    @media screen and (min-width: bp.$tablet) {
+      margin-top: sp.$gutter-desktop;
+    }
+
+    @supports (grid-template-areas: unset) {
+      @media screen and (min-width: bp.$tablet) {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        align-self: end;
+        margin: 0;
+        text-align: left;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,368 @@
+@use "../../scss/config/mixins" as m;
+@use "../../scss/config/colors" as c;
+@use "../../scss/config/z-indexes" as z;
+@use "../../scss/config/decorations" as d;
+@use "../../scss/config/sizes" as s;
+@use "../../scss/config/spacings" as sp;
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/config/functions" as f;
+@import "../../scss/config/silent-classes";
+
+$box-top-border-h: 3px;
+$big-screen: 1800px;
+$timeline-h: 60px;
+
+$marker-line-h: 20px;
+$marker-spike-h: 15px;
+$marker-spike-w: 18px;
+$marker-dot-h: 17px;
+$marker-dot-border-w: 3px;
+$marker-h: $marker-spike-h + $marker-dot-h + ($marker-line-h * 2);
+
+$mover-radius: 4px;
+
+$illustration-w: 90px;
+$illustration-h: 184px;
+$illustration-w-desktop: 101px;
+$illustration-h-desktop: 206px;
+$steps: 6;
+
+@mixin box-with-curved-shadow($color, $size) {
+  box-shadow: 0 0 d.$box-shadow-size rgba(0, 0, 0, .1),
+              0 0 6px rgba(0, 0, 0, .08),
+              0 $size * -1 0 $color;
+}
+
+.timeline {
+  overflow: hidden;
+  margin-top: -#{d.$box-shadow-size};
+
+  &:after {
+    @include m.scroll-fader(c.$beige, 20px);
+  }
+
+  @media screen and (min-width: bp.$desktop) {
+    margin-bottom: calc(#{sp.$section-items-v-gutter} + #{sp.$grid-v-gutter}) !important;
+  }
+
+  &__steps {
+    @extend %smooth-scroll;
+    @extend %slider;
+    padding: (d.$box-shadow-size + $marker-h + s.$timeline-marker-label-h) 0 d.$box-shadow-size sp.$gutter;
+
+    @media screen and (min-width: bp.$desktop) {
+      padding-left: sp.$gutter-desktop;
+    }
+
+  }
+
+  &__step {
+    padding-left: sp.$gutter;
+    @include m.flex-column-with-offset(92%, 8px);
+
+    @media screen and (max-width: f.px-to-em(bp.$desktop-size - 1)) {
+      scroll-snap-align: start;
+      -webkit-scroll-snap-coordinate: 0% 0%;
+      -ms-scroll-snap-coordinate: 0% 0%;
+      scroll-snap-coordinate: 0% 0%;
+    }
+
+    @media screen and (min-width: bp.$phablet) {
+      @include m.flex-column-with-offset(60%, 8px);
+    }
+
+    @media screen and (min-width: bp.$desktop) {
+      padding-left: sp.$gutter-desktop;
+      @include m.flex-column-with-offset(45%, 11px);
+    }
+
+    @media screen and (min-width: s.$page-max-w) {
+      @include m.flex-column-with-offset(31%, 11px);
+    }
+
+    @media screen and (min-width: $big-screen) {
+      @include m.flex-column-with-offset(24%, 11px);
+    }
+
+    &:nth-child(odd) {
+
+      .timeline__box {
+        @include box-with-curved-shadow(c.$dark-green, $box-top-border-h);
+
+        .lazy-loading-loaded & {
+          &:before {
+            background-image: url('time-line-border-image-green@2x.png');
+          }
+        }
+
+      }
+
+      .timeline__marker,
+      .timeline__label {
+        color: c.$dark-green;
+      }
+
+    }
+
+    &:nth-child(even) {
+
+      .timeline__box {
+        @include box-with-curved-shadow(c.$orange, $box-top-border-h);
+
+        .lazy-loading-loaded & {
+          &:before {
+            background-image: url('time-line-border-image-orange@2x.png');
+          }
+        }
+      }
+
+      .timeline__marker,
+      .timeline__label {
+        color: c.$orange;
+      }
+
+    }
+
+    &:last-of-type {
+
+      .timeline__box {
+
+        &:before {
+          right: calc(var(--gutter) * -1);
+        }
+
+      }
+
+    }
+
+    @keyframes illustration-animation {
+      100% {
+        background-position-y: -#{$illustration-h * 2};
+      }
+    }
+
+    @keyframes illustration-animation-desktop {
+      100% {
+        background-position-y: -#{$illustration-h-desktop * 2};
+      }
+    }
+
+    @for $i from 0 through ($steps - 1) {
+      &:nth-child(#{$i + 1}) .timeline__illustration {
+        background-position: #{$illustration-w * $i * -1} 0;
+        animation: illustration-animation 1s steps(2, end) infinite;
+
+        @media screen and (min-width: bp.$desktop) {
+          background-position: #{$illustration-w-desktop * $i * -1} 0;
+          animation: illustration-animation-desktop 1s steps(2, end) infinite;
+        }
+
+      }
+    }
+
+  }
+
+  &__box {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    padding-bottom: sp.$grid-v-gutter - $box-top-border-h;
+
+    @media screen and (min-width: bp.$tablet) {
+      align-items: center;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 10px;
+      left: sp.$gutter + $marker-spike-w;
+      right: -#{sp.$gutter * 2};
+      top: -#{sp.$grid-v-gutter + $marker-spike-h + $marker-dot-border-w};
+      background-size: 14px 10px;
+      background-repeat: repeat-x;
+
+      @media screen and (min-width: bp.$desktop) {
+        left: sp.$gutter-desktop + $marker-spike-w;
+        right: -#{sp.$gutter-desktop * 2};
+      }
+
+    }
+
+  }
+
+  &__header {
+    margin-bottom: 2vh;
+    text-align: center;
+    @include m.flex-column;
+  }
+
+  &__illustration {
+    width: $illustration-w;
+    height: $illustration-h;
+    flex: 0 0 $illustration-w;
+
+    background-size: ($illustration-w * $steps) ($illustration-h * 2);
+
+    .lazy-loading-loaded & {
+
+      & {
+        background-image: url('timeline-animation-sprite-optimized.png');
+      }
+
+    }
+
+    @media screen and (min-width: bp.$desktop) {
+      width: $illustration-w-desktop;
+      height: 206px;
+      flex-basis: $illustration-w-desktop;
+      background-size: ($illustration-w-desktop * $steps) ($illustration-h-desktop * 2);
+    }
+
+  }
+
+  &__text {
+    flex: 1;
+    padding-left: var(--gutter);
+  }
+
+  &__marker {
+    width: $marker-spike-w;
+    height: $marker-h;
+    position: absolute;
+    left: var(--gutter);
+    top: -#{$marker-h};
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      width: 1px;
+      height: $marker-line-h;
+      background-color: currentColor;
+    }
+
+    &:before {
+      bottom: $marker-spike-h;
+    }
+
+    &:after {
+      top: 0;
+    }
+
+  }
+
+  &__box-spike {
+    position: absolute;
+    bottom: $box-top-border-h;
+    left: 0;
+    fill: currentColor;
+  }
+
+  &__marker-dot {
+    width: $marker-dot-h;
+    height: $marker-dot-h;
+    border-radius: 100%;
+    border: $marker-dot-border-w solid currentColor;
+    position: absolute;
+    top: $marker-line-h;
+    left: 1px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 7px;
+      height: 7px;
+      border-radius: 100%;
+      background-color: currentColor;
+    }
+
+  }
+
+  &__label {
+    position: absolute;
+    top: -#{$marker-h + s.$timeline-marker-label-h};
+    left: 0;
+  }
+
+  &__mover {
+    display: none;
+
+    @media screen and (min-width: bp.$desktop) {
+      position: absolute;
+      display: block;
+      z-index: z.$z-low;
+      width: 50px;
+      height: 140px;
+      background: c.$base-text-color;
+      top: 50%;
+      overflow: hidden;
+      text-indent: -200em;
+      white-space: nowrap;
+      border: 1px solid rgba(0, 0, 0, .15);
+      cursor: pointer;
+      color: white;
+      transition: all .2s ease-in-out;
+      -webkit-appearance: none;
+
+      &:hover,
+      &:focus {
+        color: c.$orange;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        border-radius: $mover-radius;
+        width: 16px;
+        height: 16px;
+        left: 12px;
+        top: 50%;
+        margin-top: -8px;
+        border: 4px solid currentColor;
+        transition: all .3s ease-in-out;
+        transform: rotate(45deg);
+      }
+
+    }
+
+  }
+
+  &__mover--back {
+    left: 0;
+    box-shadow: 6px 0 10px rgba(0, 0, 0, .1), 8px 0 12px rgba(0, 0, 0, .05);
+    border-radius: 0 $mover-radius $mover-radius 0;
+    border-left-width: 0;
+
+    &:before {
+      border-top-width: 0;
+      border-right-width: 0;
+    }
+
+    &.hide-mover {
+      transform: translate3d(-60px, 0, 0);
+    }
+
+  }
+
+  &__mover--forward {
+    right: 0;
+    box-shadow: -6px 0 10px rgba(0, 0, 0, .2), -8px 0 12px rgba(0, 0, 0, .1);
+    border-radius: $mover-radius 0 0 $mover-radius;
+    border-right-width: 0;
+
+    &:before {
+      border-bottom-width: 0;
+      border-left-width: 0;
+    }
+
+    &.hide-mover {
+      transform: translate3d(60px, 0, 0);
+    }
+
+  }
+
+}

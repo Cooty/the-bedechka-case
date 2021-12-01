@@ -1,0 +1,25 @@
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/config/typography" as t;
+@use "../../scss/config/spacings" as sp;
+@use "../../scss/config/functions" as f;
+@import "../../scss/config/silent-classes";
+
+.sub-header {
+  @extend %header-font;
+  font-size: calc(#{t.$subheader-size} + .5vw);
+  letter-spacing: f.px-to-rem(1);
+  line-height: 1.2;
+
+  @media screen and (min-width: bp.$tablet) {
+    font-size: calc(#{t.$subheader-size-desktop} + .2vw);
+  }
+
+  &--footer {
+    max-width: none;
+    padding-right: var(--gutter);
+    text-align: center;
+    margin-top: sp.$v-gutter-far;
+    margin-bottom: sp.$v-gutter-near;
+  }
+
+}
