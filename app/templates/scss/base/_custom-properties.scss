@@ -3,6 +3,7 @@
 
 html {
   --gutter: #{sp.$gutter};
+  --red: red;
 
   @media screen and (min-width: bp.$desktop) {
     --gutter: #{sp.$gutter-desktop};

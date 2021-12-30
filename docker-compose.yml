@@ -10,11 +10,6 @@ services:
 
   nginx:
     image: nginx:1.19.0-alpine
-    build:
-      context: .
-      args:
-        USER_ID: 1000
-        GROUP_ID: 1000
     restart: on-failure
     volumes:
       - './app/public/:/usr/src/app'

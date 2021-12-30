@@ -24,7 +24,7 @@ Encore
     })
     .setPublicPath("/build")
     .cleanupOutputBeforeBuild()
-    .enableVersioning()
+    .enableVersioning(Encore.isProduction())
     .enableSourceMaps()
     .addEntry("app", "./templates/ts/app.ts")
     .addEntry("home", "./templates/home/home.ts")

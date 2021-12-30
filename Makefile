@@ -1,3 +1,6 @@
+build:
+	docker-compose build
+
 up:
 	docker-compose up
 
@@ -12,3 +15,12 @@ create-env-file:
 
 create-user-content-directories:
 	docker-compose exec app bash -c "cd /usr/src/app/scripts/ && chmod u+x create_user_content_directories.sh && ./create_user_content_directories.sh"
+
+create-db:
+	docker-compose exec app bash -c "php bin/console doctrine:database:create --if-not-exists --no-interaction"
+
+run-migrations:
+	docker-compose exec app bash -c "php bin/console doctrine:migrations:migrate --no-interaction"
+
+create-admin-user:
+	docker-compose exec app bash -c "php bin/console app:create-admin $(email)"

@@ -11,8 +11,8 @@ bin/*
 vendor/
 
 # Assets and user uploads
-/web/bundles/
-/public/uploads/
+app/web/bundles/
+app/public/uploads/
 
 # Build data
 build/

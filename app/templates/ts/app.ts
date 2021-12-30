@@ -41,4 +41,6 @@ Object.freeze(app);
 
 app.init();
 
+console.log("App initialized!");
+
 export default app;
