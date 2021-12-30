@@ -94,8 +94,8 @@ app/yarn-error.log
 app/yarn.lock
 
 # ENV
-.env.dev.local
-.env
+.env.*.local
+.env.local
 
 # YT API
 app/google_client_secret.json
