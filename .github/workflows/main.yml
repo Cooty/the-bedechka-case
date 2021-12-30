@@ -21,11 +21,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout the repository
         uses: actions/checkout@v2
-        working-directory: ${{env.working-directory}}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
-        working-directory: ${{env.working-directory}}
         with:
           node-version: '8.12.0'
       
@@ -33,7 +31,6 @@ jobs:
       # but this might not be compatible with our dependencies
       - name: Setup PHP with composer v1
         uses: shivammathur/setup-php@v2
-        working-directory: ${{env.working-directory}}
         with:
           php-version: '7.4'
           tools: composer:v1
