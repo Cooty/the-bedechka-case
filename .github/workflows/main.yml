@@ -38,8 +38,9 @@ jobs:
       - name: Install PHP and Node.js dependencies
         working-directory: ${{env.working-directory}}
         run: |
-          echo "${{secrets.ENV}}" > .env
           export SYMFONY_ENV=prod
+          echo "${{secrets.ENV}}" > .env
+          cat .env
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
