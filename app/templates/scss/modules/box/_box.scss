@@ -1,0 +1,114 @@
+@use "../../config/mixins" as m;
+@use "../../config/decorations" as d;
+@use "../../config/sizes" as s;
+@use "../../config/spacings" as sp;
+@use "../../config/breakpoints" as bp;
+@use "../../config/colors" as c;
+@import "../../config/silent-classes";
+
+.box {
+  background: white;
+  padding: sp.$grid-v-gutter var(--gutter);
+  border-radius: d.$box-radius;
+  @extend %box-shadow;
+
+  @media print {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: none;
+  }
+
+  &--tablet-big-gutter {
+    @media screen and (min-width: bp.$tablet) {
+      padding-left: sp.$gutter-desktop * 2;
+      padding-right: sp.$gutter-desktop * 2;
+    }
+  }
+
+  &--center {
+    @include m.pillar-box(s.$page-max-w);
+  }
+
+  &--center-narrow {
+    @include m.pillar-box(s.$article-max-w);
+  }
+
+  &--center-xxl {
+    @include m.pillar-box(s.$xxl-w);
+  }
+
+  &__header {
+    margin-bottom: 3vh;
+    text-align: center;
+  }
+
+  &__lead {
+    @include m.pillar-box(600px);
+    margin-bottom: 2.5vh;
+  }
+
+  &__subtitle {
+    font-weight: 500;
+    font-size: calc(1.1rem + .2vw);
+  }
+
+  &__info {
+    display: block;
+    margin-top: 15px;
+    font-size: .8rem;
+    color: c.$secondary-text-color;
+  }
+
+  &__info--regular-size {
+    font-size: 1rem;
+  }
+
+  &--video {
+
+    > .video {
+      width: calc(100% + #{sp.$gutter * 2});
+      margin: -#{sp.$grid-v-gutter} 0 2vh sp.$gutter * -1;
+      overflow: hidden;
+      border-radius: d.$box-radius;
+      background: c.$image-placeholder-color;
+
+      &:before {
+        content: '';
+        position: absolute;
+      }
+
+      @media screen and (min-width: bp.$desktop) {
+        width: calc(100% + #{sp.$gutter-desktop * 2});
+        margin-left: -#{sp.$gutter-desktop};
+      }
+
+    }
+
+  }
+
+  & &__image-container {
+    background: rgba(0, 0, 0, .1);
+    margin: -#{sp.$grid-v-gutter}
+    calc(var(--gutter) * -1)
+    .8em
+    calc(var(--gutter) * -1);
+    overflow: hidden;
+    border-radius: d.$box-radius;
+  }
+
+}
+
+a.box {
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+
+    .box__subtitle {
+      text-decoration: underline;
+    }
+
+  }
+
+}

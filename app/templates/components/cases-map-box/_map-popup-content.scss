@@ -1,0 +1,102 @@
+@use "../../scss/config/mixins" as m;
+@use "../../scss/config/breakpoints" as bp;
+@use "../../scss/config/colors" as c;
+@use "../../scss/config/typography" as t;
+@import "../../scss/config/silent-classes";
+
+// Additions and overwrites for the default CSS theme of
+// LeafletJS map provider.
+// the base CSS is loaded dynamically to the global scope where
+// the cases-map JS module is initialized
+// The CSS is loaded from 3rd party CDN
+// https://unpkg.com/leaflet@1.5.1/dist/leaflet.css
+
+// HTML generated from Leaflet
+.leaflet-popup-close-button {
+  z-index: 2;
+  background: white !important;
+  border-radius: 5px;
+  padding: 10px !important;
+  border: 1px solid rgba(0, 0, 0, .2);
+  top: 5px !important;
+  right: 5px !important;
+  width: auto !important;
+  height: auto !important;
+  font-size: 24px !important;
+  line-height: 0 !important;
+}
+
+$leaflet-popup-radius: 12px;
+$leaflet-popup-v-gutter: 13px;
+$leaflet-popup-h-gutter: 19px;
+
+// HTML generated from our template
+// @see ./popup-content.html.ts
+.leaflet-popup-content {
+
+  font-size: .85rem;
+  width: 290px !important;
+
+  @media screen and (max-width: bp.$smallest) {
+    width: 250px !important;
+  }
+
+  @media screen and (min-width: bp.$tablet) {
+    font-size: 1rem;
+    width: 310px !important;
+  }
+
+  & &__image-container {
+    background: rgba(0, 0, 0, .1);
+    margin: -#{$leaflet-popup-v-gutter}
+            -#{$leaflet-popup-h-gutter}
+            .8em
+            -#{$leaflet-popup-h-gutter};
+    z-index: 1;
+    border-top-left-radius: $leaflet-popup-radius;
+    border-top-right-radius: $leaflet-popup-radius;
+  }
+
+
+  & &__title {
+    @extend %header-font;
+    color: c.$base-text-color;
+    font-size: 1.25em;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    margin-bottom: .5em;
+  }
+
+  & &__text {
+    font-family: t.$copy-font;
+    color: c.$base-text-color;
+    line-height: 1.2;
+    margin-bottom: .4em;
+    hyphens: auto;
+    max-height: 170px;
+    overflow: auto;
+    @include m.custom-scrollbar();
+
+    @media screen and (max-width: bp.$smallest) {
+      max-height: 100px;
+    }
+  }
+
+  & &__link {
+    @extend %single-line-ellipsis;
+    display: block;
+    color: c.$base-text-color;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: 1px dotted;
+    }
+
+  }
+
+}

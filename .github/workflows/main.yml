@@ -13,15 +13,19 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-20.04
+    env:
+      working-directory: ./app
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout the repository
         uses: actions/checkout@v2
+        working-directory: ${{env.working-directory}}
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
+        working-directory: ${{env.working-directory}}
         with:
           node-version: '8.12.0'
       
@@ -29,19 +33,21 @@ jobs:
       # but this might not be compatible with our dependencies
       - name: Setup PHP with composer v1
         uses: shivammathur/setup-php@v2
+        working-directory: ${{env.working-directory}}
         with:
           php-version: '7.4'
           tools: composer:v1
 
       - name: Install PHP and Node.js dependencies
+        working-directory: ${{env.working-directory}}
         run: |
-          rm .env
           echo "${{secrets.ENV}}" > .env
           export SYMFONY_ENV=prod
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
       - name: Build frontend
+        working-directory: ${{env.working-directory}}
         run: npm run build
 
       - name: Set permissions to deployment user
@@ -60,9 +66,8 @@ jobs:
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
 
-#  TODO: Refactor the long link of excludes to a --exclude-from
-#  https://linuxize.com/post/how-to-exclude-files-and-directories-with-rsync/
       - name: Sync files
+        working-directory: ${{env.working-directory}}
         env:
           dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
         run: |

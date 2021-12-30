@@ -1,0 +1,48 @@
+@use "../config/sizes" as s;
+@use "../config/mixins" as m;
+@use "../config/colors" as c;
+@import "../config/silent-classes";
+
+.tag {
+  @extend %button-base;
+  @extend %single-line-ellipsis;
+  border: 1px solid c.$dark-green;
+  background: white;
+  border-radius: 30px;
+  padding: 6px 12px;
+  font-size: .85em;
+  display: inline-block;
+  transition: all .3s ease-in-out;
+
+  &--active {
+    background: c.$dark-green;
+    color: c.$almost-white;
+  }
+
+  &--not-interactive {
+    cursor: default;
+  }
+
+  &:not(.tag--not-interactive):hover,
+  &:not(.tag--not-interactive):focus {
+    box-shadow: 0 0 0 2px c.$dark-green inset;
+    outline: none;
+  }
+
+  &--cases-map {
+    height: s.$cases-map-tag-height;
+  }
+
+  &--timeline {
+    height: s.$timeline-marker-label-h;
+    font-size: 14px;
+    border-color: currentColor;
+    background-color: currentColor;
+
+    > strong {
+      // needed so that currentColor won't affect the text color
+      color: c.$almost-white;
+    }
+
+  }
+}
