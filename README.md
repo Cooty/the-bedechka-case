@@ -3,7 +3,7 @@
 
 The app is dockerized for **local development**. All files related to the actual application reside in the `app/` folder.
 
-**Prerequitites:**
+**Prerequisites:**
 - [Node.js](https://nodejs.org/en/) (>= v8) - _for working with the frontend files_.
 - [Docker](https://docs.docker.com/get-started/)
 - [Docker Compose](https://docs.docker.com/compose/)
@@ -25,7 +25,7 @@ The app is dockerized for **local development**. All files related to the actual
 
 8) Run `make create-user-content-directories` to create the directories for user uploaded content (files uploaded on the admin area).
 
-9) `run make email=<someone@example.com> create-admin-user` to create an admin user locally. The value of the `email` variable has to be a **valid** email address format (but it doesn't have to actually exist). You'll see a randomly generated password in the command prompt. You can login with this the first time and you'll be prompted to change it.
+9) `run make email=<someone@example.com> create-admin-user` to create an admin user locally. The value of the `email` variable has to be a **valid** email address format (but it doesn't have to actually exist). You'll see a randomly generated password in the command prompt. You can log in with this the first time, and you'll be prompted to change it.
 
 10) Build the frontend files if you have an exception complaining about `manifest.json` not being found (it's an error coming from [WebPack Encore](https://github.com/symfony/webpack-encore)). The frontend files have to be built on the host machine, so do `cd app`, `npm install` and then `npm run build`.
 
@@ -33,7 +33,7 @@ At this point you should have the website running in development mode on `http//
 
 **Note:** Steps 3-9 should be optional if you've already run the site locally.
 
-If you want to change frontend files, then you'll have to run `cd app/ && npm run watch` on your host machine. After that changes to SCSS and TS files should be automatically reflected in the browser. (Reload is neccesseray - **TODO:** Add hot reload to dev environment!)
+If you want to change frontend files, then you'll have to run `cd app/ && npm run watch` on your host machine. After that changes to SCSS and TS files should be automatically reflected in the browser. (Reload is necessary - **TODO:** Add hot reload to dev environment!)
 
 ## Backend
 
@@ -43,9 +43,9 @@ The entities are managed by a custom admin interface, and forms are generated to
 
 The "Partners" section is stored in a static json file in the `data` directory.
 
-Inernationalization is handled through [Symfony's translation package](https://symfony.com/doc/current/translation.html), routes are also translated and the every page has it's mirrored route. The only exception are "News articles" which are links relating to the movie. Since there can be 3rd party websites writting about it in German, Bulgarian, English, Hungarian, etc, these are not internationalized and all language versions recieve the same content (latter we might include a language filter).
+Internationalization is handled through [Symfony's translation package](https://symfony.com/doc/current/translation.html), routes are also translated and the every page has it's mirrored route. The only exception are "News articles" which are links relating to the movie. Since there can be 3rd party websites writing about it in German, Bulgarian, English, Hungarian, etc, these are not internationalized and all language versions receive the same content (latter we might include a language filter).
 
-The transaltion copy itself is found in the `translations` folder in XML format, right now change in these texts requires code deployment and the files are inclued in VCS (we might outsource this to a GUI and generate them dynamically in the future).
+The translation copy itself is found in the `translations` folder in XML format, right now change in these texts requires code deployment and the files are included in VCS (we might outsource this to a GUI and generate them dynamically in the future).
 
 ## Frontend
 We use [Symfony's Webpack Encore package](https://github.com/symfony/webpack-encore) to connenct the frontend build pipeline to the server-side rendered templates. See `app/webpack.config.js` for details.
