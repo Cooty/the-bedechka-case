@@ -41,6 +41,7 @@ jobs:
           export SYMFONY_ENV=prod
           echo "${{secrets.ENV}}" > .env
           cat .env
+          pwd
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
