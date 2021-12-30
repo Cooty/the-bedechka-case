@@ -40,8 +40,6 @@ jobs:
         run: |
           export SYMFONY_ENV=prod
           echo "${{secrets.ENV}}" > .env
-          cat .env
-          pwd
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
@@ -61,6 +59,14 @@ jobs:
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build && rm -rf /var/www/thebedechkacase.com/templates)
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.WEB_USER_NAME}}
+          privateKey: ${{secrets.WEB_USER_KEY}}
+
+      - name: Set env vars on host
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: (export SYMFONY_ENV=prod)
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.WEB_USER_NAME}}
           privateKey: ${{secrets.WEB_USER_KEY}}
