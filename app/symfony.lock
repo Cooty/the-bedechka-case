@@ -379,9 +379,6 @@
     "symfony/http-kernel": {
         "version": "v4.2.3"
     },
-    "symfony/intl": {
-        "version": "v4.2.3"
-    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -412,6 +409,9 @@
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
+    "symfony/password-hasher": {
+        "version": "v5.4.2"
+    },
     "symfony/phpunit-bridge": {
         "version": "4.1",
         "recipe": {
@@ -423,6 +423,9 @@
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.23.1"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.23.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.12.0"
