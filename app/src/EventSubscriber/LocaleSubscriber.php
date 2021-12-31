@@ -49,7 +49,10 @@ class LocaleSubscriber implements EventSubscriberInterface
         $this->languageSettingSessionKey = $languageSettingSessionKey;
     }
 
-    public static function getSubscribedEvents()
+    /**
+     * @return array[]
+     */
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::REQUEST => [
@@ -73,9 +76,6 @@ class LocaleSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $event)
     {
-        /**
-         * @var $request Request
-         */
         $request = $event->getRequest();
 
         if($preferredLocale = $this->getPreferredLocale($request)) {

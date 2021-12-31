@@ -8,14 +8,20 @@ use Twig\TwigFunction;
 
 class AppExtension extends FrontendTwigExtensions
 {
-    public function getFilters()
+    /**
+     * @return TwigFilter[]
+     */
+    public function getFilters(): array
     {
         return [
             new TwigFilter('first_letter', [$this, 'getFirstLetter'])
         ];
     }
 
-    public function getFunctions()
+    /**
+     * @return TwigFunction[]
+     */
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('random_bs_color_name', [$this, 'getRandomBsColorName'])

@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Model\Transport\Video;
 use App\Model\Transport\VideoThumbnails;
+use Google\Exception;
 use Google_Client;
 use Google_Service_YouTube;
 use Google_Service_YouTube_PlaylistItem;
@@ -55,7 +56,7 @@ class YouTubeService
 
         try {
             $this->client->setAuthConfig($clientSecretFile);
-        } catch (\Google_Exception $e) {
+        } catch (\Google_Exception|Exception $e) {
             $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
         }
 
@@ -86,7 +87,6 @@ class YouTubeService
     {
         $thumbnails = new VideoThumbnails();
 
-        $url = null;
         foreach($thumbnailsMap as $key => $value) {
             $url = $ytThumbnails[$value] ? $ytThumbnails[$value]->url : $ytThumbnails['high']->url;
 
@@ -172,13 +172,13 @@ class YouTubeService
      * We use the "description" field of the YT videos to add who are the protagonists
      * under "people" page.
      * This also has to be translated and we use the " / " to localize it
+     * @param string $description
+     * @return string[] - The 0th item is English, the 1st is Bulgarian
      * @see docs for YouTubeService::splitTextByLang
      * We also reserve the rest of the description to not be translated and displayed here
      * only on YT. So if there's "....." string in the description that part won't
      * go into the translated / displayed string
      *
-     * @param $description
-     * @return string[] - The 0th item is English, the 1st is Bulgarian
      */
     private function getDescriptionLocalizedParts(string $description): array
     {
@@ -235,11 +235,9 @@ class YouTubeService
             $response = $this->service->playlistItems->listPlaylistItems('snippet', $queryParams);
             $items = $response->getItems();
 
-            $videos = array_map(function($item) use($thumbnailsMap) {
+            return array_map(function($item) use($thumbnailsMap) {
                 return $this->makeFrontendVideo($item, $thumbnailsMap);
-            }, (array)$items);
-
-            return $videos;
+            }, $items);
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage().' '.$e->getTraceAsString());
             return [];
