@@ -84,6 +84,7 @@ jobs:
             --exclude /.gitignore  \
             --exclude /LICENSE \
             --exclude /README.md \
+            --exclude /.dockerignore \
             --exclude /package-lock.json \
             --exclude /package.json \
             --exclude /phpunit.xml.dist \

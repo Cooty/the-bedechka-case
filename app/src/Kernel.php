@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Generator;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -15,6 +16,9 @@ class Kernel extends BaseKernel
 
     const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
+    /**
+     * @return Generator
+     */
     public function registerBundles()
     {
         $contents = require $this->getProjectDir().'/config/bundles.php';

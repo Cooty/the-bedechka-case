@@ -58,7 +58,10 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         $this->appCache = $appCache;
     }
 
-    public function getFunctions()
+    /**
+     * @return TwigFunction[]
+     */
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('is_facebook_link', [$this, 'isFacebookLink']),
@@ -76,14 +79,10 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
         try {
             $cacheKey = md5($asset);
 
-            $content = $this->appCache->get($cacheKey, function() use ($asset) {
+            return $this->appCache->get($cacheKey, function() use ($asset) {
                 return file_get_contents($this->publicDirectory.$asset);
             });
-
-            return $content;
-        } catch(\Exception $e) {
-            return '';
-        } catch (InvalidArgumentException $e) {
+        } catch(\Exception|InvalidArgumentException $e) {
             return '';
         }
     }
