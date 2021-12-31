@@ -3,7 +3,7 @@ const Encore = require("@symfony/webpack-encore");
 const babelLoader = {
     test: /\.js$/,
     loader: "babel-loader",
-    query: {
+    options: {
         presets: [
             [
                 "@babel/preset-env",
