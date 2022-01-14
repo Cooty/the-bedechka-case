@@ -1,0 +1,54 @@
+// Global styles for the map page
+@use "../scss/config/breakpoints" as bp;
+@use "../scss/config/sizes" as s;
+@use "../scss/config/colors" as c;
+@use "../scss/config/mixins" as m;
+@import "../scss/config/silent-classes";
+
+$map-nav-width: 240px;
+
+.map {
+  width: 100%;
+  height: calc(100vh - #{s.$mobile-header-top-h + s.$mobile-navigation-h});
+  overflow: hidden;
+  background-color: c.$base-text-color;
+
+  @media screen and (min-width: bp.$desktop) {
+    height: calc(100vh - #{s.$desktop-header-h});
+  }
+
+  &__cases-nav {
+    position: fixed;
+    width: $map-nav-width;
+    top: #{s.$mobile-header-top-h + s.$mobile-navigation-h};
+    bottom: 0;
+    left: 0;
+    transform: translate3d(-#{$map-nav-width}, 0, 0);
+    transition: 0.3s all ease-in-out;
+    background: white;
+    @extend %box-shadow;
+
+    @media screen and (min-width: bp.$desktop) {
+      top: calc(100vh - #{s.$desktop-header-h});
+      transform: translate3d(0, 0, 0);
+    }
+
+    &--open {
+      @media screen and (max-width: bp.$desktop - 1) {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  &__cases-nav-scroll-plane {
+    @include m.custom-scrollbar;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+  }
+
+
+}

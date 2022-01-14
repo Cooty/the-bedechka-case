@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% set heroTitle = {'mainTitle': 'about.title'} %}
+
+{% block title %}{{ 'map-page.title'|trans }} - {{ 'site.name'|trans }}{% endblock %}
+
+{% block description %}
+    {% include('/meta/meta-description.html.twig') with {
+        'description': 'map'|trans({}, 'meta-descriptions')|raw|trim
+    } only %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% for css in encore_entry_css_files('critical-path-subpages') %}
+        <style>
+            {{ get_asset_content(css)|raw }}
+        </style>
+    {% endfor %}
+
+    {% for css in encore_entry_css_files('map') %}
+        {% include('meta/async-css.html.twig') with {
+            style_path: asset(css)
+        } %}
+    {% endfor %}
+{% endblock %}
+
+{% block main %}
+    <div id="map-app" class="map"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% for js in encore_entry_js_files('map') %}
+        <script src="{{ asset(js) }}" defer></script>
+    {% endfor %}
+{% endblock %}
+
+{% block javascript_config %}
+    {{ render_esi(controller('App\\Controller\\MapPageController::jsConfig')) }}
+{% endblock %}
+
+{% block preconectLinks %}
+    {{ parent() }}
+    {% include('/meta/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://unpkg.com/'} only %}
+
+    {% include('/meta/preconnect-prefetch-links.html.twig')
+        with {'domain': 'https://api.tiles.mapbox.com/'} only %}
+{% endblock %}

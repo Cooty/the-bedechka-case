@@ -15,19 +15,17 @@ The app is dockerized for **local development**. All files related to the actual
 
 3) Run `make composer-install` to install the PHP dependencies in the `app` container.
 
-4) Run `make create-env-file` to create the `.env.dev.local` file inside the has all the environment variables needed for the development version of the app.
+4) Run `make create-env-file` to create the `.env.local` file inside the has all the environment variables needed for the development version of the app.
 
 5) Manually create a file named `google_client_secret.json` inside the root of the `app/` directory and fill it's content with the production values that are needed to connenct to the YouTube API. **NOTE:** This part of the setup is **not** automated, the secret values are stored in a password manager. If you need them send an email to [cooty13@gmail.com](mailto:cooty13@gmail.com)
 
 6) Run `make create-db`
 
-7) Run `make run-migrations`
+7) Run `make create-user-content-directories` to create the directories for user uploaded content (files uploaded on the admin area).
 
-8) Run `make create-user-content-directories` to create the directories for user uploaded content (files uploaded on the admin area).
+8) `run make email=<someone@example.com> create-admin-user` to create an admin user locally. The value of the `email` variable has to be a **valid** email address format (but it doesn't have to actually exist). You'll see a randomly generated password in the command prompt. You can log in with this the first time, and you'll be prompted to change it.
 
-9) `run make email=<someone@example.com> create-admin-user` to create an admin user locally. The value of the `email` variable has to be a **valid** email address format (but it doesn't have to actually exist). You'll see a randomly generated password in the command prompt. You can log in with this the first time, and you'll be prompted to change it.
-
-10) Build the frontend files if you have an exception complaining about `manifest.json` not being found (it's an error coming from [WebPack Encore](https://github.com/symfony/webpack-encore)). The frontend files have to be built on the host machine, so do `cd app`, `npm install` and then `npm run build`.
+9) Build the frontend files if you have an exception complaining about `manifest.json` not being found (it's an error coming from [WebPack Encore](https://github.com/symfony/webpack-encore)). The frontend files have to be built on the host machine, so do `cd app`, `npm install` and then `npm run build`.
 
 At this point you should have the website running in development mode on `http//:localhost`, the admin area can be reached from `http//:localhost/admin`
 

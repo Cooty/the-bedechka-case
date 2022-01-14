@@ -1,13 +1,13 @@
 import "./_cases-map.scss";
-import "./_map-popup-content.scss";
+import "../../ts/map-common/_map-popup-content.scss";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-import ILocations from "./ILocations";
-import ILocation from "./ILocation";
+import ILocations from "../../ts/map-common/ILocations";
+import ILocation from "../../ts/map-common/ILocation";
 import {LatLngExpression, Map, Marker} from "leaflet";
-import popupContent from "./popup-content.html";
-import openStreetMapsAttribution from "./open-street-maps-attribution.html";
+import popupContent from "../../ts/map-common/popup-content.html";
+import openStreetMapsAttribution from "../../ts/map-common/open-street-maps-attribution.html";
 import {getNetworkErrorMessage} from "../../ts/utils/error-handling";
 import "../../ts/interfaces/WindowGlobals";
 import Viewport from "../../ts/utils/viewport";
