@@ -528,6 +528,13 @@
                 Карта на случая
                 </target>
             </trans-unit>
+
+            <trans-unit id="navigation.back-to-map-index">
+                <source>navigation.back-to-map-index</source>
+                <target>
+                    Всички случаи
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -70,7 +70,7 @@
         {% endblock %}
 
     </head>
-    <body class="header-offset">
+    <body class="header-offset {% block page_type '' %}">
         {% include '/components/header/header.html.twig' %}
         <main class="main">
             {% block main %}{% endblock %}

@@ -2,7 +2,8 @@ import * as React from "react";
 import ILocation from "../../ts/map-common/ILocation";
 import { getCases } from "../services/api";
 import CasesContext from "../contexts/cases";
-const CasesMap = React.lazy(() => import("./CasesMap"));
+import TranslationsContext from "../contexts/translations";
+const Router = React.lazy(() => import("./Router"));
 
 const App: React.VFC = () => {
     const [cases, setCases] = React.useState<ILocation[]>([]);
@@ -22,7 +23,9 @@ const App: React.VFC = () => {
     return (
         <React.Suspense fallback={<span className="spinner" />}>
             <CasesContext.Provider value={cases}>
-                <CasesMap />
+                <TranslationsContext.Provider value={window._translations}>
+                    <Router />
+                </TranslationsContext.Provider>
             </CasesContext.Provider>
         </React.Suspense>
     );

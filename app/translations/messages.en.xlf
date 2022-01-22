@@ -525,7 +525,14 @@
             <trans-unit id="map-page.title">
                 <source>map-page.title</source>
                 <target>
-                Map of case
+                Map of cases
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.back-to-map-index">
+                <source>navigation.back-to-map-index</source>
+                <target>
+                    All cases
                 </target>
             </trans-unit>
         </body>

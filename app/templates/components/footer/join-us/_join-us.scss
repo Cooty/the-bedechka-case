@@ -2,6 +2,7 @@
 @use "../../../scss/config/breakpoints" as bp;
 @use "../../../scss/config/functions" as f;
 @use "../../../scss/config/mixins" as m;
+@use "../../../scss/config/colors" as c;
 @import "../../../scss/config/silent-classes";
 
 .join-us {
@@ -13,6 +14,20 @@
     @extend %grounge-mask;
     background-image: url(../../hero/grounge-mask-hero@2x.png);
     top: -6px;
+  }
+
+  .map-page & {
+    background: c.$beige;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      background-image: url(../../hero/grounge-mask-hero@2x.png);
+      bottom: -2px;
+    }
+
   }
 
   &:after {

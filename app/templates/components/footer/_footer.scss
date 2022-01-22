@@ -37,6 +37,10 @@ $icon-size-desktop: 34px;
 .footer {
   @extend %section-v-divider;
 
+  .map-page & {
+    margin-top: 0;
+  }
+
   %list-item-v-gutter {
     margin-bottom: 2.8vh;
 

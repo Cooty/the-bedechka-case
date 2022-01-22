@@ -1,0 +1,17 @@
+@use "../../../scss/config/breakpoints" as bp;
+@use "../../../scss/config/z-indexes" as z;
+@use "../../varibales" as mv;
+
+.map {
+
+  &__content-container {
+    z-index: z.$z-lowest;
+    width: 100%;
+
+    @media screen and (min-width: bp.$desktop) {
+      width: calc(100% - #{mv.$map-nav-width});
+      margin-left: mv.$map-nav-width;
+    }
+  }
+
+}
