@@ -263,6 +263,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="navigation.map">
+                <source>navigation.map</source>
+                <target>
+                    Случаи
+                </target>
+            </trans-unit>
+
             <trans-unit id="navigation.watch">
                 <source>navigation.watch</source>
                 <target>
@@ -513,6 +520,19 @@
                 <source>cta.movie</source>
                 <target>
                     Филм
+                </target>
+            </trans-unit>
+            <trans-unit id="map-page.title">
+                <source>map-page.title</source>
+                <target>
+                Карта на случая
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.back-to-map-index">
+                <source>navigation.back-to-map-index</source>
+                <target>
+                    Всички случаи
                 </target>
             </trans-unit>
         </body>

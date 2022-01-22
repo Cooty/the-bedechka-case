@@ -1,0 +1,144 @@
+@use "../../../scss/config/mixins" as m;
+@use "../../../scss/config/z-indexes" as z;
+@use "../../../scss/config/decorations" as d;
+@use "../../../scss/config/colors" as c;
+@use "../../../scss/config/breakpoints" as bp;
+@use "../../../scss/config/functions" as f;
+@use "../../varibales" as mv;
+@import "../../../scss/config/silent-classes";
+
+.map {
+  $item-padding: 8px;
+
+  &__cases-nav {
+    position: absolute;
+    z-index: z.$z-middle;
+    width: mv.$map-nav-width;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(-#{mv.$map-nav-width}, 0, 0);
+    transition: 0.3s all ease-in-out;
+    background: white;
+    @extend %box-shadow;
+
+    @media screen and (min-width: bp.$desktop) {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &--open {
+      @media screen and (max-width: bp.$desktop - 1) {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  &__cases-nav-backdrop {
+    background-color: c.$backdrop-grey;
+    position: absolute;
+    z-index: z.$z-low;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    @media screen and (min-width: bp.$desktop) {
+      display: none;
+    }
+  }
+
+  &__cases-nav-scroll-plane {
+    @include m.custom-scrollbar;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-y: auto;
+  }
+
+  &__cases-nav-toggler {
+    @extend %button-base;
+    @extend %box-shadow;
+    position: absolute;
+    right: -#{mv.$toggler-w};
+    top: mv.$toggler-w;
+    width: mv.$toggler-w;
+    height: mv.$toggler-w;
+    border-radius: 0 d.$form-border-radius d.$form-border-radius 0;
+    background: white;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media screen and (min-width: bp.$desktop) {
+      display: none;
+    }
+  }
+
+  &__cases-nav-item {
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding: 8px;
+    transition: all .3s ease-in-out;
+
+    &:last-of-type {
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .2);
+    }
+
+    & > a {
+      display: block;
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -#{$item-padding};
+        top: -#{$item-padding};
+        bottom: -#{$item-padding};
+        width: 3px;
+        border-radius: 0 d.$form-border-radius d.$form-border-radius 0;
+      }
+
+      &.active {
+        &:before {
+          background-color: c.$orange;
+        }
+      }
+
+    }
+  }
+
+  &__cases-nav-item-title {
+    font-size: f.px-to-rem(14px);
+  }
+
+  &__cases-nav-item-media {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+
+  &__cases-nav-item-media-body {
+    flex: 1;
+  }
+
+  &__cases-nav-item-media-img {
+    width: 100px;
+    height: 56px;
+    margin-left: .5rem;
+    background-color: c.$secondary-text-color;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: d.$form-border-radius;
+  }
+
+}

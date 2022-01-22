@@ -26,8 +26,10 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableVersioning(Encore.isProduction())
     .enableSourceMaps()
+    .enableReactPreset()
     .addEntry("app", "./templates/ts/app.ts")
     .addEntry("home", "./templates/home/home.ts")
+    .addEntry("map", "./templates/map/map.tsx")
     .addEntry("yt", "./templates/components/youtube-embed/youtube-embed.ts")
     .addEntry("admin", "./templates/admin/ts/admin.ts")
     .addStyleEntry("the-crew", "./templates/the-crew/the-crew.scss")
@@ -46,11 +48,6 @@ Encore
     .splitEntryChunks();
 
 const config = Encore.getWebpackConfig();
-
-// needed for Vagrant VM for watch mode to work correctly
-config.watchOptions = {
-    poll: true
-};
 
 config.optimization.noEmitOnErrors = true;
 

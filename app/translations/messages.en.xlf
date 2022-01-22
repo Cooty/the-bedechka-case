@@ -269,6 +269,13 @@
                 </target>
             </trans-unit>
 
+            <trans-unit id="navigation.map">
+                <source>navigation.map</source>
+                <target>
+                    Cases
+                </target>
+            </trans-unit>
+
             <trans-unit id="navigation.crew">
                 <source>navigation.crew</source>
                 <target>
@@ -512,6 +519,20 @@
                 <source>cta.movie</source>
                 <target>
                     Movie
+                </target>
+            </trans-unit>
+
+            <trans-unit id="map-page.title">
+                <source>map-page.title</source>
+                <target>
+                Map of cases
+                </target>
+            </trans-unit>
+
+            <trans-unit id="navigation.back-to-map-index">
+                <source>navigation.back-to-map-index</source>
+                <target>
+                    All cases
                 </target>
             </trans-unit>
         </body>

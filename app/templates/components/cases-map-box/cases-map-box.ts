@@ -1,18 +1,19 @@
 import "./_cases-map.scss";
-import "./_map-popup-content.scss";
+import "../../ts/map-common/_map-popup-content.scss";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
-import ILocations from "./ILocations";
-import ILocation from "./ILocation";
+import ILocations from "../../ts/map-common/ILocations";
+import ILocation from "../../ts/map-common/ILocation";
 import {LatLngExpression, Map, Marker} from "leaflet";
-import popupContent from "./popup-content.html";
-import openStreetMapsAttribution from "./open-street-maps-attribution.html";
+import popupContent from "../../ts/map-common/popup-content.html";
+import openStreetMapsAttribution from "../../ts/map-common/open-street-maps-attribution.html";
 import {getNetworkErrorMessage} from "../../ts/utils/error-handling";
 import "../../ts/interfaces/WindowGlobals";
 import Viewport from "../../ts/utils/viewport";
 import debounce from "../../ts/utils/debounce";
 const {loadCSS} = require("fg-loadcss/src/loadCSS");
+import MapSettings from "../../ts/map-common/map-settings";
 
 export default class CasesMapBox {
     private readonly rootElement: HTMLElement;
@@ -79,8 +80,8 @@ export default class CasesMapBox {
 
     private makeMap(): Map {
         const mapContainerId: any = "js-cases-map-container";
-        const mapCenter: LatLngExpression = [42.43897, 25.6289515]; // coords of Park Bedechka
-        const defaultZoom = 7;
+        const mapCenter: LatLngExpression = MapSettings.defaultCenter; // coords of Park Bedechka
+        const defaultZoom = MapSettings.defaultZoom;
         const mapProviderURL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
         const casesMap = window.L.map(
@@ -98,7 +99,8 @@ export default class CasesMapBox {
 
         window.L.tileLayer(mapProviderURL, {
             attribution: openStreetMapsAttribution(),
-            minZoom: 5,
+            minZoom: MapSettings.defaultMinZoom,
+            maxZoom: MapSettings.defaultMaxZoom,
             dragging: !window.L.Browser.mobile,
             tap: !window.L.Browser.mobile
         }).addTo(casesMap);
@@ -120,7 +122,7 @@ export default class CasesMapBox {
 
         const m = this.markers[index];
 
-        // have to zoom into the the Marker Cluster first then show the popup
+        // have to zoom into the Marker Cluster first then show the popup
         // @see https://github.com/Leaflet/Leaflet.markercluster/issues/72
         this.markerCluster.zoomToShowLayer(m, ()=> {
             m.openPopup();

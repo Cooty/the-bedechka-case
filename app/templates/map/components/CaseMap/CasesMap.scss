@@ -1,0 +1,15 @@
+@import '~leaflet/dist/leaflet.css';
+@import '~react-leaflet-markercluster/dist/styles.min.css';
+
+.leaflet-control-container {
+  position: static;
+}
+
+.map {
+
+  &__cases-map {
+    width: 100%;
+    height: 100%;
+  }
+
+}

@@ -7,6 +7,10 @@
        class="navigation__item{{ app.request.get('_route') == 'protagonists' ? ' active' }}">
         <span>{{ 'navigation.protagonists'|trans }}</span>
     </a>
+    <a href="{{ path('map') }}"
+       class="navigation__item{{ app.request.get('_route') == 'map' ? ' active' }}">
+        <span>{{ 'navigation.map'|trans }}</span>
+    </a>
     <a href="{{ path('the_crew') }}"
        class="navigation__item{{ app.request.get('_route') == 'the_crew' ? ' active' }}">
         <span>{{ 'navigation.crew'|trans }}</span>

@@ -50,6 +50,12 @@
                 Do you witness suspicious tree logging or construction in green spaces in urban environments?
                 </target>
             </trans-unit>
+            <trans-unit id="map">
+                <source>map</source>
+                <target>
+                Interactive map of cases of destruction of urban green areas
+                </target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

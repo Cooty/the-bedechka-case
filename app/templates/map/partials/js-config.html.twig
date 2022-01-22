@@ -1,0 +1,17 @@
+<script>
+    var _config = window._config || {};
+
+    _config.mapCaseApiUrl = "{{ path('api_map_cases', {'locale': app.request.get('_locale')}) }}";
+    _config.genericErrorMessage = "{{ 'error.generic'|trans|spaceless }}";
+
+    if(Object.freeze) {
+        Object.freeze(_config);
+    }
+
+    var _translations = window._translations || {};
+    _translations.pageTitles = {};
+    _translations.pageTitles.suffix = '{{ 'site.name'|trans|spaceless }}';
+    _translations.pageTitles.map = '{{ 'map-page.title'|trans|spaceless }}';
+    _translations.navigation = {};
+    _translations.navigation.backToMapIndex = '{{ 'navigation.back-to-map-index'|trans|spaceless }}';
+</script>

@@ -1,0 +1,96 @@
+@use "../../../scss/config/typography" as t;
+@use "../../../scss/config/functions" as f;
+@use "../../../scss/config/colors" as c;
+@use "../../../scss/config/breakpoints" as bp;
+@use "../../../scss/config/decorations" as d;
+@use "../../varibales" as mv;
+@import "../../../scss/config/silent-classes";
+
+.map {
+
+  &__cases-details {
+    background: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: bp.$desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__cases-details-title {
+    @extend %header-font;
+    font-size: calc(#{t.$header-font-size} + .5vw);
+    padding-bottom: f.px-to-rem(16);
+
+    @media screen and (min-width: bp.$tablet) {
+      font-size: calc(#{t.$header-font-size-desktop} + .5vw);
+    }
+  }
+
+  &__cases-details-link {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__cases-details-info {
+    $v-gutter: 24px;
+    $gutter: 16px;
+    flex: 1;
+    padding: $v-gutter $gutter $v-gutter #{$v-gutter + mv.$toggler-w};
+
+    @media screen and (min-width: bp.$desktop) {
+      padding-left: $v-gutter;
+    }
+  }
+
+  &__cases-details-img {
+    display: block;
+    border-radius: d.$box-radius;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  &__cases-details-map {
+    height: 300px;
+
+    @media screen and (min-width: bp.$desktop) {
+      max-width: 60%;
+      max-height: none;
+      flex: 0 0 60%;
+      height: 100%;
+    }
+  }
+
+  &__cases-details-back-container {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    margin-bottom: 24px;
+  }
+
+  &__cases-details-back {
+    display: inline-flex;
+    padding: 4px;
+    font-size: f.px-to-rem(14);
+    border-radius: d.$form-border-radius;
+    color: c.$base-text-color;
+    transition: all .3s ease-in-out;
+    background-color: rgba(0, 0, 0, .2);
+    align-items: center;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, .4);
+    }
+
+    > svg {
+      margin-right: 8px;
+    }
+
+  }
+
+}

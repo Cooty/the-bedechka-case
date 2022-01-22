@@ -2,11 +2,14 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "jsx": "react",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "vendor",
