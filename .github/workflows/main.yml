@@ -1,34 +1,25 @@
 # Deployment workflow for the project
 name: Deployment
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [master]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       working-directory: ./app
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "14.18.2"
 
-      # By default the Github runner has the latest stable PHP/Composer version on it
-      # but this might not be compatible with our dependencies
       - name: Setup PHP with composer v1
         uses: shivammathur/setup-php@v2
         with:
@@ -36,40 +27,40 @@ jobs:
           tools: composer:v1
 
       - name: Install PHP and Node.js dependencies
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{ env.working-directory }}
         run: |
           export SYMFONY_ENV=prod
-          echo "${{secrets.ENV}}" > .env.local
+          echo "${{ secrets.ENV }}" > .env.local
           composer install --no-dev --optimize-autoloader
           npm install --no-optional
 
       - name: Build frontend
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{ env.working-directory }}
         run: npm run build
 
       - name: Set permissions to deployment user
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: echo ${{secrets.WEB_USER_PSW}} | sudo -S chown -R ${{secrets.WEB_USER_NAME}}:${{secrets.WEB_USER_NAME}} /var/www/thebedechkacase.com
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          command: echo ${{ secrets.WEB_USER_PSW }} | sudo -S chown -R ${{ secrets.WEB_USER_NAME }}:${{ secrets.WEB_USER_NAME }} /var/www/thebedechkacase.com
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Delete vendor/ and cache/ and build/ and templates/
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: (rm -rf /var/www/thebedechkacase.com/vendor && rm -rf /var/www/thebedechkacase.com/var/cache && rm -rf /var/www/thebedechkacase.com/public/build && rm -rf /var/www/thebedechkacase.com/templates)
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          command: rm -rf /var/www/thebedechkacase.com/vendor /var/www/thebedechkacase.com/var/cache /var/www/thebedechkacase.com/public/build /var/www/thebedechkacase.com/templates
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Sync files
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{ env.working-directory }}
         env:
-          dest: "${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com"
+          dest: "${{ secrets.WEB_USER_NAME }}@${{ secrets.SSH_HOST }}:/var/www/thebedechkacase.com"
         run: |
-          echo "${{secrets.WEB_USER_KEY}}" > deploy_key
-          echo "${{secrets.GOOGLE_CLIENT_SECRET}}" > google_client_secret.json
+          echo "${{ secrets.WEB_USER_KEY }}" > deploy_key
+          echo "${{ secrets.GOOGLE_CLIENT_SECRET }}" > google_client_secret.json
           chmod 600 ./deploy_key
           rsync -chav \
             -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' \
@@ -81,7 +72,7 @@ jobs:
             --exclude '*.ts' \
             --exclude '*.scss' \
             --exclude /tests/ \
-            --exclude /.gitignore  \
+            --exclude /.gitignore \
             --exclude /LICENSE \
             --exclude /README.md \
             --exclude /.dockerignore \
@@ -91,52 +82,52 @@ jobs:
             --exclude /postcss.config.js \
             --exclude /tsconfig.json \
             --exclude /webpack.config.js \
-            ./ ${{env.dest}}
+            ./ ${{ env.dest }}
 
       - name: Create user content directories
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: (cd /var/www/thebedechkacase.com/scripts && sh create_user_content_directories.sh)
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          command: cd /var/www/thebedechkacase.com/scripts && sh create_user_content_directories.sh
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Create DB
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: php /var/www/thebedechkacase.com/bin/console doctrine:database:create --if-not-exists --no-interaction
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Execute migrations
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: php /var/www/thebedechkacase.com/bin/console doctrine:migrations:migrate --no-interaction
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Clear Symfony cache
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: php /var/www/thebedechkacase.com/bin/console cache:clear
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Warmup Symfony cache
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: php /var/www/thebedechkacase.com/bin/console cache:warmup
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
 
       - name: Set permissions to www-data
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: echo ${{secrets.WEB_USER_PSW}} | sudo -S chown -R www-data:www-data /var/www/thebedechkacase.com
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.WEB_USER_NAME}}
-          privateKey: ${{secrets.WEB_USER_KEY}}
+          command: echo ${{ secrets.WEB_USER_PSW }} | sudo -S chown -R www-data:www-data /var/www/thebedechkacase.com
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.WEB_USER_NAME }}
+          privateKey: ${{ secrets.WEB_USER_KEY }}
