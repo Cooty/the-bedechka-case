@@ -2,10 +2,10 @@
 name: Deployment
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the develop branch
+# events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,14 +25,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14.18.2'
-      
+          node-version: "14.18.2"
+
       # By default the Github runner has the latest stable PHP/Composer version on it
       # but this might not be compatible with our dependencies
       - name: Setup PHP with composer v1
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: "7.4"
           tools: composer:v1
 
       - name: Install PHP and Node.js dependencies
@@ -66,7 +66,7 @@ jobs:
       - name: Sync files
         working-directory: ${{env.working-directory}}
         env:
-          dest: '${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com'
+          dest: "${{secrets.WEB_USER_NAME}}@${{secrets.SSH_HOST}}:/var/www/thebedechkacase.com"
         run: |
           echo "${{secrets.WEB_USER_KEY}}" > deploy_key
           echo "${{secrets.GOOGLE_CLIENT_SECRET}}" > google_client_secret.json
