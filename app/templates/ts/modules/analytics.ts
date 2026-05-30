@@ -3,8 +3,7 @@ import CookieSettings from "../../components/cookie-settings/cookie-settings.enu
 import deleteAllCookies from "../utils/delete-all-cookies";
 
 export default class Analytics {
-    private idNumber = "168786587";
-    private readonly id = `UA-${this.idNumber}-1`;
+    private readonly id = "G-YMPELWVB85";
     private isLoaded = false;
 
     private load() {
@@ -27,23 +26,32 @@ export default class Analytics {
 
     public init() {
         try {
-            const cookieTier = JSON.parse(window.localStorage.getItem(CookieSettings.cookieTier));
+            const cookieTier = JSON.parse(
+                window.localStorage.getItem(CookieSettings.cookieTier),
+            );
 
-            if(cookieTier >= 2) {
+            if (cookieTier >= 2) {
                 this.load();
                 this.isLoaded = true;
             }
 
-            document.querySelector("body")
-                .addEventListener(CookieSettings.customEventName, (e: CustomEvent)=> {
-                    if(JSON.parse(e.detail.cookieTier) >= 2 && !this.isLoaded) {
-                        this.load();
-                    } else {
-                        deleteAllCookies();
-                    }});
-        } catch(e) {
+            document
+                .querySelector("body")
+                .addEventListener(
+                    CookieSettings.customEventName,
+                    (e: CustomEvent) => {
+                        if (
+                            JSON.parse(e.detail.cookieTier) >= 2 &&
+                            !this.isLoaded
+                        ) {
+                            this.load();
+                        } else {
+                            deleteAllCookies();
+                        }
+                    },
+                );
+        } catch (e) {
             console.error(e);
         }
-
     }
 }
